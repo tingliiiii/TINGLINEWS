@@ -1,0 +1,28 @@
+body {
+    background-color: #eee;
+    color: #333;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+#emp-news-list-container{
+    margin: 5vw auto;
+}
+
+.emp-title2 {
+    text-align: center;
+    margin: 2vw;
+}
+
+.table{
+    --bs-table-color: #333;
+}
+
+#emp-news-table-container{
+    /* width: 80%; */
+    overflow-x: auto;
+    margin: 0 auto;
+}
+
+.table.dataTable thead th{
+    text-align: center;
+}

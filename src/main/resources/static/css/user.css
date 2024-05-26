@@ -1,0 +1,64 @@
+/* login ================================================= */
+#forget {
+    font-size: .75rem;
+    line-height: 38px;
+}
+
+#birth {
+    padding-top: .5rem;
+}
+
+/* signup ================================================= */
+#signupContainer {
+    margin: 10px auto 100px;
+}
+
+/* profile ================================================= */
+#welcome {
+    color: var(--c-primary-color2);
+    padding: 0 20px;
+}
+
+#profile-container {
+    width: max(40%, 375px);
+    margin-bottom: 10vh;
+    color: var(--c-primary-color3);
+}
+
+@media screen and (max-width: 991px) {
+
+    .logout-btn {
+        line-height: 1.2em;
+        font-size: .8em;
+    }
+}
+
+#donated-list {
+    width: min(100%, 700px);
+    margin: 50px auto;
+    display: none;
+}
+
+.table>:not(caption)>*>* {
+    color: var(--c-primary-color3);
+}
+
+#donated-list-head {
+    text-align: center;
+    line-height: 2em;
+}
+
+#saved-list {
+    width: min(100%, 700px);
+    margin: 50px auto;
+    display: none;
+}
+
+#saved-list-head {
+    text-align: center;
+    line-height: 2em;
+}
+
+.delete-saved-btn{
+    cursor: pointer;
+}

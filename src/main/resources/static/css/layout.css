@@ -1,0 +1,221 @@
+/* 字體設定 ================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+
+.noto-sans-tc {
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.noto-serif-tc {
+  font-family: "Noto Serif TC", serif;
+  font-style: normal;
+}
+
+:root {
+  --c-primary-color: #9cadb3;
+  /* #9cadb3 */
+  --c-primary-color2: #6c787c;
+  /* #6c787c */
+  --c-primary-color3: #3b4345;
+  /* #3b4345 */
+  --c-background-color: #f4f4f4;
+  /* #ebf2f2 */
+  --c-primary-color-5: rgb(156, 173, 179, 0.5);
+}
+
+
+/* 全體設定 ================================================= */
+body {
+  font-family: "Roboto", "Noto Sans TC", "Noto Serif TC", serif;
+  background-color: var(--c-background-color);
+  letter-spacing: .5px;
+}
+
+.logo {
+  color: var(--c-primary-color2);
+  font-weight: 900;
+  font-family: 'Noto Sans TC';
+}
+
+.form-control, .form-control-plaintext{
+  color: var(--c-primary-color3);
+}
+
+.title-2 {
+  margin: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--c-primary-color3);
+}
+
+/* 廣告 banner ================================================= */
+
+.ad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+  margin: 50px auto;
+}
+
+.advertisement {
+  width: min(100%, 700px);
+  padding: 2em;
+  text-decoration: none;
+  color: var(--c-primary-color3);
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, .3);
+  position: relative;
+}
+
+.advertisement::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(https://picsum.photos/700/200?random=1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1; /* 讓背景圖層在文字後面 */
+}
+
+/* h2 {
+  margin: 100px 0 30px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--c-primary-color3);
+} 
+
+a span {
+  font-size: 13px;
+  line-height: 38px;
+}
+
+a span:hover {
+  border-bottom: 1px solid;
+}
+*/
+
+/* navbar ================================================= */
+.navbar {
+  --bs-navbar-padding-y: 1.5rem;
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.navbar-nav {
+  --bs-nav-link-color: var(--c-primary-color);
+  --bs-nav-link-hover-color: var(--c-primary-color2);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: var(--c-primary-color2);
+}
+
+.bg-body-tertiary {
+  background-color: var(--c-background-color) !important;
+}
+
+.navbar-toggler {
+  color: var(--c-primary-color);
+  border: transparent;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28156, 173, 179%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.btn-close {
+  --bs-btn-close-color: var(--c-primary-color);
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%239cadb3'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+}
+
+.btn-outline-success {
+  --bs-btn-color: ;
+  --bs-btn-border-color: var(--c-primary-color);
+  --bs-btn-hover-bg: var(--c-primary-color);
+  --bs-btn-hover-border-color: var(--c-primary-color);
+  --bs-btn-active-bg: var(--c-primary-color);
+  --bs-btn-active-border-color: var(--c-primary-color);
+  --bs-btn-disabled-color: var(--c-primary-color);
+  --bs-btn-disabled-border-color: var(--c-primary-color);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--c-primary-color);
+  --bs-btn-border-color: var(--c-primary-color);
+  --bs-btn-hover-bg: var(--c-primary-color2);
+  --bs-btn-hover-border-color: var(--c-primary-color2);
+  --bs-btn-active-bg: var(--c-primary-color2);
+  --bs-btn-active-border-color: var(--c-primary-color3);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--c-primary-color);
+  --bs-btn-border-color: var(--c-primary-color);
+  --bs-btn-hover-bg: var(--c-primary-color);
+  --bs-btn-hover-border-color: var(--c-primary-color);
+  --bs-btn-active-bg: var(--c-primary-color);
+  --bs-btn-active-border-color: var(--c-primary-color);
+  --bs-btn-disabled-color: var(--c-primary-color);
+  --bs-btn-disabled-border-color: var(--c-primary-color);
+}
+
+
+
+/* #sec1 ================================================= */
+
+@media screen and (min-width: 768px) {
+  #majorNews {
+    width: 75%;
+  }
+}
+
+/* #sec2 ================================================= */
+#sec2 a {
+  text-decoration: none;
+  color: #666;
+}
+
+.card {
+  margin: 10px 0;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+
+/* footer ================================================= */
+.page-container{
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: max(2.5rem, 84px);    /* Footer height */
+}
+
+#footer {
+  background-color: var(--c-primary-color);
+  padding: 30px;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+}
+
+#copyright {
+  text-align: center;
+}
