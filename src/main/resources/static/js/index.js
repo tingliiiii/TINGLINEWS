@@ -15,7 +15,7 @@ const loadHTML = async (uri, containerId) => {
 const clickSignupBtn = () => {
 	$('.signup').on('click', async () => {
 		console.log('點擊註冊按鈕');
-		$('.main-content').load('user/signup.html', clickLoginBtn);
+		$('.main-content').load('user/register.html', clickLoginBtn);
 	});
 };
 

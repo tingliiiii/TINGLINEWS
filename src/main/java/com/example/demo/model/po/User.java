@@ -27,10 +27,10 @@ public class User {
 
 	@Email(message = "Email格式不正確")
 	@NotBlank(message = "Email不可空白")
-	private String email; // 帳號 unique
+	private String UserEmail; // 帳號 unique
 
 	@NotBlank(message = "密碼不可空白")
-	private String password;
+	private String userPassword;
 
 	private Date registeredDate; // 自動產生
 

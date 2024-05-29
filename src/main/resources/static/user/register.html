@@ -14,7 +14,7 @@
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="../js/register.js"></script>
 
 
   </head>
@@ -30,12 +30,10 @@
 
         <div class="container-lg">
           <div id="signupContainer" class="d-flex">
-            <form action="" method="post" class="mx-auto">
+            <form method="post" class="mx-auto">
 
               <h2 class="title-2">註冊</h2>
               <!-- id, email, password, sex, birthday, phone -->
-              <input type="email" name="email" id="email" class="form-control" placeholder="帳號（電子信箱）*" required>
-              <p></p>
               <input type="text" name="userName" id="userName" class="form-control" placeholder="姓名">
               <p></p>
 
@@ -63,10 +61,12 @@
               <p></p>
               <input type="tel" name="phone" id="phone" placeholder="手機（0987-654321）" class="form-control">
               <p></p>
-              <input type="password" name="password" id="password" class="form-control" placeholder="密碼*">
+              <input type="email" name="email" id="email" class="form-control" placeholder="電子信箱*" required>
+              <p></p>
+              <input type="password" name="password" id="password" class="form-control" placeholder="密碼*" required>
               <p></p>
               <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
-                placeholder="確認密碼*">
+                placeholder="確認密碼*" required>
               <p></p>
               <input type="text" name="code" id="code" class="form-control" placeholder="驗證碼">
               <p></p>
