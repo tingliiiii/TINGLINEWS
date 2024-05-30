@@ -20,6 +20,7 @@ ALTER TABLE User AUTO_INCREMENT = 1000;
 INSERT INTO user(userName, userEmail, userPassword) VALUES ('王采惟', 'irin@gmail.com', '1234');
 INSERT INTO user(userName, userEmail, userPassword) VALUES ('簡晨恩', 'katy@gmail.com', '1234');
 INSERT INTO user(userName, userEmail, userPassword) VALUES ('王誠', 'nikolas@gmail.com', '1234');
+INSERT INTO user(userName, userEmail, userPassword, birthday, gender, phone) VALUES ('劉允恩', 'baby@gmail.com', '1234', '2022-04-26', 'MALE', '0912-345678');
 
 -- DROP TABLE IF EXISTS authority;
 

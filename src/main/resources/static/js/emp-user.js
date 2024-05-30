@@ -1,4 +1,3 @@
-
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
 	const url = 'http://localhost:8080/tinglinews' + uri;
@@ -32,7 +31,7 @@ $(document).ready(() => {
 		ajax: async (data, callback, settings) => {
 			// 從伺服器獲取數據
 			const result = await fetchData('/emp/user');
-			 // 將數據傳遞給 DataTables 以製作表格
+			// 將數據傳遞給 DataTables 以製作表格
 			callback({
 				data: result
 			});
@@ -47,7 +46,12 @@ $(document).ready(() => {
 				data: 'userId',
 				render: (data) => `<button class="btn btn-close delete-user-btn" data-id=${data}></button>`
 			}
-		]
+		],
+		order: [[0, 'desc']]
+	});
+
+	table.on('order.dt', function() {
+		console.log('Current order:', table.order());
 	});
 
 	// fetchAndRenderData('/emp/user', 'user-table-body', renderUser);
@@ -69,82 +73,47 @@ $(document).ready(() => {
 		*/
 		console.log(event);
 		// console.log($(this).parents('tr'));
-		
+
 		if (!$(event.target).hasClass('delete-user-btn')) {
 			return;
 		}
-		const row =  $(event.target).closest('tr');
+		const row = $(event.target).closest('tr');
 		const userId = $(event.target).data('id');
 		await handleDeleteUser(userId, row);
 	});
 
 
-/***** User CRUD 操作 ****************************************************************************************/
+	/***** User CRUD 操作 ****************************************************************************************/
 
-// 監聽事件處理
-const handleDeleteUser = async (userId, row) => {
-	console.log('按下刪除：' + userId);
-	const result = await Swal.fire({
-		title: '確定要刪除嗎？',
-		text: '刪除後將無法恢復',
-		icon: 'warning',
-		showCancelButton: true,
-		confirmButtonText: '確認刪除',
-		cancelButtonText: '取消'
-	});
+	// 監聽事件處理
+	const handleDeleteUser = async (userId, row) => {
+		console.log('按下刪除：' + userId);
+		const result = await Swal.fire({
+			title: '確定要刪除嗎？',
+			text: '刪除後將無法恢復',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: '確認刪除',
+			cancelButtonText: '取消'
+		});
 
-	if (!result.isConfirmed) {
-		return;
-	}
+		if (!result.isConfirmed) {
+			return;
+		}
 
-	const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
-	const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
-	const { state, message, data } = await response.json(); // 等待回應本文內容
-	console.log(state, message, data);
+		const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
+		const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
+		const { state, message, data } = await response.json(); // 等待回應本文內容
+		console.log(state, message, data);
 
-	if (state) {
-		// 更新 user list
-		// $('#user-table').DataTable().ajax.reload();
-		console.log($(this));
-		table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
-		// table.ajax.reload();
-	}
-};
-
-
-	/***** 資料渲染 **************************************************************************************************/
-	/*
-	// 渲染 User 資料配置
-	const renderUser = ({userId, userName, userEmail, authorityId, registeredDate}) => `
-		<tr>
-			<td>${userId}</td><td>${userName}</td><td>${userEmail}</td><td>${authorityId}</td>
-			<td>${registeredDate}</td>
-			<td>
-				<span class="btn btn-close delete-user-btn" data-id="${userId}"></span>
-			</td>
-		</tr>
-	`;
-	
-	// 資料渲染
-	const fetchAndRenderData = async(uri, containerId, renderFn) => {
-		const url = 'http://localhost:8080/tinglinews' + uri;
-		try {
-			const response = await fetch(url); // 等待 fetch 請求完成
-			const {state, message, data} = await response.json(); // 等待回應本文內容
-			console.log(state, message, data);
-			console.log(renderFn(data[0]));
-			$('#' + containerId).html(Array.isArray(data) ? data.map(renderFn).join('') : renderFn(data));
-			
-		} catch(e) {
-			console.error(e);
-		} 
-	}; 
-	*/
-
-
-
-
-
+		if (state) {
+			// 更新 user list
+			// $('#user-table').DataTable().ajax.reload();
+			console.log($(this));
+			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
+			// table.ajax.reload();
+		}
+	};
 
 
 

@@ -26,7 +26,8 @@ public class UserDaoImpl implements UserDao {
 	// 註冊
 	@Override
 	public int addUser(User user) {
-		String sql = "INSERT INTO user(userName, userEmail, userPassword, birthday, gender, phone) values(userName, userEmail, userPassword, birthday, gender, phone)";
+		String sql = "INSERT INTO user(userName, userEmail, userPassword, birthday, gender, phone) "
+				+ "values(:userName, :userEmail, :userPassword, :birthday, :gender, :phone)";
 		// 自動將 user 物件的屬性值給 SQL 參數(?)使用
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		// KeyHolder
@@ -64,7 +65,7 @@ public class UserDaoImpl implements UserDao {
 		return jdbcTemplate.update(sql, userId);
 	}
 
-	// 後台：修改刪除
+	// profile、後台修改刪除
 	@Override
 	public User getUserById(Integer userId) {
 		String sql = "SELECT userId, userName, userEmail, birthday, gender, phone, donateId, authorityId FROM user WHERE userId=?";

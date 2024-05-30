@@ -30,7 +30,7 @@
 
         <div class="container-lg">
           <div id="signupContainer" class="d-flex">
-            <form method="post" class="mx-auto">
+            <form id="register-form" method="post" class="mx-auto">
 
               <h2 class="title-2">註冊</h2>
               <!-- id, email, password, sex, birthday, phone -->
@@ -38,15 +38,15 @@
               <p></p>
 
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" required>
+                <input class="form-check-input" type="radio" name="gender" id="gender1" value="MALE" required>
                 <label class="form-check-label" for="gender1">先生</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="gender2" value="2" required>
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="FEMALE" required>
                 <label class="form-check-label" for="gender2">小姐</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="gender3" value="3" required>
+                <input class="form-check-input" type="radio" name="gender" id="gender3" value="N/A" required>
                 <label class="form-check-label" for="gender3">不便透露</label>
               </div>
               <p></p>
@@ -61,9 +61,9 @@
               <p></p>
               <input type="tel" name="phone" id="phone" placeholder="手機（0987-654321）" class="form-control">
               <p></p>
-              <input type="email" name="email" id="email" class="form-control" placeholder="電子信箱*" required>
+              <input type="email" name="userEmail" id="userEmail" class="form-control" placeholder="電子信箱*" required>
               <p></p>
-              <input type="password" name="password" id="password" class="form-control" placeholder="密碼*" required>
+              <input type="password" name="userPassword" id="userPassword" class="form-control" placeholder="密碼*" required>
               <p></p>
               <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
                 placeholder="確認密碼*" required>
@@ -72,7 +72,7 @@
               <p></p>
               <div class="row">
                 <div class="col-6">
-                  <button type="submit" class="btn btn-primary w-100">註冊</button>
+                  <button id="register-submit-btn" type="submit" class="btn btn-primary w-100">註冊</button>
                 </div>
                 <div class="col-6">
                   <a href="http://localhost:8080/tinglinews/user/login.html"
