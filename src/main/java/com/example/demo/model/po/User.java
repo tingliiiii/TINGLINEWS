@@ -32,6 +32,7 @@ public class User {
 	@NotBlank(message = "密碼不可空白")
 	private String userPassword;
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date registeredDate; // 自動產生
 
 	// 以下為 optional

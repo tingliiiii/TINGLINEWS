@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
 		return jdbcTemplate.update(sql, userId);
 	}
 
-	// 不知道需不需要？？
+	// 後台：修改刪除
 	@Override
 	public User getUserById(Integer userId) {
 		String sql = "SELECT userId, userName, userEmail, birthday, gender, phone, donateId, authorityId FROM user WHERE userId=?";
@@ -76,10 +76,10 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 	
-	// 後台用
+	// 後台：使用者管理頁面
 	@Override
 	public List<User> findAllUsers() {
-		String sql = "SELECT userId, userName, userEmail, authorityId FROM user";
+		String sql = "SELECT userId, userName, userEmail, authorityId, registeredDate FROM user";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
 	}
 	

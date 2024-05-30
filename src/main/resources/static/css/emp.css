@@ -12,9 +12,10 @@ body {
 table {
     --bs-table-color: #333;
 }
-table.dataTable td.dt-type-numeric{
-	text-align: center;
-}
+
+#user-table thead th, #user-table tbody td:nth-child(1),#user-table tbody td:nth-child(6) {
+    text-align: center;
+
 
 #emp-news-list-container,
 #emp-user-table-container {
@@ -28,9 +29,6 @@ table.dataTable td.dt-type-numeric{
     margin: 0 auto;
 }
 
-.table.dataTable thead th {
-    text-align: center;
-}
 
 /* 新增文章 =============================== */
 .add-container{
