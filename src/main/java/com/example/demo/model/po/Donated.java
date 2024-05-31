@@ -17,7 +17,7 @@ public class Donated {
 	private Integer amount;
 	
 	private Date donatedTime; // 自動產生
-	private Date endDate; // 可設定結束日期（？
+	private Date endTime; // 可設定結束日期（？
 	private String status; // 進行中、已完成
 	
 	private Integer userId;

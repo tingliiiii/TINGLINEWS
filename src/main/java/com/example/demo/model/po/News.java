@@ -15,9 +15,10 @@ public class News {
 	private Integer newsId;
 	private String title;
 	private String content;
-	private String tag; // 標籤需要一個表格嗎
 	
-	private Integer empId; // 記者
+	private String tagId;
+	private Integer userId; // 記者
+	
 	private Date createdTime; // 自動生成
 	private Date updatedTime; // 自動生成：每次修改時間都會更新
 	
