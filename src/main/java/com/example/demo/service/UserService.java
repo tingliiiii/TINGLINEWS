@@ -45,6 +45,14 @@ public class UserService {
 	public User getUserById(Integer userId) {
 		return userDao.getUserById(userId);
 	}
+	
+	public User validateUser(String userEmail, String userPassword) {
+		User user = userDao.getUserByEmail(userEmail);
+		if(user!=null && user.getUserPassword().equals(userPassword)) {
+			return user;
+		}
+		return null;
+	}
 
 	public Integer addUser(User user) {
 		Integer userId = userDao.addUser(user);

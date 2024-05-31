@@ -14,7 +14,7 @@ public class Donated {
 	private Integer donatedId; // 自動產生
 	private String frequency; // 每月, 每年, 單筆
 	// enum frequency {每月, 每年, 單筆 }; 
-	private Double amount;
+	private Integer amount;
 	
 	private Date donatedTime; // 自動產生
 	private Date endDate; // 可設定結束日期（？

@@ -1,7 +1,7 @@
 // 從後端抓資料給 profile
 const fetchData = async (userId) => {
 	try {
-		const response = await fetch(`http://localhost:8080/tinglinews/user/register/${userId}`, {
+		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`, {
             method: 'GET',
             credentials: 'include' // 确保请求包含 cookies
         });
@@ -20,6 +20,9 @@ const fetchData = async (userId) => {
 	}
 }
 
+// 收藏紀錄
+
+
 $(document).ready(async () => {
 
 	$('.header-container').load('../nav-login.html');
@@ -31,7 +34,7 @@ $(document).ready(async () => {
 	if (!userId) {
 		console.log('用戶 ID 未找到');
 		alert('請重新登入');
-		window.location.href = '/login';
+		window.location.href = '/tinglinews/user/login.html';
 		return;
 	}
 	fetchData(userId);

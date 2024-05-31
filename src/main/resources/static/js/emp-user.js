@@ -12,18 +12,6 @@ const fetchData = async (uri) => {
 	}
 };
 
-// 監聽事件處理
-/*
-const handleEvent = async (event, className, callback) => {
-	if (!$(event.target).hasClass(className)) {
-		return;
-	}
-	const userId = $(event.target).data('id');
-	await callback(userId);
-};
-*/
-
-
 $(document).ready(() => {
 
 	// 使用者管理表格
@@ -50,10 +38,11 @@ $(document).ready(() => {
 		order: [[0, 'desc']]
 	});
 
-	table.on('order.dt', function() {
-		console.log('Current order:', table.order());
-	});
-
+	/** 檢查表格排序
+		table.on('order.dt', function() {
+			console.log('Current order:', table.order());
+		});
+	 */
 	// fetchAndRenderData('/emp/user', 'user-table-body', renderUser);
 	/*
 	$('#user-table').on('click', async(event) => {
@@ -71,7 +60,7 @@ $(document).ready(() => {
 		const userId = data.userId;
 		handleDeleteUser(userId);
 		*/
-		console.log(event);
+		// console.log(event);
 		// console.log($(this).parents('tr'));
 
 		if (!$(event.target).hasClass('delete-user-btn')) {
@@ -98,6 +87,7 @@ $(document).ready(() => {
 		});
 
 		if (!result.isConfirmed) {
+			Swal.fire("並未刪除", "", "info");
 			return;
 		}
 
@@ -109,6 +99,7 @@ $(document).ready(() => {
 		if (state) {
 			// 更新 user list
 			// $('#user-table').DataTable().ajax.reload();
+			Swal.fire("刪除成功", "", "success");
 			console.log($(this));
 			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
 			// table.ajax.reload();

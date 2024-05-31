@@ -10,5 +10,6 @@ public interface UserDao {
 	int updateUserAuthority(Integer userId, Integer authorityId);
 	int deleteUser(Integer userId);
 	User getUserById(Integer userId);
+	User getUserByEmail(String userEmail);
 	List<User> findAllUsers();
 }

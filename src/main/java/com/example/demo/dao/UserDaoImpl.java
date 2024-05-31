@@ -77,6 +77,19 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 	
+	// 登入：用帳號找使用者
+	@Override
+	public User getUserByEmail(String userEmail) {
+		String sql = "SELECT userId, userName, userEmail, birthday, gender, phone, donateId, authorityId, userPassword FROM user WHERE userEmail = ?";
+		try {
+			System.out.println(userEmail);
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	// 後台：使用者管理頁面
 	@Override
 	public List<User> findAllUsers() {

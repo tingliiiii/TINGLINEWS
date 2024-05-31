@@ -1,46 +1,52 @@
 body {
-    background-color: #eee;
-    color: #333;
-    font-family: 'Noto Sans TC', sans-serif;
+	background-color: #eee;
+	color: #333;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+.function {
+	margin: 20vh, auto;
 }
 
 .emp-title2 {
-    text-align: center;
-    margin: 2vw;
+	text-align: center;
+	margin: 2vw;
 }
 
 table {
-    --bs-table-color: #333;
+	--bs-table-color: #333;
 }
 
-#user-table thead th, #user-table tbody td:nth-child(1),#user-table tbody td:nth-child(6) {
-    text-align: center;
+#user-table thead th, 
+#user-table tbody td:nth-child(1), 
+#user-table tbody td:nth-child(6)
+	{
+	text-align: center;
+}
 
+#emp-news-container, 
+#emp-user-container {
+	margin: 8vw auto;
+}
 
-#emp-news-list-container,
+#emp-news-table-container, 
 #emp-user-table-container {
-    margin: 5vw auto;
+	/* width: 80%; */
+	overflow-x: auto;
+	margin: 0 auto;
 }
-
-#emp-news-table-container,
-#emp-user-table-container {
-    /* width: 80%; */
-    overflow-x: auto;
-    margin: 0 auto;
-}
-
 
 /* 新增文章 =============================== */
-.add-container{
-    margin: 10vh auto;
-}
-.title-add{
-    margin: 2vh auto 1vh;
-    font-size: 1.05em;
+.add-container {
+	margin: 10vh auto;
 }
 
-#addForm{
-    width: min(80%, 600px);
-    margin: 0 auto;
+.title-add {
+	margin: 2vh auto 1vh;
+	font-size: 1.05em;
 }
 
+#addForm {
+	width: min(80%, 600px);
+	margin: 0 auto;
+}
