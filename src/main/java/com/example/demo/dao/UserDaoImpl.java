@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 	// 更新使用者
 	@Override
 	public int updateUser(Integer userId, User user) {
-		String sql = "UPDATE user SET user_name=:userName, user_email=:userEmail, user_password=:userPassword, "
+		String sql = "UPDATE user SET user_name=:userName, user_email=:userEmail, "
 				+ "birthday=:birthday, gender=:gender, phone=:phone WHERE user_id=:userId";
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		int rowcount = namedParameterJdbcTemplate.update(sql, params);

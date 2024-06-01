@@ -25,7 +25,7 @@ public class DonatedDaoImpl implements DonatedDao {
 	@Override
 	public int addDonated(Donated donated) {
 		String sql = "INSERT INTO donated(frequency, amount, end_time, donate_status, user_id) "
-				+ "VALUES(:frequency, :amount, :endTime, :status, :userId)";
+				+ "VALUES(:frequency, :amount, :endTime, :donateStatus, :userId)";
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(donated);
 		return namedParameterJdbcTemplate.update(sql, params);
 

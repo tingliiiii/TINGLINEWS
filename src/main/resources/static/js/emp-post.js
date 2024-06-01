@@ -100,7 +100,7 @@ const updatePost = async (formData) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData),
-      // credentials: 'include' // 確保请求包含 cookies
+      // credentials: 'include' // 確保請求包含 cookies
     });
 
     const { state, message, data } = await response.json();

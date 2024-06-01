@@ -26,24 +26,24 @@ public class FunctionService {
 	@Autowired
 	private NewsDao newsDao;
 
-	public int addDonated(Donated donated) {
-		return donatedDao.addDonated(donated);
+	public boolean addDonated(Donated donated) {
+		return donatedDao.addDonated(donated)>0;
 	}
 
-	public int stopDanted(Integer donatedId) {
-		return donatedDao.stopDanted(donatedId);
+	public boolean stopDanted(Integer donatedId) {
+		return donatedDao.stopDanted(donatedId)>0;
 	}
 
 	public List<Donated> findDonatedById(Integer userId) {
 		return donatedDao.findDonatedById(userId);
 	}
 	
-	public int addSaved(Saved saved) {
-		return savedDao.addSaved(saved);
+	public boolean addSaved(Saved saved) {
+		return savedDao.addSaved(saved)>0;
 	}
 
-	public int deleteSaved(Integer savedId) {
-		return savedDao.deleteSaved(savedId);
+	public boolean deleteSaved(Integer savedId) {
+		return savedDao.deleteSaved(savedId)>0;
 	}
 
 	// 收藏紀錄

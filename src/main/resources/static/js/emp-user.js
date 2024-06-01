@@ -99,7 +99,7 @@ $(document).ready(() => {
 		if (state) {
 			// 更新 user list
 			// $('#user-table').DataTable().ajax.reload();
-			Swal.fire("刪除成功", "", "success");
+			Swal.fire('刪除成功', '', 'success');
 			// console.log($(this));
 			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
 			// table.ajax.reload();

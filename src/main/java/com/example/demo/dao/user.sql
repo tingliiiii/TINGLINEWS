@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS donated (
     FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE
 );
 
-INSERT INTO donated(frequency, amount, donate_status, user_id) VALUES ('每月', 1000, '進行中', 1040);
+INSERT INTO donated(frequency, amount, donate_status, user_id) VALUES ('每月', 500, '進行中', 1040);
 INSERT INTO donated(frequency, amount, donate_status, user_id) VALUES ('單筆', 200, '進行中', 1032);
 
 -- ALTER TABLE donated RENAME COLUMN endDate TO end_date;

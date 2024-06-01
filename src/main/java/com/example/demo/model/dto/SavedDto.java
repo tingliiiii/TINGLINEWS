@@ -3,6 +3,7 @@ package com.example.demo.model.dto;
 import java.util.Date;
 
 import com.example.demo.model.po.News;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class SavedDto {
 	private Integer savedId; 
 	private Integer userId;
 	private News news; 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date savedTime;
 }

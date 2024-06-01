@@ -1,124 +1,187 @@
-// 監聽事件處理
-const handleEvent = async (event, className, callback) => {
-    console.log($(event.target).attr('class'));
+// 從後端抓資料給 profile
+const fetchData = async (userId) => {
+	try {
+		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`, {
+			method: 'GET',
+			credentials: 'include' // 確保請求包含 cookies
+		});
+		const { state, message, data } = await response.json(); // 等待回應本文內容
+		console.log(state, message, data);
 
-    if (!$(event.target).hasClass(className)) {
-        return;
-    }
-    const id = $(event.target).data('id');
-    callback(id); // 返回值
+		$('#userId').val(data.userId);
+		$('#userEmail').val(data.userEmail);
+		$('#userName').val(data.userName);
+		$('#gender').val(data.gender);
+		$('#birth').val(data.birth);
+		$('#phone').val(data.phone);
+
+		renderSaved(data.savedList);
+		renderDonated(data.donatedList);
+
+	} catch (e) {
+		console.error(e);
+	}
+}
+
+// 收藏紀錄
+const renderSaved = (data) => {
+
+	const render = ({ savedId, news, savedTime }) => `
+	<tr>
+		<td>${savedId}</td>
+		<td>${news.title}</td>
+		<td>${news.publicTime}</td>
+		<td>${savedTime}</td>
+		<td>
+			<button class="btn btn-close cancel-saved-btn" data-id="${savedId}"></button>
+		</td>
+	</tr>`;
+	$('#saved-list-body').html(Array.isArray(data) ? data.map(render).join('') : render(data));
+}
+
+// 贊助紀錄
+const renderDonated = (data) => {
+
+	console.log(data);
+	const render = ({ donatedId, frequency, amount, donatedTime, endTime, donateStatus }) => `
+	<tr>
+		<td>${donatedId}</td>
+		<td>${frequency}</td>
+		<td>${amount}</td>
+		<td>${donatedTime}</td>
+		<td>${endTime}</td>
+		<td>${donateStatus}</td>
+		<td>
+			<button class="btn btn-close stop-donate-btn" data-id="${donatedId}"></button>
+		</td>
+	</tr>`;
+	$('#donated-list-body').html(Array.isArray(data) ? data.map(render).join('') : render(data));
+}
+
+const handleSubmit = async (event) => {
+
+	event.preventDefault();
+
+	const formData = {
+		userEmail: $('#userEmail').val(),
+		userName: $('#userName').val(),
+		gender: $('#gender').val(),
+		birth: $('#birth').val(),
+		phone: $('#phone').val()
+	};
+	await update(formData);
 };
 
-// 刪除使用者
-const handleDeleteUser = async (id) => {
-    console.log('按下刪除' + id);
+const update = async (formData) => {
+	try {
+		const response = await fetch('http://localhost:8080/tinglinews/user/update', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData),
+			// credentials: 'include' // 確保請求包含 cookies
+		});
 
-    // 使用 sweetalert2 顯示確認刪除訊息框
-    const result = await Swal.fire({
-        title: '確定要刪除嗎？',
-        text: '刪除後將無法回復',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!"
-    });
-    if (!result.isConfirmed) {
-        Swal.fire("並未刪除", "", "info"); // title, text, icon
-        return;
-    } else {
-        Swal.fire("刪除成功", "", "success");
-    }
-    // 刪除程序
-    /*
-    try {
-        const fullUrl = `http://localhost:8080/SpringMVC/mvc/rest/user/${id}`;
-        const response = await fetch(fullUrl, { method: 'DELETE' }); // 等待 fetch 請求完成
-        const { state, message, data } = await response.json(); // 等待回應本文內容
-        // console.log(state, message, data);
-        Swal.fire("刪除成功", "", "success");
-        // 更新 user list
-        fetchAndRenderData('/mvc/rest/user', 'user-list-body', renderUser);
-    } catch (e) {
-        console.error("刪除過程中發生錯誤：", e);
-        Swal.fire("刪除失敗", e.message, "error");
-    }
-    */
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
 
-};
-// 資料渲染 ================================================================
+		if (state) {
+			Swal.fire('更新成功', message, 'success');
+		} else {
+			Swal.fire('更新失敗！請稍後再試', message, 'warning');
+		}
+	} catch (error) {
+		console.error('更新個人資訊錯誤：', error);
+		Swal.fire('更新過程發生錯誤！請稍後再試', error, 'error');
+	}
 
-// 渲染 User 資料配置
-const renderDonated = ({ id, name, gender, age, birth, education, interestNames, resume }) => `
-    <tr>
-   
-    <td>${id}</td><td>${name}</td><td>${age}</td>
-        <td>${birth}</td><td>${education.name}</td><td>${interestNames}</td>
-        
-        <td>
-            <span class="btn btn-danger stop-donated-btn" data-id="${id}">停止</span>
-        </td>
-           
-    </tr>`;
+}
 
-const renderSaved = ({ number, name, price, description }) => `
-<tr>
-<td>${number}</td><td>${description}</td><td>${name}</td><td>${price}</td>
-<td class="text-center">
-    <span class="delete-saved-btn" data-id="${number}">✕</td>
-</tr>
-`;
+$(document).ready(async () => {
 
-// 資料渲染（資料所在地，目標位置，渲染方法）
-const fetchAndRenderData = async (endpointUri, containerId, renderFn) => {
-    const url = 'http://localhost:8080/SpringMVC' + endpointUri;
-    $.getJSON(url, (response) => {
-        const { state, message, data } = response;
-        $('#' + containerId).html(Array.isArray(data) ? data.map(renderFn).join('') : renderFn(data));
-    }).fail((e) => {
-        console.error(e);
-        $('#' + containerId).html('無法加載資料');
-    });
-};
+	$('.header-container').load('../nav-login.html');
+	$('.footer-container').load('../footer.html');
+	$('.ad-container').load('../ad.html');
 
-const fetchAndRenderData2 = async (url, containerId, renderFn) => {
-    $.getJSON(url, (data) => {
-        $('#' + containerId).html(Array.isArray(data) ? data.map(renderFn).join('') : renderFn(data));
-    }).fail((e) => {
-        console.error(e);
-        $('#' + containerId).html('無法加載資料');
-    });
-};
+	const userId = sessionStorage.getItem('userId');
+	console.log('用戶 ID：', userId);
+	if (!userId) {
+		console.log('用戶 ID 未找到');
+		alert('請重新登入');
+		window.location.href = '/tinglinews/user/login.html';
+		return;
+	}
+	fetchData(userId);
 
-$(document).ready(() => {
+	$('#toggle-donated').on('click', () => {
+		$('#saved-list').hide();
+		$('#donated-list').toggle();
+	});
 
-    $('.header-container').load('../nav-login.html');
-    $('.footer-container').load('../footer.html');
-    $('.ad-container').load('../ad.html');
+	$('#toggle-saved').on('click', () => {
+		$('#donated-list').hide();
+		$('#saved-list').toggle();
+	});
 
-    fetchAndRenderData('/mvc/rest/user', 'donated-list-body', renderDonated);
-    fetchAndRenderData2('https://cwpeng.github.io/live-records-samples/data/products.json', 'saved-list-body', renderSaved);
+	// 更新個人資訊
+	$('#profile-form').on('submit', handleSubmit);
 
-    $('#toggledDnatedList').on('click', () => {
-        $('#saved-list').hide();
-        $('#donated-list').toggle();
-    });
+	// 停止贊助
+	$('#donated-table').on('click', '.stop-donate-btn', async (event) => {
+		const id = $(event.target).data('id');
+		console.log('按下停止贊助：' + id);
 
-    $('#toggleSavedList').on('click', () => {
-        $('#donated-list').hide();
-        $('#saved-list').toggle();
-    });
+		const result = await Swal.fire({
+			title: '確定要停止贊助嗎？',
+			text: '停止後將無法恢復',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: '確認停止',
+			cancelButtonText: '取消'
+		})
 
-    // 監聽 User List 點擊事件
-    $('#donated-table').on("click", (event) => {
-        handleEvent(event, 'stop-donated-btn', handleDeleteUser);
-    });
-    $('#saved-table').on("click", (event) => {
-        handleEvent(event, 'delete-saved-btn', handleDeleteUser);
-    });
+		if (!result.isConfirmed) {
+			Swal.fire("並未停止", "", "info");
+			return;
+		}
 
+		const url = `http://localhost:8080/tinglinews/donate/${id}`;
+		const response = await fetch(url, { method: 'DELETE' });
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
 
+		if (state) {
+			Swal.fire('刪除成功', '', 'success');
+		}
+	});
 
-    // $('#donated-table').DataTable();
+	// 取消收藏
+	$('#saved-table').on('click', '.cancel-saved-btn', async (event) => {
+		const id = $(event.target).data('id');
+		console.log('按下取消收藏：' + id);
 
+		const result = await Swal.fire({
+			title: '確定要取消收藏嗎？',
+			text: '',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: '確定',
+			cancelButtonText: '取消'
+		})
+
+		if (!result.isConfirmed) {
+			Swal.fire('未取消收藏', '', 'info');
+			return;
+		}
+
+		const url = `http://localhost:8080/tinglinews/saved/${id}`;
+		const response = await fetch(url, { method: 'DELETE' });
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
+
+		if (state) {
+			Swal.fire('取消收藏成功', '', 'success');
+		}
+	});
 });
-
