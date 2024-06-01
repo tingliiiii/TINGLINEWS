@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.UserLoginDto;
+import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
+// TODO unique_userid_and_newsid 出現時報錯：這篇報導已被收藏
 
 @RestController
 @RequestMapping("/user")
@@ -30,22 +35,24 @@ public class UserController {
 		Integer userId = userService.addUser(user);
 		if (userId != null) {
 			user.setUserId(userId);
-			ApiResponse apiResponse = new ApiResponse<>(true, "Register success", user);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, "Register success", user);
 			return ResponseEntity.ok(apiResponse);
 		}
-		ApiResponse apiResponse = new ApiResponse<>(false, "Register failed", user);
+		ApiResponse<User> apiResponse = new ApiResponse<>(false, "Register failed", user);
 		System.out.println(user);
 		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<User>> login(@RequestBody Map<String ,Object> map) {
-		// json 格式要用 @RequestBody 抓（最好是新增 class 抓，但如果用 Map 也可以）
-		System.out.println(map);
-		User user = userService.validateUser(map.get("userEmail") + "", map.get("userPassword") + "");
+	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto) {
+		// Map<String ,Object> map
+		// json 格式要用 @RequestBody 抓（通常是準備 DTO 定義傳入資料，但如果用 Map 也可以）
+		System.out.println(dto);
+		// User user = userService.validateUser(map.get("userEmail") + "", map.get("userPassword") + "");
+		User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 		if (user != null) {
-			ApiResponse apiResponse = new ApiResponse<>(true, "Login success", user);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, "Login success", user);
 			return ResponseEntity.ok(apiResponse);
 		}
 		ApiResponse<User> apiResponse = new ApiResponse<>(false, "Login failed", user);
@@ -54,14 +61,14 @@ public class UserController {
 
 	// 登入註冊後資訊
 	@GetMapping("/profile/{userId}")
-	public ResponseEntity<ApiResponse<User>> getUser(@PathVariable("userId") Integer userId) {
+	public ResponseEntity<ApiResponse<UserProfileDto>> getUser(@PathVariable("userId") Integer userId) {
 		try {
-			User user = userService.getUserById(userId);
-			ApiResponse apiResponse = new ApiResponse<>(true, "query success", user);
+			UserProfileDto userProfile = userService.getUserProfile(userId);
+			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(true, "query success", userProfile);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			e.printStackTrace();
-			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
+			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
 	}
@@ -69,9 +76,9 @@ public class UserController {
 	// 登出
 	/*
 	@PostMapping("/logout")
-    public ResponseEntity<ApiResponse<Void>> logout(HttpSession session) {
+    public ResponseEntity<ApiResponse> logout(HttpSession session) {
         session.invalidate();
-        ApiResponse<Void> apiResponse = new ApiResponse<>(true, "Logout success", null);
+        ApiResponse apiResponse = new ApiResponse<>(true, "Logout success", null);
         return ResponseEntity.ok(apiResponse);
     }
 	*/

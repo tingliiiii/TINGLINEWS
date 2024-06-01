@@ -38,7 +38,7 @@ const addUser = async (formData) => {
 			alert('註冊失敗' + message);
 		}
 	} catch (error) {
-		console.error('註冊請求失敗：', error);
+		console.error('註冊請求錯誤：', error);
 		alert('註冊過程中出現錯誤，請稍後再試');
 	}
 

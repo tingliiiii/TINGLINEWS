@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.Donated;
 import com.example.demo.model.po.Saved;
 import com.example.demo.model.po.User;
@@ -49,14 +50,6 @@ public class UserDaoImpl implements UserDao {
 				+ "birthday=:birthday, gender=:gender, phone=:phone WHERE user_id=:userId";
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		int rowcount = namedParameterJdbcTemplate.update(sql, params);
-		return rowcount;
-	}
-
-	// 更新權限（管理員）
-	@Override
-	public int updateUserAuthority(Integer userId, Integer authorityId) {
-		String sql = "UPDATE user SET authority_id=? WHERE user_id=?";
-		int rowcount = jdbcTemplate.update(sql, authorityId, userId);
 		return rowcount;
 	}
 	
@@ -99,5 +92,19 @@ public class UserDaoImpl implements UserDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
 	}
 
+	// 更新權限（管理員）
+	@Override
+	public int updateUserAuthority(Integer userId, Integer authorityId) {
+		String sql = "UPDATE user SET authority_id=? WHERE user_id=?";
+		int rowcount = jdbcTemplate.update(sql, authorityId, userId);
+		return rowcount;
+	}
+
+	// 後台使用者管理顯示權限
+	@Override
+	public Authority getAuthorityById(Integer authorityId) {
+		String sql = "SELECT authority_id, authority_name FROM authority WHERE authority_id=?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Authority.class), authorityId);
+	}
 	
 }

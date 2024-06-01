@@ -8,7 +8,7 @@ import com.example.demo.model.po.Tag;
 public interface NewsDao {
 
 	int postNews(News news);
-	int publishNews(Integer newsId);
+	int publishNews(Integer newsId, News news);
 	int updateNews(Integer newsId, News news);
 	int deleteNews(Integer newsId);
 	News getNewsById(Integer newsId);

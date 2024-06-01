@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS news (
 INSERT INTO news(title, content, tag_id, user_id) VALUES('大樂透頭獎槓龜 下期獎金保證1億元', '大樂透第113057期今晚開獎。中獎號碼為16、23、32、14、08、19，特別號49；派彩結果，頭獎槓龜，下期頭獎保證新台幣1億元。
 本期大樂透加開54組100萬獎項開出情形，54組中開出6組，總中獎注數為7注，其中5組為單注中獎，1組為2注均分，本期尚有48組100萬獎項未開出，將於次期（6月4日）繼續加開。
 貳獎1注中獎，獎金新台幣432萬601元。派彩結果及中獎獎號以台彩公布為準。', 6, 1040);
-
+INSERT INTO news(title, content, tag_id, user_id) VALUES('我是標題', '我是內文', 4, 1040);
 -- ALTER TABLE news AUTO_INCREMENT = 6000;
 -- ALTER TABLE news ADD public BOOLEAN DEFAULT FALSE;
 -- ALTER TABLE news ADD public_time TIMESTAMP;
@@ -105,7 +105,8 @@ CREATE TABLE IF NOT EXISTS saved (
     CONSTRAINT unique_userid_and_newsid UNIQUE(user_id, news_id)
 );
 
-
+INSERT INTO saved(user_id, news_id) VALUES(1040, 6001);
+INSERT INTO saved(user_id, news_id) VALUES(1040, 6002);
 
 
 

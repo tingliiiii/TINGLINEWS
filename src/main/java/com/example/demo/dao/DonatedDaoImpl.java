@@ -39,7 +39,7 @@ public class DonatedDaoImpl implements DonatedDao {
 
 	@Override
 	public List<Donated> findDonatedById(Integer userId){
-		String sql = "SELECT donated_id, frequency, amount, donated_time, end_time, donate_status FROM donated WHERE user_id=?";
+		String sql = "SELECT donated_id, frequency, amount, donated_time, end_time, donate_status, user_id FROM donated WHERE user_id=?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Donated.class), userId);
 	}
 

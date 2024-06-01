@@ -1,6 +1,6 @@
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
-	const url = 'http://localhost:8080/tinglinews' + uri;
+	const url =  `http://localhost:8080/tinglinews${uri}`;
 	try {
 		const response = await fetch(url); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
@@ -16,7 +16,7 @@ $(document).ready(() => {
 
 	// 使用者管理表格
 	const table = $('#user-table').DataTable({
-		ajax: async (data, callback, settings) => {
+		ajax: async (data, callback) => {
 			// 從伺服器獲取數據
 			const result = await fetchData('/emp/user');
 			// 將數據傳遞給 DataTables 以製作表格
@@ -28,8 +28,8 @@ $(document).ready(() => {
 			{ data: 'userId' },
 			{ data: 'userName' },
 			{ data: 'userEmail' },
-			{ data: 'authorityId' },
-			{ data: 'registeredDate' },
+			{ data: 'authority.authorityName' },
+			{ data: 'registeredTime' },
 			{
 				data: 'userId',
 				render: (data) => `<button class="btn btn-close delete-user-btn" data-id=${data}></button>`
@@ -100,7 +100,7 @@ $(document).ready(() => {
 			// 更新 user list
 			// $('#user-table').DataTable().ajax.reload();
 			Swal.fire("刪除成功", "", "success");
-			console.log($(this));
+			// console.log($(this));
 			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
 			// table.ajax.reload();
 		}

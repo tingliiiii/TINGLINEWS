@@ -1,4 +1,4 @@
-package com.example.demo.model.po;
+package com.example.demo.model.dto;
 
 import java.util.Date;
 
@@ -11,21 +11,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class News {
+public class NewsDto {
 
+	// 後台網頁內容管理
+	
 	private Integer newsId;
 	private String title;
-	private String content;
-	
-	private String tagId;
-	private Integer userId; // 記者
+
+	private Integer userId;
+	private String userName;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date createdTime; // 自動生成
+	private Date createdTime;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date updatedTime; // 自動生成：每次修改時間都會更新
+	private Date updatedTime;
 	
-	private boolean isPublic; // 公開與否：只有編輯可以控制
+	private boolean isPublic;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date publicTime; // 自動生成：發布時間
+	private Date publicTime; 
 }

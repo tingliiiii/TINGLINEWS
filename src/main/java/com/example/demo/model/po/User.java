@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -33,7 +32,7 @@ public class User {
 	private String userPassword;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date registeredDate; // 自動產生
+	private Date registeredTime; // 自動產生
 
 	// 以下為 optional
 
@@ -46,9 +45,7 @@ public class User {
 	
 	@Pattern(regexp = "09\\d{2}-\\d{6}", message = "電話格式不正確")
 	private String phone;
-	
-	private Integer donateId;
-	
+		
 	// 以下為 emp
 	private Integer authorityId;
 

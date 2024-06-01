@@ -18,7 +18,7 @@ public class Donated {
 	
 	private Date donatedTime; // 自動產生
 	private Date endTime; // 可設定結束日期（？
-	private String status; // 進行中、已完成
+	private String donateStatus; // 進行中、已完成
 	
 	private Integer userId;
 	// private Integer newsId; // 從哪篇新聞點進來

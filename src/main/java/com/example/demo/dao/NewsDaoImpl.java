@@ -31,9 +31,9 @@ public class NewsDaoImpl implements NewsDao {
 	}
 	
 	@Override
-	public int publishNews(Integer newsId) {
+	public int publishNews(Integer newsId, News news) {
 		String sql = "UPDATE news SET public=?, public_time=? WHERE news_id=?";
-		return jdbcTemplate.update(sql, true, new Date(), newsId);
+		return jdbcTemplate.update(sql, news.isPublic(), new Date(), newsId);
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public News getNewsById(Integer newsId) {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM user WHERE news_id=?";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news WHERE news_id=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(News.class), newsId);
 		} catch (DataAccessException e) {
@@ -63,7 +63,7 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public List<News> findAllNews() {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM user";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(News.class));
 	}
 

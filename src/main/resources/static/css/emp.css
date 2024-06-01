@@ -4,10 +4,6 @@ body {
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
-.function {
-	margin: 20vh, auto;
-}
-
 .emp-title2 {
 	text-align: center;
 	margin: 2vw;
@@ -26,7 +22,7 @@ table {
 
 #emp-news-container, 
 #emp-user-container {
-	margin: 8vw auto;
+	margin: 5vw auto;
 }
 
 #emp-news-table-container, 
@@ -37,16 +33,16 @@ table {
 }
 
 /* 新增文章 =============================== */
-.add-container {
+.post-container {
 	margin: 10vh auto;
 }
 
-.title-add {
+.title-post {
 	margin: 2vh auto 1vh;
 	font-size: 1.05em;
 }
 
-#addForm {
+#post-form {
 	width: min(80%, 600px);
 	margin: 0 auto;
 }
