@@ -26,33 +26,36 @@ import com.example.demo.service.UserService;
 @RestController
 @RequestMapping("/emp")
 public class EmpController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private NewsService newsService;
 
 	// 後台：使用者管理介面
 	@GetMapping("/user")
-	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser(){
-		List<UserDto> users = userService.findAllUserDtos();
-		ApiResponse apiResponse = new ApiResponse<>(true, "query users success", users);
-		return ResponseEntity.ok(apiResponse);	
+	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser() {
+		List<UserDto> users = null;
+		try {
+			users = userService.findAllUserDtos();
+			ApiResponse apiResponse = new ApiResponse<>(true, "query users success", users);
+			return ResponseEntity.ok(apiResponse);
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), users);
+			return ResponseEntity.ok(apiResponse);
+		}
 	}
-	
+
 	// 後台：刪除使用者
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<ApiResponse<User>> deleteUser(@PathVariable("userId") Integer userId) {
 		User user = null;
 		try {
-			// 查詢該 user 是否存在
 			user = userService.getUserById(userId);
-			// 刪除
 			Boolean state = userService.deleteUser(userId);
-			String message = state ? "success" : "fail";
-			// 回應資料
-			ApiResponse apiResponse = new ApiResponse<>(state, "delete " + message, user);
+			String message = state ? "delete success" : "delete failed";
+			ApiResponse apiResponse = new ApiResponse<>(state, message, user);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), user);
@@ -60,30 +63,63 @@ public class EmpController {
 		}
 	}
 
-
 	// 後台：網頁內容管理介面
 	@GetMapping("/news")
-	public ResponseEntity<ApiResponse<List<NewsDto>>> findAllNews(){
-		List<NewsDto> news = newsService.findAllNews();
-		ApiResponse apiResponse = new ApiResponse<>(true, "query news success", news);
-		return ResponseEntity.ok(apiResponse);	
+	public ResponseEntity<ApiResponse<List<NewsDto>>> findAllNews() {
+		List<NewsDto> news = null;
+		try {
+			news = newsService.findAllNews();
+			ApiResponse apiResponse = new ApiResponse<>(true, "query news success", news);
+			return ResponseEntity.ok(apiResponse);
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), news);
+			return ResponseEntity.ok(apiResponse);
+		}
+		
 	}
-	
+
 	// 新增文章時的標籤選項
 	@GetMapping("/tags")
-	public ResponseEntity<ApiResponse<List<Tag>>> findAllTags(){
-		List<Tag> tags = newsService.findAllTags();
-		ApiResponse apiResponse = new ApiResponse<>(true, "query tags success", tags);
-		return ResponseEntity.ok(apiResponse);	
+	public ResponseEntity<ApiResponse<List<Tag>>> findAllTags() {
+		List<Tag> tags = null;
+		try {
+			tags = newsService.findAllTags();
+			ApiResponse apiResponse = new ApiResponse<>(true, "query tags success", tags);
+			return ResponseEntity.ok(apiResponse);
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), tags);
+			return ResponseEntity.ok(apiResponse);
+		}
 	}
 
 	// 新增文章
 	@PostMapping("/post")
-	public ResponseEntity<ApiResponse<News>> post(@RequestBody News news){
+	public ResponseEntity<ApiResponse<News>> postNews(@RequestBody News news) {
 		Boolean state = newsService.postNews(news);
-		ApiResponse<News> apiResponse = new ApiResponse<>(state, "post success", news);
+		String message = state ? "post success" : "post failed";
+		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
+		return ResponseEntity.ok(apiResponse);
+
+	}
+
+	// 找到單篇文章（為了修改）
+	@GetMapping("/news/{newsId}")
+	public ResponseEntity<ApiResponse<News>> getNews(@PathVariable Integer newsId) {
+		News news = newsService.getNewsById(newsId);
+		Boolean state = news != null;
+		String message = state ? "query success" : "query failed";
+		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 	}
 
+	// 修改文章
+	@PutMapping("/news/{newsId}")
+	public ResponseEntity<ApiResponse<News>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
+		Boolean state = newsService.updateNews(newsId, news);
+		String message = state ? "update success" : "update failed";
+		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
+		return ResponseEntity.ok(apiResponse);
+		
+	}
 
 }

@@ -38,7 +38,6 @@ const loadTags = async () => {
 
 };
 
-
 // 表單提交事件處理
 const handleSubmit = async (event) => {
 
@@ -52,11 +51,18 @@ const handleSubmit = async (event) => {
     // sessionStorage.getItem('userId')
   };
 
-  await submitPost(formData);
+  if ($('#submit-btn').text() === '新增文章') {
+    await submitPost(formData);
+  } else {
+    await updatePost(formData);
+  }
+
 };
 
+// 新增文章
 const submitPost = async (formData) => {
   try {
+
     const response = await fetch('http://localhost:8080/tinglinews/emp/post', {
       method: 'POST',
       headers: {
@@ -84,12 +90,42 @@ const submitPost = async (formData) => {
 
 };
 
+// 修改文章
+const updatePost = async (formData) => {
+  try { 
+    const newsId = JSON.parse(sessionStorage.getItem('data')).newsId; 
+    const response = await fetch(`http://localhost:8080/tinglinews/emp/news/${newsId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+      // credentials: 'include' // 確保请求包含 cookies
+    });
+
+    const { state, message, data } = await response.json();
+    console.log(state, message, data);
+
+    if (state) {
+      Swal.fire('修改成功', message, 'success');
+      setTimeout(() => {
+        window.location.replace('/tinglinews/emp/content-management.html');
+      }, 1000);
+    } else {
+      Swal.fire('修改文章失敗', message, 'warning');
+    }
+  } catch (error) {
+    console.error('修改文章錯誤：', error);
+    Swal.fire('修改文章錯誤 請稍後再試', error, 'error');
+  }
+
+};
+
 $(document).ready(() => {
 
-  // 標籤
   loadTags();
 
-  // 報導內容
+  // 內文編輯器
   tinymce.init({
     selector: '#content',
     language: 'zh_TW',
@@ -97,5 +133,18 @@ $(document).ready(() => {
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
   });
 
+  // 如果 sessionStorage 中有 data 就是修改文章
+  const data = JSON.parse(sessionStorage.getItem('data'));
+  if (data != null) {
+    // console.log(sessionStorage);
+    // console.log(data.newsId);
+    $('#title').val(data.title);
+    $('#tags').val(data.tagId);
+    tinymce.get('content').on('init', (event) => {
+      event.target.setContent(data.content);
+    });
+    $('#submit-btn').text('修改');
+  }
   $('#post-form').on('submit', handleSubmit);
+
 })

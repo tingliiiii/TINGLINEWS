@@ -52,11 +52,14 @@ $(document).ready(() => {
 
     $('#news-table').on('click', '.update-news-btn', async (event) => {
 
-        console.log(event);
-        console.log('按下修改按鈕' + $(event.target).data('id'));
-
+        // console.log(event);
         const id = $(event.target).data('id');
-        // window.location.href = `./post.html?id=${id}`;
+        console.log('按下修改按鈕' + id);
+
+        const data = await fetchData(`/emp/news/${id}`);
+        // console.log(data);
+        sessionStorage.setItem('data', JSON.stringify(data));
+        window.location.href = '/tinglinews/emp/post.html';
     });
 
 

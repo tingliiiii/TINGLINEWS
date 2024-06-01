@@ -31,20 +31,20 @@ public class NewsService {
 		return newsDao.publishNews(newsId, news);
 	}
 
+	// 修改前要先找到該文章
+	public News getNewsById(Integer newsId) {
+		return newsDao.getNewsById(newsId);
+	}
+	
 	// 修改新聞（員工）
 	// TODO 只能修改自己寫的新聞？發布後無法修改新聞？
-	public int updateNews(Integer newsId, News news) {
-		return newsDao.updateNews(newsId, news);
+	public boolean updateNews(Integer newsId, News news) {
+		return newsDao.updateNews(newsId, news)>0;
 	}
 
 	// 刪除新聞（編輯或管理員）
 	public int deleteNews(Integer newsId) {
 		return newsDao.deleteNews(newsId);
-	}
-
-	//
-	public News getNewsById(Integer newsId) {
-		return newsDao.getNewsById(newsId);
 	}
 
 	// 網頁內容管理
