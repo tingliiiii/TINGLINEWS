@@ -29,20 +29,21 @@ public class NewsDaoImpl implements NewsDao {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(news);
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
-	
+
 	@Override
 	public int publishNews(Integer newsId, News news) {
 		String sql = "UPDATE news SET public=?, public_time=? WHERE news_id=?";
 		return jdbcTemplate.update(sql, news.isPublic(), new Date(), newsId);
 	}
-	
+
 	@Override
 	public int updateNews(Integer newsId, News news) {
 		String sql = "UPDATE news SET title=?, content=?, tag_id=?, updated_time=? WHERE news_id=?";
 		return jdbcTemplate.update(sql, news.getTitle(), news.getContent(), news.getTagId(), new Date(), newsId);
 	}
-	
-	// news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time
+
+	// news_id, title, content, tag_id, user_id, created_time, updated_time, public,
+	// public_time
 
 	@Override
 	public int deleteNews(Integer newsId) {
@@ -62,7 +63,30 @@ public class NewsDaoImpl implements NewsDao {
 	}
 
 	@Override
-	public List<News> findAllNews() {
+	public News getNewsByIdForFront(Integer newsId) {
+		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news WHERE public=1 && news_id=?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(News.class), newsId);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public List<News> findNewsByTagId(Integer tagId) {
+		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time FROM news WHERE public=1 && tag_id=?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(News.class), tagId);
+	}
+
+	@Override
+	public List<News> findAllNewsForFront() {
+		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time FROM news WHERE public=1";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(News.class));
+	}
+	
+	@Override
+	public List<News> findAllNewsForBack() {
 		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(News.class));
 	}

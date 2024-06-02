@@ -11,7 +11,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav mx-auto ms-md-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews/">首頁</a></li>
                     <li class="nav-item"><a class="nav-link list-all" href="/tinglinews/list/all.html">即時</a></li>
                     <li class="nav-item"><a class="nav-link list-1" href="#">政治</a></li>
                     <li class="nav-item"><a class="nav-link list-2" href="#">社會</a></li>
@@ -21,9 +21,12 @@
                     <li class="nav-item"><a class="nav-link list-6" href="#">生活</a></li>
                     <li class="nav-item"><a class="nav-link list-7" href="#">娛樂</a></li>
                 </ul>
-                <div class="d-flex justify-content-center align-items-center mt-3 mt-lg-0">
-                    <div id="welcome">歡迎 劉庭莉</div>
-                    <form action="/user/logout" method="post">
+                <div class="my-3 my-lg-0 d-flex justify-content-center align-items-center">
+                    <div id="welcome">歡迎登入</div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="/tinglinews/user/profile.html" class="btn btn-primary">個人資料</a>
+                    <form action="/tinglinews/user/logout" method="post">
                         <button type="submit" class="logout-btn btn btn-outline-primary mx-2">登出</button>
                     </form>
                 </div>
@@ -32,3 +35,37 @@
 
     </div>
 </nav>
+
+
+<script>
+    if (sessionStorage.getItem('userId') != null) {
+
+        const name = sessionStorage.getItem('userName');
+        const email = sessionStorage.getItem('userEmail');
+        console.log(name, email);
+
+        if (name != null) {
+            $('#welcome').html('歡迎 ' + name);
+        } else {
+            $('#welcome').html('歡迎 ' + email);
+        }
+    }
+
+    const currentPath = window.location.pathname;
+    console.log(currentPath);
+
+    $('.nav-link').each((_, link) => {
+        const navlink = $(link);
+        if (navlink.attr('href') === currentPath) {
+            navlink.addClass('active');
+        } else {
+            navlink.removeClass('active');
+        }
+    });
+
+    $('.logout-btn').on('click', (event) => {
+        event.preventDefault();
+        sessionStorage.clear();
+        window.location.replace('/tinglinews');
+    });
+</script>

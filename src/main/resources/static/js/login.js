@@ -18,8 +18,7 @@ const login = async (formData) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(formData),
-            credentials: 'include' // 確保请求包含 cookies
+			body: JSON.stringify(formData)
 		});
 
 		const { state, message, data } = await response.json();
@@ -28,15 +27,31 @@ const login = async (formData) => {
 
 		// 根據註冊狀態進行跳轉
 		if (state === true && data && data.userId) {
-			// 將 userId 儲存至 sessionStorage
+			// 將 userId 儲存至 sessionStorage（判斷用戶是否已登入）
 			sessionStorage.setItem('userId', data.userId);
-			window.location.href = '/tinglinews/user/profile.html';
+			// 顯示於 nav-login #welcome
+			sessionStorage.setItem('userName', data.userName);
+			const email = sessionStorage.getItem('userEmail');
+			if (email == null) {
+				sessionStorage.setItem('userEmail', data.userEmail);
+				Swal.fire(message, '', 'success');
+				setTimeout(() => {
+					window.location.replace('/tinglinews/user/profile.html');
+				}, 1000);
+				return;
+			}
+
+			Swal.fire(message, '', 'success');
+			setTimeout(() => {
+				window.location.replace('/tinglinews/user/donate.html');
+			}, 1000);
+
 		} else {
-			alert('登入失敗' + message);
+			Swal.fire(message, '', 'warning');
 		}
-	} catch (error) {
-		console.error('登入錯誤：', error);
-		alert('登入過程中出現錯誤，請稍後再試');
+	} catch (e) {
+		console.error('登入錯誤：', e);
+		Swal.fire('登入錯誤 請稍後再試', e, 'error');
 	}
 
 };
@@ -46,7 +61,10 @@ $(document).ready(() => {
 
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
-	// 綁定表單提交事件
+
+	const email = sessionStorage.getItem('userEmail');
+	$('#userEmail').val(email);
+
 	$('#login-form').on('submit', handleFormSubmit);
 
 });

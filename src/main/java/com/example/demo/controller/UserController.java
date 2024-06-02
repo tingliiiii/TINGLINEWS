@@ -62,10 +62,10 @@ public class UserController {
 		if (user != null) {
 			session.setAttribute("user", user);
 			System.out.println(session.getAttribute("userId"));
-			ApiResponse<User> apiResponse = new ApiResponse<>(true, "Login success", user);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, "登入成功", user);
 			return ResponseEntity.ok(apiResponse);
 		}
-		ApiResponse<User> apiResponse = new ApiResponse<>(false, "Login failed", user);
+		ApiResponse<User> apiResponse = new ApiResponse<>(false, "登入失敗", user);
 		return ResponseEntity.ok(apiResponse);
 	}
 
@@ -102,7 +102,7 @@ public class UserController {
 		user.setGender(userProfile.getGender());
 		user.setPhone(userProfile.getPhone());
 		boolean state = userService.updateUser(userId, user);
-		String message = state ? "Update success" : "Update failed";
+		String message = state ? "更新成功" : "更新失敗！請稍後再試";
 		ApiResponse<User> apiResponse = new ApiResponse<>(state, message, user);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -111,8 +111,19 @@ public class UserController {
 
 	@PostMapping("/donate")
 	public ResponseEntity<ApiResponse<Donated>> addDonate(@RequestBody Donated donated) {
-		Boolean state = functionService.addDonated(donated);
-		String message = state ? "贊助成功" : "贊助失敗";
+		Boolean state = false;
+		String message = "發生錯誤 ";
+		try {
+			state = functionService.addDonated(donated);
+			message = state ? "贊助成功" : "贊助失敗";
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(e.getMessage().contains("cannot be null")) {
+				message += "欄位不可空白";
+			} else {
+				message += e.getMessage();
+			}
+		}
 		ApiResponse apiResponse = new ApiResponse<>(state, message, donated);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -130,7 +141,7 @@ public class UserController {
 	@PostMapping("/saved")
 	public ResponseEntity<ApiResponse<Donated>> saved(@RequestBody Saved saved) {
 		Boolean state = functionService.addSaved(saved);
-		String message = state ? "收藏成功" : "失敗";
+		String message = state ? "收藏成功" : "收藏失敗";
 		ApiResponse apiResponse = new ApiResponse<>(state, message, saved);
 		return ResponseEntity.ok(apiResponse);
 	}

@@ -11,7 +11,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav mx-auto ms-md-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews/">首頁</a></li>
                     <li class="nav-item"><a class="nav-link list-all" href="/tinglinews/list/all.html">即時</a></li>
                     <li class="nav-item"><a class="nav-link list-1" href="#">政治</a></li>
                     <li class="nav-item"><a class="nav-link list-2" href="#">社會</a></li>
@@ -22,11 +22,34 @@
                     <li class="nav-item"><a class="nav-link list-7" href="#">娛樂</a></li>
                 </ul>
                 <div class="d-flex justify-content-center mt-3 my-lg-auto me-0 me-lg-4">
-                    <a href="http://localhost:8080/tinglinews/user/login.html" class="login btn btn-outline-primary mx-2">登入</a>
-                    <a href="http://localhost:8080/tinglinews/user/register.html" class="signup btn btn-primary mx-2">註冊</a>
+                    <a href="http://localhost:8080/tinglinews/user/login.html"
+                        class="login btn btn-outline-primary mx-2">登入</a>
+                    <a href="http://localhost:8080/tinglinews/user/register.html"
+                        class="signup btn btn-primary mx-2">註冊</a>
                 </div>
             </div>
         </div>
 
     </div>
 </nav>
+<script>
+   
+   const currentPath = window.location.pathname;
+	console.log(currentPath);
+
+    $('.nav-link').each((_, link) => {
+        const navlink = $(link);
+        if (navlink.attr('href') == currentPath) {
+            navlink.addClass('active');
+        } else {
+            navlink.removeClass('active');
+        }
+    });
+
+    $('.logout-btn').on('click', (event) => {
+        event.preventDefault();
+        sessionStorage.clear();
+        window.location.replace('/tinglinews');
+    });
+
+</script>

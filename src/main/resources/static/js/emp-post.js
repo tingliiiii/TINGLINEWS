@@ -24,16 +24,8 @@ const loadTags = async () => {
       option.text(tag.tagName);
       select.append(option);
     });
-    /*
-    $.each(data, (index, tag) => {
-      const option = $('<option></option>');
-      option.attr('value', tag.tagId);
-      option.text(tag.tagName);
-      select.append(option);
-    });
-    */
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Fetching data error:', error);
   }
 
 };
@@ -76,12 +68,12 @@ const submitPost = async (formData) => {
     console.log(state, message, data);
 
     if (state) {
-      Swal.fire('新增成功', message, 'success');
+      Swal.fire(message, '', 'success');
       setTimeout(() => {
         window.location.replace('/tinglinews/emp/content-management.html');
       }, 1000);
     } else {
-      Swal.fire('新增文章失敗', message, 'warning');
+      Swal.fire(message, '', 'warning');
     }
   } catch (error) {
     console.error('新增文章錯誤：', error);
@@ -107,12 +99,12 @@ const updatePost = async (formData) => {
     console.log(state, message, data);
 
     if (state) {
-      Swal.fire('修改成功', message, 'success');
+      Swal.fire(message, '', 'success');
       setTimeout(() => {
         window.location.replace('/tinglinews/emp/content-management.html');
       }, 1000);
     } else {
-      Swal.fire('修改文章失敗', message, 'warning');
+      Swal.fire(message, '', 'warning');
     }
   } catch (error) {
     console.error('修改文章錯誤：', error);

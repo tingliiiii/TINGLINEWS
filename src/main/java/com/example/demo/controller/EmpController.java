@@ -36,13 +36,12 @@ public class EmpController {
 	// 後台：使用者管理介面
 	@GetMapping("/user")
 	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser() {
-		List<UserDto> users = null;
 		try {
-			users = userService.findAllUserDtos();
-			ApiResponse apiResponse = new ApiResponse<>(true, "query users success", users);
+			List<UserDto> userList = userService.findAllUserDtos();
+			ApiResponse apiResponse = new ApiResponse<>(true, "Query users success", userList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
-			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), users);
+			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
 	}
@@ -54,7 +53,7 @@ public class EmpController {
 		try {
 			user = userService.getUserById(userId);
 			Boolean state = userService.deleteUser(userId);
-			String message = state ? "delete success" : "delete failed";
+			String message = state ? "刪除使用者成功" : "刪除使用者失敗";
 			ApiResponse apiResponse = new ApiResponse<>(state, message, user);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
@@ -68,7 +67,7 @@ public class EmpController {
 	public ResponseEntity<ApiResponse<List<NewsDto>>> findAllNews() {
 		List<NewsDto> news = null;
 		try {
-			news = newsService.findAllNews();
+			news = newsService.findAllNewsForBack();
 			ApiResponse apiResponse = new ApiResponse<>(true, "query news success", news);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
@@ -96,7 +95,7 @@ public class EmpController {
 	@PostMapping("/post")
 	public ResponseEntity<ApiResponse<News>> postNews(@RequestBody News news) {
 		Boolean state = newsService.postNews(news);
-		String message = state ? "post success" : "post failed";
+		String message = state ? "新增文章成功" : "新增文章失敗";
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 
@@ -116,7 +115,7 @@ public class EmpController {
 	@PutMapping("/news/{newsId}")
 	public ResponseEntity<ApiResponse<News>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
 		Boolean state = newsService.updateNews(newsId, news);
-		String message = state ? "update success" : "update failed";
+		String message = state ? "修改文章成功" : "修改文章失敗";
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 		

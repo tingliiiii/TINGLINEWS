@@ -30,7 +30,9 @@ public class SavedDaoImpl implements SavedDao {
 
 	@Override
 	public List<Saved> findSavedById(Integer userId) {
-		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved WHERE user_id=?";
+		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved "
+				+ "WHERE user_id=? "
+				+ "ORDER BY saved_time DESC ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class), userId);
 	}
 

@@ -22,8 +22,7 @@ const addUser = async (formData) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(formData),
-            credentials: 'include' // 確保请求包含 cookies
+			body: JSON.stringify(formData)
 		});
 
 		const { state, message, data } = await response.json();
@@ -33,6 +32,8 @@ const addUser = async (formData) => {
 		if (state === true && data && data.userId) {
 			// 將 userId 儲存至 sessionStorage
 			sessionStorage.setItem('userId', data.userId);
+			sessionStorage.setItem('userName', data.userName);
+			sessionStorage.setItem('userEmail', data.userEmail);
 			window.location.href = '/tinglinews/user/profile.html';
 		} else {
 			alert('註冊失敗' + message);

@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS user (
 
 INSERT INTO user(user_name, user_email, user_password) VALUES ('王采惟', 'irin@gmail.com', '1234');
 INSERT INTO user(user_name, user_email, user_password) VALUES ('簡晨恩', 'katy@gmail.com', '1234');
-INSERT INTO user(user_name, user_email, user_password) VALUES ('王誠', 'nikolas@gmail.com', '1234');
+INSERT INTO user(user_name, user_email, user_password) VALUES ('王誠', 'nikolas7@gmail.com', '1234');
+INSERT INTO user(user_name, user_email, user_password) VALUES ('root', 'root@gmail.com', '1234');
 INSERT INTO user(user_name, user_email, user_password, birthday, gender, phone) VALUES ('劉允恩', 'baby@gmail.com', '1234', '2022-04-26', 'MALE', '0912-345678');
 
 -- DROP TABLE IF EXISTS authority;
@@ -106,7 +107,7 @@ CREATE TABLE IF NOT EXISTS saved (
 );
 
 INSERT INTO saved(user_id, news_id) VALUES(1040, 6001);
-INSERT INTO saved(user_id, news_id) VALUES(1040, 6002);
+INSERT INTO saved(user_id, news_id) VALUES(1040, 6000);
 
 
 

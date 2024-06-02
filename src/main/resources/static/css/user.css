@@ -1,4 +1,5 @@
 /* login ================================================= */
+
 #forget {
 	font-size: .75rem;
 	line-height: 38px;
@@ -8,32 +9,32 @@
 	padding-top: .5rem;
 }
 
+
 /* signup ================================================= */
-#signupContainer {
+
+#register-container {
 	margin: 10px auto 100px;
 }
 
+
 /* profile ================================================= */
-#welcome {
-	color: var(--c-primary-color2);
-	padding: 0 20px;
-}
 
 #profile-container {
 	width: max(40%, 375px);
 	margin-bottom: 10vh;
 	color: var(--c-primary-color3);
 }
-
+/* 
 @media screen and (max-width: 991px) {
 	.logout-btn {
 		line-height: 1.2em;
 		font-size: .8em;
 	}
 }
-
-#donated-list {
-	width: min(100%, 700px);
+ */
+#donated-list,
+#saved-list {
+	width: min(96%, 900px);
 	margin: 50px auto;
 	display: none;
 }
@@ -42,30 +43,18 @@
 	color: var(--c-primary-color3);
 }
 
-#donated-list-head {
+#donated-list-head,
+#saved-list-head {
 	text-align: center;
+	vertical-align: middle;
 	line-height: 2em;
 }
 
-#donated-list-body, #saved-list-body {
+#donated-list-body,
+#saved-list-body {
 	text-align: center;
 }
 
 #saved-list-body td:nth-child(2) {
 	text-align: left;
 }
-
-#saved-list {
-	width: min(100%, 700px);
-	margin: 50px auto;
-	display: none;
-}
-
-#saved-list-head {
-	text-align: center;
-	line-height: 2em;
-}
-/* 
-.delete-saved-btn{
-    cursor: pointer;
-} */

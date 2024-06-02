@@ -1,10 +1,7 @@
 // 從後端抓資料給 profile
 const fetchData = async (userId) => {
 	try {
-		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`, {
-			method: 'GET',
-			credentials: 'include' // 確保請求包含 cookies
-		});
+		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`);
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		console.log(state, message, data);
 
@@ -19,7 +16,7 @@ const fetchData = async (userId) => {
 		renderDonated(data.donatedList);
 
 	} catch (e) {
-		console.error(e);
+		console.error('資料讀取錯誤：' + e);
 	}
 }
 
@@ -58,6 +55,7 @@ const renderDonated = (data) => {
 	$('#donated-list-body').html(Array.isArray(data) ? data.map(render).join('') : render(data));
 }
 
+// 表單提交事件處理（更新個人資訊）
 const handleSubmit = async (event) => {
 
 	event.preventDefault();
@@ -69,30 +67,29 @@ const handleSubmit = async (event) => {
 		birth: $('#birth').val(),
 		phone: $('#phone').val()
 	};
-	await update(formData);
+	await updateProfile(formData);
 };
 
-const update = async (formData) => {
+const updateProfile = async (formData) => {
 	try {
 		const response = await fetch('http://localhost:8080/tinglinews/user/update', {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(formData),
-			// credentials: 'include' // 確保請求包含 cookies
+			body: JSON.stringify(formData)
 		});
 
 		const { state, message, data } = await response.json();
 		console.log(state, message, data);
 
 		if (state) {
-			Swal.fire('更新成功', message, 'success');
+			Swal.fire(message, '', 'success');
 		} else {
-			Swal.fire('更新失敗！請稍後再試', message, 'warning');
+			Swal.fire(message, '', 'warning');
 		}
 	} catch (error) {
-		console.error('更新個人資訊錯誤：', error);
+		console.error('更新過程發生錯誤：', error);
 		Swal.fire('更新過程發生錯誤！請稍後再試', error, 'error');
 	}
 
@@ -108,7 +105,7 @@ $(document).ready(async () => {
 	console.log('用戶 ID：', userId);
 	if (!userId) {
 		console.log('用戶 ID 未找到');
-		alert('請重新登入');
+		Swal.fire('請重新登入', '', 'error');
 		window.location.href = '/tinglinews/user/login.html';
 		return;
 	}
@@ -129,8 +126,17 @@ $(document).ready(async () => {
 
 	// 停止贊助
 	$('#donated-table').on('click', '.stop-donate-btn', async (event) => {
+
 		const id = $(event.target).data('id');
 		console.log('按下停止贊助：' + id);
+
+		const row = $(event.target).closest('tr');
+		const status = row.find('td:nth-child(6)').text().trim();
+
+		if (status === '已完成') {
+			Swal.fire('贊助已完成', '', 'success');
+			return;
+		}
 
 		const result = await Swal.fire({
 			title: '確定要停止贊助嗎？',
@@ -142,18 +148,27 @@ $(document).ready(async () => {
 		})
 
 		if (!result.isConfirmed) {
-			Swal.fire("並未停止", "", "info");
+			Swal.fire('贊助進行中', '', 'info');
 			return;
 		}
 
-		const url = `http://localhost:8080/tinglinews/donate/${id}`;
-		const response = await fetch(url, { method: 'DELETE' });
-		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		try {
+			const response = await fetch(`http://localhost:8080/tinglinews/user/donate/${id}`, { method: 'DELETE' });
+			const { state, message, data } = await response.json();
+			console.log(state, message, data);
 
-		if (state) {
-			Swal.fire('刪除成功', '', 'success');
+			if (state) {
+				Swal.fire(message, '', 'success');
+				setTimeout(() => {
+					window.location.reload();
+				}, 1000);
+
+			}
+		} catch (e) {
+			console.error('停止贊助時發生錯誤：', e);
+			Swal.fire('停止過程發生錯誤！請稍後再試', e.message, 'error');
 		}
+
 	});
 
 	// 取消收藏
@@ -174,14 +189,19 @@ $(document).ready(async () => {
 			Swal.fire('未取消收藏', '', 'info');
 			return;
 		}
+		try {
+			const response = await fetch(`http://localhost:8080/tinglinews/user/saved/${id}`, { method: 'DELETE' });
+			const { state, message, data } = await response.json();
+			console.log(state, message, data);
 
-		const url = `http://localhost:8080/tinglinews/saved/${id}`;
-		const response = await fetch(url, { method: 'DELETE' });
-		const { state, message, data } = await response.json();
-		console.log(state, message, data);
-
-		if (state) {
-			Swal.fire('取消收藏成功', '', 'success');
+			if (state) {
+				$(event.target).closest('tr').remove();
+				Swal.fire(message, '', 'success');
+			}
+		} catch (e) {
+			console.error('取消收藏時發生錯誤：', e);
+			Swal.fire('取消過程發生錯誤！請稍後再試', e.message, 'error');
 		}
+
 	});
 });

@@ -7,12 +7,28 @@ import com.example.demo.model.po.Tag;
 
 public interface NewsDao {
 
-	int postNews(News news);
-	int publishNews(Integer newsId, News news);
-	int updateNews(Integer newsId, News news);
-	int deleteNews(Integer newsId);
-	News getNewsById(Integer newsId);
-	List<News> findAllNews();
-	List<Tag> findAllTags();
+	// 後台 ============================================================
 	
+	// 新增
+	int postNews(News news);
+	List<Tag> findAllTags();
+	// 修改
+	News getNewsById(Integer newsId);
+	int updateNews(Integer newsId, News news);
+	// 刪除
+	int deleteNews(Integer newsId);
+	// 公開
+	int publishNews(Integer newsId, News news);
+	// 網站內容管理
+	List<News> findAllNewsForBack();
+
+	// 前台 ============================================================
+
+	// 單篇報導
+	News getNewsByIdForFront(Integer newsId);
+	// 根據標籤的報導列表
+	List<News> findNewsByTagId(Integer tagId);
+	// 報導列表（首頁、即時）
+	List<News> findAllNewsForFront();
+
 }

@@ -21,6 +21,8 @@ public class NewsService {
 	@Autowired
 	private UserService userService;
 
+	// 後台 ============================================================
+	
 	// 上稿（員工）
 	public boolean postNews(News news) {
 		return newsDao.postNews(news)>0;
@@ -48,9 +50,9 @@ public class NewsService {
 	}
 
 	// 網頁內容管理
-	public List<NewsDto> findAllNews() {
+	public List<NewsDto> findAllNewsForBack() {
 		List<NewsDto> dtos = new ArrayList<>();
-		List<News> newsList = newsDao.findAllNews();
+		List<News> newsList = newsDao.findAllNewsForBack();
 		for(News news: newsList) {
 			// System.out.println(news);
 			NewsDto dto = new NewsDto();
@@ -73,5 +75,18 @@ public class NewsService {
 		return newsDao.findAllTags();
 	}
 	
+	// 前台 ============================================================
+	// 確認文章已公開
 	
+	public List<News> findAllNewsForFront(){
+		return newsDao.findAllNewsForFront();
+	}
+	
+	public List<News> findNewsByTagId(Integer tagId){
+		return newsDao.findNewsByTagId(tagId);
+	}
+	
+	public News getNewsByIdForFront(Integer newsId) {
+		return newsDao.getNewsByIdForFront(newsId);
+	}
 }

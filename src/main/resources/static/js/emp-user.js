@@ -87,7 +87,7 @@ $(document).ready(() => {
 		});
 
 		if (!result.isConfirmed) {
-			Swal.fire("並未刪除", "", "info");
+			Swal.fire('並未刪除', '', 'info');
 			return;
 		}
 
@@ -99,7 +99,7 @@ $(document).ready(() => {
 		if (state) {
 			// 更新 user list
 			// $('#user-table').DataTable().ajax.reload();
-			Swal.fire('刪除成功', '', 'success');
+			Swal.fire(message, '', 'success');
 			// console.log($(this));
 			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
 			// table.ajax.reload();

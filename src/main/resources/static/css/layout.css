@@ -47,11 +47,16 @@ body {
   color: var(--c-primary-color3);
 }
 
-.title-2 {
+.title {
   margin: 2rem;
   text-align: center;
   font-weight: 700;
   color: var(--c-primary-color3);
+}
+
+#welcome {
+	color: var(--c-primary-color2);
+	padding: 0 20px;
 }
 
 /* 廣告 banner ================================================= */
@@ -121,6 +126,7 @@ a span:hover {
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
   color: var(--c-primary-color2);
+  font-weight: 700;
 }
 
 .bg-body-tertiary {
