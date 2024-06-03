@@ -97,4 +97,17 @@ public class NewsDaoImpl implements NewsDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Tag.class));
 	}
 
+	@Override
+	public Tag getTagById(Integer tagId) {
+		String sql = "SELECT tag_id, tag_name FROM tag WHERE tag_id=?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Tag.class), tagId);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+
 }

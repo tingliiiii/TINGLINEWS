@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.NewsDao;
-import com.example.demo.model.dto.NewsDto;
+import com.example.demo.model.dto.NewsDtoForBack;
+import com.example.demo.model.dto.NewsDtoForFront;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
@@ -50,12 +51,12 @@ public class NewsService {
 	}
 
 	// 網頁內容管理
-	public List<NewsDto> findAllNewsForBack() {
-		List<NewsDto> dtos = new ArrayList<>();
+	public List<NewsDtoForBack> findAllNewsForBack() {
+		List<NewsDtoForBack> dtos = new ArrayList<>();
 		List<News> newsList = newsDao.findAllNewsForBack();
 		for(News news: newsList) {
 			// System.out.println(news);
-			NewsDto dto = new NewsDto();
+			NewsDtoForBack dto = new NewsDtoForBack();
 			dto.setNewsId(news.getNewsId());
 			dto.setTitle(news.getTitle());
 			int id = news.getUserId();
@@ -78,15 +79,55 @@ public class NewsService {
 	// 前台 ============================================================
 	// 確認文章已公開
 	
+	// 首頁
 	public List<News> findAllNewsForFront(){
 		return newsDao.findAllNewsForFront();
 	}
 	
+	// 標籤頁
 	public List<News> findNewsByTagId(Integer tagId){
 		return newsDao.findNewsByTagId(tagId);
 	}
 	
-	public News getNewsByIdForFront(Integer newsId) {
-		return newsDao.getNewsByIdForFront(newsId);
+	// 單篇文章
+	public NewsDtoForFront getNewsByIdForFront(Integer newsId) {
+		News news = newsDao.getNewsByIdForFront(newsId);
+		Tag tag = newsDao.getTagById(news.getTagId());
+		NewsDtoForFront dto = new NewsDtoForFront();
+		
+		dto.setNewsId(news.getNewsId());
+		dto.setTitle(news.getTitle());
+		dto.setContent(news.getContent());
+		
+		dto.setTag(newsDao.getTagById(news.getTagId()));
+		Integer id = news.getUserId();
+		dto.setUserId(id);
+		dto.setUserName(userService.getUserById(id).getUserName());
+		
+		dto.setUpdatedTime(news.getUpdatedTime());
+		dto.setPublic(news.isPublic());
+		dto.setPublicTime(news.getPublicTime());
+		
+		return dto;
+	}
+	
+	public List<NewsDtoForBack> findBack() {
+		List<NewsDtoForBack> dtos = new ArrayList<>();
+		List<News> newsList = newsDao.findAllNewsForBack();
+		for(News news: newsList) {
+			// System.out.println(news);
+			NewsDtoForBack dto = new NewsDtoForBack();
+			dto.setNewsId(news.getNewsId());
+			dto.setTitle(news.getTitle());
+			int id = news.getUserId();
+			dto.setUserId(id);
+			dto.setUserName(userService.getUserById(id).getUserName());
+			dto.setCreatedTime(news.getCreatedTime());
+			dto.setUpdatedTime(news.getUpdatedTime());
+			dto.setPublic(news.isPublic());
+			dto.setPublicTime(news.getPublicTime());
+			dtos.add(dto);
+		}
+		return dtos; 
 	}
 }

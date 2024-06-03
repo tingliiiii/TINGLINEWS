@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.NewsDtoForFront;
 import com.example.demo.model.po.News;
 import com.example.demo.model.response.ApiResponse;
+import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.NewsService;
 
 @RestController
@@ -21,11 +23,11 @@ public class NewsController {
 	private NewsService newsService;
 	
 	// 搜尋全部新聞
-	@GetMapping
+	@GetMapping("/list/")
 	public ResponseEntity<ApiResponse<List<News>>> findAllNews() {
 		try {
 			List<News> newsList = newsService.findAllNewsForFront();
-			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, "Query news success", newsList);
+			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), newsList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
@@ -37,7 +39,7 @@ public class NewsController {
 	public ResponseEntity<ApiResponse<List<News>>> findNewsByTag(@PathVariable Integer tagId) {
 		try {
 			List<News> newsList = newsService.findNewsByTagId(tagId);
-			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, "Query news success", newsList);
+			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), newsList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
@@ -46,10 +48,11 @@ public class NewsController {
 	}
 	
 	@GetMapping("/{newsId}")
-	public ResponseEntity<ApiResponse<News>> findNewsById(@PathVariable Integer newsId) {
+	public ResponseEntity<ApiResponse<NewsDtoForFront>> findNewsById(@PathVariable Integer newsId) {
 		try {
-			News news = newsService.getNewsByIdForFront(newsId);
-			ApiResponse<News> apiResponse = new ApiResponse<>(true, "Query news success", news);
+			// 缺少： tagName、userName
+			NewsDtoForFront news = newsService.getNewsByIdForFront(newsId);
+			ApiResponse<NewsDtoForFront> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), news);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);

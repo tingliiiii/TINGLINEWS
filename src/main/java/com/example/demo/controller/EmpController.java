@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.dto.NewsDto;
+import com.example.demo.model.dto.NewsDtoForBack;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
 import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
+import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.NewsService;
 import com.example.demo.service.UserService;
 
@@ -38,7 +39,7 @@ public class EmpController {
 	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser() {
 		try {
 			List<UserDto> userList = userService.findAllUserDtos();
-			ApiResponse apiResponse = new ApiResponse<>(true, "Query users success", userList);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
@@ -53,7 +54,7 @@ public class EmpController {
 		try {
 			user = userService.getUserById(userId);
 			Boolean state = userService.deleteUser(userId);
-			String message = state ? "刪除使用者成功" : "刪除使用者失敗";
+			String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
 			ApiResponse apiResponse = new ApiResponse<>(state, message, user);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
@@ -64,11 +65,11 @@ public class EmpController {
 
 	// 後台：網頁內容管理介面
 	@GetMapping("/news")
-	public ResponseEntity<ApiResponse<List<NewsDto>>> findAllNews() {
-		List<NewsDto> news = null;
+	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews() {
+		List<NewsDtoForBack> news = null;
 		try {
 			news = newsService.findAllNewsForBack();
-			ApiResponse apiResponse = new ApiResponse<>(true, "query news success", news);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), news);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), news);
@@ -83,7 +84,7 @@ public class EmpController {
 		List<Tag> tags = null;
 		try {
 			tags = newsService.findAllTags();
-			ApiResponse apiResponse = new ApiResponse<>(true, "query tags success", tags);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), tags);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), tags);
@@ -95,7 +96,7 @@ public class EmpController {
 	@PostMapping("/post")
 	public ResponseEntity<ApiResponse<News>> postNews(@RequestBody News news) {
 		Boolean state = newsService.postNews(news);
-		String message = state ? "新增文章成功" : "新增文章失敗";
+		String message = state ? StatusMessage.新增成功.name() : StatusMessage.新增失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 
@@ -106,7 +107,7 @@ public class EmpController {
 	public ResponseEntity<ApiResponse<News>> getNews(@PathVariable Integer newsId) {
 		News news = newsService.getNewsById(newsId);
 		Boolean state = news != null;
-		String message = state ? "query success" : "query failed";
+		String message = state ? StatusMessage.查詢成功.name() : StatusMessage.查詢失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -115,7 +116,7 @@ public class EmpController {
 	@PutMapping("/news/{newsId}")
 	public ResponseEntity<ApiResponse<News>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
 		Boolean state = newsService.updateNews(newsId, news);
-		String message = state ? "修改文章成功" : "修改文章失敗";
+		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 		

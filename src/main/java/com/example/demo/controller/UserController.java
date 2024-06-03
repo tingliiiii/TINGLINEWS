@@ -17,6 +17,7 @@ import com.example.demo.model.po.Donated;
 import com.example.demo.model.po.Saved;
 import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
+import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
@@ -41,10 +42,10 @@ public class UserController {
 		if (userId != null) {
 			user.setUserId(userId);
 			session.setAttribute("user", user);
-			ApiResponse<User> apiResponse = new ApiResponse<>(true, "Register success", user);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
 		}
-		ApiResponse<User> apiResponse = new ApiResponse<>(false, "Register failed", user);
+		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
 		System.out.println(user);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -62,10 +63,10 @@ public class UserController {
 		if (user != null) {
 			session.setAttribute("user", user);
 			System.out.println(session.getAttribute("userId"));
-			ApiResponse<User> apiResponse = new ApiResponse<>(true, "登入成功", user);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
 		}
-		ApiResponse<User> apiResponse = new ApiResponse<>(false, "登入失敗", user);
+		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), user);
 		return ResponseEntity.ok(apiResponse);
 	}
 
@@ -74,7 +75,7 @@ public class UserController {
 	public ResponseEntity<ApiResponse<UserProfileDto>> getUser(@PathVariable("userId") Integer userId) {
 		try {
 			UserProfileDto userProfile = userService.getUserProfile(userId);
-			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(true, "query success", userProfile);
+			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userProfile);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,14 +88,14 @@ public class UserController {
 	@PostMapping("/logout")
 	public ResponseEntity<ApiResponse<String>> logout(HttpSession session) {
 		session.invalidate();
-		ApiResponse<String> apiResponse = new ApiResponse<>(true, "Logout success", null);
+		ApiResponse<String> apiResponse = new ApiResponse<>(true, StatusMessage.登出成功.name(), null);
 		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 修改
 	@PutMapping("/update")
 	public ResponseEntity<ApiResponse<User>> updateUser(@RequestBody UserProfileDto userProfile, HttpSession session) {
-		Integer userId = 1040; // (Integer) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("userId");
 		User user = userService.getUserById(userId);
 		user.setUserName(userProfile.getUserName());
 		user.setUserEmail(userProfile.getUserEmail());
@@ -102,7 +103,7 @@ public class UserController {
 		user.setGender(userProfile.getGender());
 		user.setPhone(userProfile.getPhone());
 		boolean state = userService.updateUser(userId, user);
-		String message = state ? "更新成功" : "更新失敗！請稍後再試";
+		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<User> apiResponse = new ApiResponse<>(state, message, user);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -115,10 +116,10 @@ public class UserController {
 		String message = "發生錯誤 ";
 		try {
 			state = functionService.addDonated(donated);
-			message = state ? "贊助成功" : "贊助失敗";
+			message = state ? StatusMessage.贊助成功.name() : StatusMessage.贊助失敗.name();
 		} catch (Exception e) {
 			e.printStackTrace();
-			if(e.getMessage().contains("cannot be null")) {
+			if (e.getMessage().contains("cannot be null")) {
 				message += "欄位不可空白";
 			} else {
 				message += e.getMessage();
@@ -131,7 +132,7 @@ public class UserController {
 	@DeleteMapping("/donate/{donateId}")
 	public ResponseEntity<ApiResponse<Boolean>> stopDonated(@PathVariable("donateId") Integer donateId) {
 		Boolean state = functionService.stopDanted(donateId);
-		String message = state ? "停止贊助成功" : "停止贊助失敗";
+		String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -141,7 +142,7 @@ public class UserController {
 	@PostMapping("/saved")
 	public ResponseEntity<ApiResponse<Donated>> saved(@RequestBody Saved saved) {
 		Boolean state = functionService.addSaved(saved);
-		String message = state ? "收藏成功" : "收藏失敗";
+		String message = state ? StatusMessage.收藏成功.name() : StatusMessage.收藏失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, saved);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -149,7 +150,7 @@ public class UserController {
 	@DeleteMapping("/saved/{savedId}")
 	public ResponseEntity<ApiResponse<Boolean>> cancelSaved(@PathVariable("savedId") Integer savedId) {
 		Boolean state = functionService.deleteSaved(savedId);
-		String message = state ? "取消收藏成功" : "取消收藏失敗";
+		String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
 		return ResponseEntity.ok(apiResponse);
 	}
