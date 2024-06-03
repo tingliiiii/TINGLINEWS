@@ -26,6 +26,106 @@
 // 	});
 // }
 
+// 從後端抓資料
+const fetchData = async () => {
+	const url = `http://localhost:8080/tinglinews/news/list/`;
+	try {
+		const response = await fetch(url);
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
+
+		// 小卡
+		data.map((item) => {
+			const contentContainer = $('<p>').html(item.content);
+			const truncatedContent = contentContainer.text().substring(0, 120);
+			item.content = contentContainer.text().length > 120 ? truncatedContent + '...' : truncatedContent;
+		})
+		renderCardData(data);
+
+		// 大圖輪播
+		data.map((item) => {
+			// const contentContainer = $('<p>').html(item.content);
+			// const truncatedContent = contentContainer.text().substring(0, 20);
+			// item.content = contentContainer.text().length > 20 ? truncatedContent + '...' : truncatedContent;
+		})
+		renderCarouselData(data);
+
+	} catch (e) {
+		console.error(e);
+	}
+};
+
+// 渲染小卡
+const renderCardData = (data, currentPage = 1, itemsPerPage = 6) => {
+
+	const totalItems = data.length;
+	const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+	const paginate = (array, page_number) => array.slice((page_number - 1) * itemsPerPage, page_number * itemsPerPage);
+
+	const newsItem = (item) => `
+		<div class="col-12 col-sm-6 col-lg-4">
+			<div class="card">
+				<a href="/tinglinews/news.html?id=${item.newsId}">
+					<img src="https://picsum.photos/300/200?random=${item.newsId}" class="card-img-top"
+						alt="${item.title}">
+						<div class="card-body">
+							<h5 class="card-title">${item.title}</h5>
+							<p class="card-text">${item.content}</p>
+						</div>
+				</a>
+			</div>
+		</div>
+	`;
+
+	const paginatedData = paginate(data, currentPage);
+	$('.row').html(paginatedData.map(newsItem).join(''));
+	//	$('.row').html(data.map(newsItem).join(''));
+
+	// Render pagination controls
+	let paginationHtml = '';
+
+	for (let i = 1; i <= totalPages; i++) {
+		paginationHtml += `
+			<li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+		`;
+	}
+
+	$('#pagination').html(paginationHtml);
+
+	// Add event listeners to pagination buttons
+	$('.page-link').on('click', (event) =>  {
+        event.preventDefault();
+        const page = $(this).data('page');
+        renderCardData(data, page, itemsPerPage);
+    });
+
+
+};
+
+// 渲染大圖輪播
+const renderCarouselData = (data) => {
+
+	const newsItem = (item) => `
+		<a href = "/tinglinews/news.html?id=${item.newsId}" >
+			<img src="https://picsum.photos/1200/800?random=${item.newsId}"
+				class="d-block w-100" alt="${item.title}">
+				<div class="carousel-caption">
+					<h5>${item.title}</h5>
+					<p>${item.publicTime}</p>
+				</div>
+			</a>
+	`;
+	$('#carousel1').html(newsItem(data[0]));
+	$('#carousel2').html(newsItem(data[1]));
+	$('#carousel3').html(newsItem(data[2]));
+
+
+};
+
+
 // 待 DOM 加載完成之後再執行
 $(document).ready(() => {
 
@@ -39,7 +139,8 @@ $(document).ready(() => {
 	} else {
 		$('.header-container').load('nav.html');
 	}
-	$('.main-content').load('domain.html');
+	// $('.main-content').load('domain.html');
 	$('.footer-container').load('footer.html');
 
+	fetchData();
 });

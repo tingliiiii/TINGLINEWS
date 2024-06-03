@@ -189,7 +189,7 @@ a span:hover {
 }
 
 /* #sec2 ================================================= */
-#sec2 a {
+.card a {
   text-decoration: none;
   color: #666;
 }
@@ -200,6 +200,11 @@ a span:hover {
 
 .card-body {
   padding: 2rem;
+}
+
+.active>.page-link {
+  background-color: var(--c-primary-color);
+  border-color: var(--c-primary-color);
 }
 
 

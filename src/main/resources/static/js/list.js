@@ -12,34 +12,42 @@ const fetchData = async (id) => {
 		})
 		console.log(state, message, data);
 
-		if (id != null) {
-			switch(id){
-				case '1':
-					$('.title').text('政治');
-					break;
-				case '2':
-					$('.title').text('社會');
-					break;
-				case '3':
-					$('.title').text('國際');
-					break;
-				case '4':
-					$('.title').text('環境');
-					break;
-				case '5':
-					$('.title').text('文化');
-					break;
-				case '6':
-					$('.title').text('生活');
-					break;
-				case '7':
-					$('.title').text('娛樂');
-					break;
-				default:
-					$('.title').text('即時');
-					break;
+			if (id != null) {
+				switch (id) {
+					case '1':
+						$('.title').text('政治');
+						document.title += '｜政治';
+						break;
+					case '2':
+						$('.title').text('社會');
+						document.title += '｜社會';
+						break;
+					case '3':
+						$('.title').text('國際');
+						document.title += '｜國際';
+						break;
+					case '4':
+						$('.title').text('環境');
+						document.title += '｜環境';
+						break;
+					case '5':
+						$('.title').text('文化');
+						document.title += '｜文化';
+						break;
+					case '6':
+						$('.title').text('生活');
+						document.title += '｜生活';
+						break;
+					case '7':
+						$('.title').text('娛樂');
+						document.title += '｜娛樂';
+						break;
+					default:
+						$('.title').text('即時');
+						document.title += '｜即時';
+						break;
+				}
 			}
-		}
 
 		renderData(data);
 	} catch (e) {
@@ -83,11 +91,11 @@ $(document).ready(() => {
 	$('.ad-container').load('./ad.html');
 
 	const queryString = window.location.search;
-	console.log(`QueryString: ${queryString}`);
+	// console.log(`QueryString: ${queryString}`);
 	const urlParams = new URLSearchParams(queryString);
-	console.log(`URLParams: ${urlParams}`);
+	// console.log(`URLParams: ${urlParams}`);
 	const id = urlParams.get('id');
-	console.log(`ID 參數: ${id}`);
+	console.log(`id: ${id}`);
 	if (id != null) {
 		fetchData(id);
 	} else {

@@ -22,10 +22,8 @@
                     <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=7">娛樂</a></li>
                 </ul>
                 <div class="d-flex justify-content-center mt-3 my-lg-auto me-0 me-lg-4">
-                    <a href="/tinglinews/user/login.html"
-                        class="login btn btn-outline-primary mx-2">登入</a>
-                    <a href="/tinglinews/user/register.html"
-                        class="signup btn btn-primary mx-2">註冊</a>
+                    <a href="/tinglinews/user/login.html" class="login btn btn-outline-primary mx-2">登入</a>
+                    <a href="/tinglinews/user/register.html" class="signup btn btn-primary mx-2">註冊</a>
                 </div>
             </div>
         </div>
@@ -33,18 +31,35 @@
     </div>
 </nav>
 <script>
-   
-   const currentPath = window.location.pathname;
-	console.log(currentPath);
 
-    $('.nav-link').each((_, link) => {
-        const navlink = $(link);
-        if (navlink.attr('href') == currentPath) {
-            navlink.addClass('active');
+    //    const currentPath = window.location.pathname;
+    // 	console.log(currentPath);
+
+    //     $('.nav-link').each((_, link) => {
+    //         const navlink = $(link);
+    //         if (navlink.attr('href') == currentPath) {
+    //             navlink.addClass('active');
+    //         } else {
+    //             navlink.removeClass('active');
+    //         }
+    //     });
+
+    const href = window.location.href;
+    console.log('window.location.href: '+href);
+
+    $('.nav-link').each(function () {
+        if (this.href === href) {
+            $(this).addClass('active');
         } else {
-            navlink.removeClass('active');
+            $(this).removeClass('active');
         }
     });
+
+    $('.nav-link').on('click', function () {
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+    });
+
 
     $('.logout-btn').on('click', (event) => {
         event.preventDefault();
