@@ -12,42 +12,42 @@ const fetchData = async (id) => {
 		})
 		console.log(state, message, data);
 
-			if (id != null) {
-				switch (id) {
-					case '1':
-						$('.title').text('政治');
-						document.title += '｜政治';
-						break;
-					case '2':
-						$('.title').text('社會');
-						document.title += '｜社會';
-						break;
-					case '3':
-						$('.title').text('國際');
-						document.title += '｜國際';
-						break;
-					case '4':
-						$('.title').text('環境');
-						document.title += '｜環境';
-						break;
-					case '5':
-						$('.title').text('文化');
-						document.title += '｜文化';
-						break;
-					case '6':
-						$('.title').text('生活');
-						document.title += '｜生活';
-						break;
-					case '7':
-						$('.title').text('娛樂');
-						document.title += '｜娛樂';
-						break;
-					default:
-						$('.title').text('即時');
-						document.title += '｜即時';
-						break;
-				}
+		if (id != null) {
+			switch (id) {
+				case '1':
+					$('.title').text('政治');
+					document.title += '｜政治';
+					break;
+				case '2':
+					$('.title').text('社會');
+					document.title += '｜社會';
+					break;
+				case '3':
+					$('.title').text('國際');
+					document.title += '｜國際';
+					break;
+				case '4':
+					$('.title').text('環境');
+					document.title += '｜環境';
+					break;
+				case '5':
+					$('.title').text('文化');
+					document.title += '｜文化';
+					break;
+				case '6':
+					$('.title').text('生活');
+					document.title += '｜生活';
+					break;
+				case '7':
+					$('.title').text('娛樂');
+					document.title += '｜娛樂';
+					break;
+				default:
+					$('.title').text('即時');
+					document.title += '｜即時';
+					break;
 			}
+		}
 
 		renderData(data);
 	} catch (e) {
@@ -56,6 +56,17 @@ const fetchData = async (id) => {
 };
 
 const renderData = (data) => {
+	
+	for (const item of data) {
+		if (item.image) {
+			// 檢查圖片格式並動態設置
+			let imageFormat = 'jpeg'; // 默認為 jpeg
+			if (item.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
+				imageFormat = 'png';
+			}
+			item.image = 'data:image/' + imageFormat + ';base64,' + item.image;
+		}
+	}
 
 	const newsItem = (item) => `
 	 <li class="list-group-item list-group-item-action">
@@ -68,7 +79,7 @@ const renderData = (data) => {
 						 <p class="date">${item.publicTime}</p>
 					 </div>
 					 <div class="col-3">
-                      <img src="https://picsum.photos/300/200?random=${item.newsId}" class="list-img">
+                      <img src="${item.image}" class="list-img">
                     </div>
 				 </div>
 			 </div>

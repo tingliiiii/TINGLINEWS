@@ -19,6 +19,7 @@ public class NewsDtoForFront {
 	private Integer newsId;
 	private String title;
 	private String content;
+	private String image;
 
 	private Tag tag;
 	private Integer userId;

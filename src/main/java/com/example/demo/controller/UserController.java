@@ -142,10 +142,22 @@ public class UserController {
 
 	@PostMapping("/saved")
 	public ResponseEntity<ApiResponse<Donated>> saved(@RequestBody Saved saved) {
-		Boolean state = functionService.addSaved(saved);
-		String message = state ? StatusMessage.收藏成功.name() : StatusMessage.收藏失敗.name();
+		Boolean state = false;
+		String message = "發生錯誤：";
+		try {
+			state = functionService.addSaved(saved);
+			message = state ? StatusMessage.收藏成功.name() : StatusMessage.收藏失敗.name();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (e.getMessage().contains("saved.unique_userid_and_newsid")) {
+				message = "已收藏此篇報導";
+			} else {
+				message += e.getMessage();
+			}
+		}
 		ApiResponse apiResponse = new ApiResponse<>(state, message, saved);
 		return ResponseEntity.ok(apiResponse);
+
 	}
 
 	@DeleteMapping("/saved/{savedId}")

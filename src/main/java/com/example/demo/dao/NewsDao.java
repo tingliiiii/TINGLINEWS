@@ -18,7 +18,7 @@ public interface NewsDao {
 	// 刪除
 	int deleteNews(Integer newsId);
 	// 公開
-	int publishNews(Integer newsId, News news);
+	int publishNews(Integer newsId, Boolean isPublic);
 	// 網站內容管理
 	List<News> findAllNewsForBack();
 

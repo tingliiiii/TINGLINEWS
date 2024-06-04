@@ -1,3 +1,9 @@
+/* 標題 ================================================= */
+
+.news-container {
+    margin-bottom: 100px;
+}
+
 .news-title {
     width: min(90%, 600px);
     margin: 0 auto;
@@ -6,26 +12,17 @@
     letter-spacing: .05em;
     line-height: 2.5rem;
     text-align: justify;
+    font-size: 2rem;
 }
+
+/* 訓頭 ================================================= */
 
 .news-date {
     color: var(--c-primary-color3);
+    margin: .5em 0;
 }
 
-.news-tags {
-    margin-right: .5em;
-    text-decoration: none;
-    color: var(--c-primary-color);
-}
-
-.btn-secondary {
-    background-color: var(--c-primary-color);
-    border-color: var(--c-primary-color);
-}
-
-.news-tags:hover {
-    color: var(--c-primary-color2);
-}
+/* 內文 ================================================= */
 
 .news-content {
     width: min(90%, 600px);
@@ -33,19 +30,27 @@
     text-align: justify;
 }
 
-.news-container {
-    margin-bottom: 100px;
-}
-
-.news-title2 {
+.news-paragraph p {
     color: var(--c-primary-color3);
-}
-
-.news-paragraph {
-    color: var(--c-primary-color3);
-    letter-spacing: .1em;
+    letter-spacing: .05em;
     line-height: 1.6em;
+    font-size: 1em;
 }
+
+.news-paragraph h2{
+    color: var(--c-primary-color3);
+    letter-spacing: .05em;
+    line-height: 2em;
+    font-size: 1.35em;
+    margin: .75em 0;
+}
+
+.news-paragraph a {
+    text-decoration: none;
+    color: var(--c-primary-color);
+}
+
+/* 圖片 ================================================= */
 
 .news-img-container {
     text-align: center;
@@ -61,4 +66,20 @@
     color: var(--c-primary-color3);
     font-size: .9em;
     line-height: 2em;
+}
+
+/* 按鈕 ================================================= */
+
+.btn-secondary {
+	--bs-btn-bg: var(--c-primary-color);
+	--bs-btn-border-color: var(--c-primary-color);
+	--bs-btn-hover-bg: var(--c-primary-color2);
+	--bs-btn-hover-border-color: var(--c-primary-color2);
+}
+
+.btn-outline-secondary {
+	--bs-btn-color: var(--c-primary-color);
+	--bs-btn-border-color: var(--c-primary-color);
+	--bs-btn-hover-bg: var(--c-primary-color2);
+	--bs-btn-hover-border-color: var(--c-primary-color2);
 }

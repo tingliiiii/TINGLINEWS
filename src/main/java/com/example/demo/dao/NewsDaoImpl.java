@@ -25,21 +25,21 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public int postNews(News news) {
-		String sql = "INSERT INTO news(title, content, tag_id, user_id) VALUES(:title, :content, :tagId, :userId)";
+		String sql = "INSERT INTO news(title, content, tag_id, user_id, image) VALUES(:title, :content, :tagId, :userId, :image)";
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(news);
 		return namedParameterJdbcTemplate.update(sql, params);
 	}
 
 	@Override
-	public int publishNews(Integer newsId, News news) {
-		String sql = "UPDATE news SET public=?, public_time=? WHERE news_id=?";
-		return jdbcTemplate.update(sql, news.isPublic(), new Date(), newsId);
+	public int publishNews(Integer newsId, Boolean isPublic) { 
+		String sql = "UPDATE news SET public=?, public_time=?, updated_time=? WHERE news_id=?";
+		return jdbcTemplate.update(sql, isPublic, new Date(), new Date(), newsId);
 	}
 
 	@Override
 	public int updateNews(Integer newsId, News news) {
-		String sql = "UPDATE news SET title=?, content=?, tag_id=?, updated_time=? WHERE news_id=?";
-		return jdbcTemplate.update(sql, news.getTitle(), news.getContent(), news.getTagId(), new Date(), newsId);
+		String sql = "UPDATE news SET title=?, content=?, tag_id=?, updated_time=?, image=? WHERE news_id=?";
+		return jdbcTemplate.update(sql, news.getTitle(), news.getContent(), news.getTagId(), new Date(), news.getImage(), newsId);
 	}
 
 	// news_id, title, content, tag_id, user_id, created_time, updated_time, public,
@@ -53,7 +53,7 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public News getNewsById(Integer newsId) {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news WHERE news_id=?";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time, image FROM news WHERE news_id=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(News.class), newsId);
 		} catch (DataAccessException e) {
@@ -64,7 +64,8 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public News getNewsByIdForFront(Integer newsId) {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time FROM news WHERE public=1 && news_id=?";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, created_time, updated_time, public, public_time, image "
+				+ "FROM news WHERE public=1 && news_id=? ";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(News.class), newsId);
 		} catch (DataAccessException e) {
@@ -75,13 +76,17 @@ public class NewsDaoImpl implements NewsDao {
 	
 	@Override
 	public List<News> findNewsByTagId(Integer tagId) {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time FROM news WHERE public=1 && tag_id=?";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time, image "
+				+ "FROM news WHERE public=1 && tag_id=? "
+				+ "ORDER BY public_time DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(News.class), tagId);
 	}
 
 	@Override
 	public List<News> findAllNewsForFront() {
-		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time FROM news WHERE public=1";
+		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time, image "
+				+ "FROM news WHERE public=1 "
+				+ "ORDER BY public_time DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(News.class));
 	}
 	

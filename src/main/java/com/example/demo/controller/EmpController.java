@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -119,7 +120,16 @@ public class EmpController {
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
-		
+	}
+	
+	@PutMapping("/publish/{newsId}")
+	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId, @RequestBody Map<String ,Object> map){
+		System.out.println(map); 
+		Boolean isPublic = (Boolean)map.get("public");
+		Boolean state = newsService.publishNews(newsId, isPublic);
+		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
+		ApiResponse<Map> apiResponse = new ApiResponse<>(state, message, map);
+		return ResponseEntity.ok(apiResponse);
 	}
 
 }
