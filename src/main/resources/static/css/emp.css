@@ -46,3 +46,17 @@ table {
 	width: min(80%, 600px);
 	margin: 0 auto;
 }
+
+.btn-secondary {
+	--bs-btn-bg: #666;
+	--bs-btn-border-color: #666;
+	--bs-btn-hover-bg: #555;
+	--bs-btn-hover-border-color: #555;
+}
+
+.btn-outline-secondary {
+	--bs-btn-color: #666;
+	--bs-btn-border-color: #666;
+	--bs-btn-hover-bg: #666;
+	--bs-btn-hover-border-color: #666;
+}

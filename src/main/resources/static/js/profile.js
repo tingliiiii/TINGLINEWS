@@ -23,6 +23,10 @@ const fetchData = async (userId) => {
 // 收藏紀錄
 const renderSaved = (data) => {
 
+	if(data.length === 0) {
+		$('#saved-list-body').html('<tr><td colspan="5">尚無收藏紀錄</td></tr>');
+		return;
+	}
 	const render = ({ savedId, news, savedTime }) => `
 	<tr>
 		<td>${savedId}</td>
@@ -38,8 +42,11 @@ const renderSaved = (data) => {
 
 // 贊助紀錄
 const renderDonated = (data) => {
-
-	console.log(data);
+	// console.log(data);
+	if(data.length === 0) {
+		$('#donated-list-body').html('<tr><td colspan="7">尚無贊助紀錄</td></tr>');
+		return;
+	}
 	const render = ({ donatedId, frequency, amount, donatedTime, endTime, donateStatus }) => `
 	<tr>
 		<td>${donatedId}</td>
@@ -59,6 +66,20 @@ const renderDonated = (data) => {
 const handleSubmit = async (event) => {
 
 	event.preventDefault();
+
+	const result = await Swal.fire({
+		title: '更新資訊',
+		text: '更新後將無法恢復',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonText: '更新',
+		cancelButtonText: '取消'
+	})
+
+	if (!result.isConfirmed) {
+		Swal.fire('資料未更新', '', 'info');
+		return;
+	}
 
 	const formData = {
 		userEmail: $('#userEmail').val(),

@@ -39,8 +39,9 @@ const handleSubmit = async (event) => {
     title: $('#title').val(),
     tagId: $('#tags').val(),
     content: tinymce.get('content').getContent(),
-    userId: 1032
+    userId: 1032,
     // sessionStorage.getItem('userId')
+    image: $('#fileInput').data('base64') // Base64 字串
   };
 
   if ($('#submit-btn').text() === '新增文章') {
@@ -84,8 +85,8 @@ const submitPost = async (formData) => {
 
 // 修改文章
 const updatePost = async (formData) => {
-  try { 
-    const newsId = JSON.parse(sessionStorage.getItem('data')).newsId; 
+  try {
+    const newsId = JSON.parse(sessionStorage.getItem('data')).newsId;
     const response = await fetch(`http://localhost:8080/tinglinews/emp/news/${newsId}`, {
       method: 'PUT',
       headers: {
@@ -135,8 +136,46 @@ $(document).ready(() => {
     tinymce.get('content').on('init', (event) => {
       event.target.setContent(data.content);
     });
+    if(data.image){
+      $('#imgArea').html('<img src="data:image/jpeg;base64,'+ data.image + '" width="200" class="m-2">');
+      $('#fileInput').data('base64', data.image);
+    };
     $('#submit-btn').text('修改');
   }
+
+  // 表單提交
   $('#post-form').on('submit', handleSubmit);
 
-})
+  // 上傳圖片
+  $('#fileInput').on('change', function () {
+
+    const files = this.files;
+
+    if (files.length > 1) {
+      Swal.fire('錯誤', '只能上傳一張照片', 'error');
+      this.value = ''; // 清空選擇的文件
+      return;
+    }
+
+    const file = files[0];
+    const maxFileSize = 1024 * 1024; // 1MB
+    if (file.size > maxFileSize) {
+      Swal.fire('錯誤', '檔案大小不能超過 1MB', 'error');
+      this.value = ''; // 清空選擇的文件
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const base64String = event.target.result.split(',')[1]; // Base64 字串
+      $('#fileInput').data('base64', base64String); // 將 Base64 字串儲存在 fileInput 元素上
+      $('#imgArea').html('<img src="' + event.target.result + '" width="200" class="m-2">');
+    };
+    reader.readAsDataURL(file);
+  });
+
+
+
+
+});
+

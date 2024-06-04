@@ -22,6 +22,7 @@ import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 // TODO unique_userid_and_newsid 出現時報錯：這篇報導已被收藏
 

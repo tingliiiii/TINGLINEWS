@@ -28,4 +28,6 @@ public class News {
 	private boolean isPublic; // 公開與否：只有編輯可以控制
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date publicTime; // 自動生成：發布時間
+	
+	private String image;
 }

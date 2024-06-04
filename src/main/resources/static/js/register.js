@@ -3,6 +3,11 @@ const handleFormSubmit = async (event) => {
 
 	event.preventDefault(); // 停止表單的預設傳送行為，改成自訂行為
 
+	if($('#userPassword').val() !== $('#passwordConfirm').val()) {
+		Swal.fire('密碼不一致', '', 'error');
+		return;
+	}
+
 	const formData = {
 		userName: $('#userName').val(),
 		gender: $('input[name="gender"]:checked').val(),
@@ -34,13 +39,16 @@ const addUser = async (formData) => {
 			sessionStorage.setItem('userId', data.userId);
 			sessionStorage.setItem('userName', data.userName);
 			sessionStorage.setItem('userEmail', data.userEmail);
-			window.location.href = '/tinglinews/user/profile.html';
+			Swal.fire(message, '', 'success');
+			setTimeout(() => {
+				window.location.replace('/tinglinews/user/profile.html');
+			}, 1000);
 		} else {
-			alert('註冊失敗' + message);
+			Swal.fire(message, '', 'error');
 		}
 	} catch (error) {
 		console.error('註冊請求錯誤：', error);
-		alert('註冊過程中出現錯誤，請稍後再試');
+		Swal.fire('註冊過程中出現錯誤，請稍後再試', '', 'error');
 	}
 
 };

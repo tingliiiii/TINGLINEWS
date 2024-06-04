@@ -24,11 +24,11 @@ public class User {
 	
 	private String userName;
 
-	@Email(message = "Email格式不正確")
-	@NotBlank(message = "Email不可空白")
+	@Email
+	@NotBlank
 	private String UserEmail; // 帳號 unique
 
-	@NotBlank(message = "密碼不可空白")
+	@NotBlank
 	private String userPassword;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -43,7 +43,6 @@ public class User {
 	
 	private String gender;
 	
-	@Pattern(regexp = "09\\d{2}-\\d{6}", message = "電話格式不正確")
 	private String phone;
 		
 	// 以下為 emp
