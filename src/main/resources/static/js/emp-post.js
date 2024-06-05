@@ -55,14 +55,12 @@ const handleSubmit = async (event) => {
 // 新增文章
 const submitPost = async (formData) => {
 	try {
-
 		const response = await fetch('http://localhost:8080/tinglinews/emp/post', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(formData),
-			// credentials: 'include' // 確保请求包含 cookies
+			body: JSON.stringify(formData)
 		});
 
 		const { state, message, data } = await response.json();

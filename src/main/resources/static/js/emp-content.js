@@ -34,7 +34,7 @@ $(document).ready(() => {
         columns: [
             {
                 data: 'newsId',
-                render: (data) => `<button class="btn btn-success btn-sm update-news-btn" data-id=${data}>修改</button>`
+                render: (data) => `<button class="btn btn-success btn-sm update-news-btn" data-id=${data}>編輯</button>`
             },
             { data: 'newsId' },
             { data: 'title' },

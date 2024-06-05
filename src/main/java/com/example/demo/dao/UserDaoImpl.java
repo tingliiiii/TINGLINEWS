@@ -106,5 +106,11 @@ public class UserDaoImpl implements UserDao {
 		String sql = "SELECT authority_id, authority_name FROM authority WHERE authority_id=?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Authority.class), authorityId);
 	}
+
+	@Override
+	public List<Authority> findAllAuthorities() {
+		String sql = "SELECT authority_id, authority_name FROM authority";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Authority.class));
+	}
 	
 }

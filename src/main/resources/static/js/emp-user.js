@@ -1,6 +1,6 @@
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
-	const url =  `http://localhost:8080/tinglinews${uri}`;
+	const url = `http://localhost:8080/tinglinews${uri}`;
 	try {
 		const response = await fetch(url); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
@@ -12,7 +12,62 @@ const fetchData = async (uri) => {
 	}
 };
 
+// 權限選項
+const loadAuthorityOptions = async () => {
+	try {
+		const data = await fetchData('/emp/authority');
+		const select = $('#authority');
+
+		data.forEach(authority => {
+			const option = $('<option></option>');
+			option.attr('value', authority.authorityId);
+			option.text(authority.authorityName);
+			select.append(option);
+		});
+	} catch (error) {
+		console.error('Fetching data error:', error);
+	}
+
+};
+
+const handleUpdateAuthority = async (event) => {
+
+	const userId = $('#userId').val();
+	const formData = {
+		userId: userId,
+		authorityId: $('#authority').val()
+	};
+
+	try {
+		const response = await fetch(`http://localhost:8080/tinglinews/emp/authority/${userId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData)
+		});
+
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
+
+		if (state) {
+			Swal.fire(message, '', 'success');
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000);
+		} else {
+			Swal.fire(message, '', 'error');
+		}
+	} catch (e) {
+		console.error('Error updating authority:', e);
+		Swal.fire('更新過程中發生錯誤', '', 'error');
+	}
+};
+
+
 $(document).ready(() => {
+
+	loadAuthorityOptions();
 
 	// 使用者管理表格
 	const table = $('#user-table').DataTable({
@@ -28,11 +83,16 @@ $(document).ready(() => {
 			{ data: 'userId' },
 			{ data: 'userName' },
 			{ data: 'userEmail' },
-			{ data: 'authority.authorityName' },
+			{
+				data: 'authority',
+				render: (data) =>
+					`<span class="authority" data-id=${data.authorityId}>${data.authorityName}</span>`
+			},
 			{ data: 'registeredTime' },
 			{
 				data: 'userId',
-				render: (data) => `<button class="btn btn-close delete-user-btn" data-id=${data}></button>`
+				render: (data) =>
+					`<button class="btn btn-close delete-user-btn" data-id=${data}></button>`
 			}
 		],
 		order: [[0, 'desc']]
@@ -71,10 +131,29 @@ $(document).ready(() => {
 		await handleDeleteUser(userId, row);
 	});
 
+	// 點兩下權限欄位
+	$('#user-table').on('dblclick', '.authority', (event) => {
+		const span = $(event.target);
+		const row = span.closest('tr');
+		const userData = table.row(row).data();
 
-	/***** User CRUD 操作 ****************************************************************************************/
+		console.log(userData);
 
-	// 監聽事件處理
+		// 填充 #edit-authority-form 表格欄位
+		$('#userId').val(userData.userId);
+		$('#userName').val(userData.userName);
+		$('#userEmail').val(userData.userEmail);
+		$('#authority').val(userData.authority.authorityId);
+
+		// 顯示模態框
+		$('#userModal').modal('show');
+	});
+
+	// 儲存變更按鈕事件處理
+	$('#userModal').on('click', '.submit-btn', handleUpdateAuthority);
+
+
+	// 處理用戶刪除事件
 	const handleDeleteUser = async (userId, row) => {
 		console.log('按下刪除：' + userId);
 		const result = await Swal.fire({
@@ -101,8 +180,11 @@ $(document).ready(() => {
 			// $('#user-table').DataTable().ajax.reload();
 			Swal.fire(message, '', 'success');
 			// console.log($(this));
-			table.row(row).remove().draw(); // 直接從 DataTable 中刪除行並重新繪製表格
+			// 直接從 DataTable 中刪除該行並重新繪製表格
+			table.row(row).remove().draw();
 			// table.ajax.reload();
+		} else {
+			Swal.fire(message, '', 'error');
 		}
 	};
 

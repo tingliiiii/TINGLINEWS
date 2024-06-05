@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.NewsDtoForBack;
 import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.dto.UserLoginDto;
+import com.example.demo.model.dto.UserProfileDto;
+import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
 import com.example.demo.model.po.User;
@@ -24,6 +27,8 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.NewsService;
 import com.example.demo.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/emp")
@@ -35,9 +40,32 @@ public class EmpController {
 	@Autowired
 	private NewsService newsService;
 
+	@PostMapping("/login")
+	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto, HttpSession session) {
+
+		User user = null;
+		try {
+			user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
+			// 若驗證成功
+			if (user != null) {
+				session.setAttribute("isLogin", true);
+				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
+				return ResponseEntity.ok(apiResponse);
+			}
+			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), user);
+			return ResponseEntity.ok(apiResponse);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
+			return ResponseEntity.ok(apiResponse);
+		}
+	}
+
 	// 後台：使用者管理介面
 	@GetMapping("/user")
 	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser() {
+
 		try {
 			List<UserDto> userList = userService.findAllUserDtos();
 			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userList);
@@ -64,9 +92,44 @@ public class EmpController {
 		}
 	}
 
+	// 修改使用者權限的選項
+	@GetMapping("/authority")
+	public ResponseEntity<ApiResponse<List<Authority>>> getAuthority() {
+		List<Authority> authorities = userService.findAllAuthorities();
+		ApiResponse apiResponse;
+		if (authorities != null) {
+			apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), authorities);
+		} else {
+			apiResponse = new ApiResponse<>(true, StatusMessage.查無資料.name(), authorities);
+		}
+		return ResponseEntity.ok(apiResponse);
+	}
+
+	// 修改使用者權限
+	@PutMapping("/authority/{userId}")
+	public ResponseEntity<ApiResponse<UserDto>> updateUserAuthority(@PathVariable Integer userId,
+			@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		try {
+			String authorityIdString = map.get("authorityId")+"";
+			Integer authorityId = Integer.valueOf(authorityIdString);
+			Boolean state = userService.updateUserAuthority(userId, authorityId);
+			String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
+			UserDto dto = userService.getUserDtoFromUserId(userId);
+
+			ApiResponse apiResponse = new ApiResponse<>(state, message, dto);
+			return ResponseEntity.ok(apiResponse);
+
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), null);
+			return ResponseEntity.ok(apiResponse);
+		}
+	}
+
 	// 後台：網頁內容管理介面
 	@GetMapping("/news")
-	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews() {
+	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews(HttpSession session) {
+		System.out.println(session.getAttribute("isLogin"));
 		List<NewsDtoForBack> news = null;
 		try {
 			news = newsService.findAllNewsForBack();
@@ -76,7 +139,7 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), news);
 			return ResponseEntity.ok(apiResponse);
 		}
-		
+
 	}
 
 	// 新增文章時的標籤選項
@@ -108,7 +171,7 @@ public class EmpController {
 	public ResponseEntity<ApiResponse<News>> getNews(@PathVariable Integer newsId) {
 		News news = newsService.getNewsById(newsId);
 		Boolean state = news != null;
-		String message = state ? StatusMessage.查詢成功.name() : StatusMessage.查詢失敗.name();
+		String message = state ? StatusMessage.查詢成功.name() : StatusMessage.查無資料.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -121,11 +184,12 @@ public class EmpController {
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
 	}
-	
+
 	@PutMapping("/publish/{newsId}")
-	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId, @RequestBody Map<String ,Object> map){
-		System.out.println(map); 
-		Boolean isPublic = (Boolean)map.get("public");
+	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId,
+			@RequestBody Map<String, Object> map) {
+		System.out.println(map);
+		Boolean isPublic = (Boolean) map.get("public");
 		Boolean state = newsService.publishNews(newsId, isPublic);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<Map> apiResponse = new ApiResponse<>(state, message, map);

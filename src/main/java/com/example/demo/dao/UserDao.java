@@ -15,4 +15,5 @@ public interface UserDao {
 	
 	int updateUserAuthority(Integer userId, Integer authorityId);
 	Authority getAuthorityById(Integer authorityId);
+	List<Authority> findAllAuthorities();
 }

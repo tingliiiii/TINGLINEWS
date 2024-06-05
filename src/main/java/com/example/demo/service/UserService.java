@@ -94,10 +94,32 @@ public class UserService {
 
 		return userDtos;
 	}
+	
+	public UserDto getUserDtoFromUserId(Integer userId) {
+		User user = userDao.getUserById(userId);
+		UserDto dto = new UserDto();
+		dto.setUserId(userId);
+		dto.setUserName(user.getUserName());
+		dto.setUserEmail(user.getUserEmail());
+		dto.setRegisteredTime(user.getRegisteredTime());
+		Authority authority = userDao.getAuthorityById(user.getAuthorityId());
+		dto.setAuthority(authority);
+		return dto;
+	}
 
 	// 後台修改使用者權限
 	public Boolean updateUserAuthority(Integer userId, Integer authorityId) {
 		return userDao.updateUserAuthority(userId, authorityId) > 0;
+	}
+	
+	// 修改權限時的選項
+	public List<Authority> findAllAuthorities(){
+		return userDao.findAllAuthorities();
+	}
+	
+	// 修改完回傳
+	public Authority getAuthorityById(Integer authorityId) {
+		return userDao.getAuthorityById(authorityId);
 	}
 
 	// 後台刪除使用者
