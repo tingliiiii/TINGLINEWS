@@ -51,6 +51,7 @@ const handleUpdateAuthority = async (event) => {
 		console.log(state, message, data);
 
 		if (state) {
+			sessionStorage.setItem('authrotyName', data.authority.authorityName);
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.reload();
@@ -67,6 +68,14 @@ const handleUpdateAuthority = async (event) => {
 
 $(document).ready(() => {
 
+	const userName = sessionStorage.getItem('userName');
+    const authrotyName = sessionStorage.getItem('authrotyName');
+
+    $('#user').html(
+        `<p>${authrotyName}&ensp;${userName}&ensp;已登入</p>`
+    );
+
+	// 載入權限選項
 	loadAuthorityOptions();
 
 	// 使用者管理表格

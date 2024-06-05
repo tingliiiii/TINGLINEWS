@@ -15,6 +15,13 @@ const fetchData = async (uri) => {
 
 $(document).ready(() => {
 
+    const userName = sessionStorage.getItem('userName');
+    const authrotyName = sessionStorage.getItem('authrotyName');
+
+    $('#user').html(
+        `<p>${authrotyName}&ensp;${userName}&ensp;已登入</p>`
+    );
+
     // 初始化 DataTable
     $('#news-table').DataTable({
         // 下載功能

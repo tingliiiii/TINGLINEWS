@@ -41,18 +41,17 @@ public class EmpController {
 	private NewsService newsService;
 
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto, HttpSession session) {
+	public ResponseEntity<ApiResponse<UserDto>> login(@RequestBody UserLoginDto dto) {
 
-		User user = null;
 		try {
-			user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
+			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			// 若驗證成功
 			if (user != null) {
-				session.setAttribute("isLogin", true);
-				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
+				UserDto userDto = userService.getUserDtoFromUserId(user.getUserId());
+				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), userDto);
 				return ResponseEntity.ok(apiResponse);
 			}
-			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), user);
+			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 			return ResponseEntity.ok(apiResponse);
 
 		} catch (Exception e) {
@@ -111,7 +110,7 @@ public class EmpController {
 			@RequestBody Map<String, Object> map) {
 		System.out.println(map);
 		try {
-			String authorityIdString = map.get("authorityId")+"";
+			String authorityIdString = map.get("authorityId") + "";
 			Integer authorityId = Integer.valueOf(authorityIdString);
 			Boolean state = userService.updateUserAuthority(userId, authorityId);
 			String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
@@ -128,8 +127,7 @@ public class EmpController {
 
 	// 後台：網頁內容管理介面
 	@GetMapping("/news")
-	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews(HttpSession session) {
-		System.out.println(session.getAttribute("isLogin"));
+	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews() {
 		List<NewsDtoForBack> news = null;
 		try {
 			news = newsService.findAllNewsForBack();

@@ -7,8 +7,8 @@ const handleSubmit = async (event) => {
 		userEmail: $('#userEmail').val(),
 		userPassword: $('#userPassword').val()
 	};
-	console.log(formData);
-	login(formData);
+
+	await login(formData);
 };
 
 const login = async (formData) => {
@@ -28,8 +28,10 @@ const login = async (formData) => {
 		// 根據註冊狀態進行跳轉
 		if (state == true) {
 			// 將 userId 儲存至 sessionStorage（判斷用戶是否已登入）
-			// sessionStorage.setItem('userEmail', data.userEmail);
-
+			sessionStorage.setItem('userId', data.userId);
+			sessionStorage.setItem('userName', data.userName);
+			sessionStorage.setItem('authrotyName', data.authority.authorityName);
+		
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.replace('/tinglinews/emp/content-management.html');
@@ -52,9 +54,6 @@ $(document).ready(() => {
 
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
-
-	// const email = sessionStorage.getItem('userEmail');
-	// $('#userEmail').val(email);
 
 	$('#emp-login-form').on('submit', handleSubmit);
 
