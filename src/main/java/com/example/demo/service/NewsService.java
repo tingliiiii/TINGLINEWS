@@ -98,6 +98,7 @@ public class NewsService {
 		dto.setNewsId(news.getNewsId());
 		dto.setTitle(news.getTitle());
 		dto.setContent(news.getContent());
+		dto.setImage(news.getImage());
 
 		dto.setTag(newsDao.getTagById(news.getTagId()));
 		Integer id = news.getUserId();

@@ -13,6 +13,16 @@ const fetchData = async (id) => {
 
 const renderData = (data) => {
 
+	// Base64 字串轉圖片
+	if (data.image) {
+		// 檢查圖片格式並動態設置
+		let imageFormat = 'jpeg'; // 默認為 jpeg
+		if (data.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
+			imageFormat = 'png';
+		}
+		data.image = 'data:image/' + imageFormat + ';base64,' + data.image;
+	}
+
 	const newsItem = (item) => `
 	<h1 class="news-title">${item.title}</h1>
 	<div class="news-content">           
@@ -20,15 +30,18 @@ const renderData = (data) => {
 			<a href="/tinglinews/list.html?id=${item.tag.tagId}" class="btn btn-outline-secondary btn-sm me-2">${item.tag.tagName}</a>
 	        <small>記者 ${item.userName}&emsp;發布時間 ${item.publicTime}&emsp;更新時間 ${item.updatedTime}</small>
 	    </p>
+		<figure class="news-img-container">
+            <img src="${item.image}" class="news-img">
+        </figure>
 	    <div class="news-paragraph">${item.content}</div>
 	</div>
  `;
-/*
- 			<form method="POST" id="saved-form" class="d-inline-block">
-	            <input type="hidden" name="newsId" value="${item.newsId}">
-	            <button type="submit" class="btn btn-secondary btn-sm">收藏</button>
-	        </form>
-*/
+	/*
+					<form method="POST" id="saved-form" class="d-inline-block">
+					<input type="hidden" name="newsId" value="${item.newsId}">
+					<button type="submit" class="btn btn-secondary btn-sm">收藏</button>
+				</form>
+	*/
 	$('.news-container').html(Array.isArray(data) ? data.map(newsItem).join('') : newsItem(data));
 
 }

@@ -36,6 +36,15 @@ const fetchData = async () => {
 
 		// 小卡
 		data.map((item) => {
+			// Base64 字串轉圖片
+			if (item.image) {
+				// 檢查圖片格式並動態設置
+				let imageFormat = 'jpeg'; // 默認為 jpeg
+				if (item.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
+					imageFormat = 'png';
+				}
+				item.image = 'data:image/' + imageFormat + ';base64,' + item.image;
+			}
 			const contentContainer = $('<p>').html(item.content);
 			const truncatedContent = contentContainer.text().substring(0, 120);
 			item.content = contentContainer.text().length > 120 ? truncatedContent + '...' : truncatedContent;
@@ -67,12 +76,11 @@ const renderCardData = (data, currentPage = 1, itemsPerPage = 6) => {
 		<div class="col-12 col-sm-6 col-lg-4">
 			<div class="card">
 				<a href="/tinglinews/news.html?id=${item.newsId}">
-					<img src="https://picsum.photos/300/200?random=${item.newsId}" class="card-img-top"
-						alt="${item.title}">
-						<div class="card-body">
-							<h5 class="card-title">${item.title}</h5>
-							<p class="card-text">${item.content}</p>
-						</div>
+					<img src="${item.image}" class="card-img" alt="${item.title}">
+					<div class="card-body">
+						<h5 class="card-title">${item.title}</h5>
+						<p class="card-text">${item.content}</p>
+					</div>
 				</a>
 			</div>
 		</div>
@@ -96,11 +104,11 @@ const renderCardData = (data, currentPage = 1, itemsPerPage = 6) => {
 	$('#pagination').html(paginationHtml);
 
 	// Add event listeners to pagination buttons
-	$('.page-link').on('click', (event) =>  {
-        event.preventDefault();
-        const page = $(this).data('page');
-        renderCardData(data, page, itemsPerPage);
-    });
+	$('.page-link').on('click', (event) => {
+		event.preventDefault();
+		const page = $(this).data('page');
+		renderCardData(data, page, itemsPerPage);
+	});
 
 
 };
@@ -110,13 +118,15 @@ const renderCarouselData = (data) => {
 
 	const newsItem = (item) => `
 		<a href = "/tinglinews/news.html?id=${item.newsId}" >
-			<img src="https://picsum.photos/1200/800?random=${item.newsId}"
-				class="d-block w-100" alt="${item.title}">
-				<div class="carousel-caption">
-					<h5>${item.title}</h5>
-					<p>${item.publicTime}</p>
-				</div>
-			</a>
+			<div class="image-ratio">
+				<img src="${item.image}"
+					class="d-block w-100" alt="${item.title}">
+					<div class="carousel-caption">
+						<h5>${item.title}</h5>
+						<p>${item.publicTime}</p>
+					</div>
+			</div>
+		</a>
 	`;
 	$('#carousel1').html(newsItem(data[0]));
 	$('#carousel2').html(newsItem(data[1]));
