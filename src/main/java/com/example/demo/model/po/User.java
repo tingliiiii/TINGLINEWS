@@ -21,13 +21,10 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	private Integer userId; // 自動產生
-	
 	private String userName;
-
 	@Email
 	@NotBlank
 	private String UserEmail; // 帳號 unique
-
 	@NotBlank
 	private String userPassword;
 	private String salt;

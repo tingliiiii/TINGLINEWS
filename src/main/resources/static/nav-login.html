@@ -27,11 +27,6 @@
                 <div class="d-flex justify-content-center align-items-center">
                     <a href="/tinglinews/user/profile.html" class="btn btn-primary">個人資料</a>
                     <span class="logout-btn btn btn-outline-primary mx-2">登出</span>
-                    <!-- 
-                    <form action="/tinglinews/user/logout" method="post">
-                        <button type="submit" class="logout-btn btn btn-outline-primary mx-2">登出</button>
-                    </form>
-                     -->
                 </div>
             </div>
         </div>
@@ -66,9 +61,11 @@
         }
     });
 
-    $('.logout-btn').on('click', (event) => {
-        event.preventDefault();
+    $('.logout-btn').on('click', () => {
         sessionStorage.clear();
-        window.location.replace('/tinglinews');
+        swal.fire('登出成功', '', 'success');
+        setTimeout(() => {
+            window.location.replace('/tinglinews');
+        }, 1000);
     });
 </script>

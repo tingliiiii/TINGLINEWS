@@ -221,10 +221,12 @@ $(document).ready(() => {
 	};
 
 	// 登出
-	$('.logout-btn').on('click', (event) => {
-		event.preventDefault();
+	$('.logout-btn').on('click', () => {
 		sessionStorage.clear();
-		window.location.replace('/tinglinews/emp/login.html');
+		swal.fire('登出成功', '', 'success');
+        setTimeout(() => {
+            window.location.replace('/tinglinews/emp/login.html');
+        }, 1000);
 	});
 
 

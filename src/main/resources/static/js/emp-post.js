@@ -113,6 +113,13 @@ const updatePost = async (formData) => {
 
 $(document).ready(() => {
 
+	const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+	if (!userData) {
+        window.location.replace('/tinglinews/emp/login.html');
+        return;
+    }
+	
 	loadTags();
 
 	// 內文編輯器

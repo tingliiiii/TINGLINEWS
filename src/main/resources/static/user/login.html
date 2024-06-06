@@ -38,12 +38,14 @@
 
           <form id="login-form" method="post" class="mx-auto">
             <h2 class="title">登入</h2>
-            <input type="text" name="userEmail" id="userEmail" class="form-control" placeholder="帳號（電子信箱）" required>
+            <input type="text" id="userEmail" class="form-control" placeholder="帳號（電子信箱）" required>
             <p></p>
-            <input type="password" name="userPassword" id="userPassword" class="form-control" placeholder="密碼" autocomplete="new-password" required>
+            <input type="password" id="userPassword" class="form-control" placeholder="密碼" autocomplete="new-password" required>
             <p></p>
-            <input type="text" name="code" id="code" class="form-control" placeholder="驗證碼" required>
+            <!--  
+            <input type="hidden" id="csrfToken" class="form-control">
             <p></p>
+            -->
             <div class="d-flex justify-content-around">
               <button type="submit" class="btn btn-primary">登入</button>
               <a href="http://localhost:8080/tinglinews/user/register.html"

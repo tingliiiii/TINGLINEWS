@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 		int rowcount = namedParameterJdbcTemplate.update(sql, params);
 		return rowcount;
 	}
-	
+
 	// 刪除使用者（管理員）
 	@Override
 	public int deleteUser(Integer userId) {
@@ -71,20 +71,24 @@ public class UserDaoImpl implements UserDao {
 			return null;
 		}
 	}
-	
+
 	// 登入：用帳號找使用者
 	@Override
 	public User getUserByEmail(String userEmail) {
 		String sql = "SELECT user_id, user_name, user_email, user_password, salt, birthday, gender, phone, authority_id FROM user WHERE user_email = ?";
 		try {
-			// System.out.println(userEmail);
-			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
-		} catch (DataAccessException e) {
+			List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
+			if (users != null && !users.isEmpty()) {
+				return users.get(0); // 返回第一個符合條件的用戶
+			} else {
+				return null; // 如果沒有符合條件的用戶，返回空
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	// 後台：使用者管理頁面
 	@Override
 	public List<User> findAllUsers() {
@@ -112,5 +116,5 @@ public class UserDaoImpl implements UserDao {
 		String sql = "SELECT authority_id, authority_name FROM authority";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Authority.class));
 	}
-	
+
 }

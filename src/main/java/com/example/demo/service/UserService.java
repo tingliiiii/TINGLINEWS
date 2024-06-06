@@ -28,33 +28,6 @@ public class UserService {
 	@Autowired
 	private FunctionService functionService;
 
-	// 個人資訊
-	public User getUserById(Integer userId) {
-		return userDao.getUserById(userId);
-	}
-
-	// 個人資訊（包括收藏紀錄及贊助紀錄）
-	public UserProfileDto getUserProfile(Integer userId) {
-
-		UserProfileDto userProfile = new UserProfileDto();
-		User user = userDao.getUserById(userId);
-
-		userProfile.setUserId(user.getUserId());
-		userProfile.setUserName(user.getUserName());
-		userProfile.setUserEmail(user.getUserEmail());
-		userProfile.setBirthday(user.getBirthday());
-		userProfile.setGender(user.getGender());
-		userProfile.setPhone(user.getPhone());
-
-		List<Donated> donateds = functionService.findDonatedById(userId);
-		userProfile.setDonatedList(donateds);
-		List<SavedDto> saveds = functionService.findSavedById(userId);
-		userProfile.setSavedList(saveds);
-
-		return userProfile;
-
-	}
-
 	// 註冊：進行密碼加鹽與哈希
 	public Integer addUser(User user) {
 		// 隨機鹽值（Hex）
@@ -75,37 +48,63 @@ public class UserService {
 	public User validateUser(String userEmail, String userPassword) {
 		User user = userDao.getUserByEmail(userEmail);
 
-		if (user != null) {
-			
-			// 判斷 password
-			// 得到使用者的 hash 與 salt
-			String hash = user.getUserPassword(); // 使用者的 hash
-			byte[] salt = WebKeyUtil.hexStringToByteArray(user.getSalt()); // 使用者的 salt
-
-			try {
-				MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-				messageDigest.reset(); // 重置
-				messageDigest.update(salt); // 加鹽
-				
-				// 根據使用者輸入的 password 與已知的 salt 來產出 inputHashed
-				byte[] inputHashedBytes = messageDigest.digest(userPassword.getBytes());
-				String inputHashed = WebKeyUtil.bytesToHexString(inputHashedBytes);
-				
-				// 比較 inputHashed（使用者輸入的）與 hash（已儲存的）是否相等
-				if (inputHashed.equals(hash)) {
-					return user;
-				} else {
-					return null;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if (user == null) {
+			return null;
 		}
-		return user;
+		// 判斷 password
+		// 得到使用者的 hash 與 salt
+		String hash = user.getUserPassword();
+		byte[] salt = PasswordUtil.hexStringToByteArray(user.getSalt());
 
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.reset(); // 重置
+			messageDigest.update(salt); // 加鹽
+
+			// 根據使用者輸入的 password 與已知的 salt 來產出 inputHashed
+			byte[] inputHashedBytes = messageDigest.digest(userPassword.getBytes());
+			String inputHashed = PasswordUtil.bytesToHex(inputHashedBytes);
+
+			// 比較 inputHashed（使用者輸入的）與 hash（已儲存的）是否相等
+			if (inputHashed.equals(hash)) {
+				return user;
+			} else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	return user;
 	}
 
-	// 修改
+	// 網頁內容管理 findAllNewsForBack
+	public User getUserById(Integer userId) {
+		return userDao.getUserById(userId);
+	}
+
+	// 個人資訊（包括收藏紀錄及贊助紀錄）
+	public UserProfileDto getUserProfile(Integer userId) {
+
+		UserProfileDto userProfile = new UserProfileDto();
+		User user = getUserById(userId);
+
+		userProfile.setUserId(user.getUserId());
+		userProfile.setUserName(user.getUserName());
+		userProfile.setUserEmail(user.getUserEmail());
+		userProfile.setBirthday(user.getBirthday());
+		userProfile.setGender(user.getGender());
+		userProfile.setPhone(user.getPhone());
+
+		List<Donated> donateds = functionService.findDonatedById(userId);
+		userProfile.setDonatedList(donateds);
+		List<SavedDto> saveds = functionService.findSavedById(userId);
+		userProfile.setSavedList(saveds);
+
+		return userProfile;
+	}
+
+	// 修改個人資訊
 	public Boolean updateUser(Integer userId, User user) {
 		return userDao.updateUser(userId, user) > 0;
 	}
@@ -164,22 +163,5 @@ public class UserService {
 	public Boolean deleteUser(Integer userId) {
 		return userDao.deleteUser(userId) > 0;
 	}
-
-//	======================================================================
-
-	// 登入頁＋後台網頁內容管理
-	/*
-	 * public UserLoginDto getLoginDtoById(Integer userId) { User user =
-	 * userDao.getUserById(userId); UserLoginDto dto = new UserLoginDto(userId,
-	 * user.getUserEmail(), user.getUserName()); return dto; }
-	 */
-	/*
-	 * 好像不需要（被上面取代） public List<UserLoginDto> findAllLoginDtos(){ List<UserLoginDto>
-	 * userDtos = new ArrayList<>(); List<User> users = userDao.findAllUsers(); for
-	 * (User user : users) { UserLoginDto userDto = new UserLoginDto();
-	 * userDto.setUserId(user.getUserId()); userDto.setUserName(user.getUserName());
-	 * userDto.setUserEmail(user.getUserEmail()); userDtos.add(userDto); } return
-	 * userDtos; }
-	 */
 
 }

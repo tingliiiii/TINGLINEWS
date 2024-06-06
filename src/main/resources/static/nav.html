@@ -32,20 +32,7 @@
 </nav>
 <script>
 
-    //    const currentPath = window.location.pathname;
-    // 	// console.log(currentPath);
-
-    //     $('.nav-link').each((_, link) => {
-    //         const navlink = $(link);
-    //         if (navlink.attr('href') == currentPath) {
-    //             navlink.addClass('active');
-    //         } else {
-    //             navlink.removeClass('active');
-    //         }
-    //     });
-
     const href = window.location.href;
-    // console.log('window.location.href: '+href);
 
     $('.nav-link').each(function () {
         if (this.href === href) {
@@ -58,13 +45,6 @@
     $('.nav-link').on('click', function () {
         $('.nav-link').removeClass('active');
         $(this).addClass('active');
-    });
-
-
-    $('.logout-btn').on('click', (event) => {
-        event.preventDefault();
-        sessionStorage.clear();
-        window.location.replace('/tinglinews');
     });
 
 </script>

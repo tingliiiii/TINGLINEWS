@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +22,12 @@ import com.example.demo.model.po.Saved;
 import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
+import com.example.demo.security.CSRFTokenUtil;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +38,17 @@ public class UserController {
 
 	@Autowired
 	private FunctionService functionService;
+
+	// CSRF Token
+	@GetMapping("/login")
+	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
+		String csrfToken = CSRFTokenUtil.generateToken();
+		session.setAttribute("csrfToken", csrfToken);
+		System.out.println("getCsrfToken: " + csrfToken);
+		Map<String, String> tokenMap = new HashMap<>();
+		tokenMap.put("csrfToken", csrfToken);
+		return ResponseEntity.ok(tokenMap);
+	}
 
 	// 註冊
 	@PostMapping("/register")
@@ -49,20 +67,37 @@ public class UserController {
 
 	// 登入
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto) {
+	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto, HttpServletRequest request,
+			HttpSession session) {
 		// Map<String ,Object> map
 		// json 格式要用 @RequestBody 抓（通常是準備 DTO 定義傳入資料，但如果用 Map 也可以）
-		// System.out.println(dto);
 		// User user = userService.validateUser(map.get("userEmail") + "",
 		// map.get("userPassword") + "");
-		User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 
+		// 從 HttpServletRequest 中獲取 CsrfToken
+		String csrfToken = session.getAttribute("csrfToken") + "";
+		System.out.println("login csrfToken: " + csrfToken);
+
+		// 從請求中獲取 CSRF Token 值
+		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
+		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+
+		// 檢查 CSRF Token 是否存在並且與請求中的值相符
+		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
+			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, "CSRF Token 驗證失敗", null);
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
+		}
+
+		// CSRF Token 驗證通過，執行登入邏輯
+		User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 		if (user != null) {
 			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
+		} else {
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
+			return ResponseEntity.ok(apiResponse);
 		}
-		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), user);
-		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入註冊後資訊
@@ -81,7 +116,8 @@ public class UserController {
 
 	// 修改
 	@PutMapping("/update/{userId}")
-	public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable Integer userId, @RequestBody UserProfileDto userProfile) {
+	public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable Integer userId,
+			@RequestBody UserProfileDto userProfile) {
 		User user = userService.getUserById(userId);
 		user.setUserName(userProfile.getUserName());
 		user.setUserEmail(userProfile.getUserEmail());

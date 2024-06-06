@@ -18,8 +18,6 @@ $(document).ready(async () => {
     const data = JSON.parse(sessionStorage.getItem('userData'));
 
     if (!data) {
-        // console.log('用戶 ID 未找到');
-        Swal.fire('請重新登入', '', 'error');
         window.location.replace('/tinglinews/emp/login.html');
         return;
     }
@@ -192,12 +190,14 @@ $(document).ready(async () => {
 
 
     });
-    
+
     // 登出
-    $('.logout-btn').on('click', (event) => {
-        event.preventDefault();
+    $('.logout-btn').on('click', () => {
         sessionStorage.clear();
-        window.location.replace('/tinglinews/emp/login.html');
+        swal.fire('登出成功', '', 'success');
+        setTimeout(() => {
+            window.location.replace('/tinglinews/emp/login.html');
+        }, 1000);
     });
 
     // 點兩下預覽新聞
