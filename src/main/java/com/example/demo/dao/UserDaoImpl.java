@@ -29,8 +29,8 @@ public class UserDaoImpl implements UserDao {
 	// 註冊
 	@Override
 	public int addUser(User user) {
-		String sql = "INSERT INTO user(user_name, user_email, user_password, birthday, gender, phone) "
-				+ "values(:userName, :userEmail, :userPassword, :birthday, :gender, :phone)";
+		String sql = "INSERT INTO user(user_name, user_email, user_password, salt, birthday, gender, phone) "
+				+ "values(:userName, :userEmail, :userPassword, :salt, :birthday, :gender, :phone)";
 		// 自動將 user 物件的屬性值給 SQL 參數(?)使用
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		// KeyHolder
@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 	// 登入：用帳號找使用者
 	@Override
 	public User getUserByEmail(String userEmail) {
-		String sql = "SELECT user_id, user_name, user_email, user_password, birthday, gender, phone, authority_id FROM user WHERE user_email = ?";
+		String sql = "SELECT user_id, user_name, user_email, user_password, salt, birthday, gender, phone, authority_id FROM user WHERE user_email = ?";
 		try {
 			// System.out.println(userEmail);
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);

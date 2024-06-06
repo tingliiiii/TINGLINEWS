@@ -30,6 +30,7 @@ public class User {
 
 	@NotBlank
 	private String userPassword;
+	private String salt;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date registeredTime; // 自動產生
