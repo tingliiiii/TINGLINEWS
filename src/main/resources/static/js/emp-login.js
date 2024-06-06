@@ -12,7 +12,7 @@ const handleSubmit = async (event) => {
 };
 
 const login = async (formData) => {
-	console.log(formData);
+	// console.log(formData);
 	try {
 		const response = await fetch('http://localhost:8080/tinglinews/emp/login', {
 			method: 'POST',
@@ -23,14 +23,22 @@ const login = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
-		// 根據註冊狀態進行跳轉
 		if (state == true) {
+
+			// 檢查使用者權限：只有員工可以登入
+			if(data.authority.authorityId<1){
+				Swal.fire('權限不足', '帳號權限有誤，請聯絡管理員', 'warning');
+				return;
+			}
+
 			// 將 userId 儲存至 sessionStorage（判斷用戶是否已登入）
-			sessionStorage.setItem('userId', data.userId);
-			sessionStorage.setItem('userName', data.userName);
-			sessionStorage.setItem('authrotyName', data.authority.authorityName);
+			sessionStorage.setItem('userData', JSON.stringify(data));
+			// sessionStorage.setItem('userId', data.userId);
+			// sessionStorage.setItem('userName', data.userName);
+			// sessionStorage.setItem('authorityId', data.authority.authorityId);
+			// sessionStorage.setItem('authorityName', data.authority.authorityName);
 		
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {

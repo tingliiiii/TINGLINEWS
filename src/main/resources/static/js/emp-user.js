@@ -4,7 +4,7 @@ const fetchData = async (uri) => {
 	try {
 		const response = await fetch(url); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		return data;
 	} catch (e) {
 		console.error(e);
@@ -30,7 +30,7 @@ const loadAuthorityOptions = async () => {
 
 };
 
-const handleUpdateAuthority = async (event) => {
+const handleUpdateAuthority = async () => {
 
 	const userId = $('#userId').val();
 	const formData = {
@@ -48,10 +48,10 @@ const handleUpdateAuthority = async (event) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (state) {
-			sessionStorage.setItem('authrotyName', data.authority.authorityName);
+			sessionStorage.setItem('authorityName', data.authority.authorityName);
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.reload();
@@ -68,12 +68,19 @@ const handleUpdateAuthority = async (event) => {
 
 $(document).ready(() => {
 
-	const userName = sessionStorage.getItem('userName');
-    const authrotyName = sessionStorage.getItem('authrotyName');
+	const data = JSON.parse(sessionStorage.getItem('userData'));
 
-    $('#user').html(
-        `<p>${authrotyName}&ensp;${userName}&ensp;已登入</p>`
-    );
+	if (!data) {
+		window.location.replace('/tinglinews/emp/login.html');
+		return;
+	}
+
+	const userName = data.userName;
+	const authorityName = data.authority.authorityName;
+
+	$('#user').html(
+		`<p>${authorityName}&ensp;${userName}&ensp;已登入</p>`
+	);
 
 	// 載入權限選項
 	loadAuthorityOptions();
@@ -109,13 +116,13 @@ $(document).ready(() => {
 
 	/** 檢查表格排序
 		table.on('order.dt', function() {
-			console.log('Current order:', table.order());
+			// console.log('Current order:', table.order());
 		});
 	 */
 	// fetchAndRenderData('/emp/user', 'user-table-body', renderUser);
 	/*
 	$('#user-table').on('click', async(event) => {
-		console.log(event);
+		// console.log(event);
 		// 處理事件
 		// await handleEvent(event, 'update-user-button', handleUpdateUser);
 		await handleEvent(event, 'delete-user-btn', handleDeleteUser);
@@ -125,12 +132,12 @@ $(document).ready(() => {
 	$('#user-table').on('click', '.delete-user-btn', async (event) => {
 		/* 'span.delete-user-btn',
 		const data = table.row($(this).parents('tr')).data();
-		console.log(data);
+		// console.log(data);
 		const userId = data.userId;
 		handleDeleteUser(userId);
 		*/
-		// console.log(event);
-		// console.log($(this).parents('tr'));
+		// // console.log(event);
+		// // console.log($(this).parents('tr'));
 
 		if (!$(event.target).hasClass('delete-user-btn')) {
 			return;
@@ -142,11 +149,19 @@ $(document).ready(() => {
 
 	// 點兩下權限欄位
 	$('#user-table').on('dblclick', '.authority', (event) => {
+
+		// 檢查使用者權限：只有主管或管理員可變更權限
+		const authorityId = JSON.parse(sessionStorage.getItem('userData')).authority.authorityId;
+		if (authorityId < 4) {
+			Swal.fire('權限不足', '帳號權限有誤，請聯絡管理員', 'error');
+			return;
+		}
+
 		const span = $(event.target);
 		const row = span.closest('tr');
 		const userData = table.row(row).data();
 
-		console.log(userData);
+		// console.log(userData);
 
 		// 填充 #edit-authority-form 表格欄位
 		$('#userId').val(userData.userId);
@@ -164,7 +179,15 @@ $(document).ready(() => {
 
 	// 處理用戶刪除事件
 	const handleDeleteUser = async (userId, row) => {
-		console.log('按下刪除：' + userId);
+		// console.log('按下刪除：' + userId);
+
+		// 檢查使用者權限：只有管理員可刪除使用者
+		const authorityId = JSON.parse(sessionStorage.getItem('userData')).authority.authorityId;
+		if (authorityId < 5) {
+			Swal.fire('權限不足', '帳號權限有誤，請聯絡管理員', 'error');
+			return;
+		}
+
 		const result = await Swal.fire({
 			title: '確定要刪除嗎？',
 			text: '刪除後將無法恢復',
@@ -182,13 +205,13 @@ $(document).ready(() => {
 		const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
 		const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (state) {
 			// 更新 user list
 			// $('#user-table').DataTable().ajax.reload();
 			Swal.fire(message, '', 'success');
-			// console.log($(this));
+			// // console.log($(this));
 			// 直接從 DataTable 中刪除該行並重新繪製表格
 			table.row(row).remove().draw();
 			// table.ajax.reload();
@@ -197,6 +220,12 @@ $(document).ready(() => {
 		}
 	};
 
+	// 登出
+	$('.logout-btn').on('click', (event) => {
+		event.preventDefault();
+		sessionStorage.clear();
+		window.location.replace('/tinglinews/emp/login.html');
+	});
 
 
 });

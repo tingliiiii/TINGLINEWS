@@ -21,10 +21,6 @@ import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-
-// TODO unique_userid_and_newsid 出現時報錯：這篇報導已被收藏
 
 @RestController
 @RequestMapping("/user")
@@ -38,11 +34,11 @@ public class UserController {
 
 	// 註冊
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user, HttpSession session) {
+	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user) {
+
 		Integer userId = userService.addUser(user);
 		if (userId != null) {
 			user.setUserId(userId);
-			session.setAttribute("user", user);
 			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
 		}
@@ -53,17 +49,15 @@ public class UserController {
 
 	// 登入
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto, HttpSession session) {
+	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto) {
 		// Map<String ,Object> map
 		// json 格式要用 @RequestBody 抓（通常是準備 DTO 定義傳入資料，但如果用 Map 也可以）
-		System.out.println(dto);
+		// System.out.println(dto);
 		// User user = userService.validateUser(map.get("userEmail") + "",
 		// map.get("userPassword") + "");
 		User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 
 		if (user != null) {
-			session.setAttribute("user", user);
-			System.out.println(session.getAttribute("userId"));
 			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
 		}
@@ -85,18 +79,9 @@ public class UserController {
 		}
 	}
 
-	// 登出
-	@PostMapping("/logout")
-	public ResponseEntity<ApiResponse<String>> logout(HttpSession session) {
-		session.invalidate();
-		ApiResponse<String> apiResponse = new ApiResponse<>(true, StatusMessage.登出成功.name(), null);
-		return ResponseEntity.ok(apiResponse);
-	}
-
 	// 修改
-	@PutMapping("/update")
-	public ResponseEntity<ApiResponse<User>> updateUser(@RequestBody UserProfileDto userProfile, HttpSession session) {
-		Integer userId = (Integer) session.getAttribute("userId");
+	@PutMapping("/update/{userId}")
+	public ResponseEntity<ApiResponse<User>> updateUser(@PathVariable Integer userId, @RequestBody UserProfileDto userProfile) {
 		User user = userService.getUserById(userId);
 		user.setUserName(userProfile.getUserName());
 		user.setUserEmail(userProfile.getUserEmail());

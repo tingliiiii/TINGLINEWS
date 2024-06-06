@@ -4,7 +4,7 @@ const fetchData = async (uri) => {
 	try {
 		const response = await fetch(url); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		return data;
 	} catch (e) {
 		console.error(e);
@@ -39,8 +39,7 @@ const handleSubmit = async (event) => {
 		title: $('#title').val(),
 		tagId: $('#tags').val(),
 		content: tinymce.get('content').getContent(),
-		userId: 1032,
-		// sessionStorage.getItem('userId')
+		userId: sessionStorage.getItem('userData').userId,
 		image: $('#fileInput').data('base64') // Base64 字串
 	};
 
@@ -64,7 +63,7 @@ const submitPost = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (state) {
 			Swal.fire(message, '', 'success');
@@ -84,7 +83,7 @@ const submitPost = async (formData) => {
 // 修改文章
 const updatePost = async (formData) => {
 	try {
-		const newsId = JSON.parse(sessionStorage.getItem('data')).newsId;
+		const newsId = JSON.parse(sessionStorage.getItem('newsData')).newsId;
 		const response = await fetch(`http://localhost:8080/tinglinews/emp/news/${newsId}`, {
 			method: 'PUT',
 			headers: {
@@ -95,7 +94,7 @@ const updatePost = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (state) {
 			Swal.fire(message, '', 'success');
@@ -126,10 +125,8 @@ $(document).ready(() => {
 	});
 
 	// 如果 sessionStorage 中有 data 就是修改文章
-	const data = JSON.parse(sessionStorage.getItem('data'));
+	const data = JSON.parse(sessionStorage.getItem('newsData'));
 	if (data != null) {
-		// console.log(sessionStorage);
-		// console.log(data.newsId);
 		$('#title').val(data.title);
 		$('#tags').val(data.tagId);
 		tinymce.get('content').on('init', (event) => {

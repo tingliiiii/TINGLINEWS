@@ -24,14 +24,7 @@
 	margin-bottom: 10vh;
 	color: var(--c-primary-color3);
 }
-/* 
-@media screen and (max-width: 991px) {
-	.logout-btn {
-		line-height: 1.2em;
-		font-size: .8em;
-	}
-}
- */
+
 #donated-list,
 #saved-list {
 	width: min(96%, 900px);

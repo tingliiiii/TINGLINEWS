@@ -4,13 +4,13 @@ const fetchData = async (id) => {
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		data.map((item) => {
 			const contentContainer = $('<p>').html(item.content);
 			const truncatedContent = contentContainer.text().substring(0, 80);
 			item.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
 		})
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (id != null) {
 			switch (id) {
@@ -102,11 +102,11 @@ $(document).ready(() => {
 	$('.ad-container').load('./ad.html');
 
 	const queryString = window.location.search;
-	// console.log(`QueryString: ${queryString}`);
+	// // console.log(`QueryString: ${queryString}`);
 	const urlParams = new URLSearchParams(queryString);
-	// console.log(`URLParams: ${urlParams}`);
+	// // console.log(`URLParams: ${urlParams}`);
 	const id = urlParams.get('id');
-	console.log(`id: ${id}`);
+	// console.log(`id: ${id}`);
 	if (id != null) {
 		fetchData(id);
 	} else {

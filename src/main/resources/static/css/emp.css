@@ -14,15 +14,14 @@ table {
 }
 
 #user-table thead th, 
-#user-table tbody td:nth-child(1), 
-#user-table tbody td:nth-child(6)
+#user-table tbody td
 	{
 	text-align: center;
 }
 
 #emp-news-container, 
 #emp-user-container {
-	margin: 5vw auto;
+	margin: 4vw auto;
 }
 
 #emp-news-table-container, 
@@ -60,3 +59,13 @@ table {
 	--bs-btn-hover-bg: #666;
 	--bs-btn-hover-border-color: #666;
 }
+
+/* 預覽新聞 =============================== */
+/*
+#title{
+	font-size: calc(1em + .6vw);
+	font-weight: 700;
+	margin: .5em 0;
+	color: #666;
+}
+*/

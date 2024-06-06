@@ -4,13 +4,13 @@ const fetchData = async (uri) => {
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		data.map((item) => {
 			const contentContainer = $('<p>').html(item.content);
 			const truncatedContent = contentContainer.text().substring(0, 80);
 			item.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
 		})
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		renderData(data);
 	} catch (e) {
 		console.error(e);

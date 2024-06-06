@@ -38,7 +38,7 @@ const donate = async (formData) => {
         });
 
         const { state, message, data } = await response.json(); // 等待回應本文內容
-        console.log(state, message, data);
+        // console.log(state, message, data);
 
         if (state) {
             Swal.fire(message, '', 'success');

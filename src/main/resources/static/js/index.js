@@ -14,14 +14,14 @@
 
 // const clickSignupBtn = () => {
 // 	$('.signup').on('click', async () => {
-// 		console.log('點擊註冊按鈕');
+// 		// console.log('點擊註冊按鈕');
 // 		$('.main-content').load('user/register.html', clickLoginBtn);
 // 	});
 // };
 
 // const clickLoginBtn = () => {
 // 	$('.login').on('click', async () => {
-// 		console.log('點擊登入按鈕');
+// 		// console.log('點擊登入按鈕');
 // 		$('.main-content').load('user/login.html', clickSignupBtn);
 // 	});
 // }
@@ -32,7 +32,7 @@ const fetchData = async () => {
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		// 小卡
 		data.map((item) => {
@@ -140,11 +140,11 @@ const renderCarouselData = (data) => {
 $(document).ready(() => {
 
 	const currentPath = window.location.pathname;
-	console.log(currentPath);
+	// console.log(currentPath);
 	if (sessionStorage.getItem('userId') != null) {
 		$('.header-container').load('nav-login.html', () => {
-			console.log('nav.html 加載完畢');
-			console.log($('#welcome').text());
+			// console.log('nav.html 加載完畢');
+			// console.log($('#welcome').text());
 		});
 	} else {
 		$('.header-container').load('nav.html');

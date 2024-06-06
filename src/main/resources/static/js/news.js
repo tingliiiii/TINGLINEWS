@@ -4,7 +4,7 @@ const fetchData = async (id) => {
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		renderData(data);
 	} catch (e) {
 		console.error(e);
@@ -68,7 +68,7 @@ const handleSubmit = async (event) => {
 			body: JSON.stringify(formData)
 		});
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 		if (state) {
 			Swal.fire(message, '可至個人資料頁面查看收藏紀錄', 'success');
 		} else {
@@ -94,11 +94,11 @@ $(document).ready(() => {
 
 	// 把 uri 抓下來渲染頁面
 	const queryString = window.location.search;
-	console.log(`QueryString: ${queryString}`);
+	// console.log(`QueryString: ${queryString}`);
 	const urlParams = new URLSearchParams(queryString);
-	console.log(`URLParams: ${urlParams}`);
+	// console.log(`URLParams: ${urlParams}`);
 	const id = urlParams.get('id');
-	console.log(`ID 參數: ${id}`);
+	// console.log(`ID 參數: ${id}`);
 	fetchData(id);
 
 	// 設定收藏按鈕的隱藏欄位

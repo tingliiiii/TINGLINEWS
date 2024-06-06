@@ -3,13 +3,13 @@ const fetchData = async (userId) => {
 	try {
 		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`);
 		const { state, message, data } = await response.json(); // 等待回應本文內容
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		$('#userId').val(data.userId);
 		$('#userEmail').val(data.userEmail);
 		$('#userName').val(data.userName);
 		$('#gender').val(data.gender);
-		$('#birth').val(data.birth);
+		$('#birth').val(data.birthday);
 		$('#phone').val(data.phone);
 
 		renderSaved(data.savedList);
@@ -42,7 +42,7 @@ const renderSaved = (data) => {
 
 // 贊助紀錄
 const renderDonated = (data) => {
-	// console.log(data);
+	// // console.log(data);
 	if(data.length === 0) {
 		$('#donated-list-body').html('<tr><td colspan="7">尚無贊助紀錄</td></tr>');
 		return;
@@ -68,24 +68,25 @@ const handleSubmit = async (event) => {
 	event.preventDefault();
 
 	const result = await Swal.fire({
-		title: '更新資訊',
-		text: '更新後將無法恢復',
-		icon: 'warning',
+		title: '確定要更新嗎？',
+		text: '',
+		icon: 'info',
 		showCancelButton: true,
 		confirmButtonText: '更新',
 		cancelButtonText: '取消'
 	})
 
 	if (!result.isConfirmed) {
-		Swal.fire('資料未更新', '', 'info');
+		Swal.fire('資料未更新', '', 'warning');
 		return;
 	}
 
 	const formData = {
+		userId: $('#userId').val(),
 		userEmail: $('#userEmail').val(),
 		userName: $('#userName').val(),
 		gender: $('#gender').val(),
-		birth: $('#birth').val(),
+		birthday: $('#birth').val(),
 		phone: $('#phone').val()
 	};
 	await updateProfile(formData);
@@ -93,7 +94,7 @@ const handleSubmit = async (event) => {
 
 const updateProfile = async (formData) => {
 	try {
-		const response = await fetch('http://localhost:8080/tinglinews/user/update', {
+		const response = await fetch(`http://localhost:8080/tinglinews/user/update/${formData.userId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -102,7 +103,7 @@ const updateProfile = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		if (state) {
 			Swal.fire(message, '', 'success');
@@ -123,11 +124,11 @@ $(document).ready(async () => {
 	$('.ad-container').load('../ad.html');
 
 	const userId = sessionStorage.getItem('userId');
-	console.log('用戶 ID：', userId);
+	// console.log('用戶 ID：', userId);
 	if (!userId) {
-		console.log('用戶 ID 未找到');
+		// console.log('用戶 ID 未找到');
 		Swal.fire('請重新登入', '', 'error');
-		window.location.href = '/tinglinews/user/login.html';
+		window.location.replace('/tinglinews/user/login.html');
 		return;
 	}
 	fetchData(userId);
@@ -149,7 +150,7 @@ $(document).ready(async () => {
 	$('#donated-table').on('click', '.stop-donate-btn', async (event) => {
 
 		const id = $(event.target).data('id');
-		console.log('按下停止贊助：' + id);
+		// console.log('按下停止贊助：' + id);
 
 		const row = $(event.target).closest('tr');
 		const status = row.find('td:nth-child(6)').text().trim();
@@ -176,7 +177,7 @@ $(document).ready(async () => {
 		try {
 			const response = await fetch(`http://localhost:8080/tinglinews/user/donate/${id}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
-			console.log(state, message, data);
+			// console.log(state, message, data);
 
 			if (state) {
 				Swal.fire(message, '', 'success');
@@ -195,7 +196,7 @@ $(document).ready(async () => {
 	// 取消收藏
 	$('#saved-table').on('click', '.cancel-saved-btn', async (event) => {
 		const id = $(event.target).data('id');
-		console.log('按下取消收藏：' + id);
+		// console.log('按下取消收藏：' + id);
 
 		const result = await Swal.fire({
 			title: '確定要取消收藏嗎？',
@@ -213,7 +214,7 @@ $(document).ready(async () => {
 		try {
 			const response = await fetch(`http://localhost:8080/tinglinews/user/saved/${id}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
-			console.log(state, message, data);
+			// console.log(state, message, data);
 
 			if (state) {
 				$(event.target).closest('tr').remove();

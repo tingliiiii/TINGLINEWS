@@ -5,7 +5,7 @@ const fetchData = async (uri) => {
     try {
         const response = await fetch(url); // 等待 fetch 請求完成
         const { state, message, data } = await response.json(); // 等待回應本文內容
-        console.log(state, message, data);
+        // console.log(state, message, data);
         return data;
     } catch (e) {
         console.error(e);
@@ -13,13 +13,29 @@ const fetchData = async (uri) => {
     }
 };
 
-$(document).ready(() => {
+$(document).ready(async () => {
 
-    const userName = sessionStorage.getItem('userName');
-    const authrotyName = sessionStorage.getItem('authrotyName');
+    const data = JSON.parse(sessionStorage.getItem('userData'));
 
+    if (!data) {
+        // console.log('用戶 ID 未找到');
+        Swal.fire('請重新登入', '', 'error');
+        window.location.replace('/tinglinews/emp/login.html');
+        return;
+    }
+
+    // 檢查使用者權限：只有編輯以上可以查看使用者管理頁面
+    // console.log(data);
+    const authorityId = data.authority.authorityId;
+    if (authorityId < 2) {
+        // $('.user-btn').css('display', 'none');
+        $('.post-btn').css('display', 'none');
+    }
+
+    const userName = data.userName;
+    const authorityName = data.authority.authorityName;
     $('#user').html(
-        `<p>${authrotyName}&ensp;${userName}&ensp;已登入</p>`
+        `<p>${authorityName}&ensp;${userName}&ensp;已登入</p>`
     );
 
     // 初始化 DataTable
@@ -61,27 +77,42 @@ $(document).ready(() => {
     }
     );
 
-    // 點擊修改按鈕
+    // 點擊編輯按鈕
     $('#news-table').on('click', '.update-news-btn', async (event) => {
 
-        // console.log(event);
+        // // console.log(event);
         const id = $(event.target).data('id');
-        console.log('按下修改按鈕' + id);
+        // console.log('按下編輯按鈕' + id);
+
+        // 檢查使用者權限：只有編輯以上可以修改文章
+        const authorityId = JSON.parse(sessionStorage.getItem('userData')).authority.authorityId;
+        if (authorityId < 2) {
+            Swal.fire('權限不足', '帳號權限有誤，請聯絡管理員', 'error');
+            return;
+        }
 
         const data = await fetchData(`/emp/news/${id}`);
-        // console.log(data);
-        sessionStorage.setItem('data', JSON.stringify(data));
+        // // console.log(data);
+        sessionStorage.setItem('newsData', JSON.stringify(data));
         window.location.replace('/tinglinews/emp/post.html');
     });
 
     // 點兩下變更發布狀態
     $('#news-table').on('dblclick', '.public-status', async (event) => {
 
+        // 檢查使用者權限：只有編輯以上變更發布狀態
+        const authorityId = JSON.parse(sessionStorage.getItem('userData')).authority.authorityId;
+        // console.log(authorityId);
+        if (authorityId < 2) {
+            Swal.fire('權限不足', '帳號權限有誤，請聯絡管理員', 'error');
+            return;
+        }
+
         // 取得按鈕上的字
         const currentText = $(event.target).text();
         // 取得按鈕的 newsId
         const id = $(event.target).data('id');
-        console.log('變更發布狀態' + id);
+        // console.log('變更發布狀態' + id);
 
         // 建立選擇器（用來切換狀態）
         const $span = $(event.target);
@@ -97,7 +128,7 @@ $(document).ready(() => {
 
             if (currentText === "否") {
                 const result = await Swal.fire({
-                    title: '確定要公開此報導嗎',
+                    title: '確定要公開此報導嗎？',
                     text: '',
                     icon: 'warning',
                     showCancelButton: true,
@@ -107,6 +138,19 @@ $(document).ready(() => {
 
                 if (!result.isConfirmed) {
                     Swal.fire('報導未公開', '', 'info');
+                    return;
+                }
+            } else if (currentText === "是") {
+                const result = await Swal.fire({
+                    title: '將報導改為不公開？',
+                    text: '',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消'
+                })
+                if (!result.isConfirmed) {
+                    Swal.fire('報導仍公開', '', 'info');
                     return;
                 }
             }
@@ -124,7 +168,7 @@ $(document).ready(() => {
                     body: JSON.stringify({ public: newStatus }),
                 });
                 const { state, message, data } = await response.json();
-                console.log(state, message, data);
+                // console.log(state, message, data);
                 if (state) {
                     Swal.fire(message, '', 'success');
                     setTimeout(() => {
@@ -148,6 +192,40 @@ $(document).ready(() => {
 
 
     });
+    
+    // 登出
+    $('.logout-btn').on('click', (event) => {
+        event.preventDefault();
+        sessionStorage.clear();
+        window.location.replace('/tinglinews/emp/login.html');
+    });
 
+    // 點兩下預覽新聞
+    /*
+    $('#news-table').on('dblclick', '.sorting_1', async (event) => {
+
+        const id = $(event.target).closest('tr').find('.update-news-btn').data('id');
+        console.log('預覽新聞 ID：' + id);
+        const data = await fetchData(`/emp/news/${id}`);
+        console.log(data);
+        
+        $('#title').text(data.title);
+        $('#content').html(data.content);
+        $('#newsModal').modal('show');
+
+
+        
+        Swal.fire({
+            title: '預覽新聞',
+            html: `
+                <h3 style="font-size: 1.5em;">${data.title}</h3>
+                <p style="font-size: .8em;">${data.content}</p>
+            `,
+            showCloseButton: true,
+            showConfirmButton: false
+        });
+        
+    })
+*/
 
 });

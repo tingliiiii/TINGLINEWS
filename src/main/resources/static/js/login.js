@@ -22,7 +22,7 @@ const login = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(state, message, data);
+		// console.log(state, message, data);
 
 		// 根據註冊狀態進行跳轉
 		if (state === true && data && data.userId) {

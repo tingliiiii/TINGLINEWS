@@ -11,7 +11,7 @@ const handleFormSubmit = async (event) => {
 	const formData = {
 		userName: $('#userName').val(),
 		gender: $('input[name="gender"]:checked').val(),
-		birth: $('#birth').val(),
+		birthday: $('#birth').val(),
 		phone: $('#phone').val(),
 		userEmail: $('#userEmail').val(),
 		userPassword: $('#userPassword').val()
@@ -31,7 +31,7 @@ const addUser = async (formData) => {
 		});
 
 		const { state, message, data } = await response.json();
-		console.log(message);
+		// console.log(message);
 
 		// 根據註冊狀態進行跳轉
 		if (state === true && data && data.userId) {
