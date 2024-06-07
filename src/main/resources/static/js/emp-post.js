@@ -39,7 +39,7 @@ const handleSubmit = async (event) => {
 		title: $('#title').val(),
 		tagId: $('#tags').val(),
 		content: tinymce.get('content').getContent(),
-		userId: sessionStorage.getItem('userData').userId,
+		userId: JSON.parse(sessionStorage.getItem('userData')).userId,
 		image: $('#fileInput').data('base64') // Base64 字串
 	};
 
@@ -116,10 +116,10 @@ $(document).ready(() => {
 	const userData = JSON.parse(sessionStorage.getItem('userData'));
 
 	if (!userData) {
-        window.location.replace('/tinglinews/emp/login.html');
-        return;
-    }
-	
+		window.location.replace('/tinglinews/emp/login.html');
+		return;
+	}
+
 	loadTags();
 
 	// 內文編輯器
@@ -128,30 +128,31 @@ $(document).ready(() => {
 		language: 'zh_TW',
 		content_css: 'http://localhost:8080/tinglinews/css/news.css',
 		plugins: 'autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker a11ychecker powerpaste autocorrect inlinecss markdown',
-		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
-	});
-
-	// 如果 sessionStorage 中有 data 就是修改文章
-	const data = JSON.parse(sessionStorage.getItem('newsData'));
-	if (data != null) {
-		$('#title').val(data.title);
-		$('#tags').val(data.tagId);
-		tinymce.get('content').on('init', (event) => {
-			event.target.setContent(data.content);
-		});
-		if (data.image) {
-			// 檢查圖片格式並動態設置
-			let imageFormat = 'jpeg'; // 默認為 jpeg
-			if (data.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
-				imageFormat = 'png';
-			}
-			$('#imgArea').html('<img src="data:image/' + imageFormat + ';base64,' + data.image + '" width="200" class="m-2">');
-			$('#fileInput').data('base64', data.image);
+		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+		setup: (editor) => {
+			editor.on('init', () => {
+				// 如果 sessionStorage 中有 data 就是修改文章
+				const data = JSON.parse(sessionStorage.getItem('newsData'));
+				if (data != null) {
+					$('#title').val(data.title);
+					$('#tags').val(data.tagId);
+					tinymce.get('content').on('init', (event) => {
+						event.target.setContent(data.content);
+					});
+					if (data.image) {
+						// 檢查圖片格式並動態設置
+						let imageFormat = 'jpeg'; // 默認為 jpeg
+						if (data.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
+							imageFormat = 'png';
+						}
+						$('#imgArea').html('<img src="data:image/' + imageFormat + ';base64,' + data.image + '" width="200" class="m-2">');
+						$('#fileInput').data('base64', data.image);
+					}
+					$('#submit-btn').text('修改');
+				};
+			});
 		}
-		$('#submit-btn').text('修改');
-	};
-
-
+	});
 
 	// 表單提交
 	$('#post-form').on('submit', handleSubmit);

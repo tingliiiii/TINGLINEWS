@@ -6,9 +6,14 @@ const fetchData = async (uri) => {
         const response = await fetch(url); // 等待 fetch 請求完成
         const { state, message, data } = await response.json(); // 等待回應本文內容
         // console.log(state, message, data);
-        return data;
+        if (state) {
+            return data;
+        } else {
+            console.error('Error fetching data:', message);
+            return [];
+        }
     } catch (e) {
-        console.error(e);
+        console.error('Fetch error:', e);
         return [];
     }
 };
@@ -48,9 +53,12 @@ $(document).ready(async () => {
             // 從伺服器獲取數據
             const result = await fetchData('/emp/news');
             // 將數據傳遞給 DataTables 以製作表格
-            callback({
-                data: result
-            });
+            if (Array.isArray(result)) {
+                callback({ data: result });
+            } else {
+                console.error('Invalid data format:', result);
+                callback({ data: [] });
+            }
         },
         columns: [
             {

@@ -8,7 +8,7 @@ const handleFormSubmit = async (event) => {
 		userPassword: $('#userPassword').val()
 	};
 
-	console.log(formData);
+	// console.log(formData);
 	await login(formData);
 };
 
@@ -41,7 +41,7 @@ const login = async (formData) => {
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
 
-		// 根據註冊狀態進行跳轉
+		// 根據登入狀態進行跳轉
 		if (state != true || !data || !data.userId) {
 			Swal.fire(message, '', 'error');
 			return;

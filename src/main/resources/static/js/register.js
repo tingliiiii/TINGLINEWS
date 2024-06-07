@@ -3,14 +3,14 @@ const handleFormSubmit = async (event) => {
 
 	event.preventDefault(); // 停止表單的預設傳送行為，改成自訂行為
 
-	if($('#userPassword').val() !== $('#passwordConfirm').val()) {
+	if ($('#userPassword').val() !== $('#passwordConfirm').val()) {
 		Swal.fire('密碼不一致', '', 'error');
 		return;
 	}
 
 	const formData = {
 		userName: $('#userName').val(),
-		gender: $('input[name="gender"]:checked').val(),
+		gender: $('input[name="gender"]:checked').val() || 'N/A',
 		birthday: $('#birth').val(),
 		phone: $('#phone').val(),
 		userEmail: $('#userEmail').val(),
@@ -22,12 +22,29 @@ const handleFormSubmit = async (event) => {
 
 const addUser = async (formData) => {
 	try {
+		// 從後端獲取 CSRF Token
+		const csrfResponse = await fetch('http://localhost:8080/tinglinews/user/login', {
+			method: 'GET',
+			credentials: 'include' // 需要包含cookie資訊以獲取 CSRF Token
+		});
+
+		const csrfData = await csrfResponse.json();
+		console.log(csrfData);
+
+		if (!csrfData.csrfToken) {
+			Swal.fire('未取得 CSRF Token', '', 'warning');
+			return;
+		}
+
+		// 在註冊請求中包含 CSRF Token
 		const response = await fetch('http://localhost:8080/tinglinews/user/register', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'X-CSRF-Token': csrfData.csrfToken
 			},
-			body: JSON.stringify(formData)
+			body: JSON.stringify(formData),
+			credentials: 'include'
 		});
 
 		const { state, message, data } = await response.json();

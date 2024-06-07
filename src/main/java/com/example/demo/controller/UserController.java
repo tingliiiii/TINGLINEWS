@@ -40,7 +40,7 @@ public class UserController {
 	private FunctionService functionService;
 
 	// CSRF Token
-	@GetMapping("/login")
+	@GetMapping(value = { "/login", "/register" })
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
@@ -48,21 +48,6 @@ public class UserController {
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		return ResponseEntity.ok(tokenMap);
-	}
-
-	// 註冊
-	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user) {
-
-		Integer userId = userService.addUser(user);
-		if (userId != null) {
-			user.setUserId(userId);
-			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), user);
-			return ResponseEntity.ok(apiResponse);
-		}
-		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
-		System.out.println(user);
-		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入
@@ -98,6 +83,38 @@ public class UserController {
 			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+	}
+
+	// 註冊
+	@PostMapping("/register")
+	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user, HttpServletRequest request,
+			HttpSession session) {
+		
+		// 從 HttpServletRequest 中獲取 CsrfToken
+		String csrfToken = session.getAttribute("csrfToken") + "";
+		System.out.println("login csrfToken: " + csrfToken);
+
+		// 從請求中獲取 CSRF Token 值
+		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
+		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+
+		// 檢查 CSRF Token 是否存在並且與請求中的值相符
+		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
+			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, "CSRF Token 驗證失敗", null);
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
+		}
+
+		// CSRF Token 驗證通過，執行登入邏輯
+		Integer userId = userService.addUser(user);
+		if (userId != null) {
+			user.setUserId(userId);
+			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), user);
+			return ResponseEntity.ok(apiResponse);
+		}
+		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
+		System.out.println(user);
+		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入註冊後資訊
