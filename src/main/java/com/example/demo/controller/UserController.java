@@ -2,10 +2,17 @@ package com.example.demo.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.email.EmailUtil;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Donated;
@@ -38,6 +46,45 @@ public class UserController {
 
 	@Autowired
 	private FunctionService functionService;
+
+	// 發送郵件
+	@PostMapping("/sendEmail")
+	public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request) {
+
+		final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
+		final String password = ""; // 應用程式密碼
+
+		String toEmail = request.get("toEmail");
+		String subject = request.get("subject");
+		String body = request.get("body");
+
+		try {
+			// 設置郵件屬性
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
+			props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL Factory Class
+			props.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
+			props.put("mail.smtp.port", "465"); // SMTP Port
+
+			Authenticator auth = new Authenticator() {
+				// override the getPasswordAuthentication method
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(fromEmail, password);
+				}
+			};
+
+			// 創建郵件會話
+			Session session = Session.getDefaultInstance(props, auth);
+
+			// 發送郵件
+			EmailUtil.sendEmail(session, toEmail, subject, body);
+			return new ApiResponse<>(true, "郵件發送成功", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ApiResponse<>(false, "郵件發送失敗: " + e.getMessage(), null);
+		}
+	}
 
 	// CSRF Token
 	@GetMapping(value = { "/login", "/register" })
@@ -68,6 +115,7 @@ public class UserController {
 		System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
+
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
 			ApiResponse<User> apiResponse = new ApiResponse<>(false, "CSRF Token 驗證失敗", null);
@@ -89,7 +137,7 @@ public class UserController {
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user, HttpServletRequest request,
 			HttpSession session) {
-		
+
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
 		System.out.println("login csrfToken: " + csrfToken);
