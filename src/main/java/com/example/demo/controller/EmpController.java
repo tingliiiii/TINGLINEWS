@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -137,7 +138,7 @@ public class EmpController {
 	}
 
 	// 修改使用者權限
-	@PutMapping("/authority/{userId}")
+	@PatchMapping("/authority/{userId}")
 	public ResponseEntity<ApiResponse<UserDto>> updateUserAuthority(@PathVariable Integer userId,
 			@RequestBody Map<String, Object> map) {
 		System.out.println(map);

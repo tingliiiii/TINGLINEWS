@@ -11,10 +11,9 @@ import javax.mail.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +30,7 @@ import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.security.CSRFTokenUtil;
+import com.example.demo.security.OTP;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
@@ -47,16 +47,56 @@ public class UserController {
 	@Autowired
 	private FunctionService functionService;
 
+	// 驗證OTP
+	@PostMapping("/verifyOTP")
+	public ApiResponse<String> verifyOTP(@RequestBody Map<String, String> request, HttpSession session) {
+		String sentOtp = (String) session.getAttribute("otp");
+		String receivedOtp = request.get("otp");
+
+		if (sentOtp != null && sentOtp.equals(receivedOtp)) {
+			session.setAttribute("verify", true);
+			return new ApiResponse<>(true, "驗證成功", null);
+		} else {
+			return new ApiResponse<>(false, "驗證碼錯誤", null);
+		}
+	}
+
+	// 重設密碼
+	@PatchMapping("/resetPassword")
+	public ApiResponse<String> resetPassword(@RequestBody Map<String, String> request, HttpSession session) {
+
+		// 確認 OTP 是否已經過驗證
+		Boolean verify = (Boolean)session.getAttribute("verify");
+		if (verify == null || !verify.equals(true)) {
+			return new ApiResponse<>(false, "尚未驗證", null);
+		}
+
+		// 重設密碼邏輯
+		String password = request.get("password");
+		String userEmail = request.get("email");
+		User user = userService.getUserByEmail(userEmail);
+		if(user==null) {
+			return new ApiResponse<>(false, "用戶不存在", null);	
+		}
+		
+		Boolean state = userService.resetPassword(userEmail, password);
+		if(!state) {
+			return new ApiResponse<>(state, "密碼重設失敗", null);	
+		}
+		return new ApiResponse<>(state, "密碼重設成功", null);
+	}
+
 	// 發送郵件
 	@PostMapping("/sendEmail")
-	public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request) {
+	public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request, HttpSession httpSession) {
 
 		final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
-		final String password = ""; // 應用程式密碼
+		final String password = "dhht cbzc jmag mapm"; // 應用程式密碼
 
 		String toEmail = request.get("toEmail");
-		String subject = request.get("subject");
-		String body = request.get("body");
+		String subject = "TINGLINEWS 電子信箱驗證";
+		String otp = OTP.generateOTP();
+		String body = "驗證碼：" + otp;
 
 		try {
 			// 設置郵件屬性
@@ -76,18 +116,23 @@ public class UserController {
 
 			// 創建郵件會話
 			Session session = Session.getDefaultInstance(props, auth);
+			try {
+				// 發送郵件
+				EmailUtil.sendEmail(session, toEmail, subject, body);
+				httpSession.setAttribute("otp", otp);
+			} catch (Exception e) {
+				return new ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage());
+			}
 
-			// 發送郵件
-			EmailUtil.sendEmail(session, toEmail, subject, body);
-			return new ApiResponse<>(true, "郵件發送成功", null);
+			return new ApiResponse<>(true, "驗證碼已發送至信箱", null);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ApiResponse<>(false, "郵件發送失敗: " + e.getMessage(), null);
+			return new ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage());
 		}
 	}
 
 	// CSRF Token
-	@GetMapping(value = { "/login", "/register" })
+	@GetMapping("/login")
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);

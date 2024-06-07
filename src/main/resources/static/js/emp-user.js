@@ -17,6 +17,7 @@ const loadAuthorityOptions = async () => {
 	try {
 		const data = await fetchData('/emp/authority');
 		const select = $('#authority');
+		select.empty(); // 清空現有選項
 
 		data.forEach(authority => {
 			const option = $('<option></option>');
@@ -40,7 +41,7 @@ const handleUpdateAuthority = async () => {
 
 	try {
 		const response = await fetch(`http://localhost:8080/tinglinews/emp/authority/${userId}`, {
-			method: 'PUT',
+			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
 			},
@@ -139,9 +140,6 @@ $(document).ready(() => {
 		// // console.log(event);
 		// // console.log($(this).parents('tr'));
 
-		if (!$(event.target).hasClass('delete-user-btn')) {
-			return;
-		}
 		const row = $(event.target).closest('tr');
 		const userId = $(event.target).data('id');
 		await handleDeleteUser(userId, row);
@@ -202,21 +200,27 @@ $(document).ready(() => {
 			return;
 		}
 
-		const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
-		const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
-		const { state, message, data } = await response.json(); // 等待回應本文內容
-		// console.log(state, message, data);
+		try {
+			const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
+			const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
+			const { state, message, data } = await response.json(); // 等待回應本文內容
+			// console.log(state, message, data);
 
-		if (state) {
-			// 更新 user list
-			// $('#user-table').DataTable().ajax.reload();
-			Swal.fire(message, '', 'success');
-			// // console.log($(this));
-			// 直接從 DataTable 中刪除該行並重新繪製表格
-			table.row(row).remove().draw();
-			// table.ajax.reload();
-		} else {
-			Swal.fire(message, '', 'error');
+			if (state) {
+				// 更新 user list
+				// $('#user-table').DataTable().ajax.reload();
+				Swal.fire(message, '', 'success');
+				// // console.log($(this));
+				// 直接從 DataTable 中刪除該行並重新繪製表格
+				table.row(row).remove().draw();
+				// table.ajax.reload();
+			} else {
+				Swal.fire(message, '', 'error');
+			}
+		} catch (e) {
+			console.error('Error deleting user:', error);
+			Swal.fire('刪除過程中發生錯誤', '', 'error');
+
 		}
 	};
 
@@ -224,9 +228,9 @@ $(document).ready(() => {
 	$('.logout-btn').on('click', () => {
 		sessionStorage.clear();
 		swal.fire('登出成功', '', 'success');
-        setTimeout(() => {
-            window.location.replace('/tinglinews/emp/login.html');
-        }, 1000);
+		setTimeout(() => {
+			window.location.replace('/tinglinews/emp/login.html');
+		}, 1000);
 	});
 
 

@@ -117,4 +117,11 @@ public class UserDaoImpl implements UserDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Authority.class));
 	}
 
+	@Override
+	public int updateUserPassword(String userEmail, String userPassword, String salt) {
+		String sql = "UPDATE user SET user_password=?, salt=? WHERE user_email=?";
+		return jdbcTemplate.update(sql, userPassword, salt, userEmail);
+	}
+	
+
 }

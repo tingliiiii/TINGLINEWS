@@ -44,9 +44,31 @@ public class UserService {
 		}
 	}
 
+
+	// 重設密碼、驗證密碼哈希值
+	public User getUserByEmail(String userEmail) {
+		return userDao.getUserByEmail(userEmail);
+	}
+	
+	// 重設密碼
+	public Boolean resetPassword(String userEmail, String userPassword) {
+		User user = getUserByEmail(userEmail);
+		if(user==null) {
+			return false;
+		}
+		String salt = PasswordUtil.generateSalt();
+		try {
+			String hashedPassword = PasswordUtil.hashPassword(user.getUserPassword(), salt);
+			return userDao.updateUserPassword(userEmail, hashedPassword, salt)>0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	// 登入：驗證密碼哈希值
 	public User validateUser(String userEmail, String userPassword) {
-		User user = userDao.getUserByEmail(userEmail);
+		User user = getUserByEmail(userEmail);
 
 		if (user == null) {
 			return null;

@@ -16,4 +16,6 @@ public interface UserDao {
 	int updateUserAuthority(Integer userId, Integer authorityId);
 	Authority getAuthorityById(Integer authorityId);
 	List<Authority> findAllAuthorities();
+	
+	int updateUserPassword(String userEmail, String userPassword, String salt);
 }
