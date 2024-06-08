@@ -1,6 +1,9 @@
+// const ip = '127.0.0.1';
+const ip = 'localhost';
+
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
-	const url = `http://localhost:8080/tinglinews${uri}`;
+	const url = `http://${ip}:8080/tinglinews${uri}`;
 	try {
 		const response = await fetch(url); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
@@ -40,7 +43,7 @@ const handleUpdateAuthority = async () => {
 	};
 
 	try {
-		const response = await fetch(`http://localhost:8080/tinglinews/emp/authority/${userId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/emp/authority/${userId}`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
@@ -201,7 +204,7 @@ $(document).ready(() => {
 		}
 
 		try {
-			const url = `http://localhost:8080/tinglinews/emp/user/${userId}`;
+			const url = `http://${ip}:8080/tinglinews/emp/user/${userId}`;
 			const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
 			const { state, message, data } = await response.json(); // 等待回應本文內容
 			// console.log(state, message, data);

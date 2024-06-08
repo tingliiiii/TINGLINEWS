@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GitHub OAuth Callback</title>
+        <!-- SweetAlert2 -->
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1>Processing OAuth Callback...</h1>
+        <script>
+            $(document).ready(async () => {
+                try {
+                    const response = await fetch('http://192.168.0.60:8080/tinglinews/callback/github/exchange');
+                    console.log(response);
+                    // 使用者還是要先註冊ＱＱ
+                    window.location.replace(response.url);
+                } catch (error) {
+                    console.error('Error:', error);
+                    swal.fire('Error', error, 'error');
+                }
+            });
+        </script>
+    </body>
+
+</html>

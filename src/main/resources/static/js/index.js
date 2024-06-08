@@ -25,10 +25,12 @@
 // 		$('.main-content').load('user/login.html', clickSignupBtn);
 // 	});
 // }
+// const ip = '127.0.0.1';
+const ip = 'localhost';
 
 // 從後端抓資料
 const fetchData = async () => {
-	const url = `http://localhost:8080/tinglinews/news/list/`;
+	const url = `http://${ip}:8080/tinglinews/news/list/`;
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();

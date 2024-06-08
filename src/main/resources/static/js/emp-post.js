@@ -1,3 +1,4 @@
+const ip = '127.0.0.1';
 // 從後端抓資料
 const fetchData = async (uri) => {
 	const url = `http://localhost:8080/tinglinews${uri}`;
@@ -54,7 +55,7 @@ const handleSubmit = async (event) => {
 // 新增文章
 const submitPost = async (formData) => {
 	try {
-		const response = await fetch('http://localhost:8080/tinglinews/emp/post', {
+		const response = await fetch(`http://${ip}:8080/tinglinews/emp/post`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -84,7 +85,7 @@ const submitPost = async (formData) => {
 const updatePost = async (formData) => {
 	try {
 		const newsId = JSON.parse(sessionStorage.getItem('newsData')).newsId;
-		const response = await fetch(`http://localhost:8080/tinglinews/emp/news/${newsId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/emp/news/${newsId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -126,7 +127,7 @@ $(document).ready(() => {
 	tinymce.init({
 		selector: '#content',
 		language: 'zh_TW',
-		content_css: 'http://localhost:8080/tinglinews/css/news.css',
+		content_css: `http://${ip}:8080/tinglinews/css/news.css`,
 		plugins: 'autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker a11ychecker powerpaste autocorrect inlinecss markdown',
 		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
 		setup: (editor) => {

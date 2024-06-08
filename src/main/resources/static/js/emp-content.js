@@ -1,7 +1,10 @@
+// const ip = '127.0.0.1';
+const ip = 'localhost';
+
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
     // 定義 API URL
-    const url = `http://localhost:8080/tinglinews${uri}`;
+    const url = `http://${ip}:8080/tinglinews${uri}`;
     try {
         const response = await fetch(url); // 等待 fetch 請求完成
         const { state, message, data } = await response.json(); // 等待回應本文內容
@@ -166,7 +169,7 @@ $(document).ready(async () => {
 
             // 發送更新請求到後端
             try {
-                const response = await fetch(`http://localhost:8080/tinglinews/emp/publish/${id}`, {
+                const response = await fetch(`http://${ip}:8080/tinglinews/emp/publish/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

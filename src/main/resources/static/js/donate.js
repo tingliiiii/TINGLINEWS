@@ -1,3 +1,6 @@
+// const ip = '127.0.0.1';
+const ip = 'localhost';
+
 // 表單提交事件處理
 const handleFormSubmit = async (event) => {
 
@@ -38,9 +41,8 @@ const donate = async (formData) => {
         return;
     }
 
-
     try {
-        const response = await fetch('http://localhost:8080/tinglinews/user/donate', {
+        const response = await fetch(`http://${ip}:8080/tinglinews/user/donate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -69,7 +71,7 @@ const loadCaptcha = async () => {
 	const captcha = $('#captcha');
 
     try {
-        const response = await fetch('http://localhost:8080/tinglinews/user/captcha');
+        const response = await fetch(`http://${ip}:8080/tinglinews/user/captcha`);
         const { state, message, data } = await response.json();
 
         if (state) {
@@ -85,7 +87,7 @@ const loadCaptcha = async () => {
 
 const verifyCaptcha = async (captcha) => {
     try {
-        const response = await fetch('http://localhost:8080/tinglinews/user/captcha', {
+        const response = await fetch(`http://${ip}:8080/tinglinews/user/captcha`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

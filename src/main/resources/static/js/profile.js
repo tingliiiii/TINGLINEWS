@@ -1,7 +1,10 @@
+// const ip = '127.0.0.1';
+const ip = 'localhost';
+
 // 從後端抓資料給 profile
 const fetchData = async (userId) => {
 	try {
-		const response = await fetch(`http://localhost:8080/tinglinews/user/profile/${userId}`);
+		const response = await fetch(`http://${ip}:8080/tinglinews/user/profile/${userId}`);
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		// console.log(state, message, data);
 
@@ -93,7 +96,7 @@ const handleSubmit = async (event) => {
 
 const updateProfile = async (formData) => {
 	try {
-		const response = await fetch(`http://localhost:8080/tinglinews/user/update/${formData.userId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/user/update/${formData.userId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -174,7 +177,7 @@ $(document).ready(async () => {
 		}
 
 		try {
-			const response = await fetch(`http://localhost:8080/tinglinews/user/donate/${id}`, { method: 'DELETE' });
+			const response = await fetch(`http://${ip}:8080/tinglinews/user/donate/${id}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
 			// console.log(state, message, data);
 
@@ -211,7 +214,7 @@ $(document).ready(async () => {
 			return;
 		}
 		try {
-			const response = await fetch(`http://localhost:8080/tinglinews/user/saved/${id}`, { method: 'DELETE' });
+			const response = await fetch(`http://${ip}:8080/tinglinews/user/saved/${id}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
 			// console.log(state, message, data);
 

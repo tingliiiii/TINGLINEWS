@@ -1,3 +1,6 @@
+// const ip = '127.0.0.1';
+const ip = 'localhost';
+
 // 表單提交事件處理
 const handleFormSubmit = async (event) => {
 
@@ -15,20 +18,20 @@ const handleFormSubmit = async (event) => {
 const login = async (formData) => {
 	try {
 		// 從後端獲取 CSRF Token
-		const csrfResponse = await fetch('http://localhost:8080/tinglinews/user/login', {
+		const csrfResponse = await fetch(`http://${ip}:8080/tinglinews/user/login`, {
 			method: 'GET',
 			credentials: 'include' // 需要包含cookie資訊以獲取CSRF Token
 		});
 
-		const {csrfState, csrfMessage, csrfData} = await csrfResponse.json();
-		console.log(csrfData);
+		const {state: csrfState, message: csrfMessage, data: csrfData} = await csrfResponse.json();
+		console.log(csrfState, csrfMessage, csrfData);
 
 		if (!csrfData.csrfToken) {
 			Swal.fire('未取得 CSRF Token', '', 'warning');
 			return;
 		}
 		// 在登入請求中包含 CSRF Token
-		const response = await fetch('http://localhost:8080/tinglinews/user/login', {
+		const response = await fetch(`http://${ip}:8080/tinglinews/user/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -92,4 +95,12 @@ $(document).ready(() => {
 		sessionStorage.setItem('userEmail', $('#userEmail').val());
 		window.location.replace('/tinglinews/user/forget.html');
 	});
+
+	$('#github').on('click', ()=>{
+		const clientId = '';
+		const redirectUri = `http://192.168.0.60:8080/tinglinews/callback/github`;
+        const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+		window.location.replace(githubAuthUrl);
+	});
+	
 });
