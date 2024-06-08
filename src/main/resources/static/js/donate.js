@@ -3,12 +3,23 @@ const handleFormSubmit = async (event) => {
 
     event.preventDefault();
 
+    const captcha = $('#code').val();
+    if (captcha === '') {
+        Swal.fire('請輸入驗證碼', '', 'error');
+        return;
+    }
+    const isCaptchaValid = await verifyCaptcha(captcha);
+    if (!isCaptchaValid) {
+        Swal.fire('驗證碼錯誤', '請重新輸入', 'error');
+        loadCaptcha();
+        return;
+    }
+
     const formData = {
         userEmail: $('#userEmail').val(),
         frequency: $('#frequency').val(),
         amount: $('#amount').val(),
         donateStatus: ($('#frequency').val() == '單筆') ? '已完成' : '進行中',
-        end_time: ($('#frequency').val() == '單筆') ? '' : new Date().toString(),
         userId: sessionStorage.getItem('userId')
     };
     await donate(formData);
@@ -16,9 +27,9 @@ const handleFormSubmit = async (event) => {
 
 const donate = async (formData) => {
 
-    const id = sessionStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
 
-    if (id == null) {
+    if (userId == null) {
         sessionStorage.setItem('userEmail', formData.userEmail);
         Swal.fire('請先登入 謝謝', '', 'warning');
         setTimeout(() => {
@@ -37,8 +48,7 @@ const donate = async (formData) => {
             body: JSON.stringify(formData)
         });
 
-        const { state, message, data } = await response.json(); // 等待回應本文內容
-        // console.log(state, message, data);
+        const { state, message, data } = await response.json();
 
         if (state) {
             Swal.fire(message, '', 'success');
@@ -54,9 +64,9 @@ const donate = async (formData) => {
     }
 }
 
-const captcha = async () => {
-
-    const captcha = $('#captcha');
+const loadCaptcha = async () => {
+	
+	const captcha = $('#captcha');
 
     try {
         const response = await fetch('http://localhost:8080/tinglinews/user/captcha');
@@ -66,12 +76,32 @@ const captcha = async () => {
             captcha.attr('src', 'data:image/jpeg;base64,' + data);
         } else {
             Swal.fire(message, '取得 captcha 失敗', 'error');
-            window.location.reload();
         }
+
     } catch (e) {
         console.error('取得 captcha 發生錯誤：', e);
     }
 };
+
+const verifyCaptcha = async (captcha) => {
+    try {
+        const response = await fetch('http://localhost:8080/tinglinews/user/captcha', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'captcha': captcha
+            })
+        });
+        const { state, message, data } = await response.json();
+        // console.log(state, message, data);
+        return state;
+    } catch (e) {
+        console.error('驗證錯誤：', e);
+        return false;
+    }
+}
 
 $(document).ready(() => {
 
@@ -80,13 +110,12 @@ $(document).ready(() => {
     } else {
         $('.header-container').load('../nav.html');
     }
-    $('#online-tab').addClass('active');
     $('.footer-container').load('../footer.html');
 
     const email = sessionStorage.getItem('userEmail');
     $('#userEmail').val(email);
 
-    captcha();
+    loadCaptcha();
 
     $('#donate-form').on('submit', handleFormSubmit);
 });

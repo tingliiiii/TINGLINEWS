@@ -80,14 +80,21 @@ public class UserController {
 		String userEmail = request.get("email");
 		User user = userService.getUserByEmail(userEmail);
 		if (user == null) {
-			return new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
+			return new ApiResponse<>(false, StatusMessage.查無資料.name(), null);
 		}
 
-		Boolean state = userService.resetPassword(userEmail, password);
-		if (!state) {
-			return new ApiResponse<>(state, StatusMessage.更新失敗.name(), null);
+		Boolean state = false;
+		try {
+			state = userService.resetPassword(userEmail, password);
+			if (!state) {
+				return new ApiResponse<>(state, StatusMessage.更新失敗.name(), null);
+			}
+			return new ApiResponse<>(state, StatusMessage.更新成功.name(), null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ApiResponse<>(state, StatusMessage.更新失敗.name(), e.getMessage());
 		}
-		return new ApiResponse<>(state, StatusMessage.更新成功.name(), null);
+
 	}
 
 	// 發送郵件
@@ -98,7 +105,7 @@ public class UserController {
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
 		// String body = "驗證碼：" + otp;
-		String body = "<p>驗證碼：&ensp;<b>" + otp + "</b></p>"
+		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
 				+ "<p><small>若您並未要求此代碼，可以安全地忽略此電子郵件。可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
@@ -126,46 +133,12 @@ public class UserController {
 		}
 	}
 
-	// 發送郵件
-	/*
-	 * @PostMapping("/sendEmail") public ApiResponse<String> sendEmail(@RequestBody
-	 * Map<String, String> request, HttpSession httpSession) {
-	 * 
-	 * final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
-	 * final String password = ""; // 應用程式密碼
-	 * 
-	 * String toEmail = request.get("toEmail"); String subject =
-	 * "TINGLINEWS 電子信箱驗證"; String otp = OTPUtil.generateOTP(); String body = "驗證碼："
-	 * + otp;
-	 * 
-	 * try { // 設置郵件屬性 Properties props = System.getProperties();
-	 * props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
-	 * props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
-	 * props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-	 * // SSL Factory Class props.put("mail.smtp.auth", "true"); // Enabling SMTP
-	 * Authentication props.put("mail.smtp.port", "465"); // SMTP Port
-	 * 
-	 * Authenticator auth = new Authenticator() { // override the
-	 * getPasswordAuthentication method protected PasswordAuthentication
-	 * getPasswordAuthentication() { return new PasswordAuthentication(fromEmail,
-	 * password); } };
-	 * 
-	 * // 創建郵件會話 Session session = Session.getDefaultInstance(props, auth); try { //
-	 * 發送郵件 EmailUtil.sendEmail(session, toEmail, subject, body);
-	 * httpSession.setAttribute("otp", otp); } catch (Exception e) { return new
-	 * ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage()); }
-	 * 
-	 * return new ApiResponse<>(true, "驗證碼已發送至信箱", null); } catch (Exception e) {
-	 * e.printStackTrace(); return new ApiResponse<>(false, "驗證碼發送失敗 ",
-	 * e.getMessage()); } }
-	 */
-
 	// CSRF Token
 	@GetMapping("/login")
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
-		System.out.println("getCsrfToken: " + csrfToken);
+		// System.out.println("getCsrfToken: " + csrfToken);
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		return ResponseEntity.ok(tokenMap);
@@ -173,8 +146,8 @@ public class UserController {
 
 	// 登入
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<User>> login(@RequestBody UserLoginDto dto, HttpServletRequest request,
-			HttpSession session) {
+	public ResponseEntity<ApiResponse<Map<String, Object>>> login(@RequestBody UserLoginDto dto,
+			HttpServletRequest request, HttpSession session) {
 		// Map<String ,Object> map
 		// json 格式要用 @RequestBody 抓（通常是準備 DTO 定義傳入資料，但如果用 Map 也可以）
 		// User user = userService.validateUser(map.get("userEmail") + "",
@@ -182,29 +155,40 @@ public class UserController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		System.out.println("login csrfToken: " + csrfToken);
+		// System.out.println("login csrfToken: " + csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
-		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
-
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
-			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
+			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
 		// CSRF Token 驗證通過，執行登入邏輯
-		User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
-		if (user != null) {
-			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
-			return ResponseEntity.ok(apiResponse);
-		} else {
-			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
+		User user = null;
+		try {
+			user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
+			if (user != null) {
+				Map<String, Object> userInfo = new HashMap<>();
+				userInfo.put("userId", user.getUserId());
+				userInfo.put("userName", user.getUserName());
+				userInfo.put("userEmail", user.getUserEmail());
+				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), user);
+				return ResponseEntity.ok(apiResponse);
+			} else {
+				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
+				return ResponseEntity.ok(apiResponse);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+
 	}
 
 	// 註冊
@@ -214,11 +198,11 @@ public class UserController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		System.out.println("login csrfToken: " + csrfToken);
+		// System.out.println("login csrfToken: " + csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
-		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -228,20 +212,26 @@ public class UserController {
 		}
 
 		// CSRF Token 驗證通過，執行登入邏輯
-		Integer userId = userService.addUser(user);
-		if (userId != null) {
+		Integer userId = 0;
+		try {
+			userId = userService.addUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
+			return ResponseEntity.ok(apiResponse);
+		}
+		if (userId != 0) {
 			user.setUserId(userId);
 			ApiResponse<User> apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), user);
 			return ResponseEntity.ok(apiResponse);
 		}
 		ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
-		System.out.println(user);
 		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入註冊後資訊
 	@GetMapping("/profile/{userId}")
-	public ResponseEntity<ApiResponse<UserProfileDto>> getUser(@PathVariable("userId") Integer userId) {
+	public ResponseEntity<ApiResponse<UserProfileDto>> getUser(@PathVariable Integer userId) {
 		try {
 			UserProfileDto userProfile = userService.getUserProfile(userId);
 			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userProfile);
@@ -275,37 +265,53 @@ public class UserController {
 	public ResponseEntity<ApiResponse<String>> getCaptcha(HttpSession session) {
 
 		String captcha = CaptchaUtil.generateCaptchaCode();
-		System.out.println("captcha code: " + captcha);
+		// System.out.println("captcha code: " + captcha);
 		session.setAttribute("captcha", captcha);
 
 		try {
 			// 取得圖片資訊
 			BufferedImage img = CaptchaUtil.getCaptchaImage(captcha);
 			// 轉換為 base64 格式
-            String base64Image = CaptchaUtil.imageToBase64(img);
-            ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), base64Image);
-    		return ResponseEntity.ok(apiResponse);
-            
+			String base64Image = CaptchaUtil.imageToBase64(img);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), base64Image);
+			return ResponseEntity.ok(apiResponse);
+
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢失敗.name(), e.getMessage());
-    		return ResponseEntity.ok(apiResponse);
+			return ResponseEntity.ok(apiResponse);
 		}
+	}
 
+	@PostMapping("/captcha")
+	public ResponseEntity<ApiResponse<String>> verifyCaptcha(@RequestBody Map<String, String> request,
+			HttpSession session) {
+
+		String sessionCaptcha = (String) session.getAttribute("captcha");
+		String inputCaptcha = request.get("captcha");
+
+		if (sessionCaptcha == null || inputCaptcha == null || !sessionCaptcha.equals(inputCaptcha)) {
+			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
+			return ResponseEntity.ok(apiResponse);
+		}
+		ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.驗證成功.name(), null);
+		return ResponseEntity.ok(apiResponse);
 	}
 
 	@PostMapping("/donate")
-	public ResponseEntity<ApiResponse<Donated>> addDonate(@RequestBody Donated donated) {
+	public ResponseEntity<ApiResponse<Donated>> addDonate(@RequestBody Donated donated, HttpSession session) {
+
 		Boolean state = false;
-		String message = "發生錯誤 ";
+		String message;
+
 		try {
 			state = functionService.addDonated(donated);
 			message = state ? StatusMessage.贊助成功.name() : StatusMessage.贊助失敗.name();
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (e.getMessage().contains("cannot be null")) {
-				message += "欄位不可空白";
+				message = "欄位不可空白";
 			} else {
-				message += e.getMessage();
+				message = e.getMessage();
 			}
 		}
 		ApiResponse apiResponse = new ApiResponse<>(state, message, donated);
@@ -345,7 +351,7 @@ public class UserController {
 	@DeleteMapping("/saved/{savedId}")
 	public ResponseEntity<ApiResponse<Boolean>> cancelSaved(@PathVariable("savedId") Integer savedId) {
 		Boolean state = functionService.deleteSaved(savedId);
-		String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
+		String message = state ? "已完成" : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
 		return ResponseEntity.ok(apiResponse);
 	}

@@ -16,12 +16,13 @@ public class PasswordUtil {
 	// 使用鹽值和密碼生成哈希
 	public static String hashPassword(String password, String salt) throws Exception {
 
-		// 獲取 SHA-256 消息摘要物件來幫助我們生成密碼的哈希
+		byte[] saltBytes = hexStringToByteArray(salt);
+		
+		// 獲取 SHA-256 消息摘要物件協助生成密碼的哈希
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 
-		// 加鹽
-		byte[] saltBytes = hexStringToByteArray(salt);
-		messageDigest.update(saltBytes);
+		messageDigest.reset(); // 重置
+		messageDigest.update(saltBytes); // 加鹽
 
 		// 將密碼轉換為 byte[] 然後生成哈希
 		byte[] hash = messageDigest.digest(password.getBytes());

@@ -53,7 +53,7 @@ const renderDonated = (data) => {
 		<td>${frequency}</td>
 		<td>${amount}</td>
 		<td>${donatedTime}</td>
-		<td>${endTime}</td>
+		<td>${endTime === null ? 'N/A' : endTime}</td>
 		<td>${donateStatus}</td>
 		<td>
 			<button class="btn btn-close stop-donate-btn" data-id="${donatedId}"></button>
@@ -77,7 +77,6 @@ const handleSubmit = async (event) => {
 	})
 
 	if (!result.isConfirmed) {
-		Swal.fire('資料未更新', '', 'warning');
 		return;
 	}
 

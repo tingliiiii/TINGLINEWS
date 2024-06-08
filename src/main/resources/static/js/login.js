@@ -65,6 +65,7 @@ const login = async (formData) => {
 		// 如果有 email 則跳轉至贊助頁面
 		Swal.fire(message, '', 'success');
 		setTimeout(() => {
+			sessionStorage.setItem('userEmail', data.userEmail);
 			window.location.replace('/tinglinews/user/donate.html');
 		}, 1000);
 
