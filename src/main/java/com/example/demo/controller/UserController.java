@@ -2,15 +2,12 @@ package com.example.demo.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.email.EmailUtil;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Donated;
@@ -30,10 +26,12 @@ import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.security.CSRFTokenUtil;
-import com.example.demo.security.OTP;
+import com.example.demo.security.OTPUtil;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -46,6 +44,9 @@ public class UserController {
 
 	@Autowired
 	private FunctionService functionService;
+	
+	@Autowired
+	private JavaMailSender mailSender; 
 
 	// 驗證OTP
 	@PostMapping("/verifyOTP")
@@ -85,17 +86,54 @@ public class UserController {
 		}
 		return new ApiResponse<>(state, "密碼重設成功", null);
 	}
-
+	
 	// 發送郵件
-	@PostMapping("/sendEmail")
+    @PostMapping("/sendEmail")
+    public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request, HttpSession httpSession) {
+
+        String toEmail = request.get("toEmail");
+        String subject = "TINGLINEWS 電子信箱驗證";
+        String otp = OTPUtil.generateOTP();
+        // String body = "驗證碼：" + otp;
+        String body = "<p>驗證碼：&ensp;<b>" + otp + "</b></p>"
+        		+"<p><small>若您並未要求此代碼，可以安全地忽略此電子郵件。可能有人誤輸入了您的電子郵件地址</small></p>";
+
+        try {
+            // 創建 MimeMessage
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            
+            helper.setTo(toEmail);
+            helper.setSubject(subject);
+            helper.setText(body, true); // 設置為 true 表示該郵件支持 HTML
+            // 設置發件人顯示名稱和郵箱地址
+            helper.setFrom(new InternetAddress("no-reply@tinglinews.com", "no-reply"));
+
+            // 發送郵件
+            mailSender.send(message);
+            httpSession.setAttribute("otp", otp);
+
+            return new ApiResponse<>(true, "驗證碼已發送至信箱", null);
+        } catch (Exception e) {
+        	if(e.getMessage().contains("Invalid Addresses")) {
+        		return new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗");
+        	}
+            e.printStackTrace();
+            return new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage());
+        }
+    }
+
+    // 發送郵件
+ 	/*
+ 	@PostMapping("/sendEmail")
 	public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request, HttpSession httpSession) {
 
 		final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
-		final String password = "dhht cbzc jmag mapm"; // 應用程式密碼
+		final String password = ""; // 應用程式密碼
 
 		String toEmail = request.get("toEmail");
 		String subject = "TINGLINEWS 電子信箱驗證";
-		String otp = OTP.generateOTP();
+		String otp = OTPUtil.generateOTP();
 		String body = "驗證碼：" + otp;
 
 		try {
@@ -130,8 +168,9 @@ public class UserController {
 			return new ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage());
 		}
 	}
-
-	// CSRF Token
+*/
+	
+    // CSRF Token
 	@GetMapping("/login")
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();

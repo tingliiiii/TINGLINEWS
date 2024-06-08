@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserAdminDto {
 	
 	// 後台使用者管理
 
 	private Integer userId;
 	private String userName;
-	private String UserEmail; 
+	private String userEmail; 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date registeredTime;
 	private Authority authority;

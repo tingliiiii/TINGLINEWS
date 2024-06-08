@@ -105,6 +105,9 @@ $(document).ready(() => {
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
 
+	const email = sessionStorage.getItem('userEmail');
+	$('#userEmail').val(email);
+
 	$('#send-email').on('click', sendEmail);
 	$('#verify').on('click', verifyOTP);
 	$('#forget-form').on('submit', handleSubmit);

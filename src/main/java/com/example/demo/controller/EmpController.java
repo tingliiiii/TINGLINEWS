@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.NewsDtoForBack;
-import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Authority;
@@ -57,7 +57,7 @@ public class EmpController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<UserDto>> login(@RequestBody UserLoginDto dto, HttpServletRequest request,
+	public ResponseEntity<ApiResponse<UserAdminDto>> login(@RequestBody UserLoginDto dto, HttpServletRequest request,
 			HttpSession session) {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
@@ -80,7 +80,7 @@ public class EmpController {
 			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			// 若驗證成功
 			if (user != null) {
-				UserDto userDto = userService.getUserDtoFromUserId(user.getUserId());
+				UserAdminDto userDto = userService.getUserAdminDtoFromUserId(user.getUserId());
 				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), userDto);
 				return ResponseEntity.ok(apiResponse);
 			}
@@ -96,10 +96,10 @@ public class EmpController {
 
 	// 後台：使用者管理介面
 	@GetMapping("/user")
-	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUser() {
+	public ResponseEntity<ApiResponse<List<UserAdminDto>>> findAllUser() {
 
 		try {
-			List<UserDto> userList = userService.findAllUserDtos();
+			List<UserAdminDto> userList = userService.findAllUserAdminDtos();
 			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
@@ -139,7 +139,7 @@ public class EmpController {
 
 	// 修改使用者權限
 	@PatchMapping("/authority/{userId}")
-	public ResponseEntity<ApiResponse<UserDto>> updateUserAuthority(@PathVariable Integer userId,
+	public ResponseEntity<ApiResponse<UserAdminDto>> updateUserAuthority(@PathVariable Integer userId,
 			@RequestBody Map<String, Object> map) {
 		System.out.println(map);
 		try {
@@ -147,7 +147,7 @@ public class EmpController {
 			Integer authorityId = Integer.valueOf(authorityIdString);
 			Boolean state = userService.updateUserAuthority(userId, authorityId);
 			String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
-			UserDto dto = userService.getUserDtoFromUserId(userId);
+			UserAdminDto dto = userService.getUserAdminDtoFromUserId(userId);
 
 			ApiResponse apiResponse = new ApiResponse<>(state, message, dto);
 			return ResponseEntity.ok(apiResponse);

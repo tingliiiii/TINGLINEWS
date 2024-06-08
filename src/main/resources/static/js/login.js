@@ -115,6 +115,8 @@ $(document).ready(() => {
 
 	$('#login-form').on('submit', handleFormSubmit);
 
-	// $('#forget').on('click', forget);
-
+	$('#forget').on('click', ()=>{
+		sessionStorage.setItem('userEmail', $('#userEmail').val());
+		window.location.replace('/tinglinews/user/forget.html');
+	});
 });

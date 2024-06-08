@@ -4,20 +4,19 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.dto.SavedDto;
-import com.example.demo.model.dto.UserDto;
-import com.example.demo.model.dto.UserLoginDto;
+import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.Donated;
 import com.example.demo.model.po.Saved;
 import com.example.demo.model.po.User;
 import com.example.demo.security.PasswordUtil;
-import com.example.demo.security.WebKeyUtil;
 
 @Service
 public class UserService {
@@ -125,6 +124,7 @@ public class UserService {
 
 		return userProfile;
 	}
+	
 
 	// 修改個人資訊
 	public Boolean updateUser(Integer userId, User user) {
@@ -134,14 +134,16 @@ public class UserService {
 //	======================================================================
 
 	// 後台使用者管理
-	public List<UserDto> findAllUserDtos() {
+	public List<UserAdminDto> findAllUserAdminDtos() {
 
-		List<UserDto> userDtos = new ArrayList<>();
 		// PO
 		List<User> users = userDao.findAllUsers();
+		
+		List<UserAdminDto> userDtos = new ArrayList<>();
+		
 		// PO 轉 DTO
 		for (User user : users) {
-			UserDto userDto = new UserDto();
+			UserAdminDto userDto = new UserAdminDto();
 			userDto.setUserId(user.getUserId());
 			userDto.setUserName(user.getUserName());
 			userDto.setUserEmail(user.getUserEmail());
@@ -154,9 +156,9 @@ public class UserService {
 		return userDtos;
 	}
 
-	public UserDto getUserDtoFromUserId(Integer userId) {
+	public UserAdminDto getUserAdminDtoFromUserId(Integer userId) {
 		User user = userDao.getUserById(userId);
-		UserDto dto = new UserDto();
+		UserAdminDto dto = new UserAdminDto();
 		dto.setUserId(userId);
 		dto.setUserName(user.getUserName());
 		dto.setUserEmail(user.getUserEmail());
