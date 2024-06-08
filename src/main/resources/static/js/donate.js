@@ -54,6 +54,25 @@ const donate = async (formData) => {
     }
 }
 
+const captcha = async () => {
+
+    const captcha = $('#captcha');
+
+    try {
+        const response = await fetch('http://localhost:8080/tinglinews/user/captcha');
+        const { state, message, data } = await response.json();
+
+        if (state) {
+            captcha.attr('src', 'data:image/jpeg;base64,' + data);
+        } else {
+            Swal.fire(message, '取得 captcha 失敗', 'error');
+            window.location.reload();
+        }
+    } catch (e) {
+        console.error('取得 captcha 發生錯誤：', e);
+    }
+};
+
 $(document).ready(() => {
 
     if (sessionStorage.getItem('userId') != null) {
@@ -61,10 +80,13 @@ $(document).ready(() => {
     } else {
         $('.header-container').load('../nav.html');
     }
+    $('#online-tab').addClass('active');
     $('.footer-container').load('../footer.html');
 
     const email = sessionStorage.getItem('userEmail');
     $('#userEmail').val(email);
+
+    captcha();
 
     $('#donate-form').on('submit', handleFormSubmit);
 });

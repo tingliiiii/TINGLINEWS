@@ -1,50 +1,55 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand ms-2 logo" href="/tinglinews">TINGLINEWS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu"
-            aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="main-menu" aria-labelledby="main-menuLabel">
-            <div class="offcanvas-header">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav mx-auto ms-md-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews/">首頁</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html">即時</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=1">政治</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=2">社會</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=3">國際</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=4">環境</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=5">文化</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=6">生活</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=7">娛樂</a></li>
-                </ul>
-                <div class="d-flex justify-content-center mt-3 my-lg-auto me-0 me-lg-4">
-                    <a href="/tinglinews/user/login.html" class="login btn btn-outline-primary mx-2">登入</a>
-                    <a href="/tinglinews/user/register.html" class="signup btn btn-primary mx-2">註冊</a>
-                </div>
-            </div>
-        </div>
+	<div class="container-fluid">
+		<a class="navbar-brand ms-2 logo" href="/tinglinews">TINGLINEWS</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#main-menu"
+			aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="main-menu" aria-labelledby="main-menuLabel">
+			<div class="offcanvas-header">
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<ul class="navbar-nav mx-auto ms-md-0">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="/tinglinews/">首頁</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html">即時</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=1">政治</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=2">社會</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=3">國際</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=4">環境</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=5">文化</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=6">生活</a></li>
+					<li class="nav-item"><a class="nav-link" href="/tinglinews/list.html?id=7">娛樂</a></li>
+				</ul>
+				<div class="d-flex justify-content-center mt-3 my-lg-auto me-0 me-lg-4">
+					<a href="/tinglinews/user/login.html" class="login btn btn-outline-primary mx-2">登入</a> <a
+						href="/tinglinews/user/register.html" class="signup btn btn-primary mx-2">註冊</a>
+				</div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 </nav>
 <script>
 
-    const href = window.location.href;
+const pathWithParams = window.location.pathname + window.location.search;
 
-    $('.nav-link').each(function () {
-        if (this.href === href) {
-            $(this).addClass('active');
-        } else {
-            $(this).removeClass('active');
-        }
-    });
+	// 在頁面加載時標記當前活動頁面
+	$('.navbar-nav .nav-link').each((_, link) => {
+		const navlink = $(link);
+		console.log(pathWithParams);
+	    console.log(navlink.attr('href'));
+		if (navlink.attr('href') === pathWithParams) {
+			navlink.addClass('active');
+		} else {
+			navlink.removeClass('active');
+		}
+	});
 
-    $('.nav-link').on('click', function () {
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-    });
+	// 點擊導航連結時標記當前活動頁面並移除其他連結的 active 類
+	$('.navbar-nav .nav-link').on('click', function () {
+		$('.navbar-nav .nav-link').removeClass('active');
+		$(this).addClass('active');
+	});
 
 </script>

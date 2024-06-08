@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.security.CSRFTokenUtil;
+import com.example.demo.security.CaptchaUtil;
 import com.example.demo.security.OTPUtil;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
@@ -33,6 +35,7 @@ import com.example.demo.service.UserService;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -44,9 +47,9 @@ public class UserController {
 
 	@Autowired
 	private FunctionService functionService;
-	
+
 	@Autowired
-	private JavaMailSender mailSender; 
+	private JavaMailSender mailSender;
 
 	// 驗證OTP
 	@PostMapping("/verifyOTP")
@@ -56,9 +59,9 @@ public class UserController {
 
 		if (sentOtp != null && sentOtp.equals(receivedOtp)) {
 			session.setAttribute("verify", true);
-			return new ApiResponse<>(true, "驗證成功", null);
+			return new ApiResponse<>(true, StatusMessage.驗證成功.name(), null);
 		} else {
-			return new ApiResponse<>(false, "驗證碼錯誤", null);
+			return new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 		}
 	}
 
@@ -67,110 +70,97 @@ public class UserController {
 	public ApiResponse<String> resetPassword(@RequestBody Map<String, String> request, HttpSession session) {
 
 		// 確認 OTP 是否已經過驗證
-		Boolean verify = (Boolean)session.getAttribute("verify");
+		Boolean verify = (Boolean) session.getAttribute("verify");
 		if (verify == null || !verify.equals(true)) {
-			return new ApiResponse<>(false, "尚未驗證", null);
+			return new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 		}
 
 		// 重設密碼邏輯
 		String password = request.get("password");
 		String userEmail = request.get("email");
 		User user = userService.getUserByEmail(userEmail);
-		if(user==null) {
-			return new ApiResponse<>(false, "用戶不存在", null);	
+		if (user == null) {
+			return new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 		}
-		
+
 		Boolean state = userService.resetPassword(userEmail, password);
-		if(!state) {
-			return new ApiResponse<>(state, "密碼重設失敗", null);	
+		if (!state) {
+			return new ApiResponse<>(state, StatusMessage.更新失敗.name(), null);
 		}
-		return new ApiResponse<>(state, "密碼重設成功", null);
+		return new ApiResponse<>(state, StatusMessage.更新成功.name(), null);
 	}
-	
+
 	// 發送郵件
-    @PostMapping("/sendEmail")
-    public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request, HttpSession httpSession) {
-
-        String toEmail = request.get("toEmail");
-        String subject = "TINGLINEWS 電子信箱驗證";
-        String otp = OTPUtil.generateOTP();
-        // String body = "驗證碼：" + otp;
-        String body = "<p>驗證碼：&ensp;<b>" + otp + "</b></p>"
-        		+"<p><small>若您並未要求此代碼，可以安全地忽略此電子郵件。可能有人誤輸入了您的電子郵件地址</small></p>";
-
-        try {
-            // 創建 MimeMessage
-            MimeMessage message = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            
-            helper.setTo(toEmail);
-            helper.setSubject(subject);
-            helper.setText(body, true); // 設置為 true 表示該郵件支持 HTML
-            // 設置發件人顯示名稱和郵箱地址
-            helper.setFrom(new InternetAddress("no-reply@tinglinews.com", "no-reply"));
-
-            // 發送郵件
-            mailSender.send(message);
-            httpSession.setAttribute("otp", otp);
-
-            return new ApiResponse<>(true, "驗證碼已發送至信箱", null);
-        } catch (Exception e) {
-        	if(e.getMessage().contains("Invalid Addresses")) {
-        		return new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗");
-        	}
-            e.printStackTrace();
-            return new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage());
-        }
-    }
-
-    // 發送郵件
- 	/*
- 	@PostMapping("/sendEmail")
+	@PostMapping("/sendEmail")
 	public ApiResponse<String> sendEmail(@RequestBody Map<String, String> request, HttpSession httpSession) {
-
-		final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
-		final String password = ""; // 應用程式密碼
 
 		String toEmail = request.get("toEmail");
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
-		String body = "驗證碼：" + otp;
+		// String body = "驗證碼：" + otp;
+		String body = "<p>驗證碼：&ensp;<b>" + otp + "</b></p>"
+				+ "<p><small>若您並未要求此代碼，可以安全地忽略此電子郵件。可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
-			// 設置郵件屬性
-			Properties props = System.getProperties();
-			props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
-			props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
-			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL Factory Class
-			props.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
-			props.put("mail.smtp.port", "465"); // SMTP Port
+			// 創建 MimeMessage
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-			Authenticator auth = new Authenticator() {
-				// override the getPasswordAuthentication method
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(fromEmail, password);
-				}
-			};
+			helper.setTo(toEmail);
+			helper.setSubject(subject);
+			helper.setText(body, true); // 設置為 true 表示該郵件支持 HTML
+			// 設置發件人顯示名稱和郵箱地址
+			helper.setFrom(new InternetAddress("no-reply@tinglinews.com", "no-reply"));
 
-			// 創建郵件會話
-			Session session = Session.getDefaultInstance(props, auth);
-			try {
-				// 發送郵件
-				EmailUtil.sendEmail(session, toEmail, subject, body);
-				httpSession.setAttribute("otp", otp);
-			} catch (Exception e) {
-				return new ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage());
-			}
+			// 發送郵件
+			mailSender.send(message);
+			httpSession.setAttribute("otp", otp);
 
 			return new ApiResponse<>(true, "驗證碼已發送至信箱", null);
 		} catch (Exception e) {
+			if (e.getMessage().contains("Invalid Addresses")) {
+				return new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗");
+			}
 			e.printStackTrace();
-			return new ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage());
+			return new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage());
 		}
 	}
-*/
-	
-    // CSRF Token
+
+	// 發送郵件
+	/*
+	 * @PostMapping("/sendEmail") public ApiResponse<String> sendEmail(@RequestBody
+	 * Map<String, String> request, HttpSession httpSession) {
+	 * 
+	 * final String fromEmail = "lily90740@gmail.com"; // requires valid gmail id
+	 * final String password = ""; // 應用程式密碼
+	 * 
+	 * String toEmail = request.get("toEmail"); String subject =
+	 * "TINGLINEWS 電子信箱驗證"; String otp = OTPUtil.generateOTP(); String body = "驗證碼："
+	 * + otp;
+	 * 
+	 * try { // 設置郵件屬性 Properties props = System.getProperties();
+	 * props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP Host
+	 * props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
+	 * props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+	 * // SSL Factory Class props.put("mail.smtp.auth", "true"); // Enabling SMTP
+	 * Authentication props.put("mail.smtp.port", "465"); // SMTP Port
+	 * 
+	 * Authenticator auth = new Authenticator() { // override the
+	 * getPasswordAuthentication method protected PasswordAuthentication
+	 * getPasswordAuthentication() { return new PasswordAuthentication(fromEmail,
+	 * password); } };
+	 * 
+	 * // 創建郵件會話 Session session = Session.getDefaultInstance(props, auth); try { //
+	 * 發送郵件 EmailUtil.sendEmail(session, toEmail, subject, body);
+	 * httpSession.setAttribute("otp", otp); } catch (Exception e) { return new
+	 * ApiResponse<>(false, "驗證碼發送失敗 ", e.getMessage()); }
+	 * 
+	 * return new ApiResponse<>(true, "驗證碼已發送至信箱", null); } catch (Exception e) {
+	 * e.printStackTrace(); return new ApiResponse<>(false, "驗證碼發送失敗 ",
+	 * e.getMessage()); } }
+	 */
+
+	// CSRF Token
 	@GetMapping("/login")
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
@@ -202,7 +192,7 @@ public class UserController {
 
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
-			ApiResponse<User> apiResponse = new ApiResponse<>(false, "CSRF Token 驗證失敗", null);
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
@@ -233,7 +223,7 @@ public class UserController {
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
-			ApiResponse<User> apiResponse = new ApiResponse<>(false, "CSRF Token 驗證失敗", null);
+			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
@@ -280,6 +270,28 @@ public class UserController {
 	}
 
 	// 贊助 ============================================================
+
+	@GetMapping("/captcha")
+	public ResponseEntity<ApiResponse<String>> getCaptcha(HttpSession session) {
+
+		String captcha = CaptchaUtil.generateCaptchaCode();
+		System.out.println("captcha code: " + captcha);
+		session.setAttribute("captcha", captcha);
+
+		try {
+			// 取得圖片資訊
+			BufferedImage img = CaptchaUtil.getCaptchaImage(captcha);
+			// 轉換為 base64 格式
+            String base64Image = CaptchaUtil.imageToBase64(img);
+            ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), base64Image);
+    		return ResponseEntity.ok(apiResponse);
+            
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢失敗.name(), e.getMessage());
+    		return ResponseEntity.ok(apiResponse);
+		}
+
+	}
 
 	@PostMapping("/donate")
 	public ResponseEntity<ApiResponse<Donated>> addDonate(@RequestBody Donated donated) {

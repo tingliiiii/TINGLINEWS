@@ -27,6 +27,7 @@ const sendEmail = async () => {
 		}
 
 		Swal.fire(message, '', 'success');
+		$('#userEmail').prop('disabled', true);
 		$('#verification-section').show();
 
 	} catch (e) {

@@ -104,7 +104,7 @@ const renderCardData = (data, currentPage = 1, itemsPerPage = 6) => {
 	$('#pagination').html(paginationHtml);
 
 	// Add event listeners to pagination buttons
-	$('.page-link').on('click', (event) => {
+	$('.page-link').on('click', function (event) {
 		event.preventDefault();
 		const page = $(this).data('page');
 		renderCardData(data, page, itemsPerPage);
