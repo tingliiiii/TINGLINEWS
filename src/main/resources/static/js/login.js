@@ -20,7 +20,7 @@ const login = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取CSRF Token
 		});
 
-		const csrfData = await csrfResponse.json();
+		const {csrfState, csrfMessage, csrfData} = await csrfResponse.json();
 		console.log(csrfData);
 
 		if (!csrfData.csrfToken) {
@@ -77,34 +77,6 @@ const login = async (formData) => {
 
 };
 
-/*
-const forget = async () => {
-
-	try {
-
-		const response = await fetch('http://localhost:8080/tinglinews/user/sendEmail', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(
-				{
-					'toEmail': '105204034@g.nccu.edu.tw',
-					'subject': 'TINGLINEWS 電子信箱驗證',
-					'body': '驗證碼：'
-				}
-			)
-		});
-
-		const { state, message, data } = await response.json();
-		console.log(state, message, data);
-
-	} catch (e) {
-		console.error('傳送驗證碼錯誤：', e);
-		Swal.fire('傳送驗證碼錯誤 請稍後再試', e, 'error');
-	}
-}
-*/
 
 $(document).ready(() => {
 

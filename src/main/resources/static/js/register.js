@@ -28,7 +28,7 @@ const addUser = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取 CSRF Token
 		});
 
-		const csrfData = await csrfResponse.json();
+		const {csrfState, csrfMessage, csrfData} = await csrfResponse.json();
 		console.log(csrfData);
 
 		if (!csrfData.csrfToken) {
