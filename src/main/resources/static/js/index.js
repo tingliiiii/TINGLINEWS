@@ -46,8 +46,8 @@ const fetchData = async () => {
 				item.image = 'data:image/' + imageFormat + ';base64,' + item.image;
 			}
 			const contentContainer = $('<p>').html(item.content);
-			const truncatedContent = contentContainer.text().substring(0, 120);
-			item.content = contentContainer.text().length > 120 ? truncatedContent + '...' : truncatedContent;
+			const truncatedContent = contentContainer.text().substring(0, 80);
+			item.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
 		})
 		renderCardData(data);
 

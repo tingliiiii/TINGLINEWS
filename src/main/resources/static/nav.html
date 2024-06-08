@@ -37,8 +37,8 @@ const pathWithParams = window.location.pathname + window.location.search;
 	// 在頁面加載時標記當前活動頁面
 	$('.navbar-nav .nav-link').each((_, link) => {
 		const navlink = $(link);
-		console.log(pathWithParams);
-	    console.log(navlink.attr('href'));
+		// console.log(pathWithParams);
+	    // console.log(navlink.attr('href'));
 		if (navlink.attr('href') === pathWithParams) {
 			navlink.addClass('active');
 		} else {
