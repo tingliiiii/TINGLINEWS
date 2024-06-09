@@ -1,21 +1,12 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
-import java.util.Map;
 
 import org.json.JSONObject;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.response.ApiResponse;
-import com.example.demo.model.response.StatusMessage;
 import com.example.demo.security.OAuth2Util;
 
 import jakarta.servlet.http.HttpSession;
@@ -47,7 +38,7 @@ public class OAuth2Controller {
 			System.out.println(userInfoObject);
 			System.out.println("login: " + userInfoObject.getString("login"));
 			System.out.println("id: " + userInfoObject.getInt("id"));
-			System.out.println("email: " + userInfoObject.getInt("email"));
+			// System.out.println("email: " + userInfoObject.getInt("email"));
 
 			session.setAttribute("loginStatus", true);
 		} else {

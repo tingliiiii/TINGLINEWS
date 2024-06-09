@@ -1,7 +1,9 @@
 package com.example.demo.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
+import com.example.demo.model.po.Journalist;
 import com.example.demo.model.po.Tag;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,8 +24,7 @@ public class NewsDtoForFront {
 	private String image;
 
 	private Tag tag;
-	private Integer userId;
-	private String userName;
+	private List<Journalist> journalists;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date updatedTime;

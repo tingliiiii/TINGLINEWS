@@ -23,7 +23,7 @@ const login = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取CSRF Token
 		});
 
-		const {state: csrfState, message: csrfMessage, data: csrfData} = await csrfResponse.json();
+		const { state: csrfState, message: csrfMessage, data: csrfData } = await csrfResponse.json();
 		console.log(csrfState, csrfMessage, csrfData);
 
 		if (!csrfData.csrfToken) {
@@ -91,16 +91,16 @@ $(document).ready(() => {
 
 	$('#login-form').on('submit', handleFormSubmit);
 
-	$('#forget').on('click', ()=>{
+	$('#forget').on('click', () => {
 		sessionStorage.setItem('userEmail', $('#userEmail').val());
 		window.location.replace('/tinglinews/user/forget.html');
 	});
 
-	$('#github').on('click', ()=>{
+	$('#github').on('click', () => {
 		const clientId = '';
 		const redirectUri = `http://192.168.0.60:8080/tinglinews/callback/github`;
-        const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
 		window.location.replace(githubAuthUrl);
 	});
-	
+
 });

@@ -31,7 +31,7 @@ const addUser = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取 CSRF Token
 		});
 
-		const {csrfState, csrfMessage, csrfData} = await csrfResponse.json();
+		const { csrfState, csrfMessage, csrfData } = await csrfResponse.json();
 		console.log(csrfData);
 
 		if (!csrfData.csrfToken) {
@@ -80,6 +80,13 @@ $(document).ready(() => {
 
 	// 綁定表單提交事件
 	$('#register-form').on('submit', handleFormSubmit);
+
+	$('#github').on('click', () => {
+		const clientId = '';
+		const redirectUri = `http://192.168.0.60:8080/tinglinews/callback/github`;
+		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
+		window.location.replace(githubAuthUrl);
+	});
 });
 
 

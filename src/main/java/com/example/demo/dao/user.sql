@@ -110,4 +110,12 @@ INSERT INTO saved(user_id, news_id) VALUES(1040, 6001);
 INSERT INTO saved(user_id, news_id) VALUES(1040, 6000);
 
 
+CREATE TABLE IF NOT EXISTS news_journalist(
+	news_id INT,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (news_id) REFERENCES news(news_id) ON DELETE CASCADE,
+    CONSTRAINT unique_userid_and_newsid UNIQUE(user_id, news_id)
+);
+
 

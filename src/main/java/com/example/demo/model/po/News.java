@@ -1,6 +1,7 @@
 package com.example.demo.model.po;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -18,7 +19,8 @@ public class News {
 	private String content;
 	
 	private Integer tagId;
-	private Integer userId; // 記者
+	private Integer userId; 
+	private Integer[] journalistIds;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createdTime; // 自動生成

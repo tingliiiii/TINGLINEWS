@@ -1,7 +1,9 @@
 package com.example.demo.model.dto;
 
 import java.util.Date;
+import java.util.List;
 
+import com.example.demo.model.po.Journalist;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;

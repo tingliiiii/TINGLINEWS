@@ -23,6 +23,7 @@ import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Authority;
+import com.example.demo.model.po.Journalist;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
 import com.example.demo.model.po.User;
@@ -50,7 +51,7 @@ public class EmpController {
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
-		// System.out.println("getCsrfToken: " + csrfToken);
+		System.out.println("getCsrfToken: " + csrfToken);
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		return ResponseEntity.ok(tokenMap);
@@ -62,11 +63,11 @@ public class EmpController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		// System.out.println("login csrfToken: " + csrfToken);
+		System.out.println("login csrfToken: " + csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
-		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -183,6 +184,19 @@ public class EmpController {
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), tags);
+			return ResponseEntity.ok(apiResponse);
+		}
+	}
+
+	// 新增文章時的記者選項
+	@GetMapping("/journalists")
+	public ResponseEntity<ApiResponse<List<Journalist>>> findAllJournalists() {
+		try {
+			List<Journalist> journalists = newsService.findAllJournalists();
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), journalists);
+			return ResponseEntity.ok(apiResponse);
+		} catch (Exception e) {
+			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
 	}

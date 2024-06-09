@@ -23,8 +23,9 @@ const login = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取CSRF Token
 		});
 
-		const {csrfState, csrfMessage, csrfData} = await csrfResponse.json();
-		console.log(csrfData);
+		const { state: csrfState, message: csrfMessage, data: csrfData } = await csrfResponse.json();
+		console.log(csrfState, csrfMessage, csrfData);
+
 
 		if (!csrfData.csrfToken) {
 			Swal.fire('未取得 CSRF Token', '', 'warning');

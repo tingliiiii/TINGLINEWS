@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.model.po.Journalist;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
 
@@ -31,5 +32,11 @@ public interface NewsDao {
 	List<News> findNewsByTagId(Integer tagId);
 	// 報導列表（首頁、即時）
 	List<News> findAllNewsForFront();
+	
+	// 該篇報導的記者名單
+	List<Journalist> findAllJournalists();
+	Journalist getJournalistById(Integer userId);
+	int addJournalist(Integer newsId, Integer userId);
+	int deleteJournalistByNewsId(Integer newsId);
 
 }

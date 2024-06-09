@@ -1,4 +1,5 @@
-const ip = '127.0.0.1';
+// const ip = '127.0.0.1';
+const ip = 'localhost';
 // 從後端抓資料
 const fetchData = async (uri) => {
 	const url = `http://localhost:8080/tinglinews${uri}`;
@@ -31,6 +32,25 @@ const loadTags = async () => {
 
 };
 
+const loadJournalistOptions = async () => {
+	try {
+		const data = await fetchData('/emp/journalists');
+		const select = $('#journalistIds');
+		data.forEach(journalist => {
+			const option = $('<option></option>');
+			option.attr('value', journalist.userId);
+			option.text(journalist.userName);
+			select.append(option);
+		});
+
+		$('#journalistIds').select2({
+			placeholder: '請選擇記者'
+		});
+	} catch (error) {
+		console.error('Fetching data error:', error);
+	}
+}
+
 // 表單提交事件處理
 const handleSubmit = async (event) => {
 
@@ -41,7 +61,8 @@ const handleSubmit = async (event) => {
 		tagId: $('#tags').val(),
 		content: tinymce.get('content').getContent(),
 		userId: JSON.parse(sessionStorage.getItem('userData')).userId,
-		image: $('#fileInput').data('base64') // Base64 字串
+		image: $('#fileInput').data('base64'), // Base64 字串
+		journalistIds: $('#journalistIds').val()
 	};
 
 	if ($('#submit-btn').text() === '新增文章') {
@@ -122,6 +143,7 @@ $(document).ready(() => {
 	}
 
 	loadTags();
+	loadJournalistOptions();
 
 	// 內文編輯器
 	tinymce.init({

@@ -27,19 +27,22 @@ const renderData = (data) => {
 		data.image = 'data:image/' + imageFormat + ';base64,' + data.image;
 	}
 
-	const newsItem = (item) => `
-	<h1 class="news-title">${item.title}</h1>
-	<div class="news-content">           
-	    <p class="news-date">
-			<a href="/tinglinews/list.html?id=${item.tag.tagId}" class="btn btn-outline-secondary btn-sm me-2">${item.tag.tagName}</a>
-	        <small>記者 ${item.userName}&emsp;發布時間 ${item.publicTime}&emsp;更新時間 ${item.updatedTime}</small>
-	    </p>
-		<figure class="news-img-container">
-            <img src="${item.image}" class="news-img">
-        </figure>
-	    <div class="news-paragraph">${item.content}</div>
-	</div>
- `;
+	const newsItem = (item) => {
+		const journalists = item.journalists.map(journalist => journalist.userName).join(' ');
+		return `
+			<h1 class="news-title">${item.title}</h1>
+			<div class="news-content">           
+				<p class="news-date">
+					<a href="/tinglinews/list.html?id=${item.tag.tagId}" class="btn btn-outline-secondary btn-sm me-2">${item.tag.tagName}</a>
+					<small>記者 ${journalists}&emsp;發布時間 ${item.publicTime}&emsp;更新時間 ${item.updatedTime}</small>
+				</p>
+				<figure class="news-img-container">
+					<img src="${item.image}" class="news-img">
+				</figure>
+				<div class="news-paragraph">${item.content}</div>
+			</div>
+ 		`;
+	};
 	/*
 					<form method="POST" id="saved-form" class="d-inline-block">
 					<input type="hidden" name="newsId" value="${item.newsId}">

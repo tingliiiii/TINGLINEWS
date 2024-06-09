@@ -13,18 +13,17 @@ table {
 	--bs-table-color: #333;
 }
 
-#user-table thead th, 
-#user-table tbody td
-	{
+#user-table thead th,
+#user-table tbody td {
 	text-align: center;
 }
 
-#emp-news-container, 
+#emp-news-container,
 #emp-user-container {
 	margin: 4vw auto;
 }
 
-#emp-news-table-container, 
+#emp-news-table-container,
 #emp-user-table-container {
 	/* width: 80%; */
 	overflow-x: auto;
@@ -44,6 +43,19 @@ table {
 #post-form {
 	width: min(80%, 600px);
 	margin: 0 auto;
+}
+
+.select2-selection--multiple {
+	border: 1px solid #dee2e6;
+}
+
+.select2-selection__choice {
+	background-color: #dee2e6;
+	border: none;
+}
+
+.select2-selection__choice__display {
+	font-size: .8em;
 }
 
 .btn-secondary {
