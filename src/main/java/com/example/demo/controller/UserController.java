@@ -51,7 +51,7 @@ public class UserController {
 
 	@Autowired
 	private JavaMailSender mailSender;
-
+	
 	// 驗證OTP
 	@PostMapping("/verifyOTP")
 	public ResponseEntity<ApiResponse<String>> verifyOTP(@RequestBody Map<String, String> request, HttpSession session) {

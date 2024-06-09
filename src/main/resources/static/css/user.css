@@ -9,6 +9,11 @@
 	padding-top: .5rem;
 }
 
+#other {
+	color: var(--c-primary-color2);
+	text-align: center;
+}
+
 
 /* signup ================================================= */
 
@@ -46,6 +51,10 @@
 #donated-list-body,
 #saved-list-body {
 	text-align: center;
+}
+
+#saved-list-body td a{
+	text-decoration: none;
 }
 
 #saved-list-body td:nth-child(2) {

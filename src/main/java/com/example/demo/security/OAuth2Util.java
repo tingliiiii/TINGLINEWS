@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class OAuth2Util {
 
-	public final static String CLIENT_ID = ""; 
+	public final static String CLIENT_ID = "Ov23liDtaaE6SzdeiYZu"; 
 	private final static String CLIENT_SECRET = ""; 
 	public final static String REDIRECT_URI = "http://192.168.0.60:8080/tinglinews/callback/github"; 
 

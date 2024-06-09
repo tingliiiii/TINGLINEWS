@@ -45,17 +45,29 @@ table {
 	margin: 0 auto;
 }
 
-.select2-selection--multiple {
+.select2-container--default .select2-selection--multiple {
 	border: 1px solid #dee2e6;
 }
 
-.select2-selection__choice {
-	background-color: #dee2e6;
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
 	border: none;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	border-right: none;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+	border: solid #666 1px;
+}
+
 .select2-selection__choice__display {
-	font-size: .8em;
+	font-size: .9em;
+}
+
+.select2-container .select2-search--inline .select2-search__field {
+	font-size: .9em;
+	vertical-align: text-bottom;
 }
 
 .btn-secondary {

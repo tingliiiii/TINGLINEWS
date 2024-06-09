@@ -136,7 +136,7 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public List<Journalist> findAllJournalists() {
-		String sql = "SELECT user_id, user_name FROM user WHERE authority_id>=2 and authority_id<5";
+		String sql = "SELECT user_id, user_name FROM user WHERE authority_id>=2 and authority_id<5 ORDER BY user_id DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Journalist.class));
 	}
 

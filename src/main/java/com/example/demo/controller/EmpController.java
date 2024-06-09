@@ -51,7 +51,7 @@ public class EmpController {
 	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
-		System.out.println("getCsrfToken: " + csrfToken);
+		// System.out.println("getCsrfToken: " + csrfToken);
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		return ResponseEntity.ok(tokenMap);
@@ -63,11 +63,11 @@ public class EmpController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		System.out.println("login csrfToken: " + csrfToken);
+		// System.out.println("login csrfToken: " + csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
-		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -142,7 +142,7 @@ public class EmpController {
 	@PatchMapping("/authority/{userId}")
 	public ResponseEntity<ApiResponse<UserAdminDto>> updateUserAuthority(@PathVariable Integer userId,
 			@RequestBody Map<String, Object> map) {
-		System.out.println(map);
+		// System.out.println(map);
 		try {
 			String authorityIdString = map.get("authorityId") + "";
 			Integer authorityId = Integer.valueOf(authorityIdString);
@@ -233,7 +233,7 @@ public class EmpController {
 	@PutMapping("/publish/{newsId}")
 	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId,
 			@RequestBody Map<String, Object> map) {
-		System.out.println(map);
+		// System.out.println(map);
 		Boolean isPublic = (Boolean) map.get("public");
 		Boolean state = newsService.publishNews(newsId, isPublic);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();

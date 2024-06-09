@@ -66,7 +66,7 @@ const login = async (formData) => {
 
 		Swal.fire(message, '', 'success');
 		setTimeout(() => {
-			window.location.replace('/tinglinews/emp/content-management.html');
+			window.location.replace('/tinglinews/emp/index.html');
 		}, 1000);
 		return;
 

@@ -33,7 +33,8 @@ const renderSaved = (data) => {
 	const render = ({ savedId, news, savedTime }) => `
 	<tr>
 		<td>${savedId}</td>
-		<td>${news.title}</td>
+		<td><a href="/tinglinews/news.html?id=${news.newsId}">
+		${news.title}</a></td>
 		<td>${news.publicTime}</td>
 		<td>${savedTime}</td>
 		<td>
@@ -108,6 +109,8 @@ const updateProfile = async (formData) => {
 		// console.log(state, message, data);
 
 		if (state) {
+			sessionStorage.setItem('userName', formData.userName);
+			sessionStorage.setItem('userEmail', formData.userEmail);
 			Swal.fire(message, '', 'success');
 		} else {
 			Swal.fire(message, '', 'warning');

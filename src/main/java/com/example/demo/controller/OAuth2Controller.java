@@ -14,11 +14,11 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/callback/github")
 public class OAuth2Controller {
-
+	
 	@GetMapping
 	public String getToken(@RequestParam("code") String code, HttpSession session) throws Exception {
 		session.setAttribute("code", code);
-		System.out.println("code: " + code);
+		// System.out.println("code: " + code);
 		return "redirect:/callback/github.html";
 		// return code;
 	}
@@ -27,7 +27,7 @@ public class OAuth2Controller {
 	public String exchangeToken(HttpSession session) throws Exception {
 
 		String code = (String) session.getAttribute("code");
-		System.out.println("code: "+code);
+		// System.out.println("code: "+code);
 
 		String token = OAuth2Util.getGitHubAccessToken(code);
 		String accessToken = OAuth2Util.parseAccessToken(token);
@@ -42,7 +42,7 @@ public class OAuth2Controller {
 
 			session.setAttribute("loginStatus", true);
 		} else {
-			System.out.println("accessToken is null");
+			System.err.println("accessToken is null");
 		}
 
 		return "redirect:/user/profile.html";
