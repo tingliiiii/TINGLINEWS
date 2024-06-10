@@ -11,7 +11,6 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
         <!-- jQuery -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-
     </head>
 
     <body>
@@ -19,10 +18,23 @@
         <script>
             $(document).ready(async () => {
                 try {
-                    const response = await fetch('http://192.168.0.60:8080/tinglinews/callback/github/exchange');
-                    console.log(response);
-                    // 使用者還是要先註冊ＱＱ
-                    window.location.replace(response.url);
+                    const response = await fetch('http://172.20.10.5:8080/tinglinews/callback/github/exchange', {
+                        credentials: 'include' // 帶上跨域請求的認證信息，如 cookies
+                    });
+                    if (response.ok) {
+                        console.log(response);
+                        const { state, message, data } = await response.json(); // 假設回應是 JSON 格式
+                        if (state) {
+                            sessionStorage.setItem('userId', data);
+                            window.location.replace('/tinglinews/user/profile.html');
+                        } else {
+                            swal.fire('Error', message, 'error');
+                        }
+
+                    } else {
+                        const errorMessage = await response.text(); // 獲取錯誤信息
+                        swal.fire('Error', errorMessage, 'error');
+                    }
                 } catch (error) {
                     console.error('Error:', error);
                     swal.fire('Error', error, 'error');

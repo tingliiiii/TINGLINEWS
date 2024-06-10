@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,17 +68,22 @@ public class NewsService {
 
 	// 網頁內容管理
 	public List<NewsDtoForBack> findAllNewsForBack() {
-
-		List<NewsDtoForBack> dtos = new ArrayList<>();
 		List<News> newsList = newsDao.findAllNewsForBack();
-
+		List<NewsDtoForBack> dtos = newsList.stream().map(news -> {
+			NewsDtoForBack dto = modelMapper.map(news, NewsDtoForBack.class);
+			dto.setUserName(userService.getUserById(news.getUserId()).getUserName());
+			return dto;
+		}).collect(Collectors.toList());
+		/*
 		for (News news : newsList) {
 			NewsDtoForBack dto = modelMapper.map(news, NewsDtoForBack.class);
 			dto.setUserName(userService.getUserById(news.getUserId()).getUserName());
 			dtos.add(dto);
 		}
+		*/
 		return dtos;
 	}
+
 
 	// 前台 ============================================================
 	// 確認文章已公開
@@ -94,34 +101,18 @@ public class NewsService {
 	// 單篇文章
 	public NewsDtoForFront getNewsByIdForFront(Integer newsId) {
 		News news = newsDao.getNewsByIdForFront(newsId);
+		if (news == null) {
+            return null;
+        }
 		NewsDtoForFront dto = modelMapper.map(news, NewsDtoForFront.class);
 		dto.setTag(newsDao.getTagById(news.getTagId()));
 		List<Journalist> journalists = new ArrayList<>();
 		for (Integer journalistId : news.getJournalistIds()) {
-			Journalist journalist = newsDao.getJournalistById(journalistId);
-			journalists.add(journalist);
+			journalists.add(newsDao.getJournalistById(journalistId));
 		}
 		dto.setJournalists(journalists);
 		return dto;
 	}
 
-	public List<NewsDtoForBack> findBack() {
-		List<NewsDtoForBack> dtos = new ArrayList<>();
-		List<News> newsList = newsDao.findAllNewsForBack();
-		for (News news : newsList) {
-			// System.out.println(news);
-			NewsDtoForBack dto = new NewsDtoForBack();
-			dto.setNewsId(news.getNewsId());
-			dto.setTitle(news.getTitle());
-			int id = news.getUserId();
-			dto.setUserId(id);
-			dto.setUserName(userService.getUserById(id).getUserName());
-			dto.setCreatedTime(news.getCreatedTime());
-			dto.setUpdatedTime(news.getUpdatedTime());
-			dto.setPublic(news.isPublic());
-			dto.setPublicTime(news.getPublicTime());
-			dtos.add(dto);
-		}
-		return dtos;
-	}
+	
 }

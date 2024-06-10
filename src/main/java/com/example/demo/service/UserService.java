@@ -7,10 +7,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.ThirdPartyAuthDao;
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Authority;
+import com.example.demo.model.po.ThirdPartyAuth;
 import com.example.demo.model.po.User;
 import com.example.demo.security.PasswordUtil;
 
@@ -19,6 +21,9 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private ThirdPartyAuthDao thirdPartyAuthDao;
 
 	@Autowired
 	private FunctionService functionService;
@@ -32,7 +37,7 @@ public class UserService {
 	}
 
 	// 註冊
-	public Integer addUser(User user) throws Exception {
+	public Integer createUser(User user) throws Exception {
 		// 隨機鹽值（Hex）
 		String salt = PasswordUtil.generateSalt();
 		// 密碼加鹽儲存
@@ -56,19 +61,11 @@ public class UserService {
 	// 登入：驗證密碼哈希值
 	public User validateUser(String userEmail, String userPassword) throws Exception {
 		User user = getUserByEmail(userEmail);
-		if (user == null)
-			return null;
-
-		String hash = user.getUserPassword();
-		String salt = user.getSalt();
-		String inputHashed = hashPassword(userPassword, salt);
-
-		// 比較 inputHashed（使用者輸入的）與 hash（資料庫的）是否相等
-		if (inputHashed.equals(hash)) {
-			return user;
-		} else {
-			return null;
-		}
+		if (user == null) return null;
+		
+		// 比較 使用者輸入的密碼 與 資料庫的密碼 是否相等
+		String inputHashed = hashPassword(userPassword, user.getSalt());
+		return inputHashed.equals(user.getUserPassword()) ? user : null;
 	}
 
 	// 網頁內容管理 findAllNewsForBack
@@ -86,7 +83,7 @@ public class UserService {
 	}
 
 	// 修改個人資訊
-	public Boolean updateUser(Integer userId, User user) {
+	public Boolean updateUserDetails(Integer userId, User user) {
 		return userDao.updateUser(userId, user) > 0;
 	}
 
@@ -109,7 +106,7 @@ public class UserService {
 		return userDtos;
 	}
 
-	public UserAdminDto getUserAdminDtoFromUserId(Integer userId) {
+	public UserAdminDto getUserAdminDtoById(Integer userId) {
 		User user = userDao.getUserById(userId);
 		UserAdminDto dto = modelMapper.map(user, UserAdminDto.class);
 		Authority authority = userDao.getAuthorityById(user.getAuthorityId());
@@ -123,7 +120,7 @@ public class UserService {
 	}
 
 	// 修改權限時的選項
-	public List<Authority> findAllAuthorities() {
+	public List<Authority> getAllAuthorities() {
 		return userDao.findAllAuthorities();
 	}
 
@@ -133,12 +130,32 @@ public class UserService {
 	}
 
 	// 後台刪除使用者
-	public Boolean deleteUser(Integer userId) {
+	public Boolean removeUser(Integer userId) {
 		return userDao.deleteUser(userId) > 0;
 	}
 
 	public User getUserByEmail(String userEmail) {
 		return userDao.getUserByEmail(userEmail);
 	}
-
+	
+	public User findOrCreateUser(String provider, Integer providerUserId, String email, String name) {
+		ThirdPartyAuth thirdPartyAuth = thirdPartyAuthDao.findByProviderAndProviderUserId(provider, providerUserId);
+		if(thirdPartyAuth!=null) {
+			User user = userDao.getUserById(thirdPartyAuth.getUserId());
+			return user;
+		}
+		User user = new User();
+		user.setUserEmail(email);
+		user.setUserName(name);
+		Integer userId = userDao.addUser(user);
+		thirdPartyAuth = new ThirdPartyAuth();
+		thirdPartyAuth.setUserId(userId);
+		thirdPartyAuth.setProvider(provider);
+		thirdPartyAuth.setProviderUserId(providerUserId);
+		Boolean state = thirdPartyAuthDao.addThirdPartyAuth(thirdPartyAuth)>0;
+		if(state) {
+			return user;
+		}
+		return null;		
+	}
 }

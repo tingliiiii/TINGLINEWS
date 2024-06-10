@@ -10,7 +10,9 @@ const fetchData = async (userId) => {
 
 		$('#userId').val(data.userId);
 		$('#userEmail').val(data.userEmail);
+		sessionStorage.setItem('userEmail', data.userEmail);
 		$('#userName').val(data.userName);
+		sessionStorage.setItem('userName', data.userName);
 		$('#gender').val(data.gender);
 		$('#birth').val(data.birthday);
 		$('#phone').val(data.phone);

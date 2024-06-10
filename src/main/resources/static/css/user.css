@@ -53,14 +53,19 @@
 	text-align: center;
 }
 
-#saved-list-body td a{
+#saved-list-body td a {
 	text-decoration: none;
+	color: var(--c-primary-color3);
+}
+
+#saved-list-body td a:hover {
+	color: var(--c-primary-color2);
 }
 
 #saved-list-body td:nth-child(2) {
 	text-align: left;
 }
 
-#forget{
+#forget {
 	cursor: pointer;
 }

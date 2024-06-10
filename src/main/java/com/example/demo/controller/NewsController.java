@@ -51,7 +51,7 @@ public class NewsController {
 	public ResponseEntity<ApiResponse<NewsDtoForFront>> findNewsById(@PathVariable Integer newsId) {
 		try {
 			NewsDtoForFront news = newsService.getNewsByIdForFront(newsId);
-			System.out.println(news.getJournalists());
+			// System.out.println(news.getJournalists());
 			ApiResponse<NewsDtoForFront> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), news);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {

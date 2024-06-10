@@ -84,16 +84,15 @@ public class UserController {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.查無資料.name(), null));
 		}
 
-		Boolean state = false;
 		try {
-			state = userService.resetPassword(userEmail, password);
+			Boolean state = userService.resetPassword(userEmail, password);
 			if (!state) {
 				return ResponseEntity.ok(new ApiResponse<>(state, StatusMessage.更新失敗.name(), null));
 			}
 			return ResponseEntity.ok(new ApiResponse<>(state, StatusMessage.更新成功.name(), null));
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new ApiResponse<>(state, StatusMessage.更新失敗.name(), e.getMessage()));
+			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.更新失敗.name(), e.getMessage()));
 		}
 
 	}
@@ -217,7 +216,7 @@ public class UserController {
 		// CSRF Token 驗證通過，執行登入邏輯
 		Integer userId = 0;
 		try {
-			userId = userService.addUser(user);
+			userId = userService.createUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			ApiResponse<User> apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), user);
@@ -256,7 +255,7 @@ public class UserController {
 		user.setBirthday(userProfile.getBirthday());
 		user.setGender(userProfile.getGender());
 		user.setPhone(userProfile.getPhone());
-		boolean state = userService.updateUser(userId, user);
+		boolean state = userService.updateUserDetails(userId, user);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<User> apiResponse = new ApiResponse<>(state, message, user);
 		return ResponseEntity.ok(apiResponse);

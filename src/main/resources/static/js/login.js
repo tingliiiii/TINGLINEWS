@@ -98,7 +98,7 @@ $(document).ready(() => {
 
 	$('#github').on('click', () => {
 		const clientId = 'Ov23liDtaaE6SzdeiYZu';
-		const redirectUri = `http://192.168.0.60:8080/tinglinews/callback/github`;
+		const redirectUri = `http://172.20.10.5:8080/tinglinews/callback/github`;
 		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`;
 		window.location.replace(githubAuthUrl);
 	});

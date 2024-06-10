@@ -1,12 +1,14 @@
 package com.example.demo.security;
 
 import java.security.SecureRandom;
-import java.math.BigInteger;
+import java.util.UUID;
 
 public class CSRFTokenUtil {
 	private static final SecureRandom random = new SecureRandom();
 
+	// 生成 CSRF 令牌
 	public static String generateToken() {
-		return new BigInteger(130, random).toString(32);
+		// 使用 UUID 來生成唯一的字串作為 CSRF 令牌
+		return UUID.randomUUID().toString();
 	}
 }

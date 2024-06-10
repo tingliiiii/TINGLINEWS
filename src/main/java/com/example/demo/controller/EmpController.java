@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.NewsDtoForBack;
 import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserLoginDto;
-import com.example.demo.model.dto.UserProfileDto;
 import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.Journalist;
 import com.example.demo.model.po.News;
@@ -63,11 +61,11 @@ public class EmpController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		// System.out.println("login csrfToken: " + csrfToken);
+		System.out.println("login csrfToken: " + csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
-		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -81,7 +79,7 @@ public class EmpController {
 			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			// 若驗證成功
 			if (user != null) {
-				UserAdminDto userDto = userService.getUserAdminDtoFromUserId(user.getUserId());
+				UserAdminDto userDto = userService.getUserAdminDtoById(user.getUserId());
 				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), userDto);
 				return ResponseEntity.ok(apiResponse);
 			}
@@ -98,7 +96,11 @@ public class EmpController {
 	// 後台：使用者管理介面
 	@GetMapping("/user")
 	public ResponseEntity<ApiResponse<List<UserAdminDto>>> findAllUser() {
-
+		return handleServiceCall(() -> {
+			List<UserAdminDto> userList = userService.findAllUserAdminDtos();
+			return new ApiResponse<>(true, StatusMessage.查詢成功.name(), userList);
+		});
+		/*
 		try {
 			List<UserAdminDto> userList = userService.findAllUserAdminDtos();
 			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userList);
@@ -107,11 +109,20 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
+
 	}
 
 	// 後台：刪除使用者
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<ApiResponse<User>> deleteUser(@PathVariable("userId") Integer userId) {
+		 return handleServiceCall(() -> {
+	            User user = userService.getUserById(userId);
+	            Boolean state = userService.removeUser(userId);
+	            String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
+	            return new ApiResponse<>(state, message, user);
+	        });
+		/*
 		User user = null;
 		try {
 			user = userService.getUserById(userId);
@@ -122,12 +133,19 @@ public class EmpController {
 		} catch (Exception e) {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), user);
 			return ResponseEntity.ok(apiResponse);
-		}
+		} 
+		*/
 	}
 
 	// 修改使用者權限的選項
 	@GetMapping("/authority")
 	public ResponseEntity<ApiResponse<List<Authority>>> getAuthority() {
+		return handleServiceCall(() -> {
+            List<Authority> authorities = userService.getAllAuthorities();
+            String message = (authorities != null && !authorities.isEmpty()) ? StatusMessage.查詢成功.name() : StatusMessage.查無資料.name();
+            return new ApiResponse<>(true, message, authorities);
+        });
+		/*
 		List<Authority> authorities = userService.findAllAuthorities();
 		ApiResponse apiResponse;
 		if (authorities != null) {
@@ -136,6 +154,7 @@ public class EmpController {
 			apiResponse = new ApiResponse<>(true, StatusMessage.查無資料.name(), authorities);
 		}
 		return ResponseEntity.ok(apiResponse);
+		*/
 	}
 
 	// 修改使用者權限
@@ -143,6 +162,14 @@ public class EmpController {
 	public ResponseEntity<ApiResponse<UserAdminDto>> updateUserAuthority(@PathVariable Integer userId,
 			@RequestBody Map<String, Object> map) {
 		// System.out.println(map);
+		  return handleServiceCall(() -> {
+	            Integer authorityId = Integer.valueOf(map.get("authorityId").toString());
+	            Boolean state = userService.updateUserAuthority(userId, authorityId);
+	            String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
+	            UserAdminDto dto = userService.getUserAdminDtoById(userId);
+	            return new ApiResponse<>(state, message, dto);
+	        });
+		  /*
 		try {
 			String authorityIdString = map.get("authorityId") + "";
 			Integer authorityId = Integer.valueOf(authorityIdString);
@@ -157,11 +184,17 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
 	}
 
 	// 後台：網頁內容管理介面
 	@GetMapping("/news")
 	public ResponseEntity<ApiResponse<List<NewsDtoForBack>>> findAllNews() {
+		 return handleServiceCall(() -> {
+	            List<NewsDtoForBack> news = newsService.findAllNewsForBack();
+	            return new ApiResponse<>(true, StatusMessage.查詢成功.name(), news);
+	        });
+		 /*
 		List<NewsDtoForBack> news = null;
 		try {
 			news = newsService.findAllNewsForBack();
@@ -171,12 +204,18 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), news);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
 
 	}
 
 	// 新增文章時的標籤選項
 	@GetMapping("/tags")
 	public ResponseEntity<ApiResponse<List<Tag>>> findAllTags() {
+		return handleServiceCall(() -> {
+            List<Tag> tags = newsService.findAllTags();
+            return new ApiResponse<>(true, StatusMessage.查詢成功.name(), tags);
+        });
+		/*
 		List<Tag> tags = null;
 		try {
 			tags = newsService.findAllTags();
@@ -186,11 +225,17 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), tags);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
 	}
 
 	// 新增文章時的記者選項
 	@GetMapping("/journalists")
 	public ResponseEntity<ApiResponse<List<Journalist>>> findAllJournalists() {
+		return handleServiceCall(() -> {
+            List<Journalist> journalists = newsService.findAllJournalists();
+            return new ApiResponse<>(true, StatusMessage.查詢成功.name(), journalists);
+        });
+		/*
 		try {
 			List<Journalist> journalists = newsService.findAllJournalists();
 			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), journalists);
@@ -199,46 +244,92 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.toString(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
 	}
 
 	// 新增文章
 	@PostMapping("/post")
 	public ResponseEntity<ApiResponse<News>> postNews(@RequestBody News news) {
+		 return handleServiceCall(() -> {
+	            Boolean state = newsService.postNews(news);
+	            String message = state ? StatusMessage.新增成功.name() : StatusMessage.新增失敗.name();
+	            return new ApiResponse<>(state, message, news);
+	        });
+		 /*
 		Boolean state = newsService.postNews(news);
 		String message = state ? StatusMessage.新增成功.name() : StatusMessage.新增失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
+		*/
 
 	}
 
 	// 找到單篇文章（為了修改）
 	@GetMapping("/news/{newsId}")
 	public ResponseEntity<ApiResponse<News>> getNews(@PathVariable Integer newsId) {
+		return handleServiceCall(() -> {
+            News news = newsService.getNewsById(newsId);
+            Boolean state = news != null;
+            String message = state ? StatusMessage.查詢成功.name() : StatusMessage.查無資料.name();
+            return new ApiResponse<>(state, message, news);
+        });
+		/*
 		News news = newsService.getNewsById(newsId);
 		Boolean state = news != null;
 		String message = state ? StatusMessage.查詢成功.name() : StatusMessage.查無資料.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
+		*/
 	}
 
 	// 修改文章
 	@PutMapping("/news/{newsId}")
 	public ResponseEntity<ApiResponse<News>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
+		return handleServiceCall(() -> {
+            Boolean state = newsService.updateNews(newsId, news);
+            String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
+            return new ApiResponse<>(state, message, news);
+        });
+		/*
 		Boolean state = newsService.updateNews(newsId, news);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<News> apiResponse = new ApiResponse<>(state, message, news);
 		return ResponseEntity.ok(apiResponse);
+		*/
 	}
 
 	@PutMapping("/publish/{newsId}")
 	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId,
 			@RequestBody Map<String, Object> map) {
 		// System.out.println(map);
+		return handleServiceCall(() -> {
+            Boolean isPublic = (Boolean) map.get("public");
+            Boolean state = newsService.publishNews(newsId, isPublic);
+            String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
+            return new ApiResponse<>(state, message, map);
+        });
+		/*
 		Boolean isPublic = (Boolean) map.get("public");
 		Boolean state = newsService.publishNews(newsId, isPublic);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse<Map> apiResponse = new ApiResponse<>(state, message, map);
 		return ResponseEntity.ok(apiResponse);
+		*/
+	}
+
+	private <T> ResponseEntity<ApiResponse<T>> handleServiceCall(ServiceCall<T> serviceCall) {
+        try {
+            ApiResponse<T> apiResponse = serviceCall.execute();
+            return ResponseEntity.ok(apiResponse);
+        } catch (Exception e) {
+            ApiResponse<T> apiResponse = new ApiResponse<>(false, e.getMessage(), null);
+            return ResponseEntity.ok(apiResponse);
+        }
+    }
+	
+	@FunctionalInterface
+	private interface ServiceCall<T> {
+		ApiResponse<T> execute() throws Exception;
 	}
 
 }

@@ -49,6 +49,7 @@ public class UserDaoImpl implements UserDao {
 		String sql = "UPDATE user SET user_name=:userName, user_email=:userEmail, "
 				+ "birthday=:birthday, gender=:gender, phone=:phone WHERE user_id=:userId";
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
+		params.registerSqlType("userId", java.sql.Types.INTEGER); // 確保userId被正確綁定
 		int rowcount = namedParameterJdbcTemplate.update(sql, params);
 		return rowcount;
 	}
@@ -77,12 +78,7 @@ public class UserDaoImpl implements UserDao {
 	public User getUserByEmail(String userEmail) {
 		String sql = "SELECT user_id, user_name, user_email, user_password, salt, birthday, gender, phone, authority_id FROM user WHERE user_email = ?";
 		try {
-			List<User> users = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
-			if (users != null && !users.isEmpty()) {
-				return users.get(0); // 返回第一個符合條件的用戶
-			} else {
-				return null; // 如果沒有符合條件的用戶，返回空
-			}
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
