@@ -43,4 +43,10 @@ public class DonatedDaoImpl implements DonatedDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Donated.class), userId);
 	}
 
+	@Override
+	public List<Donated> findAllDonateds() {
+		String sql = "SELECT donated_id, frequency, amount, donated_time, end_time, donate_status, user_id FROM donated";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Donated.class));
+	}
+
 }

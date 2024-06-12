@@ -3,9 +3,8 @@ const ip = 'localhost';
 
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
-	const url = `http://${ip}:8080/tinglinews${uri}`;
 	try {
-		const response = await fetch(url); // 等待 fetch 請求完成
+		const response = await fetch(`http://${ip}:8080/tinglinews${uri}`); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		// console.log(state, message, data);
 		return data;
@@ -55,7 +54,6 @@ const handleUpdateAuthority = async () => {
 		// console.log(state, message, data);
 
 		if (state) {
-			sessionStorage.setItem('authorityName', data.authority.authorityName);
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.reload();
@@ -78,6 +76,12 @@ $(document).ready(() => {
 		window.location.replace('/tinglinews/emp/login.html');
 		return;
 	}
+
+	const authorityId = data.authority.authorityId;
+    if (authorityId < 1) {
+        window.location.replace('/tinglinews/emp/login.html');
+        return;
+    }
 
 	const userName = data.userName;
 	const authorityName = data.authority.authorityName;
@@ -230,7 +234,7 @@ $(document).ready(() => {
 	// 登出
 	$('.logout-btn').on('click', () => {
 		sessionStorage.clear();
-		swal.fire('登出成功', '', 'success');
+		Swal.fire('登出成功', '', 'success');
 		setTimeout(() => {
 			window.location.replace('/tinglinews/emp/login.html');
 		}, 1000);

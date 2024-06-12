@@ -8,4 +8,5 @@ public interface SavedDao {
 	int addSaved(Saved saved);
 	int deleteSaved(Integer savedId);
 	List<Saved> findSavedById(Integer userId);
+	List<Saved> findAllSaveds();
 }

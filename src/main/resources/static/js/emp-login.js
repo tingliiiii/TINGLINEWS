@@ -46,7 +46,7 @@ const login = async (formData) => {
 		// console.log(state, message, data);
 
 		// 根據登入狀態進行跳轉
-		if (state != true || !data || !data.userId) {
+		if (!state || !data || !data.userId) {
 			Swal.fire(message, '', 'error');
 			return;
 		}
@@ -59,17 +59,12 @@ const login = async (formData) => {
 
 		// 將 userId 儲存至 sessionStorage（判斷用戶是否已登入）
 		sessionStorage.setItem('userData', JSON.stringify(data));
-		// sessionStorage.setItem('userId', data.userId);
-		// sessionStorage.setItem('userName', data.userName);
-		// sessionStorage.setItem('authorityId', data.authority.authorityId);
-		// sessionStorage.setItem('authorityName', data.authority.authorityName);
 
 		Swal.fire(message, '', 'success');
 		setTimeout(() => {
 			window.location.replace('/tinglinews/emp/index.html');
 		}, 1000);
 		return;
-
 
 	} catch (e) {
 		console.error('登入錯誤：', e);
@@ -83,7 +78,6 @@ $(document).ready(() => {
 
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
-
 	$('#emp-login-form').on('submit', handleSubmit);
 
 });

@@ -3,10 +3,8 @@ const ip = 'localhost';
 
 // 從後端抓資料給 DataTable
 const fetchData = async (uri) => {
-    // 定義 API URL
-    const url = `http://${ip}:8080/tinglinews${uri}`;
     try {
-        const response = await fetch(url); // 等待 fetch 請求完成
+        const response = await fetch(`http://${ip}:8080/tinglinews${uri}`); // 等待 fetch 請求完成
         const { state, message, data } = await response.json(); // 等待回應本文內容
         // console.log(state, message, data);
         if (state) {
@@ -24,17 +22,17 @@ const fetchData = async (uri) => {
 $(document).ready(async () => {
 
     const data = JSON.parse(sessionStorage.getItem('userData'));
-
     if (!data) {
         window.location.replace('/tinglinews/emp/login.html');
         return;
     }
-
-    // 檢查使用者權限：只有編輯以上可以查看使用者管理頁面
-    // console.log(data);
     const authorityId = data.authority.authorityId;
+    if (authorityId < 1) {
+        window.location.replace('/tinglinews/emp/login.html');
+        return;
+    }
+    // 只有編輯以上可以查看使用者管理頁面
     if (authorityId < 2) {
-        // $('.user-btn').css('display', 'none');
         $('.post-btn').css('display', 'none');
     }
 
@@ -170,7 +168,7 @@ $(document).ready(async () => {
             // 發送更新請求到後端
             try {
                 const response = await fetch(`http://${ip}:8080/tinglinews/emp/publish/${id}`, {
-                    method: 'PUT',
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -205,7 +203,7 @@ $(document).ready(async () => {
     // 登出
     $('.logout-btn').on('click', () => {
         sessionStorage.clear();
-        swal.fire('登出成功', '', 'success');
+        Swal.fire('登出成功', '', 'success');
         setTimeout(() => {
             window.location.replace('/tinglinews/emp/login.html');
         }, 1000);

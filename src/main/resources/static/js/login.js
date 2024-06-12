@@ -45,15 +45,18 @@ const login = async (formData) => {
 		// console.log(state, message, data);
 
 		// 根據登入狀態進行跳轉
-		if (state != true || !data || !data.userId) {
+		if (!state || !data || !data.userId) {
 			Swal.fire(message, '', 'error');
 			return;
 		}
 
 		// 將 userId 儲存至 sessionStorage（判斷用戶是否已登入）
+		sessionStorage.setItem('userData', JSON.stringify(data));
 		sessionStorage.setItem('userId', data.userId);
 		// 顯示於 nav-login #welcome
 		sessionStorage.setItem('userName', data.userName);
+		// 判斷權限 顯示後台按鈕
+		sessionStorage.setItem('authorityId', data.authority.authorityId);
 
 		// 如果沒有 email 跳轉至個人資料頁面
 		const email = sessionStorage.getItem('userEmail');
@@ -86,9 +89,12 @@ $(document).ready(() => {
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
 
-	const email = sessionStorage.getItem('userEmail');
-	$('#userEmail').val(email);
-
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+	if(data){
+		const email = data.userEmail;
+		$('#userEmail').val(email);
+	}
+	
 	$('#login-form').on('submit', handleFormSubmit);
 
 	$('#forget').on('click', () => {

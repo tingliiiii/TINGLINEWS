@@ -7,7 +7,7 @@ const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     const captcha = $('#code').val();
-    if (captcha === '') {
+    if (!captcha) {
         Swal.fire('請輸入驗證碼', '', 'error');
         return;
     }
@@ -18,21 +18,24 @@ const handleFormSubmit = async (event) => {
         return;
     }
 
+    const data = JSON.parse(sessionStorage.getItem('userData'));    
+
     const formData = {
         userEmail: $('#userEmail').val(),
         frequency: $('#frequency').val(),
         amount: $('#amount').val(),
-        donateStatus: ($('#frequency').val() == '單筆') ? '已完成' : '進行中',
-        userId: sessionStorage.getItem('userId')
+        donateStatus: ($('#frequency').val() === '單筆') ? '已完成' : '進行中',
+        userId: data.userId
     };
     await donate(formData);
 };
 
 const donate = async (formData) => {
 
-    const userId = sessionStorage.getItem('userId');
+    const data = JSON.parse(sessionStorage.getItem('userData'));    
+    // const userId = sessionStorage.getItem('userId');
 
-    if (userId == null) {
+    if (!data) {
         sessionStorage.setItem('userEmail', formData.userEmail);
         Swal.fire('請先登入 謝謝', '', 'warning');
         setTimeout(() => {
@@ -75,7 +78,7 @@ const loadCaptcha = async () => {
         const { state, message, data } = await response.json();
 
         if (state) {
-            captcha.attr('src', 'data:image/jpeg;base64,' + data);
+            captcha.attr('src', `data:image/jpeg;base64,${data}`);
         } else {
             Swal.fire(message, '取得 captcha 失敗', 'error');
         }
@@ -92,9 +95,7 @@ const verifyCaptcha = async (captcha) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                'captcha': captcha
-            })
+            body: JSON.stringify({ captcha })
         });
         const { state, message, data } = await response.json();
         // console.log(state, message, data);
@@ -107,7 +108,8 @@ const verifyCaptcha = async (captcha) => {
 
 $(document).ready(() => {
 
-    if (sessionStorage.getItem('userId') != null) {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
         $('.header-container').load('../nav-login.html');
     } else {
         $('.header-container').load('../nav.html');

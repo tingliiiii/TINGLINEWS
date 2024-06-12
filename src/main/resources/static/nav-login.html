@@ -26,6 +26,7 @@
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
                     <a href="/tinglinews/user/profile.html" class="btn btn-primary">個人資料</a>
+                    <a href="/tinglinews/emp/index.html" id="admin" class="btn btn-primary ms-2" style="display: none;">後台管理</a>
                     <span class="logout-btn btn btn-outline-primary mx-2">登出</span>
                 </div>
             </div>
@@ -37,13 +38,20 @@
 
 <script>
 
-    if (sessionStorage.getItem('userId') != null) {
+const data = JSON.parse(sessionStorage.getItem('userData'));
 
-        const name = sessionStorage.getItem('userName');
-        const email = sessionStorage.getItem('userEmail');
+
+
+    if (data) {
+        const name = data.userName;
+        const email = data.userEmail;
+        const authorityId = data.authority.authorityId;
         // console.log(name, email);
 
-        if (name != null) {
+        if(authorityId > 0) {
+            $('#admin').show();
+        }
+        if (name) {
             $('#welcome').html('歡迎 ' + name);
         } else {
             $('#welcome').html('歡迎 ' + email);
@@ -72,7 +80,7 @@
 
     $('.logout-btn').on('click', () => {
         sessionStorage.clear();
-        swal.fire('登出成功', '', 'success');
+        Swal.fire('登出成功', '', 'success');
         setTimeout(() => {
             window.location.replace('/tinglinews');
         }, 1000);

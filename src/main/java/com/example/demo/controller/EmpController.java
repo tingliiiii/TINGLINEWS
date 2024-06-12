@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,27 +45,16 @@ public class EmpController {
 	@Autowired
 	private NewsService newsService;
 
-	// CSRF Token
-	@GetMapping("/login")
-	public ResponseEntity<Map<String, String>> getCsrfToken(HttpSession session) {
-		String csrfToken = CSRFTokenUtil.generateToken();
-		session.setAttribute("csrfToken", csrfToken);
-		// System.out.println("getCsrfToken: " + csrfToken);
-		Map<String, String> tokenMap = new HashMap<>();
-		tokenMap.put("csrfToken", csrfToken);
-		return ResponseEntity.ok(tokenMap);
-	}
-
 	@PostMapping("/login")
-	public ResponseEntity<ApiResponse<UserAdminDto>> login(@RequestBody UserLoginDto dto, HttpServletRequest request,
+	public ResponseEntity<ApiResponse<UserAdminDto>> login(@RequestBody UserLoginDto dto, 
+			@RequestHeader("X-CSRF-TOKEN") String requestCsrfToken, 
 			HttpSession session) {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
 		System.out.println("login csrfToken: " + csrfToken);
 
-		// 從請求中獲取 CSRF Token 值
-		String requestCsrfToken = request.getHeader("X-CSRF-TOKEN");
+		// 從請求中獲取的 CSRF Token 值
 		System.out.println("login requestCsrfToken: " + requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
@@ -74,7 +64,16 @@ public class EmpController {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
+		return handleServiceCall(() -> {
+            User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
+            if (user != null) {
+                UserAdminDto userDto = userService.getUserAdminDtoById(user.getUserId());
+                return new ApiResponse<>(true, StatusMessage.登入成功.name(), userDto);
+            }
+            return new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
+        });
 		// CSRF Token 驗證通過，執行登入邏輯
+		/*
 		try {
 			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			// 若驗證成功
@@ -91,6 +90,7 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
+		*/
 	}
 
 	// 後台：使用者管理介面
@@ -115,12 +115,11 @@ public class EmpController {
 
 	// 後台：刪除使用者
 	@DeleteMapping("/user/{userId}")
-	public ResponseEntity<ApiResponse<User>> deleteUser(@PathVariable("userId") Integer userId) {
+	public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable("userId") Integer userId) {
 		 return handleServiceCall(() -> {
-	            User user = userService.getUserById(userId);
 	            Boolean state = userService.removeUser(userId);
 	            String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
-	            return new ApiResponse<>(state, message, user);
+	            return new ApiResponse<>(state, message, null);
 	        });
 		/*
 		User user = null;
@@ -159,15 +158,14 @@ public class EmpController {
 
 	// 修改使用者權限
 	@PatchMapping("/authority/{userId}")
-	public ResponseEntity<ApiResponse<UserAdminDto>> updateUserAuthority(@PathVariable Integer userId,
+	public ResponseEntity<ApiResponse<Void>> updateUserAuthority(@PathVariable Integer userId,
 			@RequestBody Map<String, Object> map) {
 		// System.out.println(map);
 		  return handleServiceCall(() -> {
 	            Integer authorityId = Integer.valueOf(map.get("authorityId").toString());
 	            Boolean state = userService.updateUserAuthority(userId, authorityId);
 	            String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
-	            UserAdminDto dto = userService.getUserAdminDtoById(userId);
-	            return new ApiResponse<>(state, message, dto);
+	            return new ApiResponse<>(state, message, null);
 	        });
 		  /*
 		try {
@@ -249,11 +247,11 @@ public class EmpController {
 
 	// 新增文章
 	@PostMapping("/post")
-	public ResponseEntity<ApiResponse<News>> postNews(@RequestBody News news) {
+	public ResponseEntity<ApiResponse<Void>> postNews(@RequestBody News news) {
 		 return handleServiceCall(() -> {
 	            Boolean state = newsService.postNews(news);
 	            String message = state ? StatusMessage.新增成功.name() : StatusMessage.新增失敗.name();
-	            return new ApiResponse<>(state, message, news);
+	            return new ApiResponse<>(state, message, null);
 	        });
 		 /*
 		Boolean state = newsService.postNews(news);
@@ -284,11 +282,11 @@ public class EmpController {
 
 	// 修改文章
 	@PutMapping("/news/{newsId}")
-	public ResponseEntity<ApiResponse<News>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
+	public ResponseEntity<ApiResponse<Void>> updateNews(@PathVariable Integer newsId, @RequestBody News news) {
 		return handleServiceCall(() -> {
             Boolean state = newsService.updateNews(newsId, news);
             String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
-            return new ApiResponse<>(state, message, news);
+            return new ApiResponse<>(state, message, null);
         });
 		/*
 		Boolean state = newsService.updateNews(newsId, news);
@@ -298,15 +296,15 @@ public class EmpController {
 		*/
 	}
 
-	@PutMapping("/publish/{newsId}")
-	public ResponseEntity<ApiResponse<Map>> publish(@PathVariable Integer newsId,
+	@PatchMapping("/publish/{newsId}")
+	public ResponseEntity<ApiResponse<Void>> publish(@PathVariable Integer newsId,
 			@RequestBody Map<String, Object> map) {
 		// System.out.println(map);
 		return handleServiceCall(() -> {
             Boolean isPublic = (Boolean) map.get("public");
             Boolean state = newsService.publishNews(newsId, isPublic);
             String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
-            return new ApiResponse<>(state, message, map);
+            return new ApiResponse<>(state, message, null);
         });
 		/*
 		Boolean isPublic = (Boolean) map.get("public");
@@ -323,7 +321,7 @@ public class EmpController {
             return ResponseEntity.ok(apiResponse);
         } catch (Exception e) {
             ApiResponse<T> apiResponse = new ApiResponse<>(false, e.getMessage(), null);
-            return ResponseEntity.ok(apiResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
         }
     }
 	

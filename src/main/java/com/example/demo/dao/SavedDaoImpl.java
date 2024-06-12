@@ -36,4 +36,10 @@ public class SavedDaoImpl implements SavedDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class), userId);
 	}
 
+	@Override
+	public List<Saved> findAllSaveds() {
+		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class));
+	}
+
 }

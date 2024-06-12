@@ -25,19 +25,19 @@
                         console.log(response);
                         const { state, message, data } = await response.json(); // 假設回應是 JSON 格式
                         if (state) {
-                            sessionStorage.setItem('userId', data);
+                            sessionStorage.setItem('userData', JSON.stringify(data));
                             window.location.replace('/tinglinews/user/profile.html');
                         } else {
-                            swal.fire('Error', message, 'error');
+                            Swal.fire('Error', message, 'error');
                         }
 
                     } else {
                         const errorMessage = await response.text(); // 獲取錯誤信息
-                        swal.fire('Error', errorMessage, 'error');
+                        Swal.fire('Error', errorMessage, 'error');
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    swal.fire('Error', error, 'error');
+                    Swal.fire('Error', error, 'error');
                 }
             });
         </script>

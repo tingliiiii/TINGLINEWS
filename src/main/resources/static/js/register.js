@@ -31,8 +31,8 @@ const addUser = async (formData) => {
 			credentials: 'include' // 需要包含cookie資訊以獲取 CSRF Token
 		});
 
-		const { csrfState, csrfMessage, csrfData } = await csrfResponse.json();
-		console.log(csrfData);
+		const { state: csrfState, message: csrfMessage, data: csrfData } = await csrfResponse.json();
+		console.log(csrfState, csrfMessage, csrfData);
 
 		if (!csrfData.csrfToken) {
 			Swal.fire('未取得 CSRF Token', '', 'warning');
@@ -55,10 +55,12 @@ const addUser = async (formData) => {
 
 		// 根據註冊狀態進行跳轉
 		if (state === true && data && data.userId) {
+			sessionStorage.setItem('userData', JSON.stringify(data));
 			// 將 userId 儲存至 sessionStorage
 			sessionStorage.setItem('userId', data.userId);
 			sessionStorage.setItem('userName', data.userName);
 			sessionStorage.setItem('userEmail', data.userEmail);
+			sessionStorage.setItem('authorityId', data.authority.authorityId);
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.replace('/tinglinews/user/profile.html');

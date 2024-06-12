@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao {
 	// profile、後台修改刪除
 	@Override
 	public User getUserById(Integer userId) {
-		String sql = "SELECT user_id, user_name, user_email, birthday, gender, phone, authority_id FROM user WHERE user_id=?";
+		String sql = "SELECT user_id, user_name, user_email, birthday, gender, phone, authority_id, registered_time FROM user WHERE user_id=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
 		} catch (DataAccessException e) {
@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
 	// 登入：用帳號找使用者
 	@Override
 	public User getUserByEmail(String userEmail) {
-		String sql = "SELECT user_id, user_name, user_email, user_password, salt, birthday, gender, phone, authority_id FROM user WHERE user_email = ?";
+		String sql = "SELECT user_id, user_name, user_email, user_password, salt FROM user WHERE user_email = ?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
 		} catch (Exception e) {

@@ -56,13 +56,18 @@ const renderData = (data) => {
 const handleSubmit = async (event) => {
 	event.preventDefault();
 
-	if (sessionStorage.getItem('userId') == null) {
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+	const id = data.userId;
+
+	
+
+	if (!data.userId) {
 		Swal.fire('登入解鎖收藏功能', '', 'info');
 		return;
 	}
 
 	const formData = {
-		userId: sessionStorage.getItem('userId'),
+		userId: data.userId,
 		newsId: $('#newsId').val()
 	};
 
@@ -89,7 +94,10 @@ const handleSubmit = async (event) => {
 
 // 待 DOM 加載完成之後再執行
 $(document).ready(() => {
-	if (sessionStorage.getItem('userId') != null) {
+
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+	
+	if (data) {
 		$('.header-container').load('nav-login.html');
 		$('#saved-btn').text('收藏這篇文章！');
 	} else {

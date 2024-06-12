@@ -143,7 +143,7 @@ $(document).ready(() => {
 
 	const currentPath = window.location.pathname;
 	// console.log(currentPath);
-	if (sessionStorage.getItem('userId') != null) {
+	if (sessionStorage.getItem('userData') != null) {
 		$('.header-container').load('nav-login.html', () => {
 			// console.log('nav.html 加載完畢');
 			// console.log($('#welcome').text());

@@ -8,6 +8,8 @@ const fetchData = async (userId) => {
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		// console.log(state, message, data);
 
+		if (!state) throw new Error(message);
+
 		$('#userId').val(data.userId);
 		$('#userEmail').val(data.userEmail);
 		sessionStorage.setItem('userEmail', data.userEmail);
@@ -130,7 +132,8 @@ $(document).ready(async () => {
 	$('.footer-container').load('../footer.html');
 	$('.ad-container').load('../ad.html');
 
-	const userId = sessionStorage.getItem('userId');
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+	const userId = sessionStorage.getItem('userId') || data.userId;
 	// console.log('用戶 ID：', userId);
 	if (!userId) {
 		// console.log('用戶 ID 未找到');
@@ -138,6 +141,7 @@ $(document).ready(async () => {
 		window.location.replace('/tinglinews/user/login.html');
 		return;
 	}
+
 	fetchData(userId);
 
 	$('#toggle-donated').on('click', () => {

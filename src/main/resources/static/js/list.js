@@ -96,7 +96,7 @@ const renderData = (data) => {
 
 $(document).ready(() => {
 
-	if (sessionStorage.getItem('userId') != null) {
+	if (sessionStorage.getItem('userData')) {
 		$('.header-container').load('./nav-login.html');
 	} else {
 		$('.header-container').load('./nav.html');

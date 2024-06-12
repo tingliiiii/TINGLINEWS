@@ -45,6 +45,14 @@
     margin: .75em 0;
 }
 
+.news-paragraph h3{
+    color: var(--c-primary-color3);
+    letter-spacing: .05em;
+    line-height: 2em;
+    font-size: 1.2em;
+    margin: .75em 0;
+}
+
 .news-paragraph a {
     text-decoration: none;
     color: var(--c-primary-color);

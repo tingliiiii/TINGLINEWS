@@ -3,9 +3,8 @@ const ip = 'localhost';
 
 // 從後端抓資料
 const fetchData = async (uri) => {
-	const url = `http://${ip}:8080/tinglinews${uri}`;
 	try {
-		const response = await fetch(url); // 等待 fetch 請求完成
+		const response = await fetch(`http://${ip}:8080/tinglinews${uri}`); // 等待 fetch 請求完成
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		// console.log(state, message, data);
 		if (!state) throw new Error(message);
@@ -16,7 +15,8 @@ const fetchData = async (uri) => {
 	}
 };
 
-const createOptionElement = (value, text) => $('<option></option>').attr('value', value).text(text);
+const createOptionElement = (value, text) =>
+	$('<option></option>').attr('value', value).text(text);
 
 // 新增文章的標籤選項
 const loadTagOptions = async () => {
@@ -36,9 +36,11 @@ const loadJournalistOptions = async () => {
 		placeholder: '請選擇記者'
 	});
 
-	if (!select.val()) {
+	// console.log(select.val().length);
+	if (select.val().length === 0) {
 		// 如果 sessionStorage 中有 userId，預設選中該選項
-		const userId = JSON.parse(sessionStorage.getItem('userData')).userId;
+		const data = JSON.parse(sessionStorage.getItem('userData'));
+		const userId = data.userId;
 		if (userId) {
 			$('#journalistIds').val(userId).trigger('change');
 		}
@@ -51,6 +53,7 @@ const handleSubmit = async (event) => {
 
 	event.preventDefault();
 
+	const file = $('#fileInput');
 	if (!file.data('base64') && file[0].files.length === 0) {
 		Swal.fire('錯誤', '請選擇一張照片', 'error');
 		return;
@@ -106,7 +109,6 @@ const handleFileChange = function () {
 	const file = this.files[0];
 
 	if (file) {
-
 		if (this.files.length > 1) {
 			showErrorAndReset('只能上傳一張照片');
 			return;
@@ -156,7 +158,7 @@ $(document).ready(() => {
 		selector: '#content',
 		language: 'zh_TW',
 		content_css: `http://${ip}:8080/tinglinews/css/news.css`,
-		plugins: 'autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker a11ychecker powerpaste autocorrect inlinecss markdown',
+		plugins: 'autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
 		toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
 		// 確保編輯器完全初始化後才執行（不然會有錯誤）
 		setup: (editor) => {
