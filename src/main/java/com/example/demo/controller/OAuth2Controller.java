@@ -14,8 +14,10 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.security.OAuth2Util;
 import com.example.demo.service.UserService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 
+@Tag(name = "OAuth2 API")
 @Controller
 @RequestMapping("/callback")
 public class OAuth2Controller {

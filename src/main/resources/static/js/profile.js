@@ -101,7 +101,7 @@ const handleSubmit = async (event) => {
 
 const updateProfile = async (formData) => {
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/update/${formData.userId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/user/profile/${formData.userId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'

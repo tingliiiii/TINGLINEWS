@@ -141,9 +141,9 @@ const renderCarouselData = (data) => {
 // 待 DOM 加載完成之後再執行
 $(document).ready(() => {
 
-	const currentPath = window.location.pathname;
+	// const currentPath = window.location.pathname;
 	// console.log(currentPath);
-	if (sessionStorage.getItem('userData') != null) {
+	if (sessionStorage.getItem('userData')) {
 		$('.header-container').load('nav-login.html', () => {
 			// console.log('nav.html 加載完畢');
 			// console.log($('#welcome').text());

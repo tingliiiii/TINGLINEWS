@@ -15,6 +15,9 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.NewsService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "News API")
 @RestController
 @RequestMapping("/news")
 public class NewsController {

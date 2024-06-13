@@ -108,8 +108,8 @@ const verifyCaptcha = async (captcha) => {
 
 $(document).ready(() => {
 
-    const userId = sessionStorage.getItem('userId');
-    if (userId) {
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+    if (data) {
         $('.header-container').load('../nav-login.html');
     } else {
         $('.header-container').load('../nav.html');

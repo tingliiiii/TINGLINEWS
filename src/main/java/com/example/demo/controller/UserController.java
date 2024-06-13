@@ -35,12 +35,16 @@ import com.example.demo.security.OTPUtil;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+@Tag(name = "User API")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -137,6 +141,7 @@ public class UserController {
 	}
 
 	// CSRF Token
+	@Operation(summary = "取得 CSRF Token")
 	@GetMapping("/login")
 	public ResponseEntity<ApiResponse<Map<String, String>>> getCsrfToken(HttpSession session) {
 		String csrfToken = CSRFTokenUtil.generateToken();
@@ -246,7 +251,7 @@ public class UserController {
 	}
 
 	// 修改
-	@PutMapping("/update/{userId}")
+	@PutMapping("/profile/{userId}")
 	public ResponseEntity<ApiResponse<Void>> updateUser(@PathVariable Integer userId,
 			@RequestBody UserProfileDto userProfile) {
 		User user = userService.getUserById(userId);

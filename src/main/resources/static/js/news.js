@@ -57,9 +57,6 @@ const handleSubmit = async (event) => {
 	event.preventDefault();
 
 	const data = JSON.parse(sessionStorage.getItem('userData'));
-	const id = data.userId;
-
-	
 
 	if (!data.userId) {
 		Swal.fire('登入解鎖收藏功能', '', 'info');

@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +34,7 @@ import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Employee API")
 @RestController
 @RequestMapping("/emp")
 public class EmpController {

@@ -7,3 +7,7 @@ body{
     margin: 10vh auto 5vh;
     text-align: center;
 }
+
+#forget{
+	text-decoration: none;
+}
