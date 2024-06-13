@@ -58,28 +58,47 @@ TINGLINEWS 是一個功能豐富的新聞網站，提供了新聞報導、會員
 
 ## API 說明
 
+### 資訊安全 API
+
+- `GET /user/login`: 獲取 CSRF Token
+- `GET /callback/github`：使用 GitHub 登入
+- `GET /callback/github/exchange`：使用 GitHub 授權碼交換訪問令牌
+- `POST /user/sendEmail`：發送 OTP 驗證碼郵件
+- `POST /user/verifyOTP`：驗證 OTP
+- `PATCH /user/resetPassword`：重設密碼
+- `GET /user/captcha`：獲取 captcha 驗證碼
+- `POST /user/captcha`：驗證 captcha 驗證碼
+
 ### 使用者 API
 
 - `POST /user/register`：使用者註冊
 - `POST /user/login`：使用者登入
-- `GET /callback/github`：使用 GitHub 登入
 - `GET /user/profile/{userId}`：查看用戶資料
 - `PUT /user/update/{userId}`：更新用戶資料
-- `PATCH /user/resetPassword`：重設密碼
-- `POST /user/sendEmail`：發送驗證郵件
-- `POST /user/verifyOTP`：驗證 OTP
-- `GET /user/captcha`：獲取驗證碼
-- `POST /user/captcha`：驗證驗證碼
 
 ### 新聞 API
 
 - `GET /news/list/`：查看所有已公開新聞
 - `GET /news/list/{tagId}`：按照標籤查看新聞
 - `GET /news/{newsId}`：查看單篇新聞
-- `POST /emp/post`：新增新聞（僅限編輯以上員工）
-- `PUT /emp/news/{newsId}`：修改新聞（僅限編輯以上員工）
-- `PUT /emp/publish/{newsId}`：發布或取消發布文章（僅限編輯以上員工）
 
+### 使用者管理 API
+
+- `POST /emp/login`: 後台員工登入
+- `GET /emp/user`：查看所有使用者
+- `DELETE /emp/user/{userId}`：刪除使用者（僅限管理員）
+- `GET /emp/authority`：獲取所有權限選項
+- `PATCH /emp/authority/{userId}`：更改使用者權限（僅限主管和管理員）
+
+### 內容管理 API
+
+- `GET /emp/news`：查詢所有新聞
+- `POST /emp/post`：新增新聞（僅限編輯以上員工）
+- `GET /emp/tags`：查詢所有標籤
+- `GET /emp/journalists`：查詢所有記者
+- `GET /emp/news/{newsId}`：查看單篇新聞
+- `PUT /emp/news/{newsId}`：修改新聞（僅限編輯以上員工）
+- `PATCH /emp/publish/{newsId}`：發布或取消發布文章（僅限編輯以上員工）
 
 ### 贊助 API
 
@@ -90,19 +109,3 @@ TINGLINEWS 是一個功能豐富的新聞網站，提供了新聞報導、會員
 
 - `POST /user/saved`：收藏新聞
 - `DELETE /user/saved/{savedId}`：取消收藏
-
-### 使用者管理 API
-
-- `POST /emp/login`: 後台員工登入
-- `GET /emp/user`：查看所有使用者
-- `DELETE /emp/user/:userId`：刪除用戶（僅限管理員）
-
-### 權限 API
-
-- `GET /emp/authority`：獲取所有權限選項
-- `PATCH /emp/authority/:userId`：更改使用者權限（僅限主管和管理員）
-
-
-### CSRF Token
-
-- `GET /emp/login`: 獲取 CSRF Token
