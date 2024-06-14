@@ -74,7 +74,7 @@ TINGLINEWS 是功能豐富且易於使用的新聞網站，提供使用者瀏覽
 - `POST /user/register`：使用者註冊
 - `POST /user/login`：使用者登入
 - `GET /user/profile/{userId}`：查看用戶資料
-- `PUT /user/update/{userId}`：更新用戶資料
+- `PUT /user/profile/{userId}`：更新用戶資料
 
 ### 新聞 API
 
@@ -93,7 +93,7 @@ TINGLINEWS 是功能豐富且易於使用的新聞網站，提供使用者瀏覽
 ### 內容管理 API
 
 - `GET /emp/news`：查詢所有新聞
-- `POST /emp/post`：新增新聞（僅限編輯以上員工）
+- `POST /emp/news`：新增新聞（僅限編輯以上員工）
 - `GET /emp/tags`：查詢所有標籤
 - `GET /emp/journalists`：查詢所有記者
 - `GET /emp/news/{newsId}`：查看單篇新聞
