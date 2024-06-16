@@ -1,5 +1,6 @@
 // const ip = '127.0.0.1';
-const ip = 'localhost';
+// const ip = 'localhost';
+const ip = '172.20.10.5';
 
 // 表單提交事件處理
 const handleSubmit = async (event) => {
@@ -32,7 +33,7 @@ const login = async (formData) => {
 			return;
 		}
 		// 在登入請求中包含 CSRF Token
-		const response = await fetch(`http://${ip}:8080/tinglinews/emp/login`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/user/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

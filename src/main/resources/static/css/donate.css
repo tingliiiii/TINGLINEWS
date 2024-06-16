@@ -4,31 +4,31 @@
   width: max(80%, 375px);
 }
 
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
+#myTab .nav-item.show .nav-link,
+#myTab .nav-link.active {
   color: var(--c-primary-color3);
   background-color: transparent;
   border-color: transparent;
 }
 
-.nav-link {
+#myTab .nav-link {
   color: var(--c-primary-color);
   font-size: 1.2em;
 }
 
-.nav-link:focus,
-.nav-link:hover {
+#myTab .nav-link:focus,
+#myTab .nav-link:hover {
   color: var(--c-primary-color2);
 }
 
-.nav-tabs .nav-link {
+#myTab .nav-link {
   border: transparent;
 }
 
-li {
+#myTab li {
   line-height: 30px;
 }
 
-.nav-link.active{
+#myTab .nav-link.active{
     font-weight: 700;
 }

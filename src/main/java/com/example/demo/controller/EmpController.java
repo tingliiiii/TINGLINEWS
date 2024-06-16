@@ -13,26 +13,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.NewsDtoForBack;
+import com.example.demo.model.dto.TopJournalists;
+import com.example.demo.model.dto.TopSavedNews;
 import com.example.demo.model.dto.UserAdminDto;
-import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.Journalist;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
-import com.example.demo.model.po.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
-import com.example.demo.security.CSRFTokenUtil;
+import com.example.demo.service.FunctionService;
 import com.example.demo.service.NewsService;
 import com.example.demo.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @io.swagger.v3.oas.annotations.tags.Tag(name = "Employee API")
 @RestController
@@ -44,7 +41,11 @@ public class EmpController {
 
 	@Autowired
 	private NewsService newsService;
+	
+	@Autowired
+	private FunctionService functionService;
 
+	/*
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse<UserAdminDto>> login(@RequestBody UserLoginDto dto, 
 			@RequestHeader("X-CSRF-TOKEN") String requestCsrfToken, 
@@ -72,8 +73,9 @@ public class EmpController {
             }
             return new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
         });
+        
 		// CSRF Token 驗證通過，執行登入邏輯
-		/*
+		
 		try {
 			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			// 若驗證成功
@@ -90,8 +92,8 @@ public class EmpController {
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
-		*/
-	}
+		
+	}*/
 
 	// 後台：使用者管理介面
 	@GetMapping("/user")
@@ -246,7 +248,7 @@ public class EmpController {
 	}
 
 	// 新增文章
-	@PostMapping("/post")
+	@PostMapping("/news")
 	public ResponseEntity<ApiResponse<Void>> postNews(@RequestBody News news) {
 		 return handleServiceCall(() -> {
 	            Boolean state = newsService.postNews(news);
@@ -314,6 +316,23 @@ public class EmpController {
 		return ResponseEntity.ok(apiResponse);
 		*/
 	}
+	
+	@GetMapping("/statistic/topsavednews")
+	public ResponseEntity<ApiResponse<List<TopSavedNews>>> getTopSavedNews(){
+		return handleServiceCall(()->{
+			List<TopSavedNews> topSavedNews = functionService.getTopSavedNews();
+			return new ApiResponse<>(true, StatusMessage.查詢成功.name(), topSavedNews);
+		});
+	}
+	
+	@GetMapping("/statistic/topjournalists")
+	public ResponseEntity<ApiResponse<List<TopJournalists>>> getTopJournalists(){
+		return handleServiceCall(()->{
+			List<TopJournalists> topJournalists = functionService.getTopJournalists();
+			return new ApiResponse<>(true, StatusMessage.查詢成功.name(), topJournalists);
+		});
+	}
+	
 
 	private <T> ResponseEntity<ApiResponse<T>> handleServiceCall(ServiceCall<T> serviceCall) {
         try {

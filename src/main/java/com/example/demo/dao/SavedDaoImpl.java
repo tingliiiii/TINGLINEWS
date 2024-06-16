@@ -7,7 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.dto.SavedDto;
+import com.example.demo.model.dto.TopJournalists;
+import com.example.demo.model.dto.TopSavedNews;
 import com.example.demo.model.po.Saved;
 
 @Repository
@@ -41,5 +42,29 @@ public class SavedDaoImpl implements SavedDao {
 		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class));
 	}
+
+	@Override
+	public List<TopSavedNews> getTopSavedNews() {
+		String sql = "SELECT n.news_id, n.title, COUNT(DISTINCT s.user_id) AS count "
+				+ "FROM news n "
+				+ "JOIN saved s ON n.news_id = s.news_id "
+				+ "GROUP BY n.news_id, n.title "
+				+ "ORDER BY count DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopSavedNews.class));
+	}
+
+	@Override
+	public List<TopJournalists> getTopJournalists() {
+		String sql = "SELECT j.user_id AS journalist_id, u.user_name AS journalist_name, "
+				+ "COUNT(DISTINCT s.news_id) AS count "
+				+ "FROM saved s "
+				+ "JOIN news_journalist j ON s.news_id = j.news_id "
+				+ "JOIN user u ON j.user_id = u.user_id "
+				+ "GROUP BY j.user_id, u.user_name "
+				+ "ORDER BY count DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopJournalists.class));
+	}
+	
+	
 
 }

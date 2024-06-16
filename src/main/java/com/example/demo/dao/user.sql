@@ -59,8 +59,6 @@ INSERT INTO donated(frequency, amount, donate_status, user_id) VALUES ('單筆',
 
 -- ALTER TABLE donated RENAME COLUMN endDate TO end_date;
 
-
-
 CREATE TABLE IF NOT EXISTS news (
 	news_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50),
@@ -71,13 +69,17 @@ CREATE TABLE IF NOT EXISTS news (
     updated_time TIMESTAMP
 );
 
+-- ALTER TABLE news ADD CONSTRAINT FOREIGN KEY (tag_id) REFERENCES tag(tag_id);
+-- ALTER TABLE news DROP FOREIGN KEY `news_ibfk_3`;
+
+
 CREATE TABLE IF NOT EXISTS saved (
 	saved_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     news_id INT,
     saved_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES user(user_id),
-    FOREIGN KEY (news_id) REFERENCES user(news_id),
+    FOREIGN KEY (news_id) REFERENCES news(news_id),
     CONSTRAINT unique_userid_and_newsid UNIQUE(user_id, news_id)
 );
 

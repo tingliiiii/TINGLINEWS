@@ -26,7 +26,8 @@
 // 	});
 // }
 // const ip = '127.0.0.1';
-const ip = 'localhost';
+// const ip = 'localhost';
+const ip = '172.20.10.5';
 
 // 從後端抓資料
 const fetchData = async () => {

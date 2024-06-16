@@ -10,6 +10,8 @@ import com.example.demo.dao.DonatedDao;
 import com.example.demo.dao.NewsDao;
 import com.example.demo.dao.SavedDao;
 import com.example.demo.model.dto.SavedDto;
+import com.example.demo.model.dto.TopJournalists;
+import com.example.demo.model.dto.TopSavedNews;
 import com.example.demo.model.po.Donated;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Saved;
@@ -64,6 +66,14 @@ public class FunctionService {
 		return savedDtos;
 	}
 	
+	// 新聞收藏數統計
+	public List<TopSavedNews> getTopSavedNews(){
+		return savedDao.getTopSavedNews();
+	}
+	
+	public List<TopJournalists> getTopJournalists(){
+		return savedDao.getTopJournalists();
+	}
 	
 	
 }

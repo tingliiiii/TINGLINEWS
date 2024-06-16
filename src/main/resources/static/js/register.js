@@ -1,5 +1,6 @@
 // const ip = '127.0.0.1';
-const ip = 'localhost';
+// const ip = 'localhost';
+const ip = '172.20.10.5';
 
 // 表單提交事件處理
 const handleFormSubmit = async (event) => {

@@ -12,9 +12,10 @@ public class CorsConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**") // 對所有路徑下的請求進行跨域設定
-				.allowedOrigins("http://172.20.10.5:8080") // 允許來自特定來源的跨域請求
+				.allowedOrigins("http://localhost:8080", "http://172.20.10.5:8080") // 允許來自特定來源的跨域請求
 				.allowedMethods("*") // 允許的請求方法
 				.allowedHeaders("*") // 允許所有標頭
 				.allowCredentials(true); // 允許跨域請求中包含認證信息
 	}
+	
 }

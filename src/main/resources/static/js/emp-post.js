@@ -1,5 +1,6 @@
 // const ip = '127.0.0.1';
-const ip = 'localhost';
+// const ip = 'localhost';
+const ip = '172.20.10.5';
 
 // 從後端抓資料
 const fetchData = async (uri) => {
@@ -72,12 +73,13 @@ const handleSubmit = async (event) => {
 };
 
 const submitPost = async (formData) => {
-	await postData('/emp/post', 'POST', formData);
+	await postData('/emp/news', 'POST', formData);
 };
 
 const updatePost = async (formData) => {
 	const newsId = JSON.parse(sessionStorage.getItem('newsData')).newsId;
 	await postData(`/emp/news/${newsId}`, 'PUT', formData);
+	sessionStorage.removeItem('newsData');
 };
 
 const postData = async (endpoint, method, formData) => {
@@ -181,6 +183,10 @@ $(document).ready(() => {
 	$('#post-form').on('submit', handleSubmit);
 	// 上傳圖片
 	$('#fileInput').on('change', handleFileChange);
+	
+	$('#back').on('click', () => {
+		sessionStorage.removeItem('newsData');
+	})
 
 
 });

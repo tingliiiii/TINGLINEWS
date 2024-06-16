@@ -4,6 +4,19 @@ body {
 	font-family: 'Noto Sans TC', sans-serif;
 }
 
+#emp-news-container,
+#emp-user-container,
+#statistic-container {
+	margin: 4vw auto;
+}
+
+#emp-news-table-container,
+#emp-user-table-container {
+	/* width: 80%; */
+	overflow-x: auto;
+	margin: 0 auto;
+}
+
 .emp-title2 {
 	text-align: center;
 	margin: 2vw;
@@ -18,17 +31,7 @@ table {
 	text-align: center;
 }
 
-#emp-news-container,
-#emp-user-container {
-	margin: 4vw auto;
-}
 
-#emp-news-table-container,
-#emp-user-table-container {
-	/* width: 80%; */
-	overflow-x: auto;
-	margin: 0 auto;
-}
 
 /* 新增文章 =============================== */
 .post-container {

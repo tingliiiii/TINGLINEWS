@@ -272,7 +272,7 @@ public class UserController {
 	public ResponseEntity<ApiResponse<String>> getCaptcha(HttpSession session) {
 
 		String captcha = CaptchaUtil.generateCaptchaCode();
-		// System.out.println("captcha code: " + captcha);
+		System.out.println("captcha code: " + captcha);
 		session.setAttribute("captcha", captcha);
 
 		try {
@@ -294,7 +294,9 @@ public class UserController {
 			HttpSession session) {
 
 		String sessionCaptcha = (String) session.getAttribute("captcha");
+		System.out.println("sessionCaptcha: "+sessionCaptcha);
 		String inputCaptcha = request.get("captcha");
+		System.out.println("inputCaptcha: "+inputCaptcha);
 
 		if (sessionCaptcha == null || inputCaptcha == null || !sessionCaptcha.equals(inputCaptcha)) {
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
