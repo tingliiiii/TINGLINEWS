@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.model.dto.TopJournalistsByFavorites;
 import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.dto.TopTagsByFavorites;
 import com.example.demo.model.po.Favorite;
 
 public interface FavoriteDao {
@@ -15,5 +16,5 @@ public interface FavoriteDao {
 	// 統計
 	List<TopNewsByFavorites> getTopNewsByFavorites();
 	List<TopJournalistsByFavorites> getTopJournalistsByFavorites();
-	
+	List<TopTagsByFavorites> getTopTagsByFavorites();
 }

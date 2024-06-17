@@ -12,6 +12,7 @@ import com.example.demo.dao.NewsDao;
 import com.example.demo.model.dto.FavoriteDto;
 import com.example.demo.model.dto.TopJournalistsByFavorites;
 import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.dto.TopTagsByFavorites;
 import com.example.demo.model.po.Donation;
 import com.example.demo.model.po.News;
 import com.example.demo.model.po.Favorite;
@@ -28,24 +29,24 @@ public class FunctionService {
 	@Autowired
 	private NewsDao newsDao;
 
-	public boolean addDonation(Donation donated) {
-		return donatedDao.addDonation(donated)>0;
+	public boolean addDonation(Donation donation) {
+		return donatedDao.addDonation(donation)>0;
 	}
 
-	public boolean stopDonation(Integer donatedId) {
-		return donatedDao.stopDonation(donatedId)>0;
+	public boolean stopDonation(Integer donationId) {
+		return donatedDao.stopDonation(donationId)>0;
 	}
 
 	public List<Donation> findDonationsByUserId(Integer userId) {
 		return donatedDao.findDonationsByUserId(userId);
 	}
 	
-	public boolean addSaved(Favorite saved) {
-		return favoriteDao.addFavorite(saved)>0;
+	public boolean addFavorite(Favorite favorite) {
+		return favoriteDao.addFavorite(favorite)>0;
 	}
 
-	public boolean deleteSaved(Integer savedId) {
-		return favoriteDao.deleteFavorite(savedId)>0;
+	public boolean deleteFavorite(Integer favoriteId) {
+		return favoriteDao.deleteFavorite(favoriteId)>0;
 	}
 
 	// 收藏紀錄
@@ -62,7 +63,6 @@ public class FunctionService {
 			favoriteDto.setNews(news);
 			favoriteDtos.add(favoriteDto);
 		}
-		
 		return favoriteDtos;
 	}
 	
@@ -73,6 +73,10 @@ public class FunctionService {
 	
 	public List<TopJournalistsByFavorites> getTopJournalistsByFavorites(){
 		return favoriteDao.getTopJournalistsByFavorites();
+	}
+	
+	public List<TopTagsByFavorites> getTopTagsByFavorites(){
+		return favoriteDao.getTopTagsByFavorites();
 	}
 	
 	

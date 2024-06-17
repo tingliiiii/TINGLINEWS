@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.dto.TopJournalistsByFavorites;
 import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.dto.TopTagsByFavorites;
 import com.example.demo.model.po.Favorite;
 
 @Repository
@@ -19,35 +20,35 @@ public class FavoriteDaoImpl implements FavoriteDao {
 
 	@Override
 	public int addFavorite(Favorite favorite) {
-		String sql = "INSERT INTO saved(user_id, news_id) VALUES(?, ?)";
+		String sql = "INSERT INTO favorites(user_id, news_id) VALUES(?, ?)";
 		return jdbcTemplate.update(sql, favorite.getUserId(), favorite.getNewsId());
 	}
 
 	@Override
 	public int deleteFavorite(Integer favoriteId) {
-		String sql = "DELETE FROM saved WHERE saved_id=?";
+		String sql = "DELETE FROM favorites WHERE favorite_id=?";
 		return jdbcTemplate.update(sql, favoriteId);
 	}
 
 	@Override
 	public List<Favorite> findFavoriteByUserId(Integer userId) {
-		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved "
+		String sql = "SELECT favorite_id, user_id, news_id, favorite_time FROM favorites "
 				+ "WHERE user_id=? "
-				+ "ORDER BY saved_time DESC ";
+				+ "ORDER BY favorite_time DESC ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Favorite.class), userId);
 	}
 
 	@Override
 	public List<Favorite> findAllFavorites() {
-		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved";
+		String sql = "SELECT favorite_id, user_id, news_id, favorite_time FROM favorites";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Favorite.class));
 	}
 
 	@Override
 	public List<TopNewsByFavorites> getTopNewsByFavorites() {
-		String sql = "SELECT n.news_id, n.title, COUNT(DISTINCT s.user_id) AS count "
+		String sql = "SELECT n.news_id, n.title, COUNT(DISTINCT f.user_id) AS count "
 				+ "FROM news n "
-				+ "JOIN saved s ON n.news_id = s.news_id "
+				+ "JOIN favorites f ON n.news_id = f.news_id "
 				+ "GROUP BY n.news_id, n.title "
 				+ "ORDER BY count DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopNewsByFavorites.class));
@@ -56,13 +57,24 @@ public class FavoriteDaoImpl implements FavoriteDao {
 	@Override
 	public List<TopJournalistsByFavorites> getTopJournalistsByFavorites() {
 		String sql = "SELECT j.user_id AS journalist_id, u.user_name AS journalist_name, "
-				+ "COUNT(DISTINCT s.news_id) AS count "
-				+ "FROM saved s "
-				+ "JOIN news_journalist j ON s.news_id = j.news_id "
-				+ "JOIN user u ON j.user_id = u.user_id "
+				+ "COUNT(DISTINCT f.news_id) AS count "
+				+ "FROM favorites f "
+				+ "JOIN news_journalist j ON f.news_id = j.news_id "
+				+ "JOIN users u ON j.user_id = u.user_id "
 				+ "GROUP BY j.user_id, u.user_name "
 				+ "ORDER BY count DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopJournalistsByFavorites.class));
+	}
+
+	@Override
+	public List<TopTagsByFavorites> getTopTagsByFavorites() {
+		String sql = "SELECT t.tag_name AS tag, COUNT(DISTINCT f.news_id) AS count "
+				+ "FROM favorites f "
+				+ "JOIN news n ON f.news_id = n.news_id "
+				+ "JOIN tags t ON n.tag_id = t.tag_id "
+				+ "GROUP BY t.tag_name "
+				+ "ORDER BY count DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopTagsByFavorites.class));
 	}
 	
 	

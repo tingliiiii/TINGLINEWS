@@ -30,18 +30,14 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.security.CSRFTokenUtil;
 import com.example.demo.security.CaptchaUtil;
-import com.example.demo.security.OAuth2Util;
 import com.example.demo.security.OTPUtil;
 import com.example.demo.service.FunctionService;
 import com.example.demo.service.UserService;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Tag(name = "User API")
@@ -352,15 +348,15 @@ public class UserController {
 
 	@Operation(summary = "收藏")
 	@PostMapping("/favorites")
-	public ResponseEntity<ApiResponse<Void>> saved(@RequestBody Favorite saved) {
+	public ResponseEntity<ApiResponse<Void>> saved(@RequestBody Favorite favorite) {
 		Boolean state = false;
 		String message = "發生錯誤：";
 		try {
-			state = functionService.addSaved(saved);
+			state = functionService.addFavorite(favorite);
 			message = state ? StatusMessage.收藏成功.name() : StatusMessage.收藏失敗.name();
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (e.getMessage().contains("saved.unique_userid_and_newsid")) {
+			if (e.getMessage().contains("favorites.unique_userid_and_newsid")) {
 				message = "已收藏此篇報導";
 			} else {
 				message += e.getMessage();
@@ -373,8 +369,8 @@ public class UserController {
 
 	@Operation(summary = "取消收藏")
 	@DeleteMapping("/favorites/{favoriteId}")
-	public ResponseEntity<ApiResponse<Boolean>> cancelSaved(@PathVariable Integer savedId) {
-		Boolean state = functionService.deleteSaved(savedId);
+	public ResponseEntity<ApiResponse<Boolean>> cancelSaved(@PathVariable Integer favoriteId) {
+		Boolean state = functionService.deleteFavorite(favoriteId);
 		String message = state ? "已完成" : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
 		return ResponseEntity.ok(apiResponse);

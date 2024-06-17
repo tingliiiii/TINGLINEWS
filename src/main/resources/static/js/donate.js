@@ -91,7 +91,7 @@ const loadCaptcha = async () => {
 
 const verifyCaptcha = async (captcha) => {
     try {
-        const response = await fetch(`http://${ip}:8080/tinglinews/captcha/verify`, {
+        const response = await fetch(`http://${ip}:8080/tinglinews/users/captcha/verify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

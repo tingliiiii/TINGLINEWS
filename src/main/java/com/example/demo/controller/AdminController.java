@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.NewsDtoForBack;
 import com.example.demo.model.dto.TopJournalistsByFavorites;
 import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.dto.TopTagsByFavorites;
 import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.po.Authority;
 import com.example.demo.model.po.Journalist;
@@ -185,6 +186,15 @@ public class AdminController {
 		return handleServiceCall(() -> {
 			List<TopJournalistsByFavorites> topJournalists = functionService.getTopJournalistsByFavorites();
 			return new ApiResponse<>(true, StatusMessage.查詢成功.name(), topJournalists);
+		});
+	}
+	
+	@Operation(summary = "查詢新聞收藏數標籤排行榜")
+	@GetMapping("/statistic/toptags")
+	public ResponseEntity<ApiResponse<List<TopTagsByFavorites>>> getTopTags(){
+		return handleServiceCall(()->{
+			List<TopTagsByFavorites> topTagsByFavorites = functionService.getTopTagsByFavorites();
+			return new ApiResponse<>(true, StatusMessage.查詢成功.name(), topTagsByFavorites);
 		});
 	}
 

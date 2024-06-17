@@ -73,7 +73,7 @@ async function drawNewsChart() {
     chart.draw(data, options);
 }
 
-async function drawJounalistChart() {
+async function drawJounalistsChart() {
 
     const result = await fetchData('/topjournalists');
 
@@ -125,9 +125,68 @@ async function drawJounalistChart() {
         } // 圖表區域的寬度和高度
     };
     // PieChart, BarChart, ColumnChart, LineChart
-    var chart = new google.visualization.BarChart(document.getElementById('journalistchart'));
+    var chart = new google.visualization.BarChart(document.getElementById('journalistschart'));
     chart.draw(data, options);
 }
+
+async function drawTagsChart() {
+
+    const result = await fetchData('/toptags');
+
+    // 檢查是否有數據
+    if (result.length === 0) {
+        console.error('No data returned from fetchData.');
+        return;
+    }
+
+    const chartData = [
+        ['標籤', 'count']
+    ];
+
+    result.forEach(data => {
+        chartData.push([data.tag, data.count]);
+    });
+
+    var data = google.visualization.arrayToDataTable(chartData);
+
+
+    var options = {
+        title: '標籤收藏數排行榜', // 圖表標題
+        width: 800, // 圖表寬度
+        height: 400, // 圖表高度
+        backgroundColor: '#eee', // 設置整個圖表的背景顏色，包括外部標題和圖示
+        pieHole: 0.4,
+        legend: 'none', // 圖例
+        pieSliceText: 'label',
+        slices: { 0: { offset: 0.1 }, },
+        colors: ['#FCB97D', '#A6BCC9', '#EDD892', '#C6B89E', '#AABA9E', '#C3DBC5', '#B5B8A3'],
+        hAxis: {
+            title: '被收藏次數', // 水平軸標題
+            minValue: 0, // 水平軸最小值
+            format: '#' // 只顯示整數
+        },
+        vAxis: {
+            title: '標籤' // 垂直軸標題
+        },
+        fontName: 'Noto Sans TC', // 字體名稱
+        fontSize: 12, // 字體大小
+        titleTextStyle: {
+            color: '#333', // 標題文字顏色
+            fontSize: 18, // 標題文字大小
+            bold: true, // 粗體
+            italic: false, // 斜體
+            padding: 10, // 標題內邊距
+        },
+        chartArea: {
+            width: '50%',
+            height: '70%'
+        } // 圖表區域的寬度和高度
+    };
+    // PieChart, BarChart, ColumnChart, LineChart
+    var chart = new google.visualization.PieChart(document.getElementById('tagschart'));
+    chart.draw(data, options);
+}
+
 $(document).ready(async () => {
 
     const data = JSON.parse(sessionStorage.getItem('userData'));
@@ -151,7 +210,8 @@ $(document).ready(async () => {
 
     function drawChart() {
         drawNewsChart();
-        drawJounalistChart();
+        drawJounalistsChart();
+        drawTagsChart();
     }
 
     // 登出

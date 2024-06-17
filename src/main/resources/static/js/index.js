@@ -1,37 +1,10 @@
-
-
-// // 定義一個非同步函數來加載 HTML 內容
-// const loadHTML = async (uri, containerId) => {
-// 	const url = 'http://localhost:8080/tinglinews' + uri;
-// 	try {
-// 		const response = await fetch(url); // 等待 fetch 請求完成
-// 		const data = await response.text(); // 等待回應本文內容
-// 		$(containerId).html(data); // 將所得到的本文內容加入到指定容器中；使用 jQuery 設置 innerHTML
-// 	} catch (e) {
-// 		console.error(e);
-// 	}
-// };
-
-// const clickSignupBtn = () => {
-// 	$('.signup').on('click', async () => {
-// 		// console.log('點擊註冊按鈕');
-// 		$('.main-content').load('user/register.html', clickLoginBtn);
-// 	});
-// };
-
-// const clickLoginBtn = () => {
-// 	$('.login').on('click', async () => {
-// 		// console.log('點擊登入按鈕');
-// 		$('.main-content').load('user/login.html', clickSignupBtn);
-// 	});
-// }
 // const ip = '127.0.0.1';
 // const ip = 'localhost';
 const ip = '172.20.10.5';
 
 // 從後端抓資料
 const fetchData = async () => {
-	const url = `http://${ip}:8080/tinglinews/news/list/`;
+	const url = `http://${ip}:8080/tinglinews/news`;
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
@@ -53,13 +26,6 @@ const fetchData = async () => {
 			item.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
 		})
 		renderCardData(data);
-
-		// 大圖輪播
-		data.map((item) => {
-			// const contentContainer = $('<p>').html(item.content);
-			// const truncatedContent = contentContainer.text().substring(0, 20);
-			// item.content = contentContainer.text().length > 20 ? truncatedContent + '...' : truncatedContent;
-		})
 		renderCarouselData(data);
 
 	} catch (e) {
@@ -152,8 +118,7 @@ $(document).ready(() => {
 	} else {
 		$('.header-container').load('nav.html');
 	}
-	// $('.main-content').load('domain.html');
+	$('.ad-container').load('ad.html');
 	$('.footer-container').load('footer.html');
-
 	fetchData();
 });
