@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Saved {
+public class Favorite {
 	
-	private Integer savedId; // 自動生成序號
+	private Integer favoriteId; // 自動生成序號
 	private Integer userId;
 	private Integer newsId;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date savedTime;
+	private Date favoriteTime;
 }

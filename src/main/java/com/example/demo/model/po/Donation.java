@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Donated {
+public class Donation {
 
-	private Integer donatedId; // 自動產生
+	private Integer donationId; // 自動產生
 	private String frequency; // 每月, 每年, 單筆
 	// enum frequency {每月, 每年, 單筆 }; 
 	private Integer amount;

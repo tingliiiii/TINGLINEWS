@@ -70,7 +70,7 @@ const handleSubmit = async (event) => {
 	};
 
 	try {
-		const response = await fetch('/tinglinews/user/saved', {
+		const response = await fetch('/tinglinews/users/favorites', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

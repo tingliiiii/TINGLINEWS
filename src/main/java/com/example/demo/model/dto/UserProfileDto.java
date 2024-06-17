@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import com.example.demo.model.po.Donated;
+import com.example.demo.model.po.Donation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +24,7 @@ public class UserProfileDto {
 	private String gender;
 	private String phone;
 	
-	private List<Donated> donatedList;
-	private List<SavedDto> savedList;
+	private List<Donation> donationList;
+	private List<FavoriteDto> favoriteList;
 
 }

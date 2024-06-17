@@ -12,7 +12,7 @@ const sendEmail = async () => {
 	}
 
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/sendEmail`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/otp`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const sendEmail = async () => {
 const verifyOTP = async () => {
 	const otp = $('#otp').val();
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/verifyOTP`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/otp/verify`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ const handleSubmit = async (event) => {
 	}
 
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/resetPassword`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/password`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'

@@ -14,6 +14,7 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.security.OAuth2Util;
 import com.example.demo.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 
@@ -32,6 +33,7 @@ public class OAuth2Controller {
 		return "redirect:/callback/github.html";
 	}
 
+	@Operation(summary = "使用 GitHub 授權碼交換訪問令牌")
 	@GetMapping("/github/exchange")
 	@ResponseBody
 	public ApiResponse<UserAdminDto> exchangeToken(HttpSession session) {

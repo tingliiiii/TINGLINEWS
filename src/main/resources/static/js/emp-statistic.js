@@ -2,7 +2,7 @@ const ip = '172.20.10.5';
 
 const fetchData = async (uri) => {
     try {
-        const response = await fetch(`http://${ip}:8080/tinglinews/emp/statistic${uri}`); // 等待 fetch 請求完成
+        const response = await fetch(`http://${ip}:8080/tinglinews/admin/statistic${uri}`); // 等待 fetch 請求完成
         const { state, message, data } = await response.json(); // 等待回應本文內容
         // console.log(state, message, data);
         if (state) {

@@ -6,73 +6,73 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.DonatedDao;
+import com.example.demo.dao.DonationDao;
+import com.example.demo.dao.FavoriteDao;
 import com.example.demo.dao.NewsDao;
-import com.example.demo.dao.SavedDao;
-import com.example.demo.model.dto.SavedDto;
-import com.example.demo.model.dto.TopJournalists;
-import com.example.demo.model.dto.TopSavedNews;
-import com.example.demo.model.po.Donated;
+import com.example.demo.model.dto.FavoriteDto;
+import com.example.demo.model.dto.TopJournalistsByFavorites;
+import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.po.Donation;
 import com.example.demo.model.po.News;
-import com.example.demo.model.po.Saved;
+import com.example.demo.model.po.Favorite;
 
 @Service
 public class FunctionService {
 
 	@Autowired
-	private DonatedDao donatedDao;
+	private DonationDao donatedDao;
 	
 	@Autowired
-	private SavedDao savedDao;
+	private FavoriteDao favoriteDao;
 	
 	@Autowired
 	private NewsDao newsDao;
 
-	public boolean addDonated(Donated donated) {
-		return donatedDao.addDonated(donated)>0;
+	public boolean addDonation(Donation donated) {
+		return donatedDao.addDonation(donated)>0;
 	}
 
-	public boolean stopDanted(Integer donatedId) {
-		return donatedDao.stopDanted(donatedId)>0;
+	public boolean stopDonation(Integer donatedId) {
+		return donatedDao.stopDonation(donatedId)>0;
 	}
 
-	public List<Donated> findDonatedById(Integer userId) {
-		return donatedDao.findDonatedById(userId);
+	public List<Donation> findDonationsByUserId(Integer userId) {
+		return donatedDao.findDonationsByUserId(userId);
 	}
 	
-	public boolean addSaved(Saved saved) {
-		return savedDao.addSaved(saved)>0;
+	public boolean addSaved(Favorite saved) {
+		return favoriteDao.addFavorite(saved)>0;
 	}
 
 	public boolean deleteSaved(Integer savedId) {
-		return savedDao.deleteSaved(savedId)>0;
+		return favoriteDao.deleteFavorite(savedId)>0;
 	}
 
 	// 收藏紀錄
-	public List<SavedDto> findSavedById(Integer userId) {
+	public List<FavoriteDto> findFavoriteByUserId(Integer userId) {
 		
-		List<Saved> saveds = savedDao.findSavedById(userId);
-		List<SavedDto> savedDtos = new ArrayList<>();
-		for(Saved saved : saveds) {
-			SavedDto savedDto = new SavedDto();
-			savedDto.setSavedId(saved.getSavedId());
-			savedDto.setUserId(userId);
-			savedDto.setSavedTime(saved.getSavedTime());
-			News news = newsDao.getNewsById(saved.getNewsId());
-			savedDto.setNews(news);
-			savedDtos.add(savedDto);
+		List<Favorite> favorites = favoriteDao.findFavoriteByUserId(userId);
+		List<FavoriteDto> favoriteDtos = new ArrayList<>();
+		for(Favorite favorite : favorites) {
+			FavoriteDto favoriteDto = new FavoriteDto();
+			favoriteDto.setFavoriteId(favorite.getFavoriteId());
+			favoriteDto.setUserId(userId);
+			favoriteDto.setFavoriteTime(favorite.getFavoriteTime());
+			News news = newsDao.getNewsById(favorite.getNewsId());
+			favoriteDto.setNews(news);
+			favoriteDtos.add(favoriteDto);
 		}
 		
-		return savedDtos;
+		return favoriteDtos;
 	}
 	
 	// 新聞收藏數統計
-	public List<TopSavedNews> getTopSavedNews(){
-		return savedDao.getTopSavedNews();
+	public List<TopNewsByFavorites> getTopNewsByFavorites(){
+		return favoriteDao.getTopNewsByFavorites();
 	}
 	
-	public List<TopJournalists> getTopJournalists(){
-		return savedDao.getTopJournalists();
+	public List<TopJournalistsByFavorites> getTopJournalistsByFavorites(){
+		return favoriteDao.getTopJournalistsByFavorites();
 	}
 	
 	

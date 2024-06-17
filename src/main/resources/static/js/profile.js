@@ -5,7 +5,7 @@ const ip = '172.20.10.5';
 // 從後端抓資料給 profile
 const fetchData = async (userId) => {
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/profile/${userId}`);
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/${userId}/profile`);
 		const { state, message, data } = await response.json(); // 等待回應本文內容
 		// console.log(state, message, data);
 
@@ -20,8 +20,8 @@ const fetchData = async (userId) => {
 		$('#birth').val(data.birthday);
 		$('#phone').val(data.phone);
 
-		renderSaved(data.savedList);
-		renderDonated(data.donatedList);
+		renderFavorites(data.favoriteList);
+        renderDonations(data.donationList);
 
 	} catch (e) {
 		console.error('資料讀取錯誤：' + e);
@@ -29,43 +29,43 @@ const fetchData = async (userId) => {
 }
 
 // 收藏紀錄
-const renderSaved = (data) => {
+const renderFavorites = (data) => {
 
 	if(data.length === 0) {
 		$('#saved-list-body').html('<tr><td colspan="5">尚無收藏紀錄</td></tr>');
 		return;
 	}
-	const render = ({ savedId, news, savedTime }) => `
+	const render = ({ favoriteId, news, favoriteTime }) => `
 	<tr>
-		<td>${savedId}</td>
+		<td>${favoriteId}</td>
 		<td><a href="/tinglinews/news.html?id=${news.newsId}">
 		${news.title}</a></td>
 		<td>${news.publicTime}</td>
-		<td>${savedTime}</td>
+		<td>${favoriteTime}</td>
 		<td>
-			<button class="btn btn-close cancel-saved-btn" data-id="${savedId}"></button>
+			<button class="btn btn-close cancel-saved-btn" data-id="${favoriteId}"></button>
 		</td>
 	</tr>`;
 	$('#saved-list-body').html(Array.isArray(data) ? data.map(render).join('') : render(data));
 }
 
 // 贊助紀錄
-const renderDonated = (data) => {
+const renderDonations = (data) => {
 	// // console.log(data);
 	if(data.length === 0) {
 		$('#donated-list-body').html('<tr><td colspan="7">尚無贊助紀錄</td></tr>');
 		return;
 	}
-	const render = ({ donatedId, frequency, amount, donatedTime, endTime, donateStatus }) => `
+	const render = ({ donationId, frequency, amount, donatedTime, endTime, donateStatus }) => `
 	<tr>
-		<td>${donatedId}</td>
+		<td>${donationId}</td>
 		<td>${frequency}</td>
 		<td>${amount}</td>
 		<td>${donatedTime}</td>
 		<td>${endTime === null ? 'N/A' : endTime}</td>
 		<td>${donateStatus}</td>
 		<td>
-			<button class="btn btn-close stop-donate-btn" data-id="${donatedId}"></button>
+			<button class="btn btn-close stop-donate-btn" data-id="${donationId}"></button>
 		</td>
 	</tr>`;
 	$('#donated-list-body').html(Array.isArray(data) ? data.map(render).join('') : render(data));
@@ -102,7 +102,7 @@ const handleSubmit = async (event) => {
 
 const updateProfile = async (formData) => {
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/profile/${formData.userId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/${formData.userId}/profile`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -161,7 +161,7 @@ $(document).ready(async () => {
 	// 停止贊助
 	$('#donated-table').on('click', '.stop-donate-btn', async (event) => {
 
-		const id = $(event.target).data('id');
+		const donationId = $(event.target).data('id');
 		// console.log('按下停止贊助：' + id);
 
 		const row = $(event.target).closest('tr');
@@ -187,7 +187,7 @@ $(document).ready(async () => {
 		}
 
 		try {
-			const response = await fetch(`http://${ip}:8080/tinglinews/user/donate/${id}`, { method: 'DELETE' });
+			const response = await fetch(`http://${ip}:8080/tinglinews/users/donations/${donationId}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
 			// console.log(state, message, data);
 
@@ -207,7 +207,7 @@ $(document).ready(async () => {
 
 	// 取消收藏
 	$('#saved-table').on('click', '.cancel-saved-btn', async (event) => {
-		const id = $(event.target).data('id');
+		const favoriteId = $(event.target).data('id');
 		// console.log('按下取消收藏：' + id);
 
 		const result = await Swal.fire({
@@ -224,7 +224,7 @@ $(document).ready(async () => {
 			return;
 		}
 		try {
-			const response = await fetch(`http://${ip}:8080/tinglinews/user/saved/${id}`, { method: 'DELETE' });
+			const response = await fetch(`http://${ip}:8080/tinglinews/users/favorites/${favoriteId}`, { method: 'DELETE' });
 			const { state, message, data } = await response.json();
 			// console.log(state, message, data);
 

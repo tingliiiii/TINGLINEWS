@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SavedDto {
+public class FavoriteDto {
 
 	// 個人資訊頁查詢收藏紀錄
 	
-	private Integer savedId; 
+	private Integer favoriteId; 
 	private Integer userId;
 	private News news; 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date savedTime;
+	private Date favoriteTime;
 }

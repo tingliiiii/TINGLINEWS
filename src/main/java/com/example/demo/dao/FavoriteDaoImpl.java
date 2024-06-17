@@ -7,54 +7,54 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.dto.TopJournalists;
-import com.example.demo.model.dto.TopSavedNews;
-import com.example.demo.model.po.Saved;
+import com.example.demo.model.dto.TopJournalistsByFavorites;
+import com.example.demo.model.dto.TopNewsByFavorites;
+import com.example.demo.model.po.Favorite;
 
 @Repository
-public class SavedDaoImpl implements SavedDao {
+public class FavoriteDaoImpl implements FavoriteDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public int addSaved(Saved saved) {
+	public int addFavorite(Favorite favorite) {
 		String sql = "INSERT INTO saved(user_id, news_id) VALUES(?, ?)";
-		return jdbcTemplate.update(sql, saved.getUserId(), saved.getNewsId());
+		return jdbcTemplate.update(sql, favorite.getUserId(), favorite.getNewsId());
 	}
 
 	@Override
-	public int deleteSaved(Integer savedId) {
+	public int deleteFavorite(Integer favoriteId) {
 		String sql = "DELETE FROM saved WHERE saved_id=?";
-		return jdbcTemplate.update(sql, savedId);
+		return jdbcTemplate.update(sql, favoriteId);
 	}
 
 	@Override
-	public List<Saved> findSavedById(Integer userId) {
+	public List<Favorite> findFavoriteByUserId(Integer userId) {
 		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved "
 				+ "WHERE user_id=? "
 				+ "ORDER BY saved_time DESC ";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class), userId);
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Favorite.class), userId);
 	}
 
 	@Override
-	public List<Saved> findAllSaveds() {
+	public List<Favorite> findAllFavorites() {
 		String sql = "SELECT saved_id, user_id, news_id, saved_time FROM saved";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Saved.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Favorite.class));
 	}
 
 	@Override
-	public List<TopSavedNews> getTopSavedNews() {
+	public List<TopNewsByFavorites> getTopNewsByFavorites() {
 		String sql = "SELECT n.news_id, n.title, COUNT(DISTINCT s.user_id) AS count "
 				+ "FROM news n "
 				+ "JOIN saved s ON n.news_id = s.news_id "
 				+ "GROUP BY n.news_id, n.title "
 				+ "ORDER BY count DESC";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopSavedNews.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopNewsByFavorites.class));
 	}
 
 	@Override
-	public List<TopJournalists> getTopJournalists() {
+	public List<TopJournalistsByFavorites> getTopJournalistsByFavorites() {
 		String sql = "SELECT j.user_id AS journalist_id, u.user_name AS journalist_name, "
 				+ "COUNT(DISTINCT s.news_id) AS count "
 				+ "FROM saved s "
@@ -62,7 +62,7 @@ public class SavedDaoImpl implements SavedDao {
 				+ "JOIN user u ON j.user_id = u.user_id "
 				+ "GROUP BY j.user_id, u.user_name "
 				+ "ORDER BY count DESC";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopJournalists.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TopJournalistsByFavorites.class));
 	}
 	
 	

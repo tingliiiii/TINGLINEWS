@@ -18,7 +18,7 @@ const fetchData = async (uri) => {
 // 權限選項
 const loadAuthorityOptions = async () => {
 	try {
-		const data = await fetchData('/emp/authority');
+		const data = await fetchData('/admin/authorities');
 		const select = $('#authority');
 		select.empty(); // 清空現有選項
 
@@ -43,7 +43,7 @@ const handleUpdateAuthority = async () => {
 	};
 
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/emp/authority/${userId}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/admin/users/${userId}/authority`, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ $(document).ready(() => {
 	const table = $('#user-table').DataTable({
 		ajax: async (data, callback) => {
 			// 從伺服器獲取數據
-			const result = await fetchData('/emp/user');
+			const result = await fetchData('/admin/users');
 			// 將數據傳遞給 DataTables 以製作表格
 			callback({
 				data: result
@@ -122,21 +122,6 @@ $(document).ready(() => {
 		],
 		order: [[0, 'desc']]
 	});
-
-	/** 檢查表格排序
-		table.on('order.dt', function() {
-			// console.log('Current order:', table.order());
-		});
-	 */
-	// fetchAndRenderData('/emp/user', 'user-table-body', renderUser);
-	/*
-	$('#user-table').on('click', async(event) => {
-		// console.log(event);
-		// 處理事件
-		// await handleEvent(event, 'update-user-button', handleUpdateUser);
-		await handleEvent(event, 'delete-user-btn', handleDeleteUser);
-	});
-	*/
 
 	$('#user-table').on('click', '.delete-user-btn', async (event) => {
 		/* 'span.delete-user-btn',
@@ -209,7 +194,7 @@ $(document).ready(() => {
 		}
 
 		try {
-			const url = `http://${ip}:8080/tinglinews/emp/user/${userId}`;
+			const url = `http://${ip}:8080/tinglinews/admin/users/${userId}`;
 			const response = await fetch(url, { method: 'DELETE' }); // 等待 fetch 請求完成
 			const { state, message, data } = await response.json(); // 等待回應本文內容
 			// console.log(state, message, data);

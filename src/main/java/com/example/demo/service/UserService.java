@@ -77,8 +77,8 @@ public class UserService {
 	public UserProfileDto getUserProfile(Integer userId) {
 		User user = getUserById(userId);
 		UserProfileDto userProfile = modelMapper.map(user, UserProfileDto.class);
-		userProfile.setDonatedList(functionService.findDonatedById(userId));
-		userProfile.setSavedList(functionService.findSavedById(userId));
+		userProfile.setDonationList(functionService.findDonationsByUserId(userId));
+		userProfile.setFavoriteList(functionService.findFavoriteByUserId(userId));
 		return userProfile;
 	}
 

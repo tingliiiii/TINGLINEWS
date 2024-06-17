@@ -3,7 +3,7 @@ package com.example.demo.model.dto;
 import lombok.Data;
 
 @Data
-public class TopSavedNews {
+public class TopNewsByFavorites {
 
 	private Integer newsId;
 	private String title;

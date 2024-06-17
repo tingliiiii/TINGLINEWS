@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS donated (
 	frequency VARCHAR(10) NOT NULL, -- 每月, 每年, 單筆
 	amount INT NOT NULL,
 	donated_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    end_date DATE,
+    end_time DATE,
     donate_status VARCHAR(10), -- 進行中, 已完成
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
@@ -95,5 +95,33 @@ CREATE TABLE IF NOT EXISTS third_party_auth (
     provider_user_id VARCHAR(100) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
+
+-- 修改 user 表為 users
+ALTER TABLE user RENAME TO users;
+
+-- 修改 authority 表為 authorities
+ALTER TABLE authority RENAME TO authorities;
+
+-- 修改 donated 表為 donations 並修改列名
+ALTER TABLE donated RENAME TO donations;
+ALTER TABLE donations CHANGE donated_id donation_id INT AUTO_INCREMENT;
+
+-- 修改 news 表，並添加外鍵約束
+ALTER TABLE news ADD CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags(tag_id);
+ALTER TABLE news ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id);
+
+-- 修改 saved 表為 favorites 並修改列名
+ALTER TABLE saved RENAME TO favorites;
+ALTER TABLE favorites CHANGE saved_id favorite_id INT AUTO_INCREMENT;
+ALTER TABLE favorites CHANGE saved_time favorite_time timestamp NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE favorites ADD CONSTRAINT fk_user_favorite FOREIGN KEY (user_id) REFERENCES users(user_id);
+ALTER TABLE favorites ADD CONSTRAINT fk_news_favorite FOREIGN KEY (news_id) REFERENCES news(news_id);
+ALTER TABLE favorites ADD CONSTRAINT unique_userid_and_newsid UNIQUE(user_id, news_id);
+
+-- 修改 tag 表為 tags
+ALTER TABLE tag RENAME TO tags;
+
+-- 修改 third_party_auth 表，並添加外鍵約束
+ALTER TABLE third_party_auth ADD CONSTRAINT fk_user_auth FOREIGN KEY (user_id) REFERENCES users(user_id);
 
 

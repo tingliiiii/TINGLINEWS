@@ -3,8 +3,8 @@
 const ip = '172.20.10.5';
 
 // 從後端抓資料
-const fetchData = async (id) => {
-	const url = `http://${ip}:8080/tinglinews/news/list/${id}`;
+const fetchData = async (uri) => {
+	const url = `http://${ip}:8080/tinglinews/news${uri}`;
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
@@ -112,7 +112,7 @@ $(document).ready(() => {
 	const id = urlParams.get('id');
 	// console.log(`id: ${id}`);
 	if (id != null) {
-		fetchData(id);
+		fetchData(`/list/${id}`);
 	} else {
 		fetchData('');
 	}

@@ -21,14 +21,14 @@ const createOptionElement = (value, text) =>
 
 // 新增文章的標籤選項
 const loadTagOptions = async () => {
-	const data = await fetchData('/emp/tags');
+	const data = await fetchData('/admin/tags');
 	const select = $('#tags');
 	const options = data.slice(1).map(tag => createOptionElement(tag.tagId, tag.tagName));
 	select.append(options);
 };
 
 const loadJournalistOptions = async () => {
-	const data = await fetchData('/emp/journalists');
+	const data = await fetchData('/admin/journalists');
 	const select = $('#journalistIds');
 	const options = data.map(journalist => createOptionElement(journalist.userId, journalist.userName));
 	select.append(options);
@@ -73,18 +73,18 @@ const handleSubmit = async (event) => {
 };
 
 const submitPost = async (formData) => {
-	await postData('/emp/news', 'POST', formData);
+	await postData('/admin/news', 'POST', formData);
 };
 
 const updatePost = async (formData) => {
 	const newsId = JSON.parse(sessionStorage.getItem('newsData')).newsId;
-	await postData(`/emp/news/${newsId}`, 'PUT', formData);
+	await postData(`/admin/news/${newsId}`, 'PUT', formData);
 	sessionStorage.removeItem('newsData');
 };
 
-const postData = async (endpoint, method, formData) => {
+const postData = async (uri, method, formData) => {
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews${endpoint}`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews${uri}`, {
 			method,
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(formData)

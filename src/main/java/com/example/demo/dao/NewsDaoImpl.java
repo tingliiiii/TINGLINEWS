@@ -119,13 +119,13 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public List<Tag> findAllTags() {
-		String sql = "SELECT tag_id, tag_name FROM tag";
+		String sql = "SELECT tag_id, tag_name FROM tags";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Tag.class));
 	}
 
 	@Override
 	public Tag getTagById(Integer tagId) {
-		String sql = "SELECT tag_id, tag_name FROM tag WHERE tag_id=?";
+		String sql = "SELECT tag_id, tag_name FROM tags WHERE tag_id=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Tag.class), tagId);
 		} catch (DataAccessException e) {
@@ -136,13 +136,13 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public List<Journalist> findAllJournalists() {
-		String sql = "SELECT user_id, user_name FROM user WHERE authority_id>=2 and authority_id<5 ORDER BY user_id DESC";
+		String sql = "SELECT user_id, user_name FROM users WHERE authority_id>=2 and authority_id<5 ORDER BY user_id DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Journalist.class));
 	}
 
 	@Override
 	public Journalist getJournalistById(Integer userId) {
-		String sql = "SELECT user_id, user_name FROM user WHERE user_id=?";
+		String sql = "SELECT user_id, user_name FROM users WHERE user_id=?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Journalist.class), userId);
 	}
 

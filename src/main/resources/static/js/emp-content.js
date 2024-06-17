@@ -53,7 +53,7 @@ $(document).ready(async () => {
         // 定義從後端獲取數據的 AJAX 請求
         ajax: async (data, callback, settings) => {
             // 從伺服器獲取數據
-            const result = await fetchData('/emp/news');
+            const result = await fetchData('/admin/news');
             // 將數據傳遞給 DataTables 以製作表格
             if (Array.isArray(result)) {
                 callback({ data: result });
@@ -99,7 +99,7 @@ $(document).ready(async () => {
             return;
         }
 
-        const data = await fetchData(`/emp/news/${id}`);
+        const data = await fetchData(`/admin/news/${id}`);
         // // console.log(data);
         sessionStorage.setItem('newsData', JSON.stringify(data));
         window.location.replace('/tinglinews/emp/post.html');
@@ -168,7 +168,7 @@ $(document).ready(async () => {
 
             // 發送更新請求到後端
             try {
-                const response = await fetch(`http://${ip}:8080/tinglinews/emp/publish/${id}`, {
+                const response = await fetch(`http://${ip}:8080/tinglinews/admin/news/${id}/publish`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',

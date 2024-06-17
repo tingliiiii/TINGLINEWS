@@ -46,7 +46,7 @@ const donate = async (formData) => {
     }
 
     try {
-        const response = await fetch(`http://${ip}:8080/tinglinews/user/donate`, {
+        const response = await fetch(`http://${ip}:8080/tinglinews/users/donations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ const loadCaptcha = async () => {
 	const captcha = $('#captcha');
 
     try {
-        const response = await fetch(`http://${ip}:8080/tinglinews/user/captcha`);
+        const response = await fetch(`http://${ip}:8080/tinglinews/users/captcha`);
         const { state, message, data } = await response.json();
 
         if (state) {
@@ -91,7 +91,7 @@ const loadCaptcha = async () => {
 
 const verifyCaptcha = async (captcha) => {
     try {
-        const response = await fetch(`http://${ip}:8080/tinglinews/user/captcha`, {
+        const response = await fetch(`http://${ip}:8080/tinglinews/captcha/verify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

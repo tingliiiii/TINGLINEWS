@@ -15,6 +15,7 @@ import com.example.demo.model.response.ApiResponse;
 import com.example.demo.model.response.StatusMessage;
 import com.example.demo.service.NewsService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "News API")
@@ -26,7 +27,8 @@ public class NewsController {
 	private NewsService newsService;
 	
 	// 搜尋全部新聞
-	@GetMapping("/list/")
+	@Operation(summary = "查看所有已公開新聞")
+	@GetMapping
 	public ResponseEntity<ApiResponse<List<News>>> findAllNews() {
 		try {
 			List<News> newsList = newsService.findAllNewsForFront();
@@ -38,6 +40,7 @@ public class NewsController {
 		}	
 	}
 	
+	@Operation(summary = "按照標籤查看新聞")
 	@GetMapping("/list/{tagId}")
 	public ResponseEntity<ApiResponse<List<News>>> findNewsByTag(@PathVariable Integer tagId) {
 		try {
@@ -50,6 +53,7 @@ public class NewsController {
 		}	
 	}
 	
+	@Operation(summary = "查看單篇新聞")
 	@GetMapping("/{newsId}")
 	public ResponseEntity<ApiResponse<NewsDtoForFront>> findNewsById(@PathVariable Integer newsId) {
 		try {

@@ -19,7 +19,7 @@ const handleFormSubmit = async (event) => {
 const login = async (formData) => {
 	try {
 		// 從後端獲取 CSRF Token
-		const csrfResponse = await fetch(`http://${ip}:8080/tinglinews/user/login`, {
+		const csrfResponse = await fetch(`http://${ip}:8080/tinglinews/users/csrf-token`, {
 			method: 'GET',
 			credentials: 'include' // 需要包含cookie資訊以獲取CSRF Token
 		});
@@ -32,7 +32,7 @@ const login = async (formData) => {
 			return;
 		}
 		// 在登入請求中包含 CSRF Token
-		const response = await fetch(`http://${ip}:8080/tinglinews/user/login`, {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
