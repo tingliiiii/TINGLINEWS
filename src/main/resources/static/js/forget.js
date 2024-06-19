@@ -60,6 +60,9 @@ const verifyOTP = async () => {
 		}
 		Swal.fire(message, '', 'success');
 		$('#reset-section').show();
+		// Enable the required attribute
+		$('#userPassword').prop('required', true);
+		$('#passwordConfirm').prop('required', true);
 
 	} catch (e) {
 		console.error('驗證錯誤：', e);
