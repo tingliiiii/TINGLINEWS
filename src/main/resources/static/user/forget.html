@@ -45,7 +45,7 @@
             <p></p>
             <div id="verification-section" style="display: none;">
               <p></p>
-              <input type="number" id="otp" name="otp" class="form-control" placeholder="驗證碼">
+              <input type="number" id="totp" name="totp" class="form-control" placeholder="驗證碼">
               <p></p>
               <div class="d-flex justify-content-center">
                 <button id="verify" class="btn btn-outline-primary">驗證</button>
@@ -54,10 +54,10 @@
             <p></p>
             <div id="reset-section" style="display: none;">
               <input type="password" id="userPassword" name="userPassword" class="form-control" placeholder="重設密碼"
-                autocomplete="new-password">
+                autocomplete="new-password" required>
               <p></p>
               <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="確認密碼"
-                autocomplete="new-password">
+                autocomplete="new-password" required>
               <p></p>
 
               <div class="d-flex justify-content-center">

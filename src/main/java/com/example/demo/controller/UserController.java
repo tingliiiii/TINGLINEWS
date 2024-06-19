@@ -32,6 +32,7 @@ import com.example.demo.security.CSRFTokenUtil;
 import com.example.demo.security.CaptchaUtil;
 import com.example.demo.security.OTPUtil;
 import com.example.demo.service.FunctionService;
+import com.example.demo.service.RedisService;
 import com.example.demo.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -70,7 +71,6 @@ public class UserController {
 		// 從請求中獲取 CSRF Token 值
 		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
 		log.info("register requestCsrfToken: {}", requestCsrfToken);
-
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -149,35 +149,40 @@ public class UserController {
 	@Operation(summary = "取得 CSRF Token")
 	@GetMapping("/csrf-token")
 	public ResponseEntity<ApiResponse<Map<String, String>>> getCsrfToken(HttpSession session) {
-		
+
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
 		// System.out.println("getCsrfToken: " + csrfToken);
 		log.info("Generated csrfToken: {}", csrfToken);
-		
+
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		// System.out.println(tokenMap);
 		log.info("Token map: {}", tokenMap);
-		
+
 		ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), tokenMap);
 		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 發送郵件
-	@Operation(summary = "發送 OTP 驗證碼 Email")
-	@PostMapping("/otp")
+	@Operation(summary = "發送 TOTP 驗證碼 Email")
+	@PostMapping("/totp")
 	public ResponseEntity<ApiResponse<String>> sendEmail(@RequestBody Map<String, String> request,
 			HttpSession session) {
 
 		String toEmail = request.get("toEmail");
 		String subject = "TINGLINEWS 電子信箱驗證";
-		String otp = OTPUtil.generateOTP();
+		// String otp = OTPUtil.generateOTP();
 		// String body = "驗證碼：" + otp;
-		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
-				+ "<p><small>若您並未要求此代碼，可以安全地忽略此電子郵件。可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
+			// TOTP
+			String secure = "SecretKey"; // 當作金鑰
+			long timeInterval = System.currentTimeMillis() / 1000L / 30L; // 30秒
+			String totp = OTPUtil.generateTOTP(secure, timeInterval, "HMACSHA256"); // 使用 HMACSHA256 作為加密算法
+			String body = "<p>驗證碼：<b>" + totp + "&ensp;</b></p>"
+					+ "<p><small>驗證碼將於30秒後失效，請儘速在驗證頁面完成驗證。若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
+
 			// 創建 MimeMessage
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -190,7 +195,8 @@ public class UserController {
 
 			// 發送郵件
 			mailSender.send(message);
-			session.setAttribute("otp", otp);
+			// session.setAttribute("otp", otp);
+			session.setAttribute("totp", totp);
 
 			ApiResponse apiResponse = new ApiResponse<>(true, "驗證碼已發送至信箱", null);
 			return ResponseEntity.ok(apiResponse);
@@ -200,22 +206,26 @@ public class UserController {
 						.body(new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗"));
 			}
 			// e.printStackTrace();
-			log.error("Error sending OTP email", e);
+			log.error("Error sending TOTP email", e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage()));
 		}
 	}
 
 	// 驗證OTP
-	@Operation(summary = "驗證 OTP")
-	@PostMapping("/otp/verify")
-	public ResponseEntity<ApiResponse<Void>> verifyOTP(@RequestBody Map<String, String> request, HttpSession session) {
-		String sentOtp = (String) session.getAttribute("otp");
-		String receivedOtp = request.get("otp");
+	@Operation(summary = "驗證 TOTP")
+	@PostMapping("/totp/verify")
+	public ResponseEntity<ApiResponse<Void>> verifyTOTP(@RequestBody Map<String, String> request, HttpSession session) {
+		String sentTotp = (String) session.getAttribute("totp");
+		log.info("sentTotp: " + sentTotp);
+		String receivedTotp = request.get("totp");
+		log.info("receivedTotp: " + receivedTotp);
 
-		if (sentOtp != null && sentOtp.equals(receivedOtp)) {
+		if (sentTotp != null && sentTotp.equals(receivedTotp)) {
 			session.setAttribute("verify", true);
 			return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.驗證成功.name(), null));
+		} else if (sentTotp == null) {
+			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
 		} else {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null));
 		}
@@ -274,7 +284,7 @@ public class UserController {
 	@PutMapping("/{userId}/profile")
 	public ResponseEntity<ApiResponse<Void>> updateUser(@PathVariable Integer userId,
 			@RequestBody UserProfileDto userProfile) {
-		
+
 		boolean state = userService.updateUserDetails(userId, userProfile);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, null);

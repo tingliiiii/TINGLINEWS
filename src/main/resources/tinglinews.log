@@ -1,47 +1,47 @@
-2024-06-19T15:39:25.818+08:00  INFO 7197 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 7197 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-19T15:39:25.819+08:00  INFO 7197 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-19T15:39:26.091+08:00  INFO 7197 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2024-06-19T15:39:26.099+08:00  INFO 7197 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
-2024-06-19T15:39:26.256+08:00  INFO 7197 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-06-19T15:39:26.260+08:00  INFO 7197 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-19T15:39:26.261+08:00  INFO 7197 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2024-06-19T15:39:26.284+08:00  INFO 7197 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
-2024-06-19T15:39:26.284+08:00  INFO 7197 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 451 ms
-2024-06-19T15:39:26.397+08:00  INFO 7197 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2024-06-19T15:39:26.522+08:00  INFO 7197 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-19T15:39:26.577+08:00  INFO 7197 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1753475d
-2024-06-19T15:39:26.578+08:00  INFO 7197 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-19T15:39:26.632+08:00  INFO 7197 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
-2024-06-19T15:39:26.638+08:00  INFO 7197 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 0.942 seconds (process running for 1.127)
-2024-06-19T15:39:31.336+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-19T15:39:31.336+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-19T15:39:31.338+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-06-19T15:39:52.928+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : Generated csrfToken: 76bbf5bb-eb21-4926-92c5-b1cf1f2b44a0
-2024-06-19T15:39:52.929+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : Token map: {csrfToken=76bbf5bb-eb21-4926-92c5-b1cf1f2b44a0}
-2024-06-19T15:39:52.972+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login csrfToken: 76bbf5bb-eb21-4926-92c5-b1cf1f2b44a0
-2024-06-19T15:39:52.973+08:00  INFO 7197 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login requestCsrfToken: 76bbf5bb-eb21-4926-92c5-b1cf1f2b44a0
-2024-06-19T15:41:04.738+08:00  INFO 7197 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-06-19T15:41:04.752+08:00  INFO 7197 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-19T15:41:04.756+08:00  INFO 7197 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-19T15:41:05.619+08:00  INFO 7213 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 7213 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-19T15:41:05.620+08:00  INFO 7213 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-19T15:41:05.894+08:00  INFO 7213 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
-2024-06-19T15:41:05.901+08:00  INFO 7213 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
-2024-06-19T15:41:06.070+08:00  INFO 7213 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-06-19T15:41:06.075+08:00  INFO 7213 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-19T15:41:06.075+08:00  INFO 7213 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
-2024-06-19T15:41:06.095+08:00  INFO 7213 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
-2024-06-19T15:41:06.096+08:00  INFO 7213 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 462 ms
-2024-06-19T15:41:06.214+08:00  INFO 7213 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2024-06-19T15:41:06.344+08:00  INFO 7213 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-19T15:41:06.404+08:00  INFO 7213 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e18ced7
-2024-06-19T15:41:06.405+08:00  INFO 7213 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-19T15:41:06.461+08:00  INFO 7213 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
-2024-06-19T15:41:06.466+08:00  INFO 7213 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 0.974 seconds (process running for 1.177)
-2024-06-19T15:41:25.767+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-19T15:41:25.767+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-19T15:41:25.768+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-06-19T15:41:33.163+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : Generated csrfToken: 7e6f26ba-e786-4428-824b-f477d8ba81a8
-2024-06-19T15:41:33.163+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : Token map: {csrfToken=7e6f26ba-e786-4428-824b-f477d8ba81a8}
-2024-06-19T15:41:33.225+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : login csrfToken: 7e6f26ba-e786-4428-824b-f477d8ba81a8
-2024-06-19T15:41:33.225+08:00  INFO 7213 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : login requestCsrfToken: 7e6f26ba-e786-4428-824b-f477d8ba81a8
+2024-06-20T00:03:52.736+08:00  INFO 11330 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 11330 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T00:03:52.739+08:00  INFO 11330 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T00:03:53.078+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T00:03:53.078+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T00:03:53.088+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
+2024-06-20T00:03:53.093+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T00:03:53.094+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T00:03:53.099+08:00  INFO 11330 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T00:03:53.322+08:00  INFO 11330 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T00:03:53.327+08:00  INFO 11330 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T00:03:53.327+08:00  INFO 11330 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T00:03:53.348+08:00  INFO 11330 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T00:03:53.348+08:00  INFO 11330 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 593 ms
+2024-06-20T00:03:53.520+08:00  INFO 11330 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T00:03:53.690+08:00  INFO 11330 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T00:03:53.766+08:00  INFO 11330 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2570b316
+2024-06-20T00:03:53.767+08:00  INFO 11330 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T00:03:53.841+08:00  INFO 11330 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T00:03:53.846+08:00  INFO 11330 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.249 seconds (process running for 1.549)
+2024-06-20T00:04:00.310+08:00  INFO 11330 --- [Springboot-Web] [http-nio-8080-exec-5] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T00:04:00.311+08:00  INFO 11330 --- [Springboot-Web] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T00:04:00.315+08:00  INFO 11330 --- [Springboot-Web] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-06-20T00:28:00.548+08:00  INFO 11330 --- [Springboot-Web] [RMI TCP Connection(32)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T00:28:00.583+08:00  INFO 11330 --- [Springboot-Web] [RMI TCP Connection(32)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T00:28:00.592+08:00  INFO 11330 --- [Springboot-Web] [RMI TCP Connection(32)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T00:28:02.567+08:00  INFO 11831 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 11831 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T00:28:02.568+08:00  INFO 11831 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T00:28:02.885+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T00:28:02.886+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T00:28:02.894+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T00:28:02.900+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T00:28:02.900+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T00:28:02.905+08:00  INFO 11831 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T00:28:03.121+08:00  INFO 11831 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T00:28:03.126+08:00  INFO 11831 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T00:28:03.126+08:00  INFO 11831 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T00:28:03.146+08:00  INFO 11831 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T00:28:03.147+08:00  INFO 11831 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 563 ms
+2024-06-20T00:28:03.312+08:00  INFO 11831 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T00:28:03.475+08:00  INFO 11831 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T00:28:03.560+08:00  INFO 11831 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3add5e17
+2024-06-20T00:28:03.561+08:00  INFO 11831 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T00:28:03.635+08:00  INFO 11831 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T00:28:03.641+08:00  INFO 11831 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.213 seconds (process running for 1.49)
+2024-06-20T00:28:19.816+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T00:28:19.817+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T00:28:19.819+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms

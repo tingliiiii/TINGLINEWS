@@ -2,6 +2,22 @@
 // const ip = 'localhost';
 const ip = '172.20.10.5';
 
+const fetchData = async (url, method, body) => {
+	try {
+		const response = await fetch(url, {
+			method: method,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(body)
+		});
+		return await response.json();
+	} catch (e) {
+		console.error('請求錯誤：', e);
+		throw e;
+	}
+}
+
 const sendEmail = async () => {
 
 	const email = $('#userEmail').val();
@@ -12,17 +28,7 @@ const sendEmail = async () => {
 	}
 
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/users/otp`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				'toEmail': email
-			})
-		});
-
-		const { state, message, data } = await response.json();
+		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/totp`, 'POST', { 'toEmail': email });
 		console.log(state, message, data);
 
 		if (state !== true) {
@@ -41,18 +47,9 @@ const sendEmail = async () => {
 }
 
 const verifyOTP = async () => {
-	const otp = $('#otp').val();
+	const totp = $('#totp').val();
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/users/otp/verify`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				'otp': otp
-			})
-		});
-		const { state, message, data } = await response.json();
+		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/totp/verify`, 'POST', { 'totp': totp });
 		console.log(state, message, data);
 		if (state !== true) {
 			Swal.fire(message, '', 'error');
@@ -60,9 +57,9 @@ const verifyOTP = async () => {
 		}
 		Swal.fire(message, '', 'success');
 		$('#reset-section').show();
-		// Enable the required attribute
-		$('#userPassword').prop('required', true);
-		$('#passwordConfirm').prop('required', true);
+		// 增加 required 屬性
+		// $('#userPassword').prop('required', true);
+		// $('#passwordConfirm').prop('required', true);
 
 	} catch (e) {
 		console.error('驗證錯誤：', e);
@@ -82,17 +79,7 @@ const handleSubmit = async (event) => {
 	}
 
 	try {
-		const response = await fetch(`http://${ip}:8080/tinglinews/users/password`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				"email": email,
-				"password": password
-			})
-		});
-		const { state, message, data } = await response.json();
+		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/password`, 'PATCH', { "email": email, "password": password });
 		console.log(state, message, data);
 		if (state !== true) {
 			Swal.fire(message, '', 'error');
