@@ -17,7 +17,9 @@ import com.example.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "OAuth2 API")
 @Controller
 @RequestMapping("/callback")
@@ -29,7 +31,8 @@ public class OAuth2Controller {
 	@GetMapping("/github")
 	public String getToken(@RequestParam("code") String code, HttpSession session) {
 		session.setAttribute("code", code);
-		System.out.println("Received code: " + code);
+		// System.out.println("Received code: " + code);
+		log.info("Received code: " + code);
 		return "redirect:/callback/github.html";
 	}
 
@@ -40,27 +43,33 @@ public class OAuth2Controller {
 
 		try {
 			String code = (String) session.getAttribute("code");
-			System.out.println("code: " + code);
+			// System.out.println("code: " + code);
+			log.info("Authorization code: " + code);
 			if (code == null) {
 				return new ApiResponse<>(false, "Missing authorization code", null);
 			}
 
 			String token = OAuth2Util.getGitHubAccessToken(code);
-			System.out.println(token);
+			// System.out.println(token);
+			log.info("Access token: " + token);
 			if (token == null) {
 				return new ApiResponse<>(false, "Failed to obtain access token", null);
 			}
 
 			String accessToken = OAuth2Util.parseAccessToken(token);
 			if (accessToken == null) {
+				log.warn("Failed to parse access token");
 				return new ApiResponse<>(false, "Failed to parse access token", null);
 			}
 
 			String userInfo = OAuth2Util.getUserInfoFromGitHub(accessToken);
 			JSONObject userInfoObject = new JSONObject(userInfo);
-			System.out.println(userInfoObject);
-			System.out.println("login: " + userInfoObject.getString("login"));
-			System.out.println("id: " + userInfoObject.getInt("id"));
+			// System.out.println(userInfoObject);
+			// System.out.println("login: " + userInfoObject.getString("login"));
+			// System.out.println("id: " + userInfoObject.getInt("id"));
+			log.info("UserInfoObject: " + userInfoObject);
+			log.info("Login: " + userInfoObject.getString("login"));
+			log.info("Id: " + userInfoObject.getInt("id"));
 
 			String login = userInfoObject.getString("login");
 			Integer providerUserId = userInfoObject.getInt("id");

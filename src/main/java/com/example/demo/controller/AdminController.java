@@ -32,7 +32,9 @@ import com.example.demo.service.NewsService;
 import com.example.demo.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @io.swagger.v3.oas.annotations.tags.Tag(name = "Admin API")
 @RestController
 @RequestMapping("/admin")
@@ -203,6 +205,7 @@ public class AdminController {
 			ApiResponse<T> apiResponse = serviceCall.execute();
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			ApiResponse<T> apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
 		}

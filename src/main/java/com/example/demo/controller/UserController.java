@@ -39,7 +39,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "User API")
 @RestController
 @RequestMapping("/users")
@@ -62,10 +64,13 @@ public class UserController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		System.out.println("login csrfToken: " + csrfToken);
+		// System.out.println("login csrfToken: " + csrfToken);
+		log.info("register csrfToken: {}", csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
-		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		log.info("register requestCsrfToken: {}", requestCsrfToken);
+
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -79,7 +84,8 @@ public class UserController {
 		try {
 			userId = userService.createUser(user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.error("Error during user registration", e);
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
@@ -104,10 +110,12 @@ public class UserController {
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
-		System.out.println("login csrfToken: " + csrfToken);
+		// System.out.println("login csrfToken: " + csrfToken);
+		log.info("login csrfToken: {}", csrfToken);
 
 		// 從請求中獲取的 CSRF Token 值
-		System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
+		log.info("login requestCsrfToken: {}", requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
@@ -129,7 +137,8 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.error("Error during user login", e);
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
 		}
@@ -140,12 +149,17 @@ public class UserController {
 	@Operation(summary = "取得 CSRF Token")
 	@GetMapping("/csrf-token")
 	public ResponseEntity<ApiResponse<Map<String, String>>> getCsrfToken(HttpSession session) {
+		
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
 		// System.out.println("getCsrfToken: " + csrfToken);
+		log.info("Generated csrfToken: {}", csrfToken);
+		
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
-		System.out.println(tokenMap);
+		// System.out.println(tokenMap);
+		log.info("Token map: {}", tokenMap);
+		
 		ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), tokenMap);
 		return ResponseEntity.ok(apiResponse);
 	}
@@ -185,7 +199,8 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 						.body(new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗"));
 			}
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.error("Error sending OTP email", e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage()));
 		}
@@ -254,18 +269,13 @@ public class UserController {
 		}
 	}
 
-	// 修改
+	// 更新使用者個人資訊
 	@Operation(summary = "更新使用者個人資訊")
 	@PutMapping("/{userId}/profile")
 	public ResponseEntity<ApiResponse<Void>> updateUser(@PathVariable Integer userId,
 			@RequestBody UserProfileDto userProfile) {
-		User user = userService.getUserById(userId);
-		user.setUserName(userProfile.getUserName());
-		user.setUserEmail(userProfile.getUserEmail());
-		user.setBirthday(userProfile.getBirthday());
-		user.setGender(userProfile.getGender());
-		user.setPhone(userProfile.getPhone());
-		boolean state = userService.updateUserDetails(userId, user);
+		
+		boolean state = userService.updateUserDetails(userId, userProfile);
 		String message = state ? StatusMessage.更新成功.name() : StatusMessage.更新失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, null);
 		return ResponseEntity.ok(apiResponse);

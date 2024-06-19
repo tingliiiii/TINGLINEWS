@@ -17,7 +17,9 @@ import com.example.demo.service.NewsService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Tag(name = "News API")
 @RestController
 @RequestMapping("/news")
@@ -35,6 +37,7 @@ public class NewsController {
 			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), newsList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}	
@@ -48,6 +51,7 @@ public class NewsController {
 			ApiResponse<List<News>> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), newsList);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}	
@@ -62,6 +66,7 @@ public class NewsController {
 			ApiResponse<NewsDtoForFront> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), news);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}	

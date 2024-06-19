@@ -83,7 +83,13 @@ public class UserService {
 	}
 
 	// 修改個人資訊
-	public Boolean updateUserDetails(Integer userId, User user) {
+	public Boolean updateUserDetails(Integer userId, UserProfileDto userProfile) {
+		User user = getUserById(userId);
+		user.setUserName(userProfile.getUserName());
+		user.setUserEmail(userProfile.getUserEmail());
+		user.setBirthday(userProfile.getBirthday());
+		user.setGender(userProfile.getGender());
+		user.setPhone(userProfile.getPhone());
 		return userDao.updateUser(userId, user) > 0;
 	}
 
