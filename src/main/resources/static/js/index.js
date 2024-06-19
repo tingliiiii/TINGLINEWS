@@ -10,7 +10,7 @@ const fetchData = async () => {
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
 
-		// 小卡
+		// 設定圖片、內文格式
 		data.map((item) => {
 			// Base64 字串轉圖片
 			if (item.image) {
@@ -79,7 +79,6 @@ const renderCardData = (data, currentPage = 1, itemsPerPage = 6) => {
 		renderCardData(data, page, itemsPerPage);
 	});
 
-
 };
 
 // 渲染大圖輪播
@@ -98,8 +97,8 @@ const renderCarouselData = (data) => {
 		</a>
 	`;
 	$('#carousel1').html(newsItem(data[0]));
-	$('#carousel2').html(newsItem(data[1]));
-	$('#carousel3').html(newsItem(data[2]));
+	$('#carousel2').html(newsItem(data[2]));
+	$('#carousel3').html(newsItem(data[4]));
 
 
 };

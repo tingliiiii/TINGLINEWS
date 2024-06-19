@@ -191,6 +191,16 @@ body {
   /* 確保圖片在容器中以適當的比例填充 */
 }
 
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(126, 126, 126, 0.8); /* 淺灰色透明遮罩 */
+  color: #fff; /* 根據需要設置文字顏色 */
+  padding: 1.2em;
+}
+
 
 /* #sec2 ================================================= */
 .card a {

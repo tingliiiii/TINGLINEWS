@@ -61,8 +61,7 @@ const login = async (formData) => {
 
 		// 如果沒有 email 跳轉至個人資料頁面
 		const email = sessionStorage.getItem('userEmail');
-		if (email == null) {
-			sessionStorage.setItem('userEmail', data.userEmail);
+		if (!email) {
 			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.replace('/tinglinews/user/profile.html');
@@ -79,7 +78,7 @@ const login = async (formData) => {
 
 	} catch (e) {
 		console.error('登入錯誤：', e);
-		Swal.fire('登入錯誤 請稍後再試', e, 'error');
+		Swal.fire('登入錯誤 請稍後再試', e.message || e, 'error');
 	}
 
 };
@@ -90,9 +89,8 @@ $(document).ready(() => {
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
 
-	const data = JSON.parse(sessionStorage.getItem('userData'));
-	if(data){
-		const email = data.userEmail;
+	const email = JSON.parse(sessionStorage.getItem('userData'))?.userEmail || sessionStorage.getItem('userEmail');
+	if(email){
 		$('#userEmail').val(email);
 	}
 	

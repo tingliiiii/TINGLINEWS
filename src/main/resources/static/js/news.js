@@ -44,12 +44,7 @@ const renderData = (data) => {
 			</div>
  		`;
 	};
-	/*
-					<form method="POST" id="saved-form" class="d-inline-block">
-					<input type="hidden" name="newsId" value="${item.newsId}">
-					<button type="submit" class="btn btn-secondary btn-sm">收藏</button>
-				</form>
-	*/
+
 	$('.news-container').html(Array.isArray(data) ? data.map(newsItem).join('') : newsItem(data));
 
 }
@@ -59,7 +54,7 @@ const handleSubmit = async (event) => {
 
 	const data = JSON.parse(sessionStorage.getItem('userData'));
 
-	if (!data.userId) {
+	if (!data) {
 		Swal.fire('登入解鎖收藏功能', '', 'info');
 		return;
 	}
@@ -77,6 +72,7 @@ const handleSubmit = async (event) => {
 			},
 			body: JSON.stringify(formData)
 		});
+		
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
 		if (state) {

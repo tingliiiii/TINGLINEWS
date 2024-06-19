@@ -59,13 +59,26 @@ const handleSubmit = async (event) => {
 		Swal.fire('錯誤', '請選擇一張照片', 'error');
 		return;
 	}
+	
+	const title = $('#title').val();
+	const tagId = $('#tags').val();
+	const content = tinymce.get('content').getContent();
+	const userId = JSON.parse(sessionStorage.getItem('userData')).userId;
+	const image = $('#fileInput').data('base64'); // Base64 字串
+	const journalistIds = $('#journalistIds').val();
+	
+	if (!title || !tagId || !content || !userId || !image || !journalistIds.length) {
+		Swal.fire('錯誤', '所有欄位都必須填寫', 'error');
+		return;
+	}
+
 	const formData = {
-		title: $('#title').val(),
-		tagId: $('#tags').val(),
-		content: tinymce.get('content').getContent(),
-		userId: JSON.parse(sessionStorage.getItem('userData')).userId,
-		image: $('#fileInput').data('base64'), // Base64 字串
-		journalistIds: $('#journalistIds').val()
+		title,
+		tagId,
+		content,
+		userId,
+		image,
+		journalistIds
 	};
 
 	const action = $('#submit-btn').text() === '新增文章' ? submitPost : updatePost;

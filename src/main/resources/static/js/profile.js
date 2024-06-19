@@ -134,15 +134,14 @@ $(document).ready(async () => {
 	$('.ad-container').load('../ad.html');
 
 	const data = JSON.parse(sessionStorage.getItem('userData'));
-	const userId = sessionStorage.getItem('userId') || data.userId;
 	// console.log('用戶 ID：', userId);
-	if (!userId) {
+	if (!data) {
 		// console.log('用戶 ID 未找到');
 		Swal.fire('請重新登入', '', 'error');
 		window.location.replace('/tinglinews/user/login.html');
 		return;
 	}
-
+	const userId = data.userId;
 	fetchData(userId);
 
 	$('#toggle-donated').on('click', () => {
