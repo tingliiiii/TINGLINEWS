@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,9 @@ public class UserController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+
+	@Autowired
+	private RedisService redisService;
 
 	// 註冊
 	@Operation(summary = "註冊")
@@ -165,29 +169,30 @@ public class UserController {
 	}
 
 	// 發送郵件
-	@Operation(summary = "發送 TOTP 驗證碼 Email")
-	@PostMapping("/totp")
+	@Operation(summary = "發送 OTP 驗證碼 Email")
+	@PostMapping("/otp")
 	public ResponseEntity<ApiResponse<String>> sendEmail(@RequestBody Map<String, String> request,
 			HttpSession session) {
 
-		String toEmail = request.get("toEmail");
+		String email = request.get("email");
 		String subject = "TINGLINEWS 電子信箱驗證";
-		// String otp = OTPUtil.generateOTP();
-		// String body = "驗證碼：" + otp;
+		String otp = OTPUtil.generateOTP();
+		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
+				+ "<p><small>驗證碼將於30秒後失效，請儘速在驗證頁面完成驗證。若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
-			// TOTP
-			String secure = "SecretKey"; // 當作金鑰
-			long timeInterval = System.currentTimeMillis() / 1000L / 30L; // 30秒
-			String totp = OTPUtil.generateTOTP(secure, timeInterval, "HMACSHA256"); // 使用 HMACSHA256 作為加密算法
-			String body = "<p>驗證碼：<b>" + totp + "&ensp;</b></p>"
-					+ "<p><small>驗證碼將於30秒後失效，請儘速在驗證頁面完成驗證。若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
+			// OTP
+			// String secure = Base64.getEncoder().encodeToString("MyKey".getBytes()); //
+			// 當作金鑰
+			// long timeInterval = System.currentTimeMillis() / 1000L / 30L; // 30秒
+			// String totp = OTPUtil.generateTOTP(secure, timeInterval, "HMACSHA256"); // 使用
+			// HMACSHA256 作為加密算法
 
 			// 創建 MimeMessage
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-			helper.setTo(toEmail);
+			helper.setTo(email);
 			helper.setSubject(subject);
 			helper.setText(body, true); // 設置為 true 表示該郵件支持 HTML
 			// 設置發件人顯示名稱和郵箱地址
@@ -196,7 +201,8 @@ public class UserController {
 			// 發送郵件
 			mailSender.send(message);
 			// session.setAttribute("otp", otp);
-			session.setAttribute("totp", totp);
+			// session.setAttribute("totp", totp);
+			redisService.save(email, otp, 30, TimeUnit.SECONDS);
 
 			ApiResponse apiResponse = new ApiResponse<>(true, "驗證碼已發送至信箱", null);
 			return ResponseEntity.ok(apiResponse);
@@ -213,19 +219,22 @@ public class UserController {
 	}
 
 	// 驗證OTP
-	@Operation(summary = "驗證 TOTP")
-	@PostMapping("/totp/verify")
-	public ResponseEntity<ApiResponse<Void>> verifyTOTP(@RequestBody Map<String, String> request, HttpSession session) {
-		String sentTotp = (String) session.getAttribute("totp");
-		log.info("sentTotp: " + sentTotp);
+	@Operation(summary = "驗證 OTP")
+	@PostMapping("/otp/verify")
+	public ResponseEntity<ApiResponse<Void>> verifyOTP(@RequestBody Map<String, String> request, HttpSession session) {
+		// String sentTotp = (String) session.getAttribute("totp");
+		// log.info("sentTotp: " + sentTotp);
+		String email = request.get("email");
+		String sentOtp = redisService.get(email);
+		log.info("sentOtp: " + sentOtp);
 		String receivedTotp = request.get("totp");
 		log.info("receivedTotp: " + receivedTotp);
 
-		if (sentTotp != null && sentTotp.equals(receivedTotp)) {
+		if (sentOtp == null) {
+			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
+		} else if (sentOtp != null && sentOtp.equals(receivedTotp)) {
 			session.setAttribute("verify", true);
 			return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.驗證成功.name(), null));
-		} else if (sentTotp == null) {
-			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
 		} else {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null));
 		}

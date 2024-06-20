@@ -28,7 +28,7 @@ const sendEmail = async () => {
 	}
 
 	try {
-		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/totp`, 'POST', { 'toEmail': email });
+		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp`, 'POST', { 'email': email });
 		console.log(state, message, data);
 
 		if (state !== true) {
@@ -47,9 +47,11 @@ const sendEmail = async () => {
 }
 
 const verifyOTP = async () => {
+	const email = $('#userEmail').val();
 	const totp = $('#totp').val();
 	try {
-		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/totp/verify`, 'POST', { 'totp': totp });
+		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp/verify`, 'POST',
+			{ 'email': email, 'totp': totp });
 		console.log(state, message, data);
 		if (state !== true) {
 			Swal.fire(message, '', 'error');

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RedisService {
-	
-	// 原本想用來讓 OTP 過期，但改成 TOTP 就好
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

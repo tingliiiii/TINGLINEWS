@@ -45,3 +45,694 @@
 2024-06-20T00:28:19.816+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-06-20T00:28:19.817+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-06-20T00:28:19.819+08:00  INFO 11831 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-20T00:50:06.667+08:00  INFO 11831 --- [Springboot-Web] [RMI TCP Connection(30)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T00:50:06.692+08:00  INFO 11831 --- [Springboot-Web] [RMI TCP Connection(30)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T00:50:06.699+08:00  INFO 11831 --- [Springboot-Web] [RMI TCP Connection(30)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T09:37:28.637+08:00  INFO 1183 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 1183 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T09:37:28.638+08:00  INFO 1183 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T09:37:28.974+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:37:28.974+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T09:37:28.984+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2024-06-20T09:37:28.995+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:37:28.996+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T09:37:29.001+08:00  INFO 1183 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T09:37:29.212+08:00  INFO 1183 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T09:37:29.218+08:00  INFO 1183 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T09:37:29.218+08:00  INFO 1183 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T09:37:29.243+08:00  INFO 1183 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T09:37:29.243+08:00  INFO 1183 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 591 ms
+2024-06-20T09:37:29.413+08:00  INFO 1183 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T09:37:29.581+08:00  INFO 1183 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T09:37:30.622+08:00 ERROR 1183 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 90 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 93 common frames omitted
+
+2024-06-20T09:37:30.632+08:00  WARN 1183 --- [Springboot-Web] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+2024-06-20T09:37:30.643+08:00  INFO 1183 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-06-20T09:37:30.655+08:00  INFO 1183 --- [Springboot-Web] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-06-20T09:37:30.664+08:00 ERROR 1183 --- [Springboot-Web] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 19 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 33 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 34 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 56 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 57 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	... 77 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 90 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 93 common frames omitted
+
+2024-06-20T09:37:44.821+08:00  INFO 1222 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 1222 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T09:37:44.822+08:00  INFO 1222 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T09:37:45.112+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:37:45.113+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T09:37:45.120+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T09:37:45.126+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:37:45.126+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T09:37:45.136+08:00  INFO 1222 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T09:37:45.343+08:00  INFO 1222 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T09:37:45.348+08:00  INFO 1222 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T09:37:45.348+08:00  INFO 1222 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T09:37:45.368+08:00  INFO 1222 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T09:37:45.369+08:00  INFO 1222 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 531 ms
+2024-06-20T09:37:45.553+08:00  INFO 1222 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T09:37:45.725+08:00  INFO 1222 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T09:37:45.788+08:00  INFO 1222 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35becbd4
+2024-06-20T09:37:45.789+08:00  INFO 1222 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T09:37:45.868+08:00  INFO 1222 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T09:37:45.873+08:00  INFO 1222 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.18 seconds (process running for 1.426)
+2024-06-20T09:37:52.532+08:00  INFO 1222 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T09:37:52.532+08:00  INFO 1222 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T09:37:52.533+08:00  INFO 1222 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T09:38:00.056+08:00 ERROR 1222 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.NewsController       : Cannot get Jedis connection
+2024-06-20T09:46:58.517+08:00  INFO 1222 --- [Springboot-Web] [RMI TCP Connection(17)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T09:46:58.542+08:00  INFO 1222 --- [Springboot-Web] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T09:46:58.551+08:00  INFO 1222 --- [Springboot-Web] [RMI TCP Connection(17)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T09:47:00.523+08:00  INFO 1543 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 1543 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T09:47:00.524+08:00  INFO 1543 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T09:47:00.833+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:47:00.834+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T09:47:00.842+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JDBC repository interfaces.
+2024-06-20T09:47:00.847+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T09:47:00.848+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T09:47:00.853+08:00  INFO 1543 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T09:47:01.072+08:00  INFO 1543 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T09:47:01.077+08:00  INFO 1543 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T09:47:01.077+08:00  INFO 1543 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T09:47:01.098+08:00  INFO 1543 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T09:47:01.098+08:00  INFO 1543 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 558 ms
+2024-06-20T09:47:01.257+08:00  INFO 1543 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T09:46:57.998+08:00  INFO 1543 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T09:46:58.082+08:00  INFO 1543 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30fa8a6b
+2024-06-20T09:46:58.082+08:00  INFO 1543 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T09:46:58.160+08:00  INFO 1543 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T09:46:58.165+08:00  INFO 1543 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in -2.218 seconds (process running for 1.477)
+2024-06-20T09:47:02.629+08:00  INFO 1543 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T09:47:02.629+08:00  INFO 1543 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T09:47:02.631+08:00  INFO 1543 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T09:47:02.842+08:00 ERROR 1543 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.NewsController       : class java.util.ArrayList cannot be cast to class java.lang.String (java.util.ArrayList and java.lang.String are in module java.base of loader 'bootstrap')
+2024-06-20T09:48:31.162+08:00  INFO 1543 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T09:48:31.173+08:00  INFO 1543 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T09:48:31.177+08:00  INFO 1543 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T10:48:02.499+08:00  INFO 2634 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2634 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T10:48:02.500+08:00  INFO 2634 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T10:48:02.823+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T10:48:02.824+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T10:48:02.832+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T10:48:02.838+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T10:48:02.839+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T10:48:02.844+08:00  INFO 2634 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T10:48:03.067+08:00  INFO 2634 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T10:48:03.073+08:00  INFO 2634 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T10:48:03.073+08:00  INFO 2634 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T10:48:03.093+08:00  INFO 2634 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T10:48:03.093+08:00  INFO 2634 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 577 ms
+2024-06-20T10:48:03.261+08:00  INFO 2634 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T10:48:03.438+08:00  INFO 2634 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T10:48:03.530+08:00  INFO 2634 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@58bad46f
+2024-06-20T10:48:03.531+08:00  INFO 2634 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T10:48:03.601+08:00  INFO 2634 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T10:48:03.607+08:00  INFO 2634 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.249 seconds (process running for 1.516)
+2024-06-20T10:48:08.360+08:00  INFO 2634 --- [Springboot-Web] [http-nio-8080-exec-3] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T10:48:08.361+08:00  INFO 2634 --- [Springboot-Web] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T10:48:08.363+08:00  INFO 2634 --- [Springboot-Web] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T10:48:10.502+08:00 ERROR 2634 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.NewsController       : class java.util.ArrayList cannot be cast to class java.lang.String (java.util.ArrayList and java.lang.String are in module java.base of loader 'bootstrap')
+2024-06-20T11:05:26.096+08:00  WARN 2634 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m52s415ms).
+2024-06-20T11:07:54.127+08:00  INFO 2634 --- [Springboot-Web] [RMI TCP Connection(19)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T11:07:54.141+08:00  INFO 2634 --- [Springboot-Web] [RMI TCP Connection(19)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T11:07:54.147+08:00  INFO 2634 --- [Springboot-Web] [RMI TCP Connection(19)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T11:07:55.983+08:00  INFO 2823 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2823 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T11:07:55.984+08:00  INFO 2823 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T11:07:56.274+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T11:07:56.274+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T11:07:56.282+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T11:07:56.287+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T11:07:56.287+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T11:07:56.292+08:00  INFO 2823 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T11:07:56.505+08:00  INFO 2823 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T11:07:56.510+08:00  INFO 2823 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T11:07:56.510+08:00  INFO 2823 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T11:07:56.530+08:00  INFO 2823 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T11:07:56.530+08:00  INFO 2823 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 530 ms
+2024-06-20T11:07:56.683+08:00  INFO 2823 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T11:07:56.856+08:00  INFO 2823 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T11:07:56.916+08:00  INFO 2823 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f3876ef
+2024-06-20T11:07:56.916+08:00  INFO 2823 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T11:07:56.981+08:00  INFO 2823 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T11:07:56.986+08:00  INFO 2823 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.125 seconds (process running for 1.307)
+2024-06-20T11:07:59.412+08:00  INFO 2823 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T11:07:59.412+08:00  INFO 2823 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T11:07:59.414+08:00  INFO 2823 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T11:07:59.569+08:00 ERROR 2823 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.NewsController       : class java.util.ArrayList cannot be cast to class java.lang.String (java.util.ArrayList and java.lang.String are in module java.base of loader 'bootstrap')
+2024-06-20T11:22:58.806+08:00  INFO 2823 --- [Springboot-Web] [RMI TCP Connection(24)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T11:22:58.820+08:00  INFO 2823 --- [Springboot-Web] [RMI TCP Connection(24)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T11:22:58.824+08:00  INFO 2823 --- [Springboot-Web] [RMI TCP Connection(24)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T12:31:26.242+08:00  INFO 3951 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3951 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T12:31:26.243+08:00  INFO 3951 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T12:31:26.568+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T12:31:26.569+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T12:31:26.577+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T12:31:26.583+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T12:31:26.584+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T12:31:26.593+08:00  INFO 3951 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-06-20T12:31:26.813+08:00  INFO 3951 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T12:31:26.819+08:00  INFO 3951 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T12:31:26.819+08:00  INFO 3951 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T12:31:26.839+08:00  INFO 3951 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T12:31:26.840+08:00  INFO 3951 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 581 ms
+2024-06-20T12:31:27.007+08:00  INFO 3951 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T12:31:27.207+08:00  INFO 3951 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T12:31:27.295+08:00  INFO 3951 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26270b77
+2024-06-20T12:31:27.296+08:00  INFO 3951 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T12:31:27.367+08:00  INFO 3951 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T12:31:27.372+08:00  INFO 3951 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.275 seconds (process running for 1.552)
+2024-06-20T12:31:31.186+08:00  INFO 3951 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T12:31:31.186+08:00  INFO 3951 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T12:31:31.187+08:00  INFO 3951 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T12:31:44.538+08:00 ERROR 3951 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.NewsController       : class com.example.demo.model.dto.NewsDtoForFront cannot be cast to class java.lang.String (com.example.demo.model.dto.NewsDtoForFront is in unnamed module of loader 'app'; java.lang.String is in module java.base of loader 'bootstrap')
+2024-06-20T13:30:15.645+08:00  WARN 3951 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=49m48s191ms).
+2024-06-20T13:40:07.561+08:00  WARN 3951 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m51s919ms).
+2024-06-20T14:00:32.748+08:00  INFO 3951 --- [Springboot-Web] [RMI TCP Connection(40)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:00:32.768+08:00  INFO 3951 --- [Springboot-Web] [RMI TCP Connection(40)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:00:32.770+08:00  INFO 3951 --- [Springboot-Web] [RMI TCP Connection(40)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:00:34.733+08:00  INFO 4487 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4487 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:00:34.734+08:00  INFO 4487 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:00:35.045+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:00:35.046+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:00:35.054+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:00:35.060+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:00:35.061+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:00:35.070+08:00  INFO 4487 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:00:35.290+08:00  INFO 4487 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:00:35.295+08:00  INFO 4487 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:00:35.295+08:00  INFO 4487 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:00:35.316+08:00  INFO 4487 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:00:35.316+08:00  INFO 4487 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 567 ms
+2024-06-20T14:00:35.490+08:00  INFO 4487 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:00:35.666+08:00  INFO 4487 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:00:35.730+08:00  INFO 4487 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c58d7be
+2024-06-20T14:00:35.731+08:00  INFO 4487 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:00:35.803+08:00  INFO 4487 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:00:35.809+08:00  INFO 4487 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.215 seconds (process running for 1.468)
+2024-06-20T14:00:38.293+08:00  INFO 4487 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:00:38.300+08:00  INFO 4487 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:00:38.307+08:00  INFO 4487 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2024-06-20T14:00:38.438+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-5] com.example.demo.service.NewsService     : No data found in Redis for key: allNews
+2024-06-20T14:00:50.450+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-10] com.example.demo.service.NewsService     : No data found in Redis for key: newsById:6032
+2024-06-20T14:07:15.945+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-4] com.example.demo.service.NewsService     : No data found in Redis for key: newsById:6028
+2024-06-20T14:08:05.149+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:1
+2024-06-20T14:08:06.353+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-5] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:2
+2024-06-20T14:08:07.250+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-3] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:3
+2024-06-20T14:08:07.905+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-9] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:4
+2024-06-20T14:08:08.594+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:5
+2024-06-20T14:08:09.231+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-5] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:6
+2024-06-20T14:08:09.797+08:00 ERROR 4487 --- [Springboot-Web] [http-nio-8080-exec-10] com.example.demo.service.NewsService     : No data found in Redis for key: newsByTag:7
+2024-06-20T14:08:22.162+08:00  INFO 4487 --- [Springboot-Web] [RMI TCP Connection(18)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:08:22.175+08:00  INFO 4487 --- [Springboot-Web] [RMI TCP Connection(18)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:08:22.181+08:00  INFO 4487 --- [Springboot-Web] [RMI TCP Connection(18)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:08:24.134+08:00  INFO 4588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4588 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:08:24.135+08:00  INFO 4588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:08:24.449+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:08:24.450+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:08:24.458+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:08:24.464+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:08:24.465+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:08:24.469+08:00  INFO 4588 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:08:24.695+08:00  INFO 4588 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:08:24.700+08:00  INFO 4588 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:08:24.701+08:00  INFO 4588 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:08:24.721+08:00  INFO 4588 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:08:24.722+08:00  INFO 4588 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 571 ms
+2024-06-20T14:08:24.886+08:00  INFO 4588 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:08:25.050+08:00  INFO 4588 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:08:25.112+08:00  INFO 4588 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f3876ef
+2024-06-20T14:08:25.113+08:00  INFO 4588 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:08:25.188+08:00  INFO 4588 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:08:25.193+08:00  INFO 4588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.198 seconds (process running for 1.449)
+2024-06-20T14:08:39.235+08:00  INFO 4588 --- [Springboot-Web] [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:08:39.244+08:00  INFO 4588 --- [Springboot-Web] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:08:39.248+08:00  INFO 4588 --- [Springboot-Web] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:08:42.476+08:00  INFO 4593 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4593 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:08:42.477+08:00  INFO 4593 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:08:42.773+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:08:42.774+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:08:42.782+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:08:42.787+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:08:42.787+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:08:42.792+08:00  INFO 4593 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:08:43.010+08:00  INFO 4593 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:08:43.015+08:00  INFO 4593 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:08:43.015+08:00  INFO 4593 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:08:43.036+08:00  INFO 4593 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:08:43.036+08:00  INFO 4593 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 545 ms
+2024-06-20T14:08:43.204+08:00  INFO 4593 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:08:43.382+08:00  INFO 4593 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:08:43.438+08:00  INFO 4593 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@df9d400
+2024-06-20T14:08:43.439+08:00  INFO 4593 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:08:43.512+08:00  INFO 4593 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:08:43.517+08:00  INFO 4593 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.179 seconds (process running for 1.41)
+2024-06-20T14:08:45.214+08:00  INFO 4593 --- [Springboot-Web] [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:08:45.215+08:00  INFO 4593 --- [Springboot-Web] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:08:45.222+08:00  INFO 4593 --- [Springboot-Web] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2024-06-20T14:11:34.102+08:00  INFO 4593 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:11:34.117+08:00  INFO 4593 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:11:34.121+08:00  INFO 4593 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:11:35.943+08:00  INFO 4633 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4633 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:11:35.944+08:00  INFO 4633 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:11:36.250+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:11:36.251+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:11:36.260+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:11:36.266+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:11:36.267+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:11:36.272+08:00  INFO 4633 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:11:36.483+08:00  INFO 4633 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:11:36.488+08:00  INFO 4633 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:11:36.488+08:00  INFO 4633 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:11:36.508+08:00  INFO 4633 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:11:36.508+08:00  INFO 4633 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 549 ms
+2024-06-20T14:11:36.674+08:00  INFO 4633 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:11:36.878+08:00  INFO 4633 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:11:36.935+08:00  INFO 4633 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@df9d400
+2024-06-20T14:11:36.936+08:00  INFO 4633 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:11:37.008+08:00  INFO 4633 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:11:37.013+08:00  INFO 4633 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.193 seconds (process running for 1.38)
+2024-06-20T14:11:37.791+08:00  INFO 4633 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:11:37.791+08:00  INFO 4633 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:11:37.793+08:00  INFO 4633 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T14:11:47.223+08:00 ERROR 4633 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : Error sending TOTP email
+
+java.lang.IllegalArgumentException: Last unit does not have enough valid bits
+	at java.base/java.util.Base64$Decoder.decode0(Base64.java:868) ~[na:na]
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:566) ~[na:na]
+	at java.base/java.util.Base64$Decoder.decode(Base64.java:589) ~[na:na]
+	at com.example.demo.security.OTPUtil.generateTOTP(OTPUtil.java:31) ~[classes/:na]
+	at com.example.demo.controller.UserController.sendEmail(UserController.java:182) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+
+2024-06-20T14:12:54.138+08:00  INFO 4633 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:12:54.154+08:00  INFO 4633 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:12:54.158+08:00  INFO 4633 --- [Springboot-Web] [RMI TCP Connection(12)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:12:55.989+08:00  INFO 4648 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4648 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:12:55.990+08:00  INFO 4648 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:12:56.282+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:12:56.282+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:12:56.291+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:12:56.296+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:12:56.297+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:12:56.301+08:00  INFO 4648 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:12:56.516+08:00  INFO 4648 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:12:56.521+08:00  INFO 4648 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:12:56.521+08:00  INFO 4648 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:12:56.541+08:00  INFO 4648 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:12:56.541+08:00  INFO 4648 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 536 ms
+2024-06-20T14:12:56.698+08:00  INFO 4648 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:12:56.855+08:00  INFO 4648 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:12:56.911+08:00  INFO 4648 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4cc4d454
+2024-06-20T14:12:56.911+08:00  INFO 4648 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:12:56.981+08:00  INFO 4648 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:12:56.986+08:00  INFO 4648 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.122 seconds (process running for 1.306)
+2024-06-20T14:13:01.113+08:00  INFO 4648 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:13:01.113+08:00  INFO 4648 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:13:01.114+08:00  INFO 4648 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-20T14:22:10.809+08:00  WARN 4648 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m13s746ms).
+2024-06-20T14:32:08.574+08:00  INFO 4648 --- [Springboot-Web] [RMI TCP Connection(27)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:32:08.617+08:00  INFO 4648 --- [Springboot-Web] [RMI TCP Connection(27)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:32:08.623+08:00  INFO 4648 --- [Springboot-Web] [RMI TCP Connection(27)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:32:10.572+08:00  INFO 4985 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4985 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:32:10.573+08:00  INFO 4985 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:32:10.885+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:32:10.886+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:32:10.894+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:32:10.900+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:32:10.900+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:32:10.905+08:00  INFO 4985 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:32:11.123+08:00  INFO 4985 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:32:11.128+08:00  INFO 4985 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:32:11.129+08:00  INFO 4985 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:32:11.149+08:00  INFO 4985 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:32:11.149+08:00  INFO 4985 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 561 ms
+2024-06-20T14:32:11.323+08:00  INFO 4985 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:32:11.493+08:00  INFO 4985 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:32:11.580+08:00  INFO 4985 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@342723a3
+2024-06-20T14:32:11.580+08:00  INFO 4985 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:32:11.649+08:00  INFO 4985 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:32:11.654+08:00  INFO 4985 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.22 seconds (process running for 1.474)
+2024-06-20T14:33:15.652+08:00  INFO 4985 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:33:15.671+08:00  INFO 4985 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:33:15.675+08:00  INFO 4985 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:33:17.552+08:00  INFO 4999 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4999 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:33:17.553+08:00  INFO 4999 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:33:17.875+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:33:17.876+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:33:17.890+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:33:17.896+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:33:17.896+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:33:17.901+08:00  INFO 4999 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:33:18.155+08:00  INFO 4999 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:33:18.161+08:00  INFO 4999 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:33:18.161+08:00  INFO 4999 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:33:18.215+08:00  INFO 4999 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:33:18.215+08:00  INFO 4999 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 634 ms
+2024-06-20T14:33:18.483+08:00  INFO 4999 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:33:18.680+08:00  INFO 4999 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:33:18.738+08:00  INFO 4999 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4ec427
+2024-06-20T14:33:18.738+08:00  INFO 4999 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:33:18.808+08:00  INFO 4999 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:33:18.813+08:00  INFO 4999 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.433 seconds (process running for 1.627)
+2024-06-20T14:33:49.303+08:00  INFO 4999 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:33:49.303+08:00  INFO 4999 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:33:49.306+08:00  INFO 4999 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-06-20T14:35:43.001+08:00  INFO 4999 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-06-20T14:35:43.016+08:00  INFO 4999 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-20T14:35:43.020+08:00  INFO 4999 --- [Springboot-Web] [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-20T14:35:44.851+08:00  INFO 5013 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 5013 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-20T14:35:44.852+08:00  INFO 5013 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-20T14:35:45.151+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:35:45.152+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-06-20T14:35:45.161+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 JDBC repository interfaces.
+2024-06-20T14:35:45.166+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-06-20T14:35:45.166+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-06-20T14:35:45.171+08:00  INFO 5013 --- [Springboot-Web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-06-20T14:35:45.380+08:00  INFO 5013 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-20T14:35:45.385+08:00  INFO 5013 --- [Springboot-Web] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-20T14:35:45.385+08:00  INFO 5013 --- [Springboot-Web] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-20T14:35:45.405+08:00  INFO 5013 --- [Springboot-Web] [main] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring embedded WebApplicationContext
+2024-06-20T14:35:45.406+08:00  INFO 5013 --- [Springboot-Web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 538 ms
+2024-06-20T14:35:45.567+08:00  INFO 5013 --- [Springboot-Web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-06-20T14:35:45.725+08:00  INFO 5013 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-20T14:35:45.781+08:00  INFO 5013 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26270b77
+2024-06-20T14:35:45.782+08:00  INFO 5013 --- [Springboot-Web] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-20T14:35:45.848+08:00  INFO 5013 --- [Springboot-Web] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/tinglinews'
+2024-06-20T14:35:45.853+08:00  INFO 5013 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.13 seconds (process running for 1.318)
+2024-06-20T14:35:57.519+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/tinglinews]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-20T14:35:57.520+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-20T14:35:57.523+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-06-20T14:36:18.626+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : sentOtp: 502594
+2024-06-20T14:36:18.627+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : receivedTotp: 502594
+2024-06-20T14:38:14.908+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sentOtp: null
+2024-06-20T14:38:14.910+08:00  INFO 5013 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : receivedTotp: 898966
