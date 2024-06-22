@@ -175,19 +175,18 @@ public class UserController {
 			HttpSession session) {
 
 		String email = request.get("email");
+		// 先確認該 email 是否已經註冊為會員
+		User user = userService.getUserByEmail(email);
+		if (user == null) {
+			return ResponseEntity.ok(new ApiResponse<>(false, "該電子郵件尚未註冊", null));
+		}
+		
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
 		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
 				+ "<p><small>驗證碼將於30秒後失效，請儘速在驗證頁面完成驗證。若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
-			// OTP
-			// String secure = Base64.getEncoder().encodeToString("MyKey".getBytes()); //
-			// 當作金鑰
-			// long timeInterval = System.currentTimeMillis() / 1000L / 30L; // 30秒
-			// String totp = OTPUtil.generateTOTP(secure, timeInterval, "HMACSHA256"); // 使用
-			// HMACSHA256 作為加密算法
-
 			// 創建 MimeMessage
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -200,8 +199,6 @@ public class UserController {
 
 			// 發送郵件
 			mailSender.send(message);
-			// session.setAttribute("otp", otp);
-			// session.setAttribute("totp", totp);
 			redisService.save(email, otp, 30, TimeUnit.SECONDS);
 
 			ApiResponse apiResponse = new ApiResponse<>(true, "驗證碼已發送至信箱", null);
@@ -212,7 +209,7 @@ public class UserController {
 						.body(new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗"));
 			}
 			// e.printStackTrace();
-			log.error("Error sending TOTP email", e);
+			log.error("Error sending OTP email", e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage()));
 		}
@@ -227,12 +224,12 @@ public class UserController {
 		String email = request.get("email");
 		String sentOtp = redisService.get(email);
 		log.info("sentOtp: " + sentOtp);
-		String receivedTotp = request.get("totp");
-		log.info("receivedTotp: " + receivedTotp);
+		String receivedOtp = request.get("otp");
+		log.info("receivedOtp: " + receivedOtp);
 
 		if (sentOtp == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
-		} else if (sentOtp != null && sentOtp.equals(receivedTotp)) {
+		} else if (sentOtp != null && sentOtp.equals(receivedOtp)) {
 			session.setAttribute("verify", true);
 			return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.驗證成功.name(), null));
 		} else {
@@ -307,7 +304,8 @@ public class UserController {
 	public ResponseEntity<ApiResponse<String>> getCaptcha(HttpSession session) {
 
 		String captcha = CaptchaUtil.generateCaptchaCode();
-		System.out.println("captcha code: " + captcha);
+		// System.out.println("captcha code: " + captcha);
+		log.info("captcha code: " + captcha);
 		session.setAttribute("captcha", captcha);
 
 		try {
@@ -330,9 +328,9 @@ public class UserController {
 			HttpSession session) {
 
 		String sessionCaptcha = (String) session.getAttribute("captcha");
-		System.out.println("sessionCaptcha: " + sessionCaptcha);
+		// System.out.println("sessionCaptcha: " + sessionCaptcha);
 		String inputCaptcha = request.get("captcha");
-		System.out.println("inputCaptcha: " + inputCaptcha);
+		// System.out.println("inputCaptcha: " + inputCaptcha);
 
 		if (sessionCaptcha == null || inputCaptcha == null || !sessionCaptcha.equals(inputCaptcha)) {
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);

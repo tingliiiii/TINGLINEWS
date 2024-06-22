@@ -78,7 +78,8 @@ public class UserDaoImpl implements UserDao {
 	public User getUserByEmail(String userEmail) {
 		String sql = "SELECT user_id, user_name, user_email, user_password, salt FROM users WHERE user_email = ?";
 		try {
-			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
+			User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userEmail);
+			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
