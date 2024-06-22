@@ -4,19 +4,19 @@ const ip = '172.20.10.5';
 
 
 // 從後端抓資料
-const fetchData = async (id) => {
+const fetchNewsData = async (id) => {
 	const url = `http://${ip}:8080/tinglinews/news/${id}`;
 	try {
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
-		renderData(data);
+		renderNewsData(data);
 	} catch (e) {
 		console.error(e);
 	}
 };
 
-const renderData = (data) => {
+const renderNewsData = (data) => {
 
 	// Base64 字串轉圖片
 	if (data.image) {
@@ -44,6 +44,8 @@ const renderData = (data) => {
 			</div>
  		`;
 	};
+
+	// data.relatedNews.title | content | publicTime | image
 
 	$('.news-container').html(Array.isArray(data) ? data.map(newsItem).join('') : newsItem(data));
 
@@ -108,7 +110,7 @@ $(document).ready(() => {
 	// console.log(`URLParams: ${urlParams}`);
 	const id = urlParams.get('id');
 	// console.log(`ID 參數: ${id}`);
-	fetchData(id);
+	fetchNewsData(id);
 
 	// 設定收藏按鈕的隱藏欄位
 	$('#newsId').val(id);

@@ -98,6 +98,13 @@ public class NewsDaoImpl implements NewsDao {
 	}
 
 	@Override
+	public List<News> findNewsByTagIdAndNewsId(Integer tagId, Integer newsId) {
+		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time, image "
+				+ "FROM news WHERE public=1 && tag_id=? && news_id>=? LIMIT 3";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(News.class), tagId, newsId);
+	}
+
+	@Override
 	public List<News> findNewsByTagId(Integer tagId) {
 		String sql = "SELECT news_id, title, content, tag_id, user_id, public, public_time, image "
 				+ "FROM news WHERE public=1 && tag_id=? " + "ORDER BY public_time DESC";

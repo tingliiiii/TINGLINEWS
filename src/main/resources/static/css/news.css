@@ -37,7 +37,7 @@
     font-size: 1em;
 }
 
-.news-paragraph h2{
+.news-paragraph h2 {
     color: var(--c-primary-color3);
     letter-spacing: .05em;
     line-height: 2em;
@@ -45,7 +45,7 @@
     margin: .75em 0;
 }
 
-.news-paragraph h3{
+.news-paragraph h3 {
     color: var(--c-primary-color3);
     letter-spacing: .05em;
     line-height: 2em;
@@ -56,6 +56,10 @@
 .news-paragraph a {
     text-decoration: none;
     color: var(--c-primary-color);
+}
+
+.news-paragraph .media {
+    margin-bottom: 1em;
 }
 
 /* 圖片 ================================================= */
@@ -79,15 +83,86 @@
 /* 按鈕 ================================================= */
 
 .btn-secondary {
-	--bs-btn-bg: var(--c-primary-color);
-	--bs-btn-border-color: var(--c-primary-color);
-	--bs-btn-hover-bg: var(--c-primary-color2);
-	--bs-btn-hover-border-color: var(--c-primary-color2);
+    --bs-btn-bg: var(--c-primary-color);
+    --bs-btn-border-color: var(--c-primary-color);
+    --bs-btn-hover-bg: var(--c-primary-color2);
+    --bs-btn-hover-border-color: var(--c-primary-color2);
 }
 
 .btn-outline-secondary {
-	--bs-btn-color: var(--c-primary-color);
-	--bs-btn-border-color: var(--c-primary-color);
-	--bs-btn-hover-bg: var(--c-primary-color2);
-	--bs-btn-hover-border-color: var(--c-primary-color2);
+    --bs-btn-color: var(--c-primary-color);
+    --bs-btn-border-color: var(--c-primary-color);
+    --bs-btn-hover-bg: var(--c-primary-color2);
+    --bs-btn-hover-border-color: var(--c-primary-color2);
+}
+
+/* 延伸閱讀 ================================================= */
+.related-articles-container,
+.favorite-articles-container {
+    margin: 2rem auto;
+    width: min(90%, 600px);
+}
+
+.section-title {
+    margin: 0 auto;
+    font-weight: 700;
+    color: var(--c-primary-color3);
+    letter-spacing: .05em;
+    line-height: 2.5em;
+    text-align: justify;
+    font-size: 1.5em;
+}
+
+.list-info {
+    vertical-align: middle;
+}
+
+.list-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: var(--bs-list-group-border-width) solid var(--c-primary-color-5);
+    padding: 20px;
+}
+
+.list-group-item a {
+    color: var(--c-primary-color2);
+    text-decoration: none;
+}
+
+.list-group-item a h4 {
+    font-weight: 400;
+    font-size: calc(1rem + .3vw);
+}
+
+.list-group-item:hover a h4 {
+    font-weight: 700;
+    font-size: calc(1rem + .4vw);
+}
+
+.list-group-item a p {
+    font-weight: 200;
+    font-size: calc(.7rem + .3vw);
+}
+
+.list-group-item:hover a p {
+    font-weight: 400;
+}
+
+.date {
+    margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .col-3 {
+        display: none;
+    }
+
+    .col-9 {
+        width: 100%;
+    }
 }

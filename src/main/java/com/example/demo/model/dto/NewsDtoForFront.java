@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.demo.model.po.Journalist;
+import com.example.demo.model.po.News;
 import com.example.demo.model.po.Tag;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -31,5 +32,8 @@ public class NewsDtoForFront {
 	
 	private boolean isPublic;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date publicTime; 
+	private Date publicTime;
+	
+	private List<News> relatedNews;
+
 }

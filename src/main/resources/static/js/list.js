@@ -76,15 +76,15 @@ const renderData = (data) => {
 		 <a href="/tinglinews/news.html?id=${item.newsId}">
 			 <div class="list-info">
 				 <div class="row">
-					 <div class="col-9">
+				 	<div class="col-md-3 col-12">
+                      <img src="${item.image}" class="list-img">
+                    </div>
+					<div class="col-md-9 col-12">
 						 <h4>${item.title}</h4>
 						 <p class="content">${item.content}</p>
 						 <p class="date">${item.publicTime}</p>
-					 </div>
-					 <div class="col-3">
-                      <img src="${item.image}" class="list-img">
-                    </div>
-				 </div>
+					</div>
+				  </div>
 			 </div>
 		 </a>
 	 </li>

@@ -157,6 +157,7 @@ public class NewsService {
 			}
 			dto = modelMapper.map(news, NewsDtoForFront.class);
 			dto.setTag(newsDao.getTagById(news.getTagId()));
+			dto.setRelatedNews(newsDao.findNewsByTagIdAndNewsId(news.getTagId(), newsId));
 			List<Journalist> journalists = new ArrayList<>();
 			for (Integer journalistId : news.getJournalistIds()) {
 				journalists.add(newsDao.getJournalistById(journalistId));

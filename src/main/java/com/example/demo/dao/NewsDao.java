@@ -28,6 +28,7 @@ public interface NewsDao {
 	// 單篇報導
 	News getNewsByIdForFront(Integer newsId); // 只有已公開
 	Tag getTagById(Integer tagId);
+	List<News> findNewsByTagIdAndNewsId(Integer tagId, Integer newsId);
 	// 根據標籤的報導列表
 	List<News> findNewsByTagId(Integer tagId);
 	// 報導列表（首頁、即時）

@@ -12,6 +12,12 @@
   object-fit: cover;
 }
 
+@media screen and (max-width: 768px) {
+  .list-img {
+    padding-bottom: 20px;
+  }
+}
+
 .list-group-item {
   background-color: transparent;
   border: var(--bs-list-group-border-width) solid var(--c-primary-color-5);
@@ -40,4 +46,8 @@
 
 .list-group-item:hover a p {
   font-weight: 400;
+}
+
+.date {
+  margin: 0;
 }
