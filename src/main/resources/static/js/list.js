@@ -59,7 +59,7 @@ const fetchData = async (uri, id) => {
 };
 
 const renderData = (data) => {
-	
+
 	for (const item of data) {
 		if (item.image) {
 			// 檢查圖片格式並動態設置

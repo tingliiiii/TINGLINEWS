@@ -11,22 +11,24 @@ const fetchNewsData = async (id) => {
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
 		renderNewsData(data);
+		renderRelatedData(data.relatedNews);
 	} catch (e) {
 		console.error(e);
 	}
 };
 
+const setImageFormat = (imageData) => {
+	let imageFormat = 'jpeg'; // 默認為 jpeg
+	if (imageData.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
+		imageFormat = 'png';
+	}
+	return `data:image/${imageFormat};base64,${imageData}`;
+}
+
 const renderNewsData = (data) => {
 
 	// Base64 字串轉圖片
-	if (data.image) {
-		// 檢查圖片格式並動態設置
-		let imageFormat = 'jpeg'; // 默認為 jpeg
-		if (data.image.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
-			imageFormat = 'png';
-		}
-		data.image = 'data:image/' + imageFormat + ';base64,' + data.image;
-	}
+	data.image = setImageFormat(data.image);
 
 	const newsItem = (item) => {
 		const journalists = item.journalists.map(journalist => journalist.userName).join(' ');
@@ -45,10 +47,39 @@ const renderNewsData = (data) => {
  		`;
 	};
 
-	// data.relatedNews.title | content | publicTime | image
-
 	$('.news-container').html(Array.isArray(data) ? data.map(newsItem).join('') : newsItem(data));
 
+}
+
+const renderRelatedData = (data) => {
+
+	data.map((item) => {
+		const contentContainer = $('<p>').html(item.content);
+		const truncatedContent = contentContainer.text().substring(0, 80);
+		item.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
+
+		item.image = setImageFormat(item.image);
+	})
+
+	// data.relatedNews.title | content | publicTime | image
+	const relatedItem = (item) => `
+		    <li class="list-group-item list-group-item-action">
+              <a href="/tinglinews/news.html?id=${item.newsId}">
+                <div class="list-info">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4>${item.title}</h4>
+                      <p class="content">${item.content}</p>
+                      <p class="date">${item.publicTime}</p>
+                    </div>
+                    <div class="col-3">
+                      <img src="${item.image}" class="list-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>`;
+	$('#news-list').html(Array.isArray(data) ? data.map(relatedItem).join('') : relatedItem(data));
 }
 
 const handleSubmit = async (event) => {
@@ -74,7 +105,7 @@ const handleSubmit = async (event) => {
 			},
 			body: JSON.stringify(formData)
 		});
-		
+
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
 		if (state) {
@@ -92,7 +123,7 @@ const handleSubmit = async (event) => {
 $(document).ready(() => {
 
 	const data = JSON.parse(sessionStorage.getItem('userData'));
-	
+
 	if (data) {
 		$('.header-container').load('nav-login.html');
 		$('#saved-btn').text('收藏這篇文章！');
@@ -105,11 +136,8 @@ $(document).ready(() => {
 
 	// 把 uri 抓下來渲染頁面
 	const queryString = window.location.search;
-	// console.log(`QueryString: ${queryString}`);
 	const urlParams = new URLSearchParams(queryString);
-	// console.log(`URLParams: ${urlParams}`);
 	const id = urlParams.get('id');
-	// console.log(`ID 參數: ${id}`);
 	fetchNewsData(id);
 
 	// 設定收藏按鈕的隱藏欄位

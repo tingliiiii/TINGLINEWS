@@ -61,6 +61,10 @@ public class UserController {
 	@Autowired
 	private RedisService redisService;
 
+	private boolean validateCsrfToken(String sessionToken, String requestToken) {
+		return sessionToken != null && requestToken != null && sessionToken.equals(requestToken);
+	}
+
 	// 註冊
 	@Operation(summary = "註冊")
 	@PostMapping("/register")
@@ -70,36 +74,32 @@ public class UserController {
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
 		// System.out.println("login csrfToken: " + csrfToken);
-		log.info("register csrfToken: {}", csrfToken);
+		log.debug("register csrfToken: {}", csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
-		log.info("register requestCsrfToken: {}", requestCsrfToken);
+		log.debug("register requestCsrfToken: {}", requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
-		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
+		if (!validateCsrfToken(csrfToken, requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
+			log.warn("CSRF token validation failed for registration");
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
 		// CSRF Token 驗證通過，執行登入邏輯
-		Integer userId = 0;
 		try {
-			userId = userService.createUser(user);
+			Integer userId = userService.createUser(user);
+			UserAdminDto userDto = userService.getUserAdminDtoById(userId);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), userDto);
+			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
 			// e.printStackTrace();
 			log.error("Error during user registration", e);
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
-		if (userId != 0) {
-			UserAdminDto userDto = userService.getUserAdminDtoById(userId);
-			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.註冊成功.name(), userDto);
-			return ResponseEntity.ok(apiResponse);
-		}
-		ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
-		return ResponseEntity.ok(apiResponse);
 	}
 
 	// 登入
@@ -107,36 +107,33 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<ApiResponse<UserAdminDto>> login(@RequestBody UserLoginDto dto,
 			@RequestHeader("X-CSRF-TOKEN") String requestCsrfToken, HttpSession session) {
-		// Map<String ,Object> map
-		// json 格式要用 @RequestBody 抓（通常是準備 DTO 定義傳入資料，但如果用 Map 也可以）
-		// User user = userService.validateUser(map.get("userEmail") + "",
-		// map.get("userPassword") + "");
 
 		// 從 HttpServletRequest 中獲取 CsrfToken
-		String csrfToken = session.getAttribute("csrfToken") + "";
+		String csrfToken = (String) session.getAttribute("csrfToken");
 		// System.out.println("login csrfToken: " + csrfToken);
-		log.info("login csrfToken: {}", csrfToken);
+		log.debug("login csrfToken: {}", csrfToken);
 
 		// 從請求中獲取的 CSRF Token 值
 		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
-		log.info("login requestCsrfToken: {}", requestCsrfToken);
+		log.debug("login requestCsrfToken: {}", requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
-		if (csrfToken == null || requestCsrfToken == null || !csrfToken.equals(requestCsrfToken)) {
+		if (!validateCsrfToken(csrfToken, requestCsrfToken)) {
 			// CSRF Token 驗證失敗，返回錯誤狀態碼或錯誤訊息
+			log.warn("CSRF token validation failed for login");
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(apiResponse);
 		}
 
 		// CSRF Token 驗證通過，執行登入邏輯
-		User user = null;
 		try {
-			user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
+			User user = userService.validateUser(dto.getUserEmail(), dto.getUserPassword());
 			if (user != null) {
 				UserAdminDto userDto = userService.getUserAdminDtoById(user.getUserId());
 				ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.登入成功.name(), userDto);
 				return ResponseEntity.ok(apiResponse);
 			} else {
+				log.warn("Invalid login attempt for email: {}", dto.getUserEmail());
 				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
 			}
@@ -146,7 +143,6 @@ public class UserController {
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiResponse);
 		}
-
 	}
 
 	// CSRF Token
@@ -180,7 +176,7 @@ public class UserController {
 		if (user == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, "該電子郵件尚未註冊", null));
 		}
-		
+
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
 		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
@@ -204,12 +200,12 @@ public class UserController {
 			ApiResponse apiResponse = new ApiResponse<>(true, "驗證碼已發送至信箱", null);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
-			if (e.getMessage().contains("Invalid Addresses")) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(new ApiResponse<>(false, "無效電子信箱", "驗證碼發送失敗"));
-			}
 			// e.printStackTrace();
 			log.error("Error sending OTP email", e);
+
+			if (e.getMessage().contains("Invalid Addresses")) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "無效電子信箱", null));
+			}
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage()));
 		}
@@ -223,14 +219,15 @@ public class UserController {
 		// log.info("sentTotp: " + sentTotp);
 		String email = request.get("email");
 		String sentOtp = redisService.get(email);
-		log.info("sentOtp: " + sentOtp);
+		log.debug("sentOtp: " + sentOtp);
 		String receivedOtp = request.get("otp");
-		log.info("receivedOtp: " + receivedOtp);
+		log.debug("receivedOtp: " + receivedOtp);
 
 		if (sentOtp == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
-		} else if (sentOtp != null && sentOtp.equals(receivedOtp)) {
-			session.setAttribute("verify", true);
+		} else if (sentOtp.equals(receivedOtp)) {
+			// session.setAttribute("verify", true);
+			redisService.save("verify:" + email, "true", 10, TimeUnit.MINUTES); // 存儲驗證狀態，有效期10分鐘
 			return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.驗證成功.name(), null));
 		} else {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null));
@@ -244,19 +241,20 @@ public class UserController {
 			HttpSession session) {
 
 		// 確認 OTP 是否已經過驗證
-		Boolean verify = (Boolean) session.getAttribute("verify");
-		if (verify == null || !verify.equals(true)) {
+		// Boolean verify = (Boolean) session.getAttribute("verify");
+		String email = request.get("email");
+		String verify = redisService.get("verify:" + email);
+		if (verify == null || !"true".equals(verify)) {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null));
 		}
 		// 重設密碼邏輯
 		String password = request.get("password");
-		String userEmail = request.get("email");
-		User user = userService.getUserByEmail(userEmail);
+		User user = userService.getUserByEmail(email);
 		if (user == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.查無資料.name(), null));
 		}
 		try {
-			Boolean state = userService.resetPassword(userEmail, password);
+			Boolean state = userService.resetPassword(email, password);
 			if (!state) {
 				return ResponseEntity.ok(new ApiResponse<>(state, StatusMessage.更新失敗.name(), null));
 			}
@@ -305,7 +303,7 @@ public class UserController {
 
 		String captcha = CaptchaUtil.generateCaptchaCode();
 		// System.out.println("captcha code: " + captcha);
-		log.info("captcha code: " + captcha);
+		log.debug("captcha code: " + captcha);
 		session.setAttribute("captcha", captcha);
 
 		try {
@@ -329,8 +327,10 @@ public class UserController {
 
 		String sessionCaptcha = (String) session.getAttribute("captcha");
 		// System.out.println("sessionCaptcha: " + sessionCaptcha);
+		log.debug("sessionCaptcha: " + sessionCaptcha);
 		String inputCaptcha = request.get("captcha");
 		// System.out.println("inputCaptcha: " + inputCaptcha);
+		log.debug("inputCaptcha: " + inputCaptcha);
 
 		if (sessionCaptcha == null || inputCaptcha == null || !sessionCaptcha.equals(inputCaptcha)) {
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
