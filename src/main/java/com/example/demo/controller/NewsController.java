@@ -70,4 +70,5 @@ public class NewsController {
 			return ResponseEntity.ok(apiResponse);
 		}	
 	}
+	
 }

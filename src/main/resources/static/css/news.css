@@ -136,17 +136,17 @@
 
 .list-group-item a h4 {
     font-weight: 400;
-    font-size: calc(1rem + .3vw);
+    font-size: calc(1em + .2vw);
 }
 
 .list-group-item:hover a h4 {
     font-weight: 700;
-    font-size: calc(1rem + .4vw);
+    font-size: calc(1em + .3vw);
 }
 
 .list-group-item a p {
     font-weight: 200;
-    font-size: calc(.7rem + .3vw);
+    font-size: calc(.8em + .1vw);
 }
 
 .list-group-item:hover a p {

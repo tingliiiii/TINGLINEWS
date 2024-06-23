@@ -35,81 +35,9 @@ const startCountdown = (button, duration) => {
 	}, 1000);
 }
 
-
-const sendEmail = async (event) => {
-
-	event.preventDefault();
-	const email = $('#userEmail').val();
-
-	if (!email) {
-		Swal.fire('請輸入電子信箱', '', 'error');
-		return;
-	}
-
-	try {
-		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp`,
-			'POST', { email });
-		console.log(state, message, data);
-
-		// 顯示模態框
-		const modalElement = $('#modal');
-		const modalInstance = new bootstrap.Modal(modalElement[0]);
-		modalInstance.show();
-
-		if (state == false) {
-			Swal.fire(message, '', 'error');
-			modalInstance.hide();
-			return;
-		}
-
-		// 關閉模態框
-		modalInstance.hide();
-
-		Swal.fire(message, '', 'success');
-		$('#userEmail').prop('disabled', true);
-
-		// 開始倒數計時
-		const sendEmailButton = $('#send-email');
-		startCountdown(sendEmailButton, 30);
-
-	} catch (e) {
-		console.error('傳送驗證碼錯誤：', e);
-		Swal.fire('傳送驗證碼錯誤 請稍後再試', e, 'error');
-	}
-}
-
-const verifyOTP = async (event) => {
-	event.preventDefault();
-	const email = $('#userEmail').val();
-	const otp = $('#otp').val();
-
-	if (!email || !otp) {
-		Swal.fire('未輸入電子信箱或驗證碼', '', 'error');
-		return;
-	}
-
-	try {
-		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp/verify`, 'POST',
-			{ email, otp });
-		console.log(state, message, data);
-		if (state !== true) {
-			Swal.fire(message, '', 'error');
-			return;
-		}
-		Swal.fire(message, '', 'success');
-		setTimeout(() => {
-			sessionStorage.setItem('userEmail', email);
-			window.location.replace('/tinglinews/user/reset.html');
-		}, 1000);
-
-	} catch (e) {
-		console.error('驗證錯誤：', e);
-		Swal.fire('驗證錯誤 請稍後再試', e, 'error');
-	}
-}
-
-
 $(document).ready(() => {
+
+	const modalInstance = new bootstrap.Modal($('#modal'));
 
 	$('.header-container').load('../nav.html');
 	$('.footer-container').load('../footer.html');
@@ -135,5 +63,73 @@ $(document).ready(() => {
 			$('#verify').click();
 		}
 	});
+
+	const sendEmail = async (event) => {
+
+		event.preventDefault();
+		const email = $('#userEmail').val();
+
+		if (!email) {
+			Swal.fire('請輸入電子信箱', '', 'error');
+			return;
+		}
+
+		// 顯示模態框
+		modalInstance.show();
+
+		try {
+			const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp`,
+				'POST', { email });
+			console.log(state, message, data);
+
+			if (!state) {
+				modalInstance.hide();
+				Swal.fire(message, '', 'error');
+				return;
+			}
+			modalInstance.hide();
+			Swal.fire(message, '', 'success');
+			$('#userEmail').prop('disabled', true);
+
+			// 開始倒數計時
+			const sendEmailButton = $('#send-email');
+			startCountdown(sendEmailButton, 30);
+
+		} catch (e) {
+			modalInstance.hide();
+			console.error('傳送驗證碼錯誤：', e);
+			Swal.fire('傳送驗證碼錯誤 請稍後再試', e, 'error');
+		}
+	}
+
+	const verifyOTP = async (event) => {
+		event.preventDefault();
+		const email = $('#userEmail').val();
+		const otp = $('#otp').val();
+
+		if (!email || !otp) {
+			Swal.fire('未輸入電子信箱或驗證碼', '', 'error');
+			return;
+		}
+
+		try {
+			const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp/verify`, 'POST',
+				{ email, otp });
+			console.log(state, message, data);
+			if (state !== true) {
+				Swal.fire(message, '', 'error');
+				return;
+			}
+			Swal.fire(message, '', 'success');
+			setTimeout(() => {
+				sessionStorage.setItem('userEmail', email);
+				window.location.replace('/tinglinews/user/reset.html');
+			}, 1000);
+
+		} catch (e) {
+			console.error('驗證錯誤：', e);
+			Swal.fire('驗證錯誤 請稍後再試', e, 'error');
+		}
+	}
 
 });

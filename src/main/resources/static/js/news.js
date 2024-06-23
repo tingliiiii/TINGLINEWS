@@ -5,8 +5,8 @@ const ip = '172.20.10.5';
 
 // 從後端抓資料
 const fetchNewsData = async (id) => {
-	const url = `http://${ip}:8080/tinglinews/news/${id}`;
 	try {
+		const url = `http://${ip}:8080/tinglinews/news/${id}`;
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
 		// console.log(state, message, data);
@@ -17,7 +17,21 @@ const fetchNewsData = async (id) => {
 	}
 };
 
+const fetchFavoriteData = async (id) => {
+	try{
+		const url = `http://${ip}:8080/tinglinews/users/${id}/favorites`;
+		const response = await fetch(url);
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
+		const topThreeFavorites = data.slice(0, 3); // Select only the top 3 favorite articles
+		renderFavoriteData(topThreeFavorites);
+	} catch (e) {
+		console.error(e);
+	}
+}
+
 const setImageFormat = (imageData) => {
+	if(!imageData) return '';
 	let imageFormat = 'jpeg'; // 默認為 jpeg
 	if (imageData.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
 		imageFormat = 'png';
@@ -79,7 +93,40 @@ const renderRelatedData = (data) => {
                 </div>
               </a>
             </li>`;
-	$('#news-list').html(Array.isArray(data) ? data.map(relatedItem).join('') : relatedItem(data));
+
+	$('#related-list').html(Array.isArray(data) ? data.map(relatedItem).join('') : relatedItem(data));
+}
+
+const renderFavoriteData = (data) => {
+
+	data.map((item) => {
+		const contentContainer = $('<p>').html(item.news.content);
+		const truncatedContent = contentContainer.text().substring(0, 80);
+		item.news.content = contentContainer.text().length > 80 ? truncatedContent + '...' : truncatedContent;
+
+		item.news.image = setImageFormat(item.news.image);
+	})
+
+	// data.relatedNews.title | content | publicTime | image
+	const favoriteItem = ({news}) => `
+		    <li class="list-group-item list-group-item-action">
+              <a href="/tinglinews/news.html?id=${news.newsId}">
+                <div class="list-info">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4>${news.title}</h4>
+                      <p class="content">${news.content}</p>
+                      <p class="date">${news.publicTime}</p>
+                    </div>
+                    <div class="col-3">
+                      <img src="${news.image}" class="list-img">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>`;
+
+	$('#favorite-list').html(Array.isArray(data) ? data.map(favoriteItem).join('') : favoriteItem(data));
 }
 
 const handleSubmit = async (event) => {
@@ -98,7 +145,7 @@ const handleSubmit = async (event) => {
 	};
 
 	try {
-		const response = await fetch('/tinglinews/users/favorites', {
+		const response = await fetch('http://${ip}:8080/tinglinews/users/favorites', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -127,9 +174,11 @@ $(document).ready(() => {
 	if (data) {
 		$('.header-container').load('nav-login.html');
 		$('#saved-btn').text('收藏這篇文章！');
+		fetchFavoriteData(data.userId);
 	} else {
 		$('.header-container').load('nav.html');
 		$('#saved-btn').text('登入收藏這篇文章！');
+		$('.favorite-articles-container').css('display', 'none');
 	}
 	$('.footer-container').load('footer.html');
 	$('.ad-container').load('ad.html');

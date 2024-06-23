@@ -31,9 +31,6 @@ import lombok.extern.slf4j.Slf4j;
 public class NewsService {
 
 	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
-
-	@Autowired
 	private NewsDao newsDao;
 
 	@Autowired
@@ -41,6 +38,9 @@ public class NewsService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplate;
 
 	private static final String NEWS_CACHE_KEY = "allNews";
 	private static final String TAG_CACHE_KEY_PREFIX = "newsByTag:";
@@ -174,7 +174,7 @@ public class NewsService {
 	private void clearCache(String cacheKey) {
 		if (Boolean.TRUE.equals(redisTemplate.hasKey(cacheKey))) {
 			redisTemplate.delete(cacheKey);
-			log.info("Cleared cache for key: " + cacheKey);
+			log.debug("Cleared cache for key: " + cacheKey);
 		}
 	}
 

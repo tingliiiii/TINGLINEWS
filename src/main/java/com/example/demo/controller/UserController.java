@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.dto.FavoriteDto;
 import com.example.demo.model.dto.UserAdminDto;
 import com.example.demo.model.dto.UserLoginDto;
 import com.example.demo.model.dto.UserProfileDto;
@@ -153,12 +155,12 @@ public class UserController {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
 		// System.out.println("getCsrfToken: " + csrfToken);
-		log.info("Generated csrfToken: {}", csrfToken);
+		log.debug("Generated csrfToken: {}", csrfToken);
 
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		// System.out.println(tokenMap);
-		log.info("Token map: {}", tokenMap);
+		log.debug("Token map: {}", tokenMap);
 
 		ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), tokenMap);
 		return ResponseEntity.ok(apiResponse);
@@ -277,7 +279,7 @@ public class UserController {
 			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), userProfile);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("查詢使用者個人資訊失敗", e);
 			ApiResponse<UserProfileDto> apiResponse = new ApiResponse<>(false, e.getMessage(), null);
 			return ResponseEntity.ok(apiResponse);
 		}
@@ -373,9 +375,23 @@ public class UserController {
 
 	// 收藏 ============================================================
 
+	@Operation(summary = "查看使用者收藏的文章")
+	@GetMapping("/{userId}/favorites")
+	public ResponseEntity<ApiResponse<FavoriteDto>> findUserFavoriteNews(@PathVariable Integer userId) {
+		try {
+			List<FavoriteDto> favoriteDtos = functionService.findFavoriteByUserId(userId);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), favoriteDtos);
+			return ResponseEntity.ok(apiResponse);
+		} catch (Exception e) {
+			log.error("查詢使用者收藏文章失敗", e);
+			ApiResponse apiResponse = new ApiResponse<>(false, e.getMessage(), null);
+			return ResponseEntity.ok(apiResponse);	
+		}
+	}
+
 	@Operation(summary = "收藏")
 	@PostMapping("/favorites")
-	public ResponseEntity<ApiResponse<Void>> saved(@RequestBody Favorite favorite) {
+	public ResponseEntity<ApiResponse<Void>> favorite(@RequestBody Favorite favorite) {
 		Boolean state = false;
 		String message = "發生錯誤：";
 		try {
@@ -396,7 +412,7 @@ public class UserController {
 
 	@Operation(summary = "取消收藏")
 	@DeleteMapping("/favorites/{favoriteId}")
-	public ResponseEntity<ApiResponse<Boolean>> cancelSaved(@PathVariable Integer favoriteId) {
+	public ResponseEntity<ApiResponse<Boolean>> cancelFavorite(@PathVariable Integer favoriteId) {
 		Boolean state = functionService.deleteFavorite(favoriteId);
 		String message = state ? "已完成" : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
