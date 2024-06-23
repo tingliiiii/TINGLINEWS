@@ -16,7 +16,7 @@ import java.net.http.HttpResponse;
 public class OAuth2Util {
 
 	public final static String CLIENT_ID = "Ov23liDtaaE6SzdeiYZu";
-	private final static String CLIENT_SECRET = "6763e0c128703044de100df890410311700670bb";
+	private final static String CLIENT_SECRET = "";
 	public final static String REDIRECT_URI = "http://172.20.10.5:8080/tinglinews/callback/github";
 
 	// GitHub 的 OAuth 2.0 授權端點 (Authorization Endpoint)
