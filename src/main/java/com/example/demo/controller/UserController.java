@@ -76,11 +76,11 @@ public class UserController {
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = session.getAttribute("csrfToken") + "";
 		// System.out.println("login csrfToken: " + csrfToken);
-		log.debug("register csrfToken: {}", csrfToken);
+		// log.debug("register csrfToken: {}", csrfToken);
 
 		// 從請求中獲取 CSRF Token 值
 		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
-		log.debug("register requestCsrfToken: {}", requestCsrfToken);
+		// log.debug("register requestCsrfToken: {}", requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (!validateCsrfToken(csrfToken, requestCsrfToken)) {
@@ -113,11 +113,11 @@ public class UserController {
 		// 從 HttpServletRequest 中獲取 CsrfToken
 		String csrfToken = (String) session.getAttribute("csrfToken");
 		// System.out.println("login csrfToken: " + csrfToken);
-		log.debug("login csrfToken: {}", csrfToken);
+		// log.debug("login csrfToken: {}", csrfToken);
 
 		// 從請求中獲取的 CSRF Token 值
 		// System.out.println("login requestCsrfToken: " + requestCsrfToken);
-		log.debug("login requestCsrfToken: {}", requestCsrfToken);
+		// log.debug("login requestCsrfToken: {}", requestCsrfToken);
 
 		// 檢查 CSRF Token 是否存在並且與請求中的值相符
 		if (!validateCsrfToken(csrfToken, requestCsrfToken)) {
@@ -155,12 +155,12 @@ public class UserController {
 		String csrfToken = CSRFTokenUtil.generateToken();
 		session.setAttribute("csrfToken", csrfToken);
 		// System.out.println("getCsrfToken: " + csrfToken);
-		log.debug("Generated csrfToken: {}", csrfToken);
+		// log.debug("Generated csrfToken: {}", csrfToken);
 
 		Map<String, String> tokenMap = new HashMap<>();
 		tokenMap.put("csrfToken", csrfToken);
 		// System.out.println(tokenMap);
-		log.debug("Token map: {}", tokenMap);
+		// log.debug("Token map: {}", tokenMap);
 
 		ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.查詢成功.name(), tokenMap);
 		return ResponseEntity.ok(apiResponse);
@@ -228,9 +228,9 @@ public class UserController {
 		// log.info("sentTotp: " + sentTotp);
 		String email = request.get("email");
 		String sentOtp = redisService.get(email);
-		log.debug("sentOtp: " + sentOtp);
+		// log.debug("sentOtp: " + sentOtp);
 		String receivedOtp = request.get("otp");
-		log.debug("receivedOtp: " + receivedOtp);
+		// log.debug("receivedOtp: " + receivedOtp);
 
 		if (sentOtp == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, "驗證碼已過期", null));
@@ -312,7 +312,7 @@ public class UserController {
 
 		String captcha = CaptchaUtil.generateCaptchaCode();
 		// System.out.println("captcha code: " + captcha);
-		log.debug("captcha code: " + captcha);
+		// log.debug("captcha code: " + captcha);
 		session.setAttribute("captcha", captcha);
 
 		try {
@@ -336,10 +336,10 @@ public class UserController {
 
 		String sessionCaptcha = (String) session.getAttribute("captcha");
 		// System.out.println("sessionCaptcha: " + sessionCaptcha);
-		log.debug("sessionCaptcha: " + sessionCaptcha);
+		// log.debug("sessionCaptcha: " + sessionCaptcha);
 		String inputCaptcha = request.get("captcha");
 		// System.out.println("inputCaptcha: " + inputCaptcha);
-		log.debug("inputCaptcha: " + inputCaptcha);
+		// log.debug("inputCaptcha: " + inputCaptcha);
 
 		if (sessionCaptcha == null || inputCaptcha == null || !sessionCaptcha.equals(inputCaptcha)) {
 			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.驗證失敗.name(), null);
