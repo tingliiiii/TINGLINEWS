@@ -2,11 +2,36 @@
 // const ip = 'localhost';
 const ip = '172.20.10.5';
 
+const isEmailRegistered = async (email) => {
+	try {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/email`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({email})
+		});
+		const { state, message, data } = await response.json();
+		console.log(state, message, data);
+		return state;
+	} catch (e) {
+		console.error('確認電子信箱錯誤：', e);
+		Swal.fire('確認電子信箱錯誤', e, 'error');
+		return false;
+	}
+};
+
+
 // 表單提交事件處理
 const handleFormSubmit = async (event) => {
 
 	event.preventDefault();
 
+	const email = $('#userEmail').val();
+	if (!email) {
+		Swal.fire('請輸入電子信箱', '', 'error');
+		return;
+	}
 	const captcha = $('#code').val();
 	if (!captcha) {
 		Swal.fire('請輸入驗證碼', '', 'error');
@@ -19,25 +44,37 @@ const handleFormSubmit = async (event) => {
 		return;
 	}
 
+	if (!await isEmailRegistered(email)) {
+		Swal.fire('該電子信箱尚未註冊', '請先註冊 謝謝', 'error');
+		setTimeout(() => {
+			sessionStorage.setItem('userEmail', email);
+			window.location.replace('/tinglinews/user/register.html');
+		}, 2000);
+		return;
+	}
+
 	const data = JSON.parse(sessionStorage.getItem('userData'));
 
 	if (!data) {
 		Swal.fire('請先登入 謝謝', '', 'warning');
 		setTimeout(() => {
+			sessionStorage.setItem('userEmail', email);
 			window.location.replace('/tinglinews/user/login.html');
 		}, 1000);
 		return;
 	}
 
+	const selectedFrequency = $('input[name="frequency"]:checked').val();
+
 	const formData = {
-		userEmail: $('#userEmail').val(),
-		frequency: $('#frequency').val(),
+		userEmail: email,
+		frequency: selectedFrequency,
 		amount: $('#amount').val(),
-		donateStatus: ($('#frequency').val() === '單筆') ? '已完成' : '進行中',
+		donateStatus: (selectedFrequency === '單筆') ? '已完成' : '進行中',
 		userId: data.userId
 	};
 
-	sessionStorage.setItem('userEmail', formData.userEmail);
+	sessionStorage.setItem('userEmail', email);
 	await donate(formData);
 };
 
@@ -54,13 +91,11 @@ const donate = async (formData) => {
 
 		const { state, message, data } = await response.json();
 
+		Swal.fire(message, '', state ? 'success' : 'warning');
 		if (state) {
-			Swal.fire(message, '', 'success');
 			setTimeout(() => {
 				window.location.replace('/tinglinews/user/profile.html');
 			}, 1000);
-		} else {
-			Swal.fire(message, '', 'warning');
 		}
 
 	} catch (e) {
@@ -71,14 +106,12 @@ const donate = async (formData) => {
 
 const loadCaptcha = async () => {
 
-	const captcha = $('#captcha');
-
 	try {
 		const response = await fetch(`http://${ip}:8080/tinglinews/users/captcha`);
 		const { state, message, data } = await response.json();
 
 		if (state) {
-			captcha.attr('src', `data:image/jpeg;base64,${data}`);
+			$('#captcha').attr('src', `data:image/jpeg;base64,${data}`);
 		} else {
 			Swal.fire(message, '取得 captcha 失敗', 'error');
 		}
@@ -110,20 +143,14 @@ const verifyCaptcha = async (captcha) => {
 $(document).ready(() => {
 
 	const data = JSON.parse(sessionStorage.getItem('userData'));
-	if (data) {
-		$('.header-container').load('../nav-login.html');
-	} else {
-		$('.header-container').load('../nav.html');
-	}
+	$('.header-container').load(data ? '../nav-login.html' : '../nav.html');
 	$('.footer-container').load('../footer.html');
 
-	if (sessionStorage.getItem('userEmail') || (data && data.userEmail)) {
-		const email = sessionStorage.getItem('userEmail') || data.userEmail;
+	const email = sessionStorage.getItem('userEmail') || (data && data.userEmail);
+	if (email) {
 		$('#userEmail').val(email);
 	}
-
 	loadCaptcha();
-
 	$('#donate-form').on('submit', handleFormSubmit);
 });
 

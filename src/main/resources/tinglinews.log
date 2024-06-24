@@ -283,3 +283,93 @@ Caused by: java.net.ConnectException: Connection refused
 2024-06-24T11:48:25.611+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
 2024-06-24T11:48:26.679+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.204 seconds (process running for 1.465)
 2024-06-24T12:02:25.240+08:00  WARN 3319 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m58s448ms).
+2024-06-24T22:14:29.012+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 11810 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T22:14:29.013+08:00 DEBUG 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T22:14:29.013+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T22:14:30.114+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.243 seconds (process running for 1.525)
+2024-06-24T22:19:58.779+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : captcha code: 4290
+2024-06-24T22:21:15.281+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : Generated csrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
+2024-06-24T22:21:15.287+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : Token map: {csrfToken=b056d9d1-0b79-42be-a149-b23557fe09a6}
+2024-06-24T22:21:15.318+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : login csrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
+2024-06-24T22:21:15.318+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : login requestCsrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
+2024-06-24T22:21:19.878+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 4151
+2024-06-24T22:21:27.099+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 4151
+2024-06-24T22:21:27.099+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 4151
+2024-06-24T22:21:32.760+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : sessionCaptcha: 4151
+2024-06-24T22:21:32.762+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : inputCaptcha: 4151
+2024-06-24T22:21:38.984+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 4151
+2024-06-24T22:21:38.986+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 4151
+2024-06-24T22:21:42.372+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : sessionCaptcha: 4151
+2024-06-24T22:21:42.374+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : inputCaptcha: 4151
+2024-06-24T22:28:20.237+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 5889
+2024-06-24T22:28:41.597+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 5889
+2024-06-24T22:28:41.598+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 5889
+2024-06-24T22:31:10.161+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 4031
+2024-06-24T22:53:00.545+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : captcha code: 3663
+2024-06-24T22:53:00.921+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : captcha code: 7184
+2024-06-24T22:53:01.241+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 8849
+2024-06-24T22:53:12.700+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 8849
+2024-06-24T22:53:12.701+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 8849
+2024-06-24T22:53:18.847+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 7439
+2024-06-24T22:53:31.494+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : sessionCaptcha: 7439
+2024-06-24T22:53:31.496+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : inputCaptcha: 7439
+2024-06-24T22:53:44.339+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 7357
+2024-06-24T22:54:14.306+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 7357
+2024-06-24T22:54:14.309+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 7357
+2024-06-24T22:55:49.386+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : captcha code: 4928
+2024-06-24T22:55:56.982+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 4928
+2024-06-24T22:55:56.984+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 4928
+2024-06-24T22:56:06.467+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 0276
+2024-06-24T22:56:23.333+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 0276
+2024-06-24T22:56:23.335+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 0276
+2024-06-24T22:57:10.126+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 6938
+2024-06-24T22:57:28.722+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 6938
+2024-06-24T22:57:28.722+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 6938
+2024-06-24T22:57:59.701+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12621 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T22:57:59.702+08:00 DEBUG 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T22:57:59.702+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T22:58:00.840+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.283 seconds (process running for 1.59)
+2024-06-24T22:58:17.863+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 6549
+2024-06-24T22:58:32.231+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : sessionCaptcha: 6549
+2024-06-24T22:58:32.232+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : inputCaptcha: 6549
+2024-06-24T22:58:55.871+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12630 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T22:58:55.872+08:00 DEBUG 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T22:58:55.872+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T22:58:56.828+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.079 seconds (process running for 1.261)
+2024-06-24T22:59:07.823+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 4946
+2024-06-24T22:59:16.038+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : sessionCaptcha: 4946
+2024-06-24T22:59:16.038+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : inputCaptcha: 4946
+2024-06-24T23:00:31.842+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 2456
+2024-06-24T23:00:45.069+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 2456
+2024-06-24T23:00:45.071+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 2456
+2024-06-24T23:00:45.086+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('f@gmail.com')]
+2024-06-24T23:00:54.127+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : sessionCaptcha: 2456
+2024-06-24T23:00:54.128+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : inputCaptcha: 2456
+2024-06-24T23:00:54.135+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('yen@gmail.com')]
+2024-06-24T23:00:57.357+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 2456
+2024-06-24T23:00:57.359+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 2456
+2024-06-24T23:00:57.368+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('yen@gmail.com')]
+2024-06-24T23:01:35.163+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12663 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T23:01:35.163+08:00 DEBUG 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T23:01:35.164+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T23:01:36.214+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.175 seconds (process running for 1.356)
+2024-06-24T23:03:21.896+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 6754
+2024-06-24T23:03:22.294+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 3343
+2024-06-24T23:03:22.662+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 3621
+2024-06-24T23:03:23.033+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 8288
+2024-06-24T23:03:23.344+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 9158
+2024-06-24T23:03:29.979+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 9158
+2024-06-24T23:03:29.980+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 9158
+2024-06-24T23:03:34.983+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : Generated csrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
+2024-06-24T23:03:34.987+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : Token map: {csrfToken=649a7929-8ff1-4f4e-a2db-ae52f31a5889}
+2024-06-24T23:03:35.004+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : login csrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
+2024-06-24T23:03:35.004+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : login requestCsrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
+2024-06-24T23:03:36.115+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 6401
+2024-06-24T23:03:43.139+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : sessionCaptcha: 6401
+2024-06-24T23:03:43.140+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : inputCaptcha: 6401
+2024-06-24T23:03:46.584+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 7547
+2024-06-24T23:03:52.887+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 2283
+2024-06-24T23:04:03.515+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 2283
+2024-06-24T23:04:03.516+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 2283
+2024-06-24T23:04:12.587+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 2283
+2024-06-24T23:04:12.588+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 2283

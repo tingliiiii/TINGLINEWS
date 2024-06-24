@@ -58,8 +58,8 @@ const checkEmail = async (event) => {
 		sendEmail(email);
 
 	} catch (e) {
-		console.error('傳送驗證碼錯誤：', e);
-		Swal.fire('傳送驗證碼錯誤 請稍後再試', e, 'error');
+		console.error('確認電子信箱錯誤：', e);
+		Swal.fire('確認電子信箱錯誤', e, 'error');
 	}
 }
 

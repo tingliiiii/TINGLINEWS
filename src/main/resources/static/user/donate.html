@@ -61,12 +61,26 @@
                   <input type="email" name="userEmail" id="userEmail" class="form-control" placeholder="帳號（電子信箱）*"
                     required>
                   <p></p>
+                  <!--
                   <select name="frequency" id="frequency" class="form-select" required>
                     <option selected disabled>捐款頻率</option>
                     <option value="每月">每月定額</option>
                     <option value="每年">每年定額</option>
                     <option value="單筆">單筆捐款</option>
                   </select>
+                  -->
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="frequency" id="frequency1" value="每月">
+                    <label class="form-check-label" for="frequency1">每月定額</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="frequency" id="frequency2" value="每年">
+                    <label class="form-check-label" for="frequency2">每年定額</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="frequency" id="frequency3" value="單筆">
+                    <label class="form-check-label" for="frequency3">單筆捐款</label>
+                  </div>
                   <p></p>
                   <select name="amount" id="amount" class="form-select" required>
                     <option selected disabled>捐款金額</option>

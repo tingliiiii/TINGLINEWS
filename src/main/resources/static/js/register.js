@@ -84,6 +84,11 @@ $(document).ready(() => {
 	// 綁定表單提交事件
 	$('#register-form').on('submit', handleFormSubmit);
 
+	const email = sessionStorage.getItem('userEmail');
+	if(email){
+		$('#userEmail').val(email);
+	}
+
 	$('#github').on('click', () => {
 		const clientId = 'Ov23liDtaaE6SzdeiYZu';
 		const redirectUri = `http://172.20.10.5:8080/tinglinews/callback/github`;

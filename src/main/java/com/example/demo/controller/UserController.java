@@ -168,7 +168,7 @@ public class UserController {
 
 	@Operation(summary = "確認 Email 是否為會員")
 	@PostMapping("/email")
-	public ResponseEntity<ApiResponse<Void>> checkEmailExists(@RequestBody Map<String, String> request){
+	public ResponseEntity<ApiResponse<Integer>> checkEmailExists(@RequestBody Map<String, String> request){
 		
 		String email = request.get("email");
 		// 先確認該 email 是否已經註冊為會員
@@ -176,7 +176,7 @@ public class UserController {
 		if (user == null) {
 			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.查無資料.name(), null));
 		}
-		return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.查詢成功.name(), null));
+		return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.查詢成功.name(), user.getUserId()));
 	}
 	
 	// 發送郵件
