@@ -24,6 +24,9 @@ const handleSubmit = async (event) => {
         console.log(state, message, data);
         if (state !== true) {
             Swal.fire(message, '', 'error');
+            setTimeout(() => {
+                window.location.replace('/tinglinews/user/forgot.html');
+            }, 1000);
             return;
         }
 

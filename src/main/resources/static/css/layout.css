@@ -273,6 +273,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100vw;
+  margin-top: 50px;
 }
 
 #copyright {
