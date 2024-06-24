@@ -196,8 +196,10 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(126, 126, 126, 0.8); /* 淺灰色透明遮罩 */
-  color: #fff; /* 根據需要設置文字顏色 */
+  background: rgba(126, 126, 126, 0.8);
+  /* 淺灰色透明遮罩 */
+  color: #fff;
+  /* 根據需要設置文字顏色 */
   padding: 1.2em;
 }
 
@@ -275,4 +277,18 @@ body {
 
 #copyright {
   text-align: center;
+}
+
+#copyright a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* about ================================================= */
+
+.about-container {
+  width: min(90%, 600px);
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--c-primary-color3);
 }

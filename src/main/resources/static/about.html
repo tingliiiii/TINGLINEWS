@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TINGLINEW｜關於我們</title>
+<link rel=icon href="./img/logo.svg">
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<!-- SweetAlert2 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css"
+	rel="stylesheet">
+<!-- 自訂 -->
+<link rel="stylesheet" href="./css/layout.css">
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+</head>
+
+<body>
+	<div class="page-container">
+		<div class="content-wrap">
+
+			<header class="header-container"></header>
+
+			<div style="height: 88px;"></div>
+
+			<div class="container-lg">
+				<div class="about-container">
+
+					<h2 class="title">關於我們</h2>
+					<p>歡迎來到
+						TINGLINEWS，您的獨立媒體平台。我們致力於為讀者提供真實、深入、多元的新聞報導，讓每一個重要的聲音都能被聽見。</p>
+					<h5>我們的使命</h5>
+					<p>
+						在TINGLINEWS，我們相信真相的力量。我們的使命是前往新聞現場，帶回您需要知道的事實。無論是國內還是國際，我們的記者團隊都會竭盡全力為您提供準確而全面的報導。我們堅信，只有真正獨立的媒體才能保證新聞的真實性和公正性。
+					</p>
+					<h5>涵蓋的主題</h5>
+					<p style="margin: 0; line-height: 1.75em;">我們的報導涵蓋廣泛的主題，包括但不限於以下幾個領域：</p>
+					<ul style="line-height: 1.75em;">
+						<li>即時：為您提供最新的即時新聞，讓您隨時掌握世界動態。</li>
+						<li>政治：深入分析國內外政治事件，揭示幕後真相。</li>
+						<li>社會：關注社會議題，報導各種影響社會的事件和故事。</li>
+						<li>國際：從全球視角出發，帶您了解國際新聞和趨勢。</li>
+						<li>環境：追蹤環境變遷和保護議題，促進可持續發展。</li>
+						<li>文化：探索文化現象和藝術動態，展示多元文化的魅力。</li>
+						<li>生活：提供實用的生活資訊，提升您的生活品質。</li>
+						<li>娛樂：報導娛樂圈的最新動態，滿足您的娛樂需求。</li>
+					</ul>
+					<h5>目標讀者</h5>
+					<p>TINGLINEWS
+						的目標讀者是那些關心世界、渴望了解真相、不願被表面現象蒙蔽的個人。無論您是專業人士、學者、學生，還是普通市民，只要您對世界懷有好奇和關注，我們都希望成為您可信賴的新聞來源。</p>
+					<h5>我們的呼籲</h5>
+					<p>
+						我們的下一步，需要你的守護。作為一個獨立媒體，我們不受制於任何商業或政治力量，但這也意味著我們需要您的支持。請支持我們到新聞現場帶回真相，成為我們的贊助會員。您的捐款將支持我們不可或缺的深度報導和多元聲音，讓更多真相得以揭露。
+					</p>
+					<h5>加入我們</h5>
+					<p>今天就成為 TINGLINEWS
+						的贊助會員，您的每一份支持都是對獨立新聞的最大鼓勵。讓我們攜手共進，為一個更透明和公正的世界而努力。</p>
+
+				</div>
+			</div>
+			<div class="ad-container"></div>
+			<footer class="footer-container"></footer>
+		</div>
+
+	</div>
+
+
+	<script>
+		const data = JSON.parse(sessionStorage.getItem('userData'));
+
+		if (data) {
+			$('.header-container').load('nav-login.html');
+		} else {
+			$('.header-container').load('nav.html');
+		}
+		$('.footer-container').load('footer.html');
+		$('.ad-container').load('ad.html');
+	</script>
+</body>
+
+</html>

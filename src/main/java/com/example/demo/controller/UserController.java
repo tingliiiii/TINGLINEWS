@@ -166,6 +166,19 @@ public class UserController {
 		return ResponseEntity.ok(apiResponse);
 	}
 
+	@Operation(summary = "確認 Email 是否為會員")
+	@PostMapping("/email")
+	public ResponseEntity<ApiResponse<Void>> checkEmailExists(@RequestBody Map<String, String> request){
+		
+		String email = request.get("email");
+		// 先確認該 email 是否已經註冊為會員
+		User user = userService.getUserByEmail(email);
+		if (user == null) {
+			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.查無資料.name(), null));
+		}
+		return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.查詢成功.name(), null));
+	}
+	
 	// 發送郵件
 	@Operation(summary = "發送 OTP 驗證碼 Email")
 	@PostMapping("/otp")
@@ -173,12 +186,6 @@ public class UserController {
 			HttpSession session) {
 
 		String email = request.get("email");
-		// 先確認該 email 是否已經註冊為會員
-		User user = userService.getUserByEmail(email);
-		if (user == null) {
-			return ResponseEntity.ok(new ApiResponse<>(false, "該電子郵件尚未註冊", null));
-		}
-
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
 		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"

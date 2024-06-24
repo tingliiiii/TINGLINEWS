@@ -1,96 +1,285 @@
-2024-06-23T12:31:48.466+08:00  INFO 1887 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 1887 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T12:31:48.467+08:00 DEBUG 1887 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T12:31:48.468+08:00  INFO 1887 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T12:31:49.595+08:00  INFO 1887 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.268 seconds (process running for 1.646)
-2024-06-23T12:31:53.451+08:00 ERROR 1887 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.NewsController       : Cannot get Jedis connection
-2024-06-23T13:07:42.732+08:00  WARN 1887 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m52s938ms).
-2024-06-23T13:21:41.966+08:00  WARN 1887 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m59s234ms).
-2024-06-23T13:52:51.364+08:00  WARN 1887 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m9s399ms).
-2024-06-23T14:14:59.675+08:00  WARN 1887 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=22m8s311ms).
-2024-06-23T14:20:12.293+08:00  WARN 1887 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m12s617ms).
-2024-06-23T14:20:22.568+08:00  INFO 2588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2588 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T14:20:22.569+08:00 DEBUG 2588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T14:20:22.569+08:00  INFO 2588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T14:20:23.632+08:00  INFO 2588 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.202 seconds (process running for 1.469)
-2024-06-23T14:20:41.947+08:00  INFO 2600 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2600 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T14:20:41.948+08:00 DEBUG 2600 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T14:20:41.948+08:00  INFO 2600 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T14:20:42.933+08:00  INFO 2600 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.11 seconds (process running for 1.3)
-2024-06-23T14:24:10.091+08:00  INFO 2700 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2700 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T14:24:10.092+08:00 DEBUG 2700 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T14:24:10.094+08:00  INFO 2700 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T14:24:11.114+08:00  INFO 2700 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.16 seconds (process running for 1.388)
-2024-06-23T14:31:02.681+08:00  INFO 2885 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2885 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T14:31:02.682+08:00 DEBUG 2885 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T14:31:02.682+08:00  INFO 2885 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T14:31:03.938+08:00  INFO 2885 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.415 seconds (process running for 1.679)
-2024-06-23T14:32:54.505+08:00 DEBUG 2885 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 6054
-2024-06-23T14:48:30.188+08:00  INFO 3267 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3267 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T14:48:30.189+08:00 DEBUG 3267 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T14:48:30.189+08:00  INFO 3267 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T14:48:31.265+08:00  INFO 3267 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.218 seconds (process running for 1.483)
-2024-06-23T15:01:12.205+08:00  INFO 3626 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3626 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T15:01:12.206+08:00 DEBUG 3626 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T15:01:12.206+08:00  INFO 3626 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T15:01:13.288+08:00  INFO 3626 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.239 seconds (process running for 1.518)
-2024-06-23T15:03:22.814+08:00  INFO 3677 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3677 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T15:03:22.814+08:00 DEBUG 3677 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T15:03:22.815+08:00  INFO 3677 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T15:03:23.790+08:00  INFO 3677 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.119 seconds (process running for 1.3)
-2024-06-23T15:06:39.863+08:00 DEBUG 3677 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : Generated csrfToken: cda0a1ad-af90-446c-baf5-ae47a13bf5ce
-2024-06-23T15:06:39.866+08:00 DEBUG 3677 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : Token map: {csrfToken=cda0a1ad-af90-446c-baf5-ae47a13bf5ce}
-2024-06-23T15:06:39.900+08:00 DEBUG 3677 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login csrfToken: cda0a1ad-af90-446c-baf5-ae47a13bf5ce
-2024-06-23T15:06:39.900+08:00 DEBUG 3677 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login requestCsrfToken: cda0a1ad-af90-446c-baf5-ae47a13bf5ce
-2024-06-23T15:21:10.934+08:00  INFO 4286 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4286 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T15:21:10.935+08:00 DEBUG 4286 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T15:21:10.935+08:00  INFO 4286 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T15:21:11.997+08:00  INFO 4286 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.207 seconds (process running for 1.473)
-2024-06-23T15:32:43.708+08:00 DEBUG 4286 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : captcha code: 0750
-2024-06-23T15:33:08.438+08:00  INFO 4599 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 4599 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T15:33:08.439+08:00 DEBUG 4599 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T15:33:08.439+08:00  INFO 4599 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T15:33:09.461+08:00  INFO 4599 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.157 seconds (process running for 1.406)
-2024-06-23T15:34:33.163+08:00 DEBUG 4599 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Generated csrfToken: 1708118a-69bd-4ec9-84cb-1b6ac317b976
-2024-06-23T15:34:33.165+08:00 DEBUG 4599 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Token map: {csrfToken=1708118a-69bd-4ec9-84cb-1b6ac317b976}
-2024-06-23T15:34:33.199+08:00 DEBUG 4599 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login csrfToken: 1708118a-69bd-4ec9-84cb-1b6ac317b976
-2024-06-23T15:34:33.200+08:00 DEBUG 4599 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login requestCsrfToken: 1708118a-69bd-4ec9-84cb-1b6ac317b976
-2024-06-23T16:07:02.281+08:00  INFO 5348 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 5348 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T16:07:02.282+08:00 DEBUG 5348 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T16:07:02.282+08:00  INFO 5348 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T16:07:03.388+08:00  INFO 5348 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.243 seconds (process running for 1.495)
-2024-06-23T16:07:21.906+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : Received code: 4d698cd3e245a66654a2
-2024-06-23T16:07:21.969+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.OAuth2Controller     : Authorization code: 4d698cd3e245a66654a2
-2024-06-23T16:07:22.689+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.OAuth2Controller     : Access token: access_token=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&scope=&token_type=bearer
-2024-06-23T16:07:23.430+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.OAuth2Controller     : UserInfoObject: {"gists_url":"https://api.github.com/users/tingliiiii/gists{/gist_id}","repos_url":"https://api.github.com/users/tingliiiii/repos","following_url":"https://api.github.com/users/tingliiiii/following{/other_user}","twitter_username":null,"bio":null,"created_at":"2020-06-11T10:49:32Z","login":"tingliiiii","type":"User","blog":"","subscriptions_url":"https://api.github.com/users/tingliiiii/subscriptions","updated_at":"2024-06-17T07:50:18Z","site_admin":false,"company":null,"id":66779358,"public_repos":7,"gravatar_id":"","email":null,"organizations_url":"https://api.github.com/users/tingliiiii/orgs","hireable":null,"starred_url":"https://api.github.com/users/tingliiiii/starred{/owner}{/repo}","followers_url":"https://api.github.com/users/tingliiiii/followers","public_gists":0,"url":"https://api.github.com/users/tingliiiii","received_events_url":"https://api.github.com/users/tingliiiii/received_events","followers":0,"avatar_url":"https://avatars.githubusercontent.com/u/66779358?v=4","events_url":"https://api.github.com/users/tingliiiii/events{/privacy}","html_url":"https://github.com/tingliiiii","following":0,"name":null,"location":null,"node_id":"MDQ6VXNlcjY2Nzc5MzU4"}
-2024-06-23T16:07:23.431+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.OAuth2Controller     : Login: tingliiiii
-2024-06-23T16:07:23.431+08:00  INFO 5348 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.OAuth2Controller     : Id: 66779358
-2024-06-23T16:08:28.160+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Generated csrfToken: 2598837b-917c-449e-8321-c0088b6f477a
-2024-06-23T16:08:28.165+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Token map: {csrfToken=2598837b-917c-449e-8321-c0088b6f477a}
-2024-06-23T16:08:28.198+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login csrfToken: 2598837b-917c-449e-8321-c0088b6f477a
-2024-06-23T16:08:28.198+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : login requestCsrfToken: 2598837b-917c-449e-8321-c0088b6f477a
-2024-06-23T16:11:11.149+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.NewsService     : Cleared cache for key: allNews
-2024-06-23T16:11:11.155+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.NewsService     : Cleared cache for key: newsByTag:3
-2024-06-23T16:13:00.771+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : Generated csrfToken: b7856e4b-3bbc-4674-b36f-3626253034b4
-2024-06-23T16:13:00.773+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : Token map: {csrfToken=b7856e4b-3bbc-4674-b36f-3626253034b4}
-2024-06-23T16:13:00.792+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : register csrfToken: b7856e4b-3bbc-4674-b36f-3626253034b4
-2024-06-23T16:13:00.792+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : register requestCsrfToken: b7856e4b-3bbc-4674-b36f-3626253034b4
-2024-06-23T16:15:56.156+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Generated csrfToken: d425d21b-b22b-4778-88fc-17dd485c7353
-2024-06-23T16:15:56.159+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Token map: {csrfToken=d425d21b-b22b-4778-88fc-17dd485c7353}
-2024-06-23T16:15:56.168+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : login csrfToken: d425d21b-b22b-4778-88fc-17dd485c7353
-2024-06-23T16:15:56.168+08:00 DEBUG 5348 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : login requestCsrfToken: d425d21b-b22b-4778-88fc-17dd485c7353
-2024-06-23T16:17:41.033+08:00  INFO 5821 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 5821 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T16:17:41.034+08:00 DEBUG 5821 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T16:17:41.034+08:00  INFO 5821 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T16:17:42.083+08:00  INFO 5821 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.189 seconds (process running for 1.461)
-2024-06-23T16:21:03.855+08:00 DEBUG 5821 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : sentOtp: null
-2024-06-23T16:21:03.857+08:00 DEBUG 5821 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : receivedOtp: 761179
-2024-06-23T16:21:21.231+08:00 DEBUG 5821 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sentOtp: 156265
-2024-06-23T16:21:21.232+08:00 DEBUG 5821 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : receivedOtp: 156265
-2024-06-23T16:22:42.851+08:00  INFO 5950 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 5950 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T16:22:42.851+08:00 DEBUG 5950 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T16:22:42.852+08:00  INFO 5950 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T16:22:43.928+08:00  INFO 5950 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.211 seconds (process running for 1.462)
-2024-06-23T16:29:07.678+08:00  INFO 6046 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 6046 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-23T16:29:07.679+08:00 DEBUG 6046 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-23T16:29:07.679+08:00  INFO 6046 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-23T16:29:08.687+08:00  INFO 6046 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.145 seconds (process running for 1.369)
+2024-06-24T11:06:59.691+08:00  INFO 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2054 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T11:06:59.692+08:00 DEBUG 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T11:06:59.693+08:00  INFO 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T11:07:01.674+08:00 ERROR 2054 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 90 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 93 common frames omitted
+
+2024-06-24T11:07:01.696+08:00  WARN 2054 --- [Springboot-Web] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+2024-06-24T11:07:01.722+08:00 ERROR 2054 --- [Springboot-Web] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
+	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 19 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 33 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 34 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 56 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
+	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	... 57 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	... 77 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 90 common frames omitted
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	... 93 common frames omitted
+
+2024-06-24T11:07:12.897+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2115 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T11:07:12.898+08:00 DEBUG 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T11:07:12.899+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T11:07:13.947+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.191 seconds (process running for 1.486)
+2024-06-24T11:07:29.473+08:00  WARN 2115 --- [Springboot-Web] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to write: java.io.IOException: Broken pipe]
+2024-06-24T11:25:06.747+08:00  WARN 2115 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s602ms).
+2024-06-24T11:48:25.610+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3319 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-24T11:48:25.611+08:00 DEBUG 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-24T11:48:25.611+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-24T11:48:26.679+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.204 seconds (process running for 1.465)
+2024-06-24T12:02:25.240+08:00  WARN 3319 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m58s448ms).
