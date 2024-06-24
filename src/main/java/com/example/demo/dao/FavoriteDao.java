@@ -11,6 +11,7 @@ public interface FavoriteDao {
 
 	int addFavorite(Favorite favorite);
 	int deleteFavorite(Integer favoriteId);
+	Favorite getFavorite(Integer favoriteId);
 	List<Favorite> findFavoriteByUserId(Integer userId);
 	List<Favorite> findAllFavorites();
 	// 統計

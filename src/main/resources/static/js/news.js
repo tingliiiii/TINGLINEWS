@@ -18,7 +18,7 @@ const fetchNewsData = async (id) => {
 };
 
 const fetchFavoriteData = async (id) => {
-	try{
+	try {
 		const url = `http://${ip}:8080/tinglinews/users/${id}/favorites`;
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
@@ -31,7 +31,7 @@ const fetchFavoriteData = async (id) => {
 }
 
 const setImageFormat = (imageData) => {
-	if(!imageData) return '';
+	if (!imageData) return '';
 	let imageFormat = 'jpeg'; // 默認為 jpeg
 	if (imageData.startsWith('/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwkHBgoICAgLCg8LDhgQDg0NDh0VFhEYITIjJh0pKycyMTI0GyUoKDcwJzgsLCkqLjYxNTU1HyY3Pi0zP')) {
 		imageFormat = 'png';
@@ -108,7 +108,7 @@ const renderFavoriteData = (data) => {
 	})
 
 	// data.relatedNews.title | content | publicTime | image
-	const favoriteItem = ({news}) => `
+	const favoriteItem = ({ news }) => `
 		    <li class="list-group-item list-group-item-action">
               <a href="/tinglinews/news.html?id=${news.newsId}">
                 <div class="list-info">
@@ -145,7 +145,7 @@ const handleSubmit = async (event) => {
 	};
 
 	try {
-		const response = await fetch('http://${ip}:8080/tinglinews/users/favorites', {
+		const response = await fetch(`http://${ip}:8080/tinglinews/users/favorites`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

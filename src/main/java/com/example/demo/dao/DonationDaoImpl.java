@@ -48,4 +48,10 @@ public class DonationDaoImpl implements DonationDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Donation.class));
 	}
 
+	@Override
+	public Donation getDonation(Integer donationId) {
+		String sql = "SELECT donation_id, frequency, amount, donated_time, end_time, donate_status, user_id FROM donations WHERE donation_id=?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Donation.class), donationId);
+	}
+
 }

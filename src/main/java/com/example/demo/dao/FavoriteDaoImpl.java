@@ -29,6 +29,12 @@ public class FavoriteDaoImpl implements FavoriteDao {
 		String sql = "DELETE FROM favorites WHERE favorite_id=?";
 		return jdbcTemplate.update(sql, favoriteId);
 	}
+	
+	@Override
+	public Favorite getFavorite(Integer favoriteId) {
+		String sql = "SELECT favorite_id, user_id, news_id, favorite_time FROM favorites WHERE favorite_id=? ";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Favorite.class), favoriteId);
+	}
 
 	@Override
 	public List<Favorite> findFavoriteByUserId(Integer userId) {

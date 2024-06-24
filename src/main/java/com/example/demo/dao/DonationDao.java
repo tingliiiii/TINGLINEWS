@@ -8,6 +8,7 @@ public interface DonationDao {
 	
 	int addDonation(Donation donation);
 	int stopDonation(Integer donationId);
+	Donation getDonation(Integer donationId);
 	List<Donation> findDonationsByUserId(Integer userId);
 	List<Donation> findAllDonations();
 }

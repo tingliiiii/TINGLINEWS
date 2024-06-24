@@ -1,375 +1,187 @@
-2024-06-24T11:06:59.691+08:00  INFO 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2054 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T11:06:59.692+08:00 DEBUG 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T11:06:59.693+08:00  INFO 2054 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T11:07:01.674+08:00 ERROR 2054 --- [Springboot-Web] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Exception during pool initialization.
+2024-06-25T00:08:26.190+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 5705
+2024-06-25T00:08:46.615+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : sessionCaptcha: 5705
+2024-06-25T00:08:46.616+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : inputCaptcha: 5705
+2024-06-25T00:19:27.584+08:00  WARN 13765 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m31s822ms).
+2024-06-25T00:20:25.051+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 0243
+2024-06-25T00:20:28.629+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 2275
+2024-06-25T00:20:28.876+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : captcha code: 1170
+2024-06-25T00:20:35.026+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : sessionCaptcha: 1170
+2024-06-25T00:20:35.026+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : inputCaptcha: 1170
+2024-06-25T00:20:43.445+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 0633
+2024-06-25T00:20:57.685+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 6466
+2024-06-25T00:21:11.470+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 6466
+2024-06-25T00:21:11.471+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 6466
+2024-06-25T00:21:15.217+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : Generated csrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
+2024-06-25T00:21:15.218+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : Token map: {csrfToken=a3d8dcd1-44b1-48dd-98be-bd9ce8443db4}
+2024-06-25T00:21:15.248+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login csrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
+2024-06-25T00:21:15.248+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login requestCsrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
+2024-06-25T00:21:16.333+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : captcha code: 9386
+2024-06-25T00:21:24.798+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 9386
+2024-06-25T00:21:24.800+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 9386
+2024-06-25T00:21:24.842+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
+2024-06-25T00:21:40.556+08:00 ERROR 13765 --- [Springboot-Web] [http-nio-8080-exec-9] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/tinglinews] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0] with root cause
 
-com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
-	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
-	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:190) ~[spring-tx-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:897) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.FavoriteDaoImpl.getFavorite(FavoriteDaoImpl.java:36) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.FavoriteDaoImpl$$SpringCGLIB$$0.getFavorite(<generated>) ~[classes/:na]
+	at com.example.demo.service.FunctionService.deleteFavorite(FunctionService.java:75) ~[classes/:na]
+	at com.example.demo.controller.UserController.cancelFavorite(UserController.java:423) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
-	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	... 90 common frames omitted
-Caused by: java.net.ConnectException: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	... 93 common frames omitted
+2024-06-25T00:23:44.084+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 14302 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-25T00:23:44.084+08:00 DEBUG 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-25T00:23:44.085+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-25T00:23:45.118+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.174 seconds (process running for 1.441)
+2024-06-25T00:24:06.317+08:00 ERROR 14302 --- [Springboot-Web] [http-nio-8080-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/tinglinews] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0] with root cause
 
-2024-06-24T11:07:01.696+08:00  WARN 2054 --- [Springboot-Web] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-2024-06-24T11:07:01.722+08:00 ERROR 2054 --- [Springboot-Web] [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:962) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.5.jar:3.2.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.5.jar:3.2.5]
-	at com.example.demo.SpringbootWebApplication.main(SpringbootWebApplication.java:10) ~[classes/:na]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:485) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782) ~[spring-beans-6.1.6.jar:6.1.6]
-	... 19 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception with message: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
-	... 33 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1323) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:486) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:341) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1252) ~[spring-context-6.1.6.jar:6.1.6]
-	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:154) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcCustomConversions(JdbcRepositoriesAutoConfiguration.java:121) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:190) ~[spring-tx-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:897) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.FavoriteDaoImpl.getFavorite(FavoriteDaoImpl.java:36) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
-	... 34 common frames omitted
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception with message: Failed to obtain JDBC Connection
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177) ~[spring-beans-6.1.6.jar:6.1.6]
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
-	... 56 common frames omitted
-Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:342) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647) ~[na:na]
-	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:227) ~[spring-data-jdbc-3.2.5.jar:3.2.5]
-	at org.springframework.boot.autoconfigure.data.jdbc.JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.jdbcDialect(JdbcRepositoriesAutoConfiguration.java:144) ~[spring-boot-autoconfigure-3.2.5.jar:3.2.5]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.FavoriteDaoImpl$$SpringCGLIB$$0.getFavorite(<generated>) ~[classes/:na]
+	at com.example.demo.service.FunctionService.deleteFavorite(FunctionService.java:73) ~[classes/:na]
+	at com.example.demo.controller.UserController.cancelFavorite(UserController.java:423) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
-	... 57 common frames omitted
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
 
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:438) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:189) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:na]
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:na]
-	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	... 77 common frames omitted
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[na:na]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:104) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:149) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:165) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:88) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:120) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:935) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:805) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	... 90 common frames omitted
-Caused by: java.net.ConnectException: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:62) ~[mysql-connector-j-8.3.0.jar:8.3.0]
-	... 93 common frames omitted
-
-2024-06-24T11:07:12.897+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 2115 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T11:07:12.898+08:00 DEBUG 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T11:07:12.899+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T11:07:13.947+08:00  INFO 2115 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.191 seconds (process running for 1.486)
-2024-06-24T11:07:29.473+08:00  WARN 2115 --- [Springboot-Web] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to write: java.io.IOException: Broken pipe]
-2024-06-24T11:25:06.747+08:00  WARN 2115 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s602ms).
-2024-06-24T11:48:25.610+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 3319 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T11:48:25.611+08:00 DEBUG 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T11:48:25.611+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T11:48:26.679+08:00  INFO 3319 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.204 seconds (process running for 1.465)
-2024-06-24T12:02:25.240+08:00  WARN 3319 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m58s448ms).
-2024-06-24T22:14:29.012+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 11810 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T22:14:29.013+08:00 DEBUG 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T22:14:29.013+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T22:14:30.114+08:00  INFO 11810 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.243 seconds (process running for 1.525)
-2024-06-24T22:19:58.779+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : captcha code: 4290
-2024-06-24T22:21:15.281+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : Generated csrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
-2024-06-24T22:21:15.287+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : Token map: {csrfToken=b056d9d1-0b79-42be-a149-b23557fe09a6}
-2024-06-24T22:21:15.318+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : login csrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
-2024-06-24T22:21:15.318+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : login requestCsrfToken: b056d9d1-0b79-42be-a149-b23557fe09a6
-2024-06-24T22:21:19.878+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 4151
-2024-06-24T22:21:27.099+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 4151
-2024-06-24T22:21:27.099+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 4151
-2024-06-24T22:21:32.760+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : sessionCaptcha: 4151
-2024-06-24T22:21:32.762+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : inputCaptcha: 4151
-2024-06-24T22:21:38.984+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 4151
-2024-06-24T22:21:38.986+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 4151
-2024-06-24T22:21:42.372+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : sessionCaptcha: 4151
-2024-06-24T22:21:42.374+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : inputCaptcha: 4151
-2024-06-24T22:28:20.237+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 5889
-2024-06-24T22:28:41.597+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 5889
-2024-06-24T22:28:41.598+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 5889
-2024-06-24T22:31:10.161+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 4031
-2024-06-24T22:53:00.545+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : captcha code: 3663
-2024-06-24T22:53:00.921+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : captcha code: 7184
-2024-06-24T22:53:01.241+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 8849
-2024-06-24T22:53:12.700+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 8849
-2024-06-24T22:53:12.701+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 8849
-2024-06-24T22:53:18.847+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 7439
-2024-06-24T22:53:31.494+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : sessionCaptcha: 7439
-2024-06-24T22:53:31.496+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : inputCaptcha: 7439
-2024-06-24T22:53:44.339+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 7357
-2024-06-24T22:54:14.306+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 7357
-2024-06-24T22:54:14.309+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 7357
-2024-06-24T22:55:49.386+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : captcha code: 4928
-2024-06-24T22:55:56.982+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 4928
-2024-06-24T22:55:56.984+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 4928
-2024-06-24T22:56:06.467+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 0276
-2024-06-24T22:56:23.333+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 0276
-2024-06-24T22:56:23.335+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 0276
-2024-06-24T22:57:10.126+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 6938
-2024-06-24T22:57:28.722+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 6938
-2024-06-24T22:57:28.722+08:00 DEBUG 11810 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 6938
-2024-06-24T22:57:59.701+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12621 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T22:57:59.702+08:00 DEBUG 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T22:57:59.702+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T22:58:00.840+08:00  INFO 12621 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.283 seconds (process running for 1.59)
-2024-06-24T22:58:17.863+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 6549
-2024-06-24T22:58:32.231+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : sessionCaptcha: 6549
-2024-06-24T22:58:32.232+08:00 DEBUG 12621 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : inputCaptcha: 6549
-2024-06-24T22:58:55.871+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12630 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T22:58:55.872+08:00 DEBUG 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T22:58:55.872+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T22:58:56.828+08:00  INFO 12630 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.079 seconds (process running for 1.261)
-2024-06-24T22:59:07.823+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 4946
-2024-06-24T22:59:16.038+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : sessionCaptcha: 4946
-2024-06-24T22:59:16.038+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : inputCaptcha: 4946
-2024-06-24T23:00:31.842+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 2456
-2024-06-24T23:00:45.069+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : sessionCaptcha: 2456
-2024-06-24T23:00:45.071+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : inputCaptcha: 2456
-2024-06-24T23:00:45.086+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('f@gmail.com')]
-2024-06-24T23:00:54.127+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : sessionCaptcha: 2456
-2024-06-24T23:00:54.128+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : inputCaptcha: 2456
-2024-06-24T23:00:54.135+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('yen@gmail.com')]
-2024-06-24T23:00:57.357+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 2456
-2024-06-24T23:00:57.359+08:00 DEBUG 12630 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 2456
-2024-06-24T23:00:57.368+08:00  WARN 12630 --- [Springboot-Web] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('yen@gmail.com')]
-2024-06-24T23:01:35.163+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 12663 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-24T23:01:35.163+08:00 DEBUG 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-24T23:01:35.164+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-24T23:01:36.214+08:00  INFO 12663 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.175 seconds (process running for 1.356)
-2024-06-24T23:03:21.896+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 6754
-2024-06-24T23:03:22.294+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.UserController       : captcha code: 3343
-2024-06-24T23:03:22.662+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 3621
-2024-06-24T23:03:23.033+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 8288
-2024-06-24T23:03:23.344+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : captcha code: 9158
-2024-06-24T23:03:29.979+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : sessionCaptcha: 9158
-2024-06-24T23:03:29.980+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : inputCaptcha: 9158
-2024-06-24T23:03:34.983+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : Generated csrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
-2024-06-24T23:03:34.987+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : Token map: {csrfToken=649a7929-8ff1-4f4e-a2db-ae52f31a5889}
-2024-06-24T23:03:35.004+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : login csrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
-2024-06-24T23:03:35.004+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : login requestCsrfToken: 649a7929-8ff1-4f4e-a2db-ae52f31a5889
-2024-06-24T23:03:36.115+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 6401
-2024-06-24T23:03:43.139+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : sessionCaptcha: 6401
-2024-06-24T23:03:43.140+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : inputCaptcha: 6401
-2024-06-24T23:03:46.584+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 7547
-2024-06-24T23:03:52.887+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 2283
-2024-06-24T23:04:03.515+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 2283
-2024-06-24T23:04:03.516+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 2283
-2024-06-24T23:04:12.587+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : sessionCaptcha: 2283
-2024-06-24T23:04:12.588+08:00 DEBUG 12663 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : inputCaptcha: 2283
+2024-06-25T00:24:19.462+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-5] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
+2024-06-25T00:25:23.045+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-1] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
+2024-06-25T00:25:32.467+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 2739
+2024-06-25T00:25:50.779+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.UserService     : Cleared cache for key: userAdminDtos
+2024-06-25T00:50:40.530+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Generated csrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
+2024-06-25T00:50:40.538+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Token map: {csrfToken=5a00311c-5a14-48dc-a0e4-6b3ef4da1a58}
+2024-06-25T00:50:40.565+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : login csrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
+2024-06-25T00:50:40.566+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : login requestCsrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
+2024-06-25T00:54:03.965+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Generated csrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
+2024-06-25T00:54:03.967+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Token map: {csrfToken=9af1c9f9-059d-4b18-a14d-f03a8d3306eb}
+2024-06-25T00:54:03.977+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login csrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
+2024-06-25T00:54:03.978+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login requestCsrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
+2024-06-25T00:54:26.301+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.OAuth2Controller     : Received code: 3741b2d8ab78b4154bf7
+2024-06-25T00:54:26.361+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Authorization code: 3741b2d8ab78b4154bf7
+2024-06-25T00:54:27.307+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Access token: access_token=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&scope=&token_type=bearer
+2024-06-25T00:54:28.060+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : UserInfoObject: {"gists_url":"https://api.github.com/users/tingliiiii/gists{/gist_id}","repos_url":"https://api.github.com/users/tingliiiii/repos","following_url":"https://api.github.com/users/tingliiiii/following{/other_user}","twitter_username":null,"bio":null,"created_at":"2020-06-11T10:49:32Z","login":"tingliiiii","type":"User","blog":"","subscriptions_url":"https://api.github.com/users/tingliiiii/subscriptions","updated_at":"2024-06-17T07:50:18Z","site_admin":false,"company":null,"id":66779358,"public_repos":7,"gravatar_id":"","email":null,"organizations_url":"https://api.github.com/users/tingliiiii/orgs","hireable":null,"starred_url":"https://api.github.com/users/tingliiiii/starred{/owner}{/repo}","followers_url":"https://api.github.com/users/tingliiiii/followers","public_gists":0,"url":"https://api.github.com/users/tingliiiii","received_events_url":"https://api.github.com/users/tingliiiii/received_events","followers":0,"avatar_url":"https://avatars.githubusercontent.com/u/66779358?v=4","events_url":"https://api.github.com/users/tingliiiii/events{/privacy}","html_url":"https://github.com/tingliiiii","following":0,"name":null,"location":null,"node_id":"MDQ6VXNlcjY2Nzc5MzU4"}
+2024-06-25T00:54:28.061+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Login: tingliiiii
+2024-06-25T00:54:28.061+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Id: 66779358

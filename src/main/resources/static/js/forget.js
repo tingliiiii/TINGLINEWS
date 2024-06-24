@@ -52,9 +52,6 @@ const checkEmail = async (event) => {
 			Swal.fire('該電子信箱尚未註冊', '', 'error');
 			return;
 		}
-		// 顯示模態框
-		const modalInstance = new bootstrap.Modal($('#modal'));
-		modalInstance.show();
 		sendEmail(email);
 
 	} catch (e) {
@@ -64,6 +61,10 @@ const checkEmail = async (event) => {
 }
 
 const sendEmail = async (email) => {
+
+	// 顯示模態框
+	const modalInstance = new bootstrap.Modal($('#modal'));
+	modalInstance.show();
 
 	try {
 		const { state, message, data } = await fetchData(`http://${ip}:8080/tinglinews/users/otp`,
