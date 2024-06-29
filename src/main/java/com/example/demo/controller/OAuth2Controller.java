@@ -32,7 +32,7 @@ public class OAuth2Controller {
 	public String getToken(@RequestParam("code") String code, HttpSession session) {
 		session.setAttribute("code", code);
 		// System.out.println("Received code: " + code);
-		log.info("Received code: " + code);
+		// log.info("Received code: " + code);
 		return "redirect:/callback/github.html";
 	}
 
@@ -44,14 +44,14 @@ public class OAuth2Controller {
 		try {
 			String code = (String) session.getAttribute("code");
 			// System.out.println("code: " + code);
-			log.info("Authorization code: " + code);
+			// log.info("Authorization code: " + code);
 			if (code == null) {
 				return new ApiResponse<>(false, "Missing authorization code", null);
 			}
 
 			String token = OAuth2Util.getGitHubAccessToken(code);
 			// System.out.println(token);
-			log.info("Access token: " + token);
+			// log.info("Access token: " + token);
 			if (token == null) {
 				return new ApiResponse<>(false, "Failed to obtain access token", null);
 			}
