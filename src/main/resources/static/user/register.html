@@ -67,15 +67,16 @@
                 </div>
               </div>
               <p></p>
-              <input type="tel" name="phone" id="phone" placeholder="手機號碼" class="form-control">
+              <input type="tel" name="phone" id="phone" pattern="[0-9]{4}-[0-9]{6}" placeholder="手機號碼 0987-654321"
+                class="form-control">
               <p></p>
               <input type="email" name="userEmail" id="userEmail" class="form-control" placeholder="電子信箱*" required>
               <p></p>
               <input type="password" name="userPassword" id="userPassword" class="form-control" placeholder="密碼*"
-                required>
+                autocomplete="new-password" required>
               <p></p>
               <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
-                placeholder="確認密碼*" required>
+                placeholder="確認密碼*" autocomplete="new-password" required>
               <p></p>
 
               <div class="row">
@@ -83,8 +84,7 @@
                   <button id="register-submit-btn" type="submit" class="btn btn-primary w-100">註冊</button>
                 </div>
                 <div class="col-6">
-                  <a href="login.html"
-                    class="login btn btn-outline-primary w-100">已有帳號</a>
+                  <a href="login.html" class="login btn btn-outline-primary w-100">已有帳號</a>
                 </div>
 
 

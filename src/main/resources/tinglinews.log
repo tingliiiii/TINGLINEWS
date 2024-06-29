@@ -1,30 +1,20 @@
-2024-06-25T00:08:26.190+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 5705
-2024-06-25T00:08:46.615+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : sessionCaptcha: 5705
-2024-06-25T00:08:46.616+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : inputCaptcha: 5705
-2024-06-25T00:19:27.584+08:00  WARN 13765 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m31s822ms).
-2024-06-25T00:20:25.051+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 0243
-2024-06-25T00:20:28.629+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : captcha code: 2275
-2024-06-25T00:20:28.876+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : captcha code: 1170
-2024-06-25T00:20:35.026+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : sessionCaptcha: 1170
-2024-06-25T00:20:35.026+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : inputCaptcha: 1170
-2024-06-25T00:20:43.445+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : captcha code: 0633
-2024-06-25T00:20:57.685+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : captcha code: 6466
-2024-06-25T00:21:11.470+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : sessionCaptcha: 6466
-2024-06-25T00:21:11.471+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : inputCaptcha: 6466
-2024-06-25T00:21:15.217+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : Generated csrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
-2024-06-25T00:21:15.218+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : Token map: {csrfToken=a3d8dcd1-44b1-48dd-98be-bd9ce8443db4}
-2024-06-25T00:21:15.248+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login csrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
-2024-06-25T00:21:15.248+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : login requestCsrfToken: a3d8dcd1-44b1-48dd-98be-bd9ce8443db4
-2024-06-25T00:21:16.333+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.UserController       : captcha code: 9386
-2024-06-25T00:21:24.798+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : sessionCaptcha: 9386
-2024-06-25T00:21:24.800+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-3] c.e.demo.controller.UserController       : inputCaptcha: 9386
-2024-06-25T00:21:24.842+08:00 DEBUG 13765 --- [Springboot-Web] [http-nio-8080-exec-2] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
-2024-06-25T00:21:40.556+08:00 ERROR 13765 --- [Springboot-Web] [http-nio-8080-exec-9] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/tinglinews] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0] with root cause
+2024-06-29T13:06:15.680+08:00  INFO 15604 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 15604 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-29T13:06:15.683+08:00 DEBUG 15604 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-29T13:06:15.683+08:00  INFO 15604 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-29T13:06:16.803+08:00  INFO 15604 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.271 seconds (process running for 1.569)
+2024-06-29T13:14:28.005+08:00  WARN 15604 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.UserController       : CSRF token validation failed for login
+2024-06-29T13:15:46.550+08:00  WARN 15604 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : CSRF token validation failed for login
+2024-06-29T13:26:08.667+08:00 DEBUG 15604 --- [Springboot-Web] [http-nio-8080-exec-10] com.example.demo.service.NewsService     : Cleared cache for key: allNews
+2024-06-29T14:04:50.635+08:00 ERROR 15604 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Error during user registration
 
-org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:190) ~[spring-tx-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:897) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at com.example.demo.dao.FavoriteDaoImpl.getFavorite(FavoriteDaoImpl.java:36) ~[classes/:na]
+org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO users(user_name, user_email, user_password, salt, birthday, gender, phone) values(?, ?, ?, ?, ?, ?, ?)]; Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:95) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate.update(NamedParameterJdbcTemplate.java:365) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.UserDaoImpl.addUser(UserDaoImpl.java:40) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -37,9 +27,9 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
-	at com.example.demo.dao.FavoriteDaoImpl$$SpringCGLIB$$0.getFavorite(<generated>) ~[classes/:na]
-	at com.example.demo.service.FunctionService.deleteFavorite(FunctionService.java:75) ~[classes/:na]
-	at com.example.demo.controller.UserController.cancelFavorite(UserController.java:423) ~[classes/:na]
+	at com.example.demo.dao.UserDaoImpl$$SpringCGLIB$$0.addUser(<generated>) ~[classes/:na]
+	at com.example.demo.service.UserService.createUser(UserService.java:62) ~[classes/:na]
+	at com.example.demo.controller.UserController.register(UserController.java:95) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -53,8 +43,8 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936) ~[spring-webmvc-6.1.6.jar:6.1.6]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.20.jar:6.0]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
@@ -90,17 +80,30 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	... 68 common frames omitted
 
-2024-06-25T00:23:44.084+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 14302 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-25T00:23:44.084+08:00 DEBUG 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-25T00:23:44.085+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-25T00:23:45.118+08:00  INFO 14302 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.174 seconds (process running for 1.441)
-2024-06-25T00:24:06.317+08:00 ERROR 14302 --- [Springboot-Web] [http-nio-8080-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/tinglinews] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0] with root cause
+2024-06-29T14:11:16.788+08:00 ERROR 15604 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Error during user registration
 
-org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:190) ~[spring-tx-6.1.6.jar:6.1.6]
-	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:897) ~[spring-jdbc-6.1.6.jar:6.1.6]
-	at com.example.demo.dao.FavoriteDaoImpl.getFavorite(FavoriteDaoImpl.java:36) ~[classes/:na]
+org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO users(user_name, user_email, user_password, salt, birthday, gender, phone) values(?, ?, ?, ?, ?, ?, ?)]; Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:95) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate.update(NamedParameterJdbcTemplate.java:365) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.UserDaoImpl.addUser(UserDaoImpl.java:40) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -113,9 +116,9 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
-	at com.example.demo.dao.FavoriteDaoImpl$$SpringCGLIB$$0.getFavorite(<generated>) ~[classes/:na]
-	at com.example.demo.service.FunctionService.deleteFavorite(FunctionService.java:73) ~[classes/:na]
-	at com.example.demo.controller.UserController.cancelFavorite(UserController.java:423) ~[classes/:na]
+	at com.example.demo.dao.UserDaoImpl$$SpringCGLIB$$0.addUser(<generated>) ~[classes/:na]
+	at com.example.demo.service.UserService.createUser(UserService.java:62) ~[classes/:na]
+	at com.example.demo.controller.UserController.register(UserController.java:95) ~[classes/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
@@ -129,8 +132,8 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
-	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936) ~[spring-webmvc-6.1.6.jar:6.1.6]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.20.jar:6.0]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
@@ -166,34 +169,130 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
 	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	... 68 common frames omitted
 
-2024-06-25T00:24:19.462+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-5] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
-2024-06-25T00:25:23.045+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-1] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1052
-2024-06-25T00:25:32.467+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-1] c.e.demo.controller.UserController       : captcha code: 2739
-2024-06-25T00:25:50.779+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-6] com.example.demo.service.UserService     : Cleared cache for key: userAdminDtos
-2024-06-25T00:50:40.530+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Generated csrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
-2024-06-25T00:50:40.538+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : Token map: {csrfToken=5a00311c-5a14-48dc-a0e4-6b3ef4da1a58}
-2024-06-25T00:50:40.565+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : login csrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
-2024-06-25T00:50:40.566+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : login requestCsrfToken: 5a00311c-5a14-48dc-a0e4-6b3ef4da1a58
-2024-06-25T00:54:03.965+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Generated csrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
-2024-06-25T00:54:03.967+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : Token map: {csrfToken=9af1c9f9-059d-4b18-a14d-f03a8d3306eb}
-2024-06-25T00:54:03.977+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login csrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
-2024-06-25T00:54:03.978+08:00 DEBUG 14302 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login requestCsrfToken: 9af1c9f9-059d-4b18-a14d-f03a8d3306eb
-2024-06-25T00:54:26.301+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.OAuth2Controller     : Received code: 3741b2d8ab78b4154bf7
-2024-06-25T00:54:26.361+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Authorization code: 3741b2d8ab78b4154bf7
-2024-06-25T00:54:27.307+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Access token: access_token=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&scope=&token_type=bearer
-2024-06-25T00:54:28.060+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : UserInfoObject: {"gists_url":"https://api.github.com/users/tingliiiii/gists{/gist_id}","repos_url":"https://api.github.com/users/tingliiiii/repos","following_url":"https://api.github.com/users/tingliiiii/following{/other_user}","twitter_username":null,"bio":null,"created_at":"2020-06-11T10:49:32Z","login":"tingliiiii","type":"User","blog":"","subscriptions_url":"https://api.github.com/users/tingliiiii/subscriptions","updated_at":"2024-06-17T07:50:18Z","site_admin":false,"company":null,"id":66779358,"public_repos":7,"gravatar_id":"","email":null,"organizations_url":"https://api.github.com/users/tingliiiii/orgs","hireable":null,"starred_url":"https://api.github.com/users/tingliiiii/starred{/owner}{/repo}","followers_url":"https://api.github.com/users/tingliiiii/followers","public_gists":0,"url":"https://api.github.com/users/tingliiiii","received_events_url":"https://api.github.com/users/tingliiiii/received_events","followers":0,"avatar_url":"https://avatars.githubusercontent.com/u/66779358?v=4","events_url":"https://api.github.com/users/tingliiiii/events{/privacy}","html_url":"https://github.com/tingliiiii","following":0,"name":null,"location":null,"node_id":"MDQ6VXNlcjY2Nzc5MzU4"}
-2024-06-25T00:54:28.061+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Login: tingliiiii
-2024-06-25T00:54:28.061+08:00  INFO 14302 --- [Springboot-Web] [http-nio-8080-exec-6] c.e.demo.controller.OAuth2Controller     : Id: 66779358
-2024-06-25T01:04:09.607+08:00  INFO 15033 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 15033 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
-2024-06-25T01:04:09.608+08:00 DEBUG 15033 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
-2024-06-25T01:04:09.608+08:00  INFO 15033 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-06-25T01:04:10.649+08:00  INFO 15033 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.179 seconds (process running for 1.446)
-2024-06-25T01:05:07.809+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : sentOtp: 290309
-2024-06-25T01:05:07.810+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-5] c.e.demo.controller.UserController       : receivedOtp: 290309
-2024-06-25T01:22:48.750+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : Generated csrfToken: 12f87d54-e834-4bc3-aac8-4e54739c2353
-2024-06-25T01:22:48.756+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-2] c.e.demo.controller.UserController       : Token map: {csrfToken=12f87d54-e834-4bc3-aac8-4e54739c2353}
-2024-06-25T01:22:48.787+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login csrfToken: 12f87d54-e834-4bc3-aac8-4e54739c2353
-2024-06-25T01:22:48.787+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-4] c.e.demo.controller.UserController       : login requestCsrfToken: 12f87d54-e834-4bc3-aac8-4e54739c2353
-2024-06-25T01:22:49.983+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-10] c.e.demo.controller.UserController       : captcha code: 1346
-2024-06-25T01:24:42.328+08:00 DEBUG 15033 --- [Springboot-Web] [http-nio-8080-exec-7] com.example.demo.service.UserService     : Cleared cache for key: userAdminDtos
+2024-06-29T14:13:37.117+08:00  INFO 18346 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 18346 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-29T14:13:37.117+08:00 DEBUG 18346 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-29T14:13:37.117+08:00  INFO 18346 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-29T14:13:38.261+08:00  INFO 18346 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.285 seconds (process running for 1.555)
+2024-06-29T14:14:07.159+08:00  INFO 18363 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 18363 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-29T14:14:07.159+08:00 DEBUG 18363 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-29T14:14:07.160+08:00  INFO 18363 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-29T14:14:08.164+08:00  INFO 18363 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.129 seconds (process running for 1.314)
+2024-06-29T14:16:49.549+08:00 ERROR 18363 --- [Springboot-Web] [http-nio-8080-exec-7] c.e.demo.controller.UserController       : Error during user registration
+
+org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL [INSERT INTO users(user_name, user_email, user_password, salt, birthday, gender, phone) values(?, ?, ?, ?, ?, ?, ?)]; Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:95) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1001) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate.update(NamedParameterJdbcTemplate.java:365) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.UserDaoImpl.addUser(UserDaoImpl.java:40) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.6.jar:6.1.6]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.6.jar:6.1.6]
+	at com.example.demo.dao.UserDaoImpl$$SpringCGLIB$$0.addUser(<generated>) ~[classes/:na]
+	at com.example.demo.service.UserService.createUser(UserService.java:62) ~[classes/:na]
+	at com.example.demo.controller.UserController.register(UserController.java:95) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.6.jar:6.1.6]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.20.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.6.jar:6.1.6]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:842) ~[na:na]
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'lily90740@gmail.com' for key 'users.userEmail'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$3(JdbcTemplate.java:1002) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.1.6.jar:6.1.6]
+	... 68 common frames omitted
+
+2024-06-29T14:17:44.522+08:00 DEBUG 18363 --- [Springboot-Web] [http-nio-8080-exec-1] com.example.demo.service.UserService     : Cleared cache for key: userAdminDtos
+2024-06-29T14:26:36.130+08:00 DEBUG 18363 --- [Springboot-Web] [http-nio-8080-exec-7] com.example.demo.service.UserService     : Cleared cache for key: userProfile:1070
+2024-06-29T14:41:42.968+08:00  INFO 19526 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Starting SpringbootWebApplication using Java 17.0.10 with PID 19526 (/Users/liutingli/Project/TINGLINEWS/target/classes started by liutingli in /Users/liutingli/Project/TINGLINEWS)
+2024-06-29T14:41:42.969+08:00 DEBUG 19526 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Running with Spring Boot v3.2.5, Spring v6.1.6
+2024-06-29T14:41:42.969+08:00  INFO 19526 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-06-29T14:41:44.020+08:00  INFO 19526 --- [Springboot-Web] [main] c.example.demo.SpringbootWebApplication  : Started SpringbootWebApplication in 1.194 seconds (process running for 1.49)
+2024-06-29T15:10:31.996+08:00 DEBUG 19526 --- [Springboot-Web] [http-nio-8080-exec-8] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1070
+2024-06-29T15:19:02.121+08:00 DEBUG 19526 --- [Springboot-Web] [http-nio-8080-exec-6] c.example.demo.service.FunctionService   : Cleared cache for key: userProfile:1070
+2024-06-29T15:48:11.420+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-8] c.e.demo.controller.OAuth2Controller     : Received code: ca603c60ee1278123ba8
+2024-06-29T15:48:11.705+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : Authorization code: ca603c60ee1278123ba8
+2024-06-29T15:48:12.333+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : Access token: access_token=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&scope=&token_type=bearer
+2024-06-29T15:48:12.959+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : UserInfoObject: {"gists_url":"https://api.github.com/users/tingliiiii/gists{/gist_id}","repos_url":"https://api.github.com/users/tingliiiii/repos","following_url":"https://api.github.com/users/tingliiiii/following{/other_user}","twitter_username":null,"bio":null,"created_at":"2020-06-11T10:49:32Z","login":"tingliiiii","type":"User","blog":"","subscriptions_url":"https://api.github.com/users/tingliiiii/subscriptions","updated_at":"2024-06-29T07:48:10Z","site_admin":false,"company":null,"id":66779358,"public_repos":8,"gravatar_id":"","email":null,"organizations_url":"https://api.github.com/users/tingliiiii/orgs","hireable":null,"starred_url":"https://api.github.com/users/tingliiiii/starred{/owner}{/repo}","followers_url":"https://api.github.com/users/tingliiiii/followers","public_gists":0,"url":"https://api.github.com/users/tingliiiii","received_events_url":"https://api.github.com/users/tingliiiii/received_events","followers":0,"avatar_url":"https://avatars.githubusercontent.com/u/66779358?v=4","events_url":"https://api.github.com/users/tingliiiii/events{/privacy}","html_url":"https://github.com/tingliiiii","following":0,"name":null,"location":null,"node_id":"MDQ6VXNlcjY2Nzc5MzU4"}
+2024-06-29T15:48:12.959+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : Login: tingliiiii
+2024-06-29T15:48:12.960+08:00  INFO 19526 --- [Springboot-Web] [http-nio-8080-exec-9] c.e.demo.controller.OAuth2Controller     : Id: 66779358
+2024-06-29T16:03:00.459+08:00 DEBUG 19526 --- [Springboot-Web] [http-nio-8080-exec-10] com.example.demo.service.NewsService     : Cleared cache for key: allNews
+2024-06-29T16:03:00.477+08:00 DEBUG 19526 --- [Springboot-Web] [http-nio-8080-exec-10] com.example.demo.service.NewsService     : Cleared cache for key: newsByTag:6

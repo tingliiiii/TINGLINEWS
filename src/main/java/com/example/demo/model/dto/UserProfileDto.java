@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.demo.model.po.Donation;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,8 @@ public class UserProfileDto {
 	private Integer userId;
 	private String userName;
 	private String UserEmail; 
-	private LocalDate birthday;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	private Date birthday;
 	private String gender;
 	private String phone;
 	

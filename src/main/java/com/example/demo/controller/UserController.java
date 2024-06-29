@@ -99,8 +99,13 @@ public class UserController {
 		} catch (Exception e) {
 			// e.printStackTrace();
 			log.error("Error during user registration", e);
-			ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
-			return ResponseEntity.ok(apiResponse);
+			if(e.getMessage().contains("Duplicate")) {
+				ApiResponse apiResponse = new ApiResponse<>(false, "該信箱已被註冊", null);
+				return ResponseEntity.ok(apiResponse);
+			} else {
+				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
+				return ResponseEntity.ok(apiResponse);
+			}
 		}
 	}
 
@@ -189,7 +194,8 @@ public class UserController {
 		String subject = "TINGLINEWS 電子信箱驗證";
 		String otp = OTPUtil.generateOTP();
 		String body = "<p>驗證碼：<b>" + otp + "&ensp;</b></p>"
-				+ "<p><small>驗證碼將於30秒後失效，請儘速在驗證頁面完成驗證。若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
+				+ "<p><small>驗證碼30秒內有效，請儘速在驗證頁面完成驗證，並於10分鐘內重設密碼。"
+				+ "若您並未要求此代碼，可以安全地忽略此電子郵件，可能有人誤輸入了您的電子郵件地址</small></p>";
 
 		try {
 			// 創建 MimeMessage
@@ -407,7 +413,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (e.getMessage().contains("favorites.unique_userid_and_newsid")) {
-				message = "已收藏此篇報導";
+				message = "已收藏這篇報導";
 			} else {
 				message += e.getMessage();
 			}

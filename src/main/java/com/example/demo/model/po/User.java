@@ -33,6 +33,6 @@ public class User {
 	private String phone;
 	@DateTimeFormat(pattern = "yyyy-MM-dd") // 前台傳給後台的格式轉換
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8") // 後台傳給前台的格式轉換
-	private LocalDate birthday; // 生日
+	private Date birthday; // 生日
 
 }

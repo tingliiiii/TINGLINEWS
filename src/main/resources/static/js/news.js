@@ -17,14 +17,30 @@ const fetchNewsData = async (id) => {
 	}
 };
 
-const fetchFavoriteData = async (id) => {
+const fetchFavoriteData = async (id, userId) => {
 	try {
-		const url = `http://${ip}:8080/tinglinews/users/${id}/favorites`;
+		const url = `http://${ip}:8080/tinglinews/users/${userId}/favorites`;
 		const response = await fetch(url);
 		const { state, message, data } = await response.json();
 		console.log(state, message, data);
-		const topThreeFavorites = data.slice(0, 3); // Select only the top 3 favorite articles
-		renderFavoriteData(topThreeFavorites);
+
+		if (Array.isArray(data)) {
+
+			const isFavorite = data.some(favorite => {
+				const newsId = parseInt(favorite.news.newsId, 10);
+				console.log(newsId, id);
+				return newsId == id;
+			});
+			console.log(isFavorite, id);
+			if (isFavorite) {
+				$('#saved-btn').text('已收藏這篇報導');
+			}
+			const topThreeFavorites = data.slice(0, 3);
+			renderFavoriteData(topThreeFavorites);
+		} else {
+			console.error('Unexpected data format:', data);
+		}
+
 	} catch (e) {
 		console.error(e);
 	}
@@ -157,6 +173,7 @@ const handleSubmit = async (event) => {
 		// console.log(state, message, data);
 		if (state) {
 			Swal.fire(message, '可至個人資料頁面查看收藏紀錄', 'success');
+			$('#saved-btn').text('已收藏這篇報導');
 		} else {
 			Swal.fire(message, '', 'warning');
 		}
@@ -169,25 +186,25 @@ const handleSubmit = async (event) => {
 // 待 DOM 加載完成之後再執行
 $(document).ready(() => {
 
-	const data = JSON.parse(sessionStorage.getItem('userData'));
-
-	if (data) {
-		$('.header-container').load('nav-login.html');
-		$('#saved-btn').text('收藏這篇文章！');
-		fetchFavoriteData(data.userId);
-	} else {
-		$('.header-container').load('nav.html');
-		$('#saved-btn').text('登入收藏這篇文章！');
-		$('.favorite-articles-container').css('display', 'none');
-	}
-	$('.footer-container').load('footer.html');
-	$('.ad-container').load('ad.html');
-
 	// 把 uri 抓下來渲染頁面
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const id = urlParams.get('id');
 	fetchNewsData(id);
+
+	const data = JSON.parse(sessionStorage.getItem('userData'));
+
+	if (data) {
+		$('.header-container').load('nav-login.html');
+		$('#saved-btn').text('收藏這篇報導！');
+		fetchFavoriteData(id, data.userId);
+	} else {
+		$('.header-container').load('nav.html');
+		$('#saved-btn').text('登入收藏這篇報導！');
+		$('.favorite-articles-container').css('display', 'none');
+	}
+	$('.footer-container').load('footer.html');
+	$('.ad-container').load('ad.html');
 
 	// 設定收藏按鈕的隱藏欄位
 	$('#newsId').val(id);
