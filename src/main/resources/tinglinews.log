@@ -14,3 +14,4 @@
 2024-06-30T17:47:20.740+08:00 DEBUG 32340 --- [Springboot-Web] [http-nio-8080-exec-7] com.example.demo.service.NewsService     : Cleared cache for key: newsByTag:5
 2024-06-30T17:50:25.776+08:00 DEBUG 32340 --- [Springboot-Web] [http-nio-8080-exec-9] com.example.demo.service.NewsService     : Cleared cache for key: allNews
 2024-06-30T17:50:25.780+08:00 DEBUG 32340 --- [Springboot-Web] [http-nio-8080-exec-9] com.example.demo.service.NewsService     : Cleared cache for key: newsByTag:5
+2024-06-30T18:00:48.214+08:00  WARN 32340 --- [Springboot-Web] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m37s372ms).

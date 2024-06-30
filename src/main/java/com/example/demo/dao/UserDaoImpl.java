@@ -13,8 +13,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.po.Authority;
-import com.example.demo.model.po.Donation;
-import com.example.demo.model.po.Favorite;
 import com.example.demo.model.po.User;
 
 @Repository
