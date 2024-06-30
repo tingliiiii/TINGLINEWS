@@ -100,7 +100,7 @@ public class UserController {
 			// e.printStackTrace();
 			log.error("Error during user registration", e);
 			if(e.getMessage().contains("Duplicate")) {
-				ApiResponse apiResponse = new ApiResponse<>(false, "該信箱已被註冊", null);
+				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.該信箱已被註冊.name(), null);
 				return ResponseEntity.ok(apiResponse);
 			} else {
 				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.註冊失敗.name(), null);
@@ -141,7 +141,7 @@ public class UserController {
 				return ResponseEntity.ok(apiResponse);
 			} else {
 				log.warn("Invalid login attempt for email: {}", dto.getUserEmail());
-				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.登入失敗.name(), null);
+				ApiResponse apiResponse = new ApiResponse<>(false, StatusMessage.該信箱尚未註冊.name(), null);
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiResponse);
 			}
 		} catch (Exception e) {
@@ -179,7 +179,7 @@ public class UserController {
 		// 先確認該 email 是否已經註冊為會員
 		User user = userService.getUserByEmail(email);
 		if (user == null) {
-			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.查無資料.name(), null));
+			return ResponseEntity.ok(new ApiResponse<>(false, StatusMessage.該信箱尚未註冊.name(), null));
 		}
 		return ResponseEntity.ok(new ApiResponse<>(true, StatusMessage.查詢成功.name(), user.getUserId()));
 	}
@@ -212,17 +212,12 @@ public class UserController {
 			mailSender.send(message);
 			redisService.save(email, otp, 30, TimeUnit.SECONDS);
 
-			ApiResponse apiResponse = new ApiResponse<>(true, "驗證碼已發送至信箱", null);
+			ApiResponse apiResponse = new ApiResponse<>(true, StatusMessage.驗證碼已發送至信箱.name(), null);
 			return ResponseEntity.ok(apiResponse);
 		} catch (Exception e) {
-			// e.printStackTrace();
 			log.error("Error sending OTP email", e);
-
-			if (e.getMessage().contains("Invalid Addresses")) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "無效電子信箱", null));
-			}
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body(new ApiResponse<>(false, "驗證碼發送失敗", e.getMessage()));
+					.body(new ApiResponse<>(false, StatusMessage.驗證碼發送失敗.name(), e.getMessage()));
 		}
 	}
 
