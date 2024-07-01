@@ -374,8 +374,8 @@ public class UserController {
 
 	@Operation(summary = "取消贊助")
 	@DeleteMapping("/donations/{donationId}")
-	public ResponseEntity<ApiResponse<Boolean>> stopDonation(@PathVariable Integer donateId) {
-		Boolean state = functionService.stopDonation(donateId);
+	public ResponseEntity<ApiResponse<Boolean>> stopDonation(@PathVariable Integer donationId) {
+		Boolean state = functionService.stopDonation(donationId);
 		String message = state ? StatusMessage.刪除成功.name() : StatusMessage.刪除失敗.name();
 		ApiResponse apiResponse = new ApiResponse<>(state, message, state);
 		return ResponseEntity.ok(apiResponse);

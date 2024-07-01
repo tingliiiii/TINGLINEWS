@@ -16,7 +16,7 @@ import java.net.http.HttpResponse;
 public class OAuth2Util {
 
 	public final static String CLIENT_ID = "Ov23liDtaaE6SzdeiYZu";
-	private final static String CLIENT_SECRET = "";
+	private final static String CLIENT_SECRET = "6763e0c128703044de100df890410311700670bb";
 	public final static String REDIRECT_URI = "http://172.20.10.5:8080/tinglinews/callback/github";
 
 	// GitHub 的 OAuth 2.0 授權端點 (Authorization Endpoint)
@@ -63,29 +63,6 @@ public class OAuth2Util {
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 		return response.body();
 	}
-
-	/*
-	private static String sendPostRequest(String targetURL, String urlParameters) throws IOException {
-		URL url = new URL(targetURL);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("POST");
-		connection.setDoOutput(true);
-
-		try (OutputStream os = connection.getOutputStream()) {
-			os.write(urlParameters.getBytes());
-			os.flush();
-		}
-
-		try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-			String line;
-			StringBuilder response = new StringBuilder();
-			while ((line = in.readLine()) != null) {
-				response.append(line);
-			}
-			return response.toString();
-		}
-	}
-	*/
 	
 	/**
 	 * 解析 access_token 從 GitHub 的 OAuth 回應。

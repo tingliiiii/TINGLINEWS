@@ -161,7 +161,7 @@ $(document).ready(async () => {
 	$('#donated-table').on('click', '.stop-donate-btn', async (event) => {
 
 		const donationId = $(event.target).data('id');
-		// console.log('按下停止贊助：' + id);
+		console.log('按下停止贊助：' + donationId);
 
 		const row = $(event.target).closest('tr');
 		const status = row.find('td:nth-child(6)').text().trim();
@@ -191,7 +191,7 @@ $(document).ready(async () => {
 			// console.log(state, message, data);
 
 			if (state) {
-				Swal.fire(message, '', 'success');
+				Swal.fire('取消贊助成功', '', 'success');
 				setTimeout(() => {
 					window.location.reload();
 				}, 1000);

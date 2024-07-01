@@ -152,5 +152,6 @@ $(document).ready(() => {
 	}
 	loadCaptcha();
 	$('#donate-form').on('submit', handleFormSubmit);
+	$('#refresh-captcha').on('click', loadCaptcha);
 });
 

@@ -12,10 +12,10 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>Springboot-Web</artifactId>
+	<artifactId>TINGLINEWS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Springboot-Web</name>
-	<description>Demo project for Spring Boot</description>
+	<name>TINGLINEWS</name>
+	<description>TINGLINEWS project for Spring Boot</description>
 
 	<!-- 定義 Java 版本 -->
 	<properties>
