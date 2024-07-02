@@ -19,24 +19,26 @@ public class CaptchaUtil {
 	// 產生包含驗證碼的圖片
 	public static BufferedImage getCaptchaImage(String code) throws Exception {
 
+		System.setProperty("java.awt.headless", "true"); // 啟用無頭模式
+
 		int w = 100; // 圖寬
 		int h = 38; // 圖高
-		
+
 		// 建立圖像暫存區
 		BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 
 		// 建立畫布
 		Graphics g = img.getGraphics();
-		
+
 		// 設定背景顏色
 		g.setColor(Color.YELLOW);
 		g.fillRect(0, 0, w, h);
-		
+
 		// 繪製文字
 		g.setColor(Color.CYAN); // 設定顏色
-		g.setFont(new Font("新細明體", Font.BOLD, 30)); // 設定字型
+		g.setFont(new Font("Default", Font.BOLD, 30)); // 設定字型
 		g.drawString(code, 10, 25);
-		
+
 		// 加入干擾線 20 條
 		g.setColor(Color.PINK);
 		Random random = new Random();
@@ -53,13 +55,11 @@ public class CaptchaUtil {
 
 	// 將圖片轉換為 Base64 字串
 	public static String imageToBase64(BufferedImage image) throws Exception {
-		
+
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		ImageIO.write(image, "JPEG", outputStream);
 		byte[] imageBytes = outputStream.toByteArray();
 		return Base64.getEncoder().encodeToString(imageBytes);
 	}
-	
-	
-	
+
 }
